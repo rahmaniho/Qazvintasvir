@@ -18,21 +18,21 @@ const isFa = lang === 'fa';
         <div class="fleet-card__media"><img src={`${baseUrl}/assets/images/bus-fleet.webp`} alt={isFa ? 'اتوبوس سرویس پرسنل' : 'Staff bus'} width="400" height="280" loading="lazy" decoding="async" /></div>
         <div class="fleet-card__body">
           <h3>{isFa ? 'اتوبوس' : 'Bus'}</h3>
-          <p>{isFa ? 'ظرفیت ۴۴ نفره — مناسب سرویس‌های پرجمعیت کارخانه و شهرک‌های صنعتی' : '44 seats — for large factory and industrial park shuttles'}</p>
+          <p>{isFa ? <>ظرفیت <bdi class="bidi-ltr" dir="ltr">۴۴</bdi> نفره — مناسب سرویس‌های پرجمعیت کارخانه و شهرک‌های صنعتی</> : <><bdi class="bidi-ltr" dir="ltr">44</bdi> seats — for large factory and industrial park shuttles</>}</p>
         </div>
       </div>
       <div class="fleet-card reveal">
         <div class="fleet-card__media"><img src={`${baseUrl}/assets/images/hyundai-minibus-exterior.jpg`} alt={isFa ? 'نمای بیرونی مینی‌بوس هیوندای' : 'Exterior of a Hyundai minibus'} width="400" height="280" loading="lazy" decoding="async" /></div>
         <div class="fleet-card__body">
           <h3>{isFa ? 'مینی‌بوس هیوندای' : 'Hyundai Minibus'}</h3>
-          <p>{isFa ? 'ظرفیت ۱۸ نفره — چابک برای مسیرهای شهری و بین‌شهری' : '18 seats — agile for urban and intercity routes'}</p>
+          <p>{isFa ? <>ظرفیت <bdi class="bidi-ltr" dir="ltr">۱۸</bdi> نفره — چابک برای مسیرهای شهری و بین‌شهری</> : <><bdi class="bidi-ltr" dir="ltr">18</bdi> seats — agile for urban and intercity routes</>}</p>
         </div>
       </div>
       <div class="fleet-card reveal">
         <div class="fleet-card__media"><img src={`${baseUrl}/assets/images/van-fleet.webp`} alt={isFa ? 'ون' : 'Van'} width="400" height="280" loading="lazy" decoding="async" /></div>
         <div class="fleet-card__body">
           <h3>{isFa ? 'ون مسافربری' : 'Passenger Van'}</h3>
-          <p>{isFa ? 'ظرفیت ۱۴ نفره — مناسب گروه‌های کوچک و سرویس VIP' : '14 seats — for small groups and VIP service'}</p>
+          <p>{isFa ? <>ظرفیت <bdi class="bidi-ltr" dir="ltr">۱۴</bdi> نفره — مناسب گروه‌های کوچک و سرویس VIP</> : <><bdi class="bidi-ltr" dir="ltr">14</bdi> seats — for small groups and VIP service</>}</p>
         </div>
       </div>
     </div>

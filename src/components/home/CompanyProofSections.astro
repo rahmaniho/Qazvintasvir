@@ -19,11 +19,11 @@ const fields: Array<[string, string[]]> = fa
 const vehicleHistory = fa
   ? [
       ['نستله ایران', 'گلدایران', 'ال‌جی', 'یونیلیور', 'هنکل', 'BAT', 'آلکاپلاستیک', 'کابل البرز', 'شیر سحر', 'AGT', 'آسان پک', 'یاتاقان بوش ایران'],
-      ['شرکت با مسئولیت محدود', 'QAZVIN TASVIR CO. LTD', '۲۷۴۹', '۱۰۸۶۱۴۱۵۲۱۵', '۴۱۱۳۸۶۸۳۷۶۶۵', '۱۳۷۴/۰۲/۱۴', 'سعید امین‌زاده', 'اصغر تقی‌لو', 'قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ ۲، واحد ۲۱۸', '۳۴۱۳۶۹۱۵۸۹', '۰۹۱۲ ۲۸۱ ۵۱۸۹', 'فعال'],
+      ['شرکت با مسئولیت محدود', 'QAZVIN TASVIR CO. LTD', '۲۷۴۹', '۱۰۸۶۱۴۱۵۲۱۵', '۴۱۱۳۸۶۸۳۷۶۶۵', '۱۳۷۴/۰۲/۱۴', 'سعید امین‌زاده', 'اصغر تقی‌لو', 'قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ ۲، واحد ۲۰۸', '۳۴۱۳۶۹۱۵۸۹', '۰۹۱۲ ۲۸۱ ۵۱۸۹', 'فعال'],
     ]
   : [
       ['Nestlé Iran', 'Goldiran', 'LG', 'Unilever', 'Henkel', 'BAT', 'Alkaplastik', 'Alborz Cable', 'Shir Sahar', 'AGT', 'Asan Pack', 'Yataqan Bosh Iran'],
-      ['Qazvin Tasvir Company (limited liability)', 'QAZVIN TASVIR CO. LTD', '2749', '10861415215', '411386837665', '1374/02/14', 'Saeed Aminzadeh', 'Asghar Taghilou', 'Qazvin, next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit 218', '3413691589', '0912 281 5189', 'Active'],
+      ['Qazvin Tasvir Company (limited liability)', 'QAZVIN TASVIR CO. LTD', '2749', '10861415215', '411386837665', '1374/02/14', 'Saeed Aminzadeh', 'Asghar Taghilou', 'Qazvin, next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit 208', '3413691589', '0912 281 5189', 'Active'],
     ];
 const regLabels = fa
   ? ['نام شرکت', 'نام لاتین', 'شماره ثبت', 'شناسه ملی', 'کد اقتصادی', 'تاریخ تأسیس', 'مدیرعامل', 'رئیس هیئت مدیره', 'نشانی دفتر فعلی', 'کد پستی (تأییدنشده)', 'تلفن', 'وضعیت']
@@ -43,10 +43,10 @@ const regLabels = fa
       </p>
     </header>
     <dl class="registry-facts reveal">
-      <div><dt>{fa ? 'شناسه ملی' : 'National ID'}</dt><dd>{fa ? '۱۰۸۶۱۴۱۵۲۱۵' : '10861415215'}</dd></div>
-      <div><dt>{fa ? 'شماره ثبت' : 'Registration number'}</dt><dd>{fa ? '۲۷۴۹' : '2749'}</dd></div>
-      <div><dt>{fa ? 'کد اقتصادی' : 'Economic code'}</dt><dd>{fa ? '۴۱۱۳۸۶۸۳۷۶۶۵' : '411386837665'}</dd></div>
-      <div><dt>{fa ? 'تاریخ تأسیس' : 'Founding date'}</dt><dd>{fa ? '۱۳۷۴/۰۲/۱۴' : '1374/02/14'}</dd></div>
+      <div><dt>{fa ? 'شناسه ملی' : 'National ID'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۰۸۶۱۴۱۵۲۱۵' : '10861415215'}</bdi></dd></div>
+      <div><dt>{fa ? 'شماره ثبت' : 'Registration number'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۲۷۴۹' : '2749'}</bdi></dd></div>
+      <div><dt>{fa ? 'کد اقتصادی' : 'Economic code'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۴۱۱۳۸۶۸۳۷۶۶۵' : '411386837665'}</bdi></dd></div>
+      <div><dt>{fa ? 'تاریخ تأسیس' : 'Founding date'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۳۷۴/۰۲/۱۴' : '1374/02/14'}</bdi></dd></div>
     </dl>
     <ul class="registry-claims reveal">
       <li>{fa ? 'عضو رسمی اتاق بازرگانی، صنایع و معادن' : 'Official member of the Chamber of Commerce, Industries and Mines'}</li>
@@ -75,13 +75,13 @@ const regLabels = fa
     </header>
     <p class="resume-intro">
       {fa
-        ? 'شرکت قزوین تصویر (با مسئولیت محدود) با بیش از ۳۱ سال سابقه در زمینه بازرگانی، ترابری و خدمات پشتیبانی، به‌عنوان شریک مورد اعتماد صنایع بزرگ استان قزوین شناخته می‌شود. زمینه‌های فعالیت ثبت‌شده شامل حمل‌ونقل، امور مالی و حسابداری، خدمات اداری و رفاهی، بازرگانی و بازاریابی است.'
-        : 'Qazvin Tasvir Company (Ltd — est. 1995) with National ID 10861415215, managed by Saeed Aminzadeh, provides trading, transport and catering services for industries in Qazvin Province.'}
+        ? <>شرکت قزوین تصویر (با مسئولیت محدود) با بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال سابقه در زمینهٔ بازرگانی، ترابری و خدمات پشتیبانی، به‌عنوان شریک مورد اعتماد صنایع بزرگ استان قزوین شناخته می‌شود. زمینه‌های فعالیت ثبت‌شده شامل حمل‌ونقل، امور مالی و حسابداری، خدمات اداری و رفاهی، بازرگانی و بازاریابی است.</>
+        : <>Qazvin Tasvir Company (Ltd, established in <bdi class="bidi-ltr" dir="ltr">1995</bdi>) with National ID <bdi class="bidi-ltr" dir="ltr">10861415215</bdi>, managed by Saeed Aminzadeh, provides trade, transportation and catering services for industries in Qazvin Province.</>}
     </p>
     {!fa && (
       <div class="resume-existing-about">
         <h3>About Qazvin Tasvir</h3>
-        <p>Qazvin Tasvir Company (Ltd — est. 1995) with National ID 10861415215, managed by Saeed Aminzadeh, provides trading, transport and catering services for industries in Qazvin Province. For full Persian details, please visit the Persian version or contact us directly.</p>
+        <p>For the full company profile and registered activities, see the <a href={`${base}/en/legal/`}>English legal identity page</a>. To read the site in Persian, switch to the <a href={`${base}/fa/`}>Persian version</a> or contact us directly.</p>
         <div>
           <a href={`${base}/en/about/`}>More about us</a>
           <a href={`${base}/fa/`}>View Persian site</a>
@@ -89,10 +89,10 @@ const regLabels = fa
       </div>
     )}
     <dl class="resume-metrics">
-      <div><dt>{fa ? 'سال سابقه فعالیت (از ۱۳۷۴)' : 'Years of operation (since 1995)'}</dt><dd>{fa ? '+۳۱' : '+31'}</dd></div>
-      <div><dt>{fa ? 'دستگاه خودرو واگذارشده در قراردادها' : 'Vehicles leased under contracts'}</dt><dd>{fa ? '۱۰۱' : '101'}</dd></div>
-      <div><dt>{fa ? 'قرارداد همکاری سازمانی' : 'Organizational cooperation contracts'}</dt><dd>{fa ? '۱۱' : '11'}</dd></div>
-      <div><dt>{fa ? 'حوزه فعالیت تخصصی' : 'Specialized fields of activity'}</dt><dd>{fa ? '۳' : '3'}</dd></div>
+      <div><dt>{fa ? <>سال سابقهٔ فعالیت (از <bdi class="bidi-ltr" dir="ltr">۱۳۷۴</bdi>)</> : <>Years of operation (since <bdi class="bidi-ltr" dir="ltr">1995</bdi>)</>}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '+۳۱' : '+31'}</bdi></dd></div>
+      <div><dt>{fa ? 'دستگاه خودرو واگذارشده در قراردادها' : 'Vehicles leased under contracts'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۰۱' : '101'}</bdi></dd></div>
+      <div><dt>{fa ? 'قرارداد همکاری سازمانی' : 'Organizational cooperation contracts'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۱' : '11'}</bdi></dd></div>
+      <div><dt>{fa ? 'حوزهٔ فعالیت تخصصی' : 'Specialized fields of activity'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۳' : '3'}</bdi></dd></div>
     </dl>
 
     <div class="resume-details">
@@ -100,7 +100,7 @@ const regLabels = fa
         <h3 id="company-identity-title">{fa ? 'شناسنامه شرکت' : 'Company Registration Details'}</h3>
         <dl class="resume-data">
           {regLabels.map((label, index) => (
-            <div><dt>{label}</dt><dd>{vehicleHistory[1][index]}</dd></div>
+            <div><dt>{label}</dt><dd>{index === 8 ? (fa ? <>قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi></> : <>Qazvin, next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit <bdi class="bidi-ltr" dir="ltr">208</bdi></>) : [2, 3, 4, 5, 9, 10].includes(index) ? <bdi class="bidi-ltr" dir="ltr">{vehicleHistory[1][index]}</bdi> : vehicleHistory[1][index]}</dd></div>
           ))}
         </dl>
       </section>
@@ -160,17 +160,17 @@ const regLabels = fa
       <h3 id="legal-identity-title">{fa ? 'شناسنامه شرکت' : 'Company Registration Details'}</h3>
       <dl class="resume-data">
         <div><dt>{fa ? 'نام شرکت' : 'Company name'}</dt><dd>{fa ? 'قزوین تصویر (با مسئولیت محدود)' : 'Qazvin Tasvir Company (limited liability)'}</dd></div>
-        <div><dt>{fa ? 'شماره ثبت' : 'Registration number'}</dt><dd>{fa ? '۲۷۴۹' : '2749'}</dd></div>
-        <div><dt>{fa ? 'شناسه ملی' : 'National ID'}</dt><dd>{fa ? '۱۰۸۶۱۴۱۵۲۱۵' : '10861415215'}</dd></div>
-        <div><dt>{fa ? 'سرمایه ثبتی' : 'Registered capital'}</dt><dd>{fa ? '۱۳,۰۰۰,۰۰۰ ریال' : '13,000,000 rials'}</dd></div>
-        <div><dt>{fa ? 'تاریخ ثبت' : 'Registration date'}</dt><dd>{fa ? '۱۴۰۵/۰۲/۰۷' : '1405/02/07'}</dd></div>
-        <div><dt>{fa ? 'مرکز اصلی' : 'Head office'}</dt><dd>{fa ? 'قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ ۲، واحد ۲۱۸، شرکت قزوین تصویر' : 'Qazvin Tasvir Company, next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit 218'}</dd></div>
+        <div><dt>{fa ? 'شماره ثبت' : 'Registration number'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۲۷۴۹' : '2749'}</bdi></dd></div>
+        <div><dt>{fa ? 'شناسه ملی' : 'National ID'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۰۸۶۱۴۱۵۲۱۵' : '10861415215'}</bdi></dd></div>
+        <div><dt>{fa ? 'سرمایه ثبتی' : 'Registered capital'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۳٬۰۰۰٬۰۰۰' : '13,000,000'}</bdi> {fa ? 'ریال' : 'rials'}</dd></div>
+        <div><dt>{fa ? 'تاریخ ثبت' : 'Registration date'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۴۰۵/۰۲/۰۷' : '1405/02/07'}</bdi></dd></div>
+        <div><dt>{fa ? 'مرکز اصلی' : 'Head office'}</dt><dd>{fa ? <>قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi>، شرکت قزوین تصویر</> : <>Qazvin Tasvir Company, next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit <bdi class="bidi-ltr" dir="ltr">208</bdi></>}</dd></div>
       </dl>
     </section>
     <section class="resume-card legal-management">
       <h3>{fa ? 'مدیریت و سهامداران' : 'Management & Shareholders'}</h3>
       <ul>
-        <li><strong>{fa ? 'سعید امین‌زاده' : 'Saeed Aminzadeh'}</strong> — {fa ? 'مدیرعامل و عضو هیئت مدیره' : 'CEO and Board Member'}{fa && <span> — دارای ۴,۰۰۰,۰۰۰ سهم</span>}{!fa && <span> — Holds 4,000,000 shares</span>}</li>
+        <li><strong>{fa ? 'سعید امین‌زاده' : 'Saeed Aminzadeh'}</strong> — {fa ? 'مدیرعامل و عضو هیئت مدیره' : 'CEO and Board Member'}{fa && <span> — دارای <bdi class="bidi-ltr" dir="ltr">۴٬۰۰۰٬۰۰۰</bdi> سهم</span>}{!fa && <span> — Holds <bdi class="bidi-ltr" dir="ltr">4,000,000</bdi> shares</span>}</li>
         <li><strong>{fa ? 'اصغر تقی‌لو' : 'Asghar Taghilou'}</strong> — {fa ? 'رئیس هیئت مدیره' : 'Chairman of the Board'}</li>
       </ul>
     </section>

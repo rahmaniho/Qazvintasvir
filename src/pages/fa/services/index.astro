@@ -15,6 +15,7 @@ const hreflang = [
 
 const all = await getCollection('services');
 const services = all.filter(s => s.id.startsWith('fa/')).sort((a,b) => (a.data.order||0) - (b.data.order||0));
+const toPersianDigits = (value: string) => value.replace(/\d/g, (digit) => '۰۱۲۳۴۵۶۷۸۹'[Number(digit)]);
 
 const itemListSchema = {
   "@context": "https://schema.org",
@@ -37,7 +38,7 @@ const itemListSchema = {
     <div class="container">
       <nav class="breadcrumbs" aria-label="مسیر صفحه"><a href={`${baseUrl}/fa/`}>خانه</a><span class="breadcrumbs__sep">/</span><span aria-current="page">خدمات</span></nav>
       <h1 style="color:#fff; margin-top:16px;">خدمات تخصصی قزوین تصویر</h1>
-      <p class="hero__lead">هشت مسیر خدمت برای زنجیره کامل بازرگانی، ترابری و پشتیبانی سازمانی — از واردات تا غذای پرسنل.</p>
+      <p class="hero__lead">هشت خدمت تخصصی برای پوشش زنجیرهٔ بازرگانی، ترابری و پشتیبانی سازمانی — از واردات تا تأمین غذای پرسنل.</p>
     </div>
   </section>
 
@@ -59,7 +60,7 @@ const itemListSchema = {
                 {s.data.image ? (
                   <img src={`${baseUrl}${s.data.image.replace('/Qazvintasvir','')}`} alt={s.data.image_alt || s.data.title} width="400" height="250" loading="lazy" decoding="async" />
                 ) : <div style="height:100%; background:var(--line-soft); display:grid; place-items:center; color:var(--text-muted);">{s.data.title}</div>}
-                <span style="position:absolute; top:12px; inset-inline-start:12px; background:rgba(0,0,0,0.6); color:#fff; padding:4px 10px; border-radius:9999px; font-size:0.74rem; font-weight:700;">{String(s.data.order).padStart(2,'0')}</span>
+                <span style="position:absolute; top:12px; inset-inline-start:12px; background:rgba(0,0,0,0.6); color:#fff; padding:4px 10px; border-radius:9999px; font-size:0.74rem; font-weight:700;"><bdi class="bidi-ltr" dir="ltr">{toPersianDigits(String(s.data.order).padStart(2,'0'))}</bdi></span>
               </div>
               <div class="service-card__body">
                 <span class="service-card__tag">{s.data.tag}</span>

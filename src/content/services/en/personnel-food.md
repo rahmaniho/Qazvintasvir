@@ -56,11 +56,11 @@ story_items:
   - "Delivery aligned with shift schedules"
 faqs:
   - q: "What is the usual minimum order size?"
-    a: "The usual starting point is around 50 meals per service. Smaller groups may also be considered depending on delivery distance and meal frequency; after reviewing the location, our team can provide a more precise estimate."
+    a: "The usual minimum is 50 meals per service. Smaller groups may also be considered depending on delivery distance and meal frequency; after reviewing the location, our team can provide a tailored estimate."
   - q: "Can the menu be changed?"
     a: "Yes. Weekly and seasonal menus can be reviewed around staff preferences, budget and production schedules. Less popular items can be replaced, and dietary, vegetarian or lower-salt options can be discussed."
   - q: "Is employer-provided food treated as part of wages?"
-    a: "Under Iranian labor rules, food provided to staff is treated as a non-cash benefit and may have insurance and tax implications. The contract documents how meals are calculated and recorded. We recommend coordinating with your organization's finance and insurance advisers before signing."
+    a: "Under Iranian labour law, meals provided to staff are treated as a non-cash benefit and may have specific tax and social-insurance implications. The contract should document how meals are calculated and recorded. Before signing, consult your organisation’s finance and insurance advisers."
   - q: "How are meal delivery times arranged?"
     a: "Delivery is planned around your work shifts and recorded in the contract. Night shifts, holidays and production peaks can be considered; temporary schedule changes are coordinated in advance."
 note_title: "Menu and meal quantities are open for discussion"

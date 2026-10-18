@@ -59,7 +59,7 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
     address: isFa
       ? {
           "@type": "PostalAddress",
-          streetAddress: "جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقه ۲، واحد ۲۱۸",
+          streetAddress: "جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقه ۲، واحد ۲۰۸",
           addressLocality: "قزوین",
           addressRegion: "استان قزوین",
           postalCode: "3413691589",
@@ -67,7 +67,7 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
         }
       : {
           "@type": "PostalAddress",
-          streetAddress: "Next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit 218",
+          streetAddress: "Next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit 208",
           addressLocality: "Qazvin",
           addressRegion: "Qazvin Province",
           postalCode: "3413691589",

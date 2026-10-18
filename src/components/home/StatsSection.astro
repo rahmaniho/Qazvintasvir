@@ -5,24 +5,31 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const fa = lang === 'fa';
 const reasons = fa
   ? [
-      ['۳۱+ سال سابقه صنعتی (تأسیس ۱۳۷۴)', 'پایداری و تداوم موفق از سال ۱۳۷۴ تاکنون که نشان از تعهد عمیق و ثبات اجرایی در تمام شرایط اقتصادی دارد.'],
-      ['مدیریت آقای سعید امین‌زاده', 'نظارت مستقیم و پاسخگویی شخص مدیرعامل بر کلیه قراردادها و تعاملات مشتریان سازمانی و بازرگانان.'],
-      ['ناوگان ملکی و مجهز', 'در اختیار داشتن انواع اتوبوس، مینی‌بوس و ون‌های بهینه‌سازی‌شده همراه با خودروهای پشتیبان در صورت لزوم.'],
-      ['شبکه تأمین داخلی و خارجی', 'روابط بین‌المللی مؤثر با بازارهای مبدأ و زنجیره تأمین بدون واسطه مواد اولیه و تجهیزات تولیدی.'],
-      ['پشتیبانی ۲۴/۷ و قراردادهای منعطف', 'انعطاف در نحوه تسویه، ساختار قراردادهای ماهانه و سالانه و پاسخگویی بی‌وقفه به تغییرات شیفت کاری.'],
-      ['رضایت بالا و تمدید مداوم قراردادها', 'بیش از ۹۰٪ کارخانجات طرف قرارداد بیش از ۵ سال متوالی همکاری خود را با قزوین تصویر تمدید کرده‌اند.'],
+      ['۳۱+ سال سابقه صنعتی (تأسیس ۱۳۷۴)', 'تداوم فعالیت از سال ۱۳۷۴ نشان‌دهندهٔ تعهد بلندمدت و ثبات اجرایی در شرایط متغیر اقتصادی است.'],
+      ['مدیریت سعید امین‌زاده', 'مدیرعامل بر قراردادها نظارت مستقیم دارد و پاسخ‌گوی مشتریان سازمانی و بازرگانان است.'],
+      ['ناوگان ملکی و مجهز', 'اتوبوس، مینی‌بوس و ون‌های مجهز، همراه با خودروهای پشتیبان در صورت نیاز.'],
+      ['شبکهٔ تأمین داخلی و خارجی', 'ارتباط با بازارهای مبدأ و زنجیرهٔ تأمین مواد اولیه و تجهیزات تولیدی، با امکان تأمین مستقیم.'],
+      ['پشتیبانی ۲۴/۷ و قراردادهای منعطف', 'شرایط پرداخت و قراردادهای ماهانه یا سالانه منعطف است و تیم ما برای تغییرات شیفتی پاسخ‌گو می‌ماند.'],
+      ['رضایت بالا و تمدید مداوم قراردادها', 'بیش از ۹۰٪ کارخانه‌های طرف قرارداد، همکاری خود را برای بیش از ۵ سال متوالی با قزوین تصویر تمدید کرده‌اند.'],
+
     ]
   : [
-      ['31+ years of industrial experience (founded 1995)', 'Stability and successful continuity since 1995, reflecting deep commitment and operational consistency through every economic condition.'],
-      ['Management by Mr Saeed Aminzadeh', 'Direct supervision and personal accountability of the CEO for every contract and every interaction with corporate clients and traders.'],
-      ['Company-owned, fully equipped fleet', 'Optimised buses, minibuses and vans on hand, together with backup vehicles whenever needed.'],
-      ['Domestic and international supply network', 'Effective international relationships with source markets and a supply chain for raw materials and production equipment with no middlemen.'],
-      ['24/7 support and flexible contracts', 'Flexibility in payment terms, monthly and annual contract structures, and uninterrupted responsiveness to shift changes.'],
-      ['High satisfaction and continuous contract renewals', 'More than 90% of contracted factories have renewed their cooperation with Qazvin Tasvir for more than 5 consecutive years.'],
+      ['31+ years of industrial experience (founded 1995)', 'Our continuity since 1995 reflects a long-term commitment to dependable operations through changing economic conditions.'],
+      ['Leadership by Saeed Aminzadeh', 'The CEO directly oversees contracts and is accountable for relationships with corporate clients and traders.'],
+      ['Company-owned, well-equipped fleet', 'We provide buses, minibuses and vans, with backup vehicles available when required.'],
+      ['Domestic and international supply network', 'Established relationships with source markets support direct supply channels for raw materials and production equipment.'],
+      ['24/7 support and flexible contracts', 'We offer flexible payment terms and monthly or annual contracts, with ongoing support when shifts change.'],
+      ['High satisfaction and contract renewals', 'More than 90% of contracted factories have renewed their cooperation with Qazvin Tasvir for over five consecutive years.'],
     ];
 const quote = fa
-  ? '«تعهد ما، آرامش خاطر شماست. در قزوین تصویر، تک‌تک محموله‌های تجاری سرمایه شما و هر سرنشین ناوگان امانت کارخانه شماست.»'
-  : 'Our commitment is your peace of mind. At Qazvin Tasvir, every commercial consignment — your capital — and every passenger on our fleet is a trust placed in us by your factory.';
+  ? '«تعهد ما، آرامش خاطر شماست. در قزوین تصویر، هر محموله را سرمایهٔ شما و هر مسافر را امانتی ارزشمند می‌دانیم.»'
+  : 'Our commitment is your peace of mind. At Qazvin Tasvir, we treat every shipment as a valuable asset and every passenger as someone entrusted to our care.';
+const renderLocalizedText = (text: string, isolateFa = false) => {
+  const escaped = text.replace(/[&<>]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[char]!);
+  return isolateFa
+    ? escaped.replace(/[۰-۹]+(?:[٬,./][۰-۹]+)*(?:[٪%+])?/g, '<bdi class="bidi-ltr" dir="ltr">$&</bdi>')
+    : escaped;
+};
 ---
 
 <section class="section section--alt why-us" id="why-us" aria-labelledby="why-us-title">
@@ -38,15 +45,15 @@ const quote = fa
       <h2 class="section-title" id="why-us-title">{fa ? 'چرا شرکت‌ها قزوین تصویر را انتخاب می‌کنند؟' : 'Why do companies choose Qazvin Tasvir?'}</h2>
       <p class="section-desc">
         {fa
-          ? 'ترکیب بیش از ۳۱ سال سابقه عملیاتی با استانداردهای نوین مدیریت لجستیک و بازرگانی'
-          : 'More than 31 years of operating experience combined with modern standards of logistics and trading management'}
+          ? <>ترکیب بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال سابقهٔ عملیاتی با استانداردهای نوین مدیریت لجستیک و بازرگانی</>
+          : <>More than <bdi class="bidi-ltr" dir="ltr">31</bdi> years of operating experience, combined with modern standards of logistics and trade management</>}
       </p>
     </header>
     <div class="why-us__grid">
       {reasons.map(([title, description]) => (
         <article class="why-card reveal">
-          <h3>{title}</h3>
-          <p>{description}</p>
+          <h3 set:html={renderLocalizedText(title, fa)}></h3>
+          <p set:html={renderLocalizedText(description, fa)}></p>
         </article>
       ))}
     </div>

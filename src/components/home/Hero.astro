@@ -12,19 +12,19 @@ const isFa = lang === 'fa';
     <div class="hero__grid">
       <div class="reveal">
         <span style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.18); padding:6px 14px; border-radius:9999px; font-size:0.78rem; font-weight:700; color:#fff;">
-          {isFa ? 'تأسیس ۱۳۷۴ — بیش از ۳۱ سال تجربه' : 'Est. 1995 — 31+ years of experience'}
+          {isFa ? <>تأسیس <bdi class="bidi-ltr" dir="ltr">۱۳۷۴</bdi> — بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال تجربه</> : <>Est. <bdi class="bidi-ltr" dir="ltr">1995</bdi> — <bdi class="bidi-ltr" dir="ltr">31+</bdi> years of experience</>}
         </span>
         <h1 style="margin-top:20px;">
           {isFa ? (
-            <>قزوین تصویر؛ بیش از ۳۱ سال تجربه در <span class="gradient-text">بازرگانی، واردات و صادرات</span> و ترابری</>
+            <>قزوین تصویر؛ بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال تجربه در <span class="gradient-text">بازرگانی، واردات و صادرات</span> و حمل‌ونقل</>
           ) : (
-            <>Qazvin Tasvir — 31+ years of excellence in <span class="gradient-text">trading, import & export</span> and transport</>
+            <>Qazvin Tasvir — <bdi class="bidi-ltr" dir="ltr">31+</bdi> years of experience in <span class="gradient-text">trade, import and export</span>, and transportation</>
           )}
         </h1>
         <p class="hero__lead">
           {isFa
-            ? 'شرکت قزوین تصویر (شناسه ملی ۱۰۸۶۱۴۱۵۲۱۵) با مدیریت سعید امین‌زاده، هشت مسیر خدمت تخصصی را از بازرگانی بین‌المللی تا حمل‌ونقل و کیترینگ سازمانی در اختیار صنایع قزوین می‌گذارد.'
-            : 'Qazvin Tasvir Company (ID 10861415215), led by Saeed Aminzadeh, provides eight specialist service paths from international trade to transport and corporate catering for industries in Qazvin.'}
+            ? <>شرکت قزوین تصویر (شناسه ملی <bdi class="bidi-ltr" dir="ltr">۱۰۸۶۱۴۱۵۲۱۵</bdi>) با مدیریت سعید امین‌زاده، هشت حوزهٔ تخصصی خدمات را از بازرگانی بین‌المللی تا حمل‌ونقل و تأمین غذای سازمانی برای صنایع استان قزوین فراهم می‌کند.</>
+            : <>Qazvin Tasvir Company (National ID <bdi class="bidi-ltr" dir="ltr">10861415215</bdi>), led by Saeed Aminzadeh, provides eight specialist services—from international trade to transportation and corporate catering—for organizations in Qazvin Province.</>}
         </p>
         <div class="hero__actions">
           <a href={`${baseUrl}/${lang}/contact/`} class="btn btn--accent btn--lg">{isFa ? 'درخواست مشاوره رایگان' : 'Free consultation'} →</a>
@@ -33,14 +33,14 @@ const isFa = lang === 'fa';
 
         <!-- Stats inline -->
         <div class="hero__facts-grid">
-          <div><strong style="display:block; font-size:1.6rem; color:#fff;">{isFa ? '۳۱+' : '31+'}</strong><span style="font-size:0.84rem; color:#CBD5E1;">{isFa ? 'سال تجربه' : 'Years experience'}</span></div>
-          <div><strong style="display:block; font-size:1.6rem; color:#fff;">۸</strong><span style="font-size:0.84rem; color:#CBD5E1;">{isFa ? 'خدمت تخصصی' : 'Services'}</span></div>
-          <div><strong style="display:block; font-size:1.6rem; color:#fff;">۲۴/۷</strong><span style="font-size:0.84rem; color:#CBD5E1;">{isFa ? 'پشتیبانی' : 'Support'}</span></div>
+          <div><strong style="display:block; font-size:1.6rem; color:#fff;">{isFa ? <bdi class="bidi-ltr" dir="ltr">۳۱+</bdi> : <bdi class="bidi-ltr" dir="ltr">31+</bdi>}</strong><span style="font-size:0.84rem; color:#CBD5E1;">{isFa ? 'سال تجربه' : 'Years of experience'}</span></div>
+          <div><strong style="display:block; font-size:1.6rem; color:#fff;">{isFa ? <bdi class="bidi-ltr" dir="ltr">۸</bdi> : <bdi class="bidi-ltr" dir="ltr">8</bdi>}</strong><span style="font-size:0.84rem; color:#CBD5E1;">{isFa ? 'خدمت تخصصی' : 'Services'}</span></div>
+          <div><strong style="display:block; font-size:1.6rem; color:#fff;">{isFa ? <bdi class="bidi-ltr" dir="ltr">۲۴/۷</bdi> : <bdi class="bidi-ltr" dir="ltr">24/7</bdi>}</strong><span style="font-size:0.84rem; color:#CBD5E1;">{isFa ? 'پشتیبانی' : 'Support'}</span></div>
         </div>
       </div>
 
       <div class="hero__visual reveal">
-        <img class="hero__img" src={`${baseUrl}/assets/img/sections/hero-port.webp`} alt={isFa ? 'بندر کانتینری قزوین تصویر' : 'Qazvin Tasvir port'} width="560" height="420" loading="eager" fetchpriority="high" decoding="async" />
+        <img class="hero__img" src={`${baseUrl}/assets/img/sections/hero-port.webp`} alt={isFa ? 'نمایی از بندر کانتینری برای نمایش خدمات بازرگانی' : 'Container port representing the company’s trade services'} width="560" height="420" loading="eager" fetchpriority="high" decoding="async" />
         <div class="hero-profile-card">
           <img src={`${baseUrl}/assets/images/saeed-aminzadeh-avatar.webp`} alt="" width="40" height="40" loading="lazy" decoding="async" />
           <div>
