@@ -83,6 +83,8 @@ test('homepages act as concise directories while full source sections live on de
   for (const [lang, html] of [['fa', faHome], ['en', enHome]]) {
     assert.match(html, /id="hero"/, `/${lang}/ should keep the landing hero`);
     assert.match(html, /id="home-directory-title"/, `/${lang}/ should list its dedicated pages`);
+    assert.match(html, lang === 'fa' ? /منوی سریع/ : /Quick Menu/, `/${lang}/ should show the compact quick-menu heading`);
+    assert.doesNotMatch(html, /Dedicated pages|صفحه‌های مستقل|Explore each area on its own page|برای دسترسی سریع‌تر، هر بخش اصلی سایت را در صفحه‌ای جداگانه ببینید/, `/${lang}/ should not retain the removed directory intro copy`);
     for (const oldSection of ['about', 'services', 'fleet', 'brands', 'why-us', 'clients', 'trust', 'resume', 'legal', 'contact']) {
       assert.doesNotMatch(html, new RegExp(`\\bid="${oldSection}"`), `full #${oldSection} section should no longer be embedded on /${lang}/`);
     }
@@ -101,15 +103,22 @@ test('homepages act as concise directories while full source sections live on de
   const fleet = read(route('fa', 'fleet'));
   assert.equal((fleet.match(/class="fleet-card reveal"/g) ?? []).length, 3, 'all fleet vehicle cards should be on the fleet page');
   const brands = read(route('fa', 'brands'));
-  assert.equal((brands.match(/class="brand-partners__item reveal"/g) ?? []).length, 5, 'all five vehicle-brand cards should be on the brands page');
+  assert.equal((brands.match(/class="brand-partners__item reveal"/g) ?? []).length, 7, 'all seven vehicle-brand cards should be on the brands page');
   const whyUs = read(route('fa', 'why-us'));
   assert.equal((whyUs.match(/class="why-card reveal"/g) ?? []).length, 6, 'all source company-strength cards should be on the why-us page');
   const clients = read(route('fa', 'clients'));
   assert.equal((clients.match(/class="client-card client-card--full reveal"/g) ?? []).length, 12, 'all 12 client brands should be listed');
+  for (const updatedRecord of ['نستله ایران', '۱۵ دستگاه', 'گلدایران (ال‌جی)', '۱۹ دستگاه', 'هنکل', '۱۲ دستگاه', 'آسان پک', 'یاتاقان بوش ایران', '۱۴۳ دستگاه خودرو']) {
+    assert.ok(clients.includes(updatedRecord), `missing updated Persian client record: ${updatedRecord}`);
+  }
+  const enClients = read(route('en', 'clients'));
+  for (const updatedRecord of ['Nestlé Iran', '15 vehicles', 'Goldiran (LG)', '19 vehicles', 'Henkel', '12 vehicles', 'Asan Pack', 'Yataqan Bosh Iran', '143 vehicles']) {
+    assert.ok(enClients.includes(updatedRecord), `missing updated English client record: ${updatedRecord}`);
+  }
   assert.equal((clients.match(/class="testimonial-card reveal"/g) ?? []).length, 3, 'all source testimonials should be present');
   assert.equal((clients.match(/class="history-table"/g) ?? []).length, 1, 'the contract history table should be present');
   assert.equal((clients.match(/<tr><th scope="row">/g) ?? []).length, 11, 'all 11 source collaboration rows should be present');
-  for (const brand of ['scania', 'volvo', 'mercedes', 'iveco', 'irankhodro']) {
+  for (const brand of ['scania', 'volvo', 'mercedes', 'iveco', 'irankhodro', 'toyota', 'hyundai']) {
     assert.ok(brands.includes(`/assets/logos/${brand}.svg`), `missing vehicle brand logo ${brand}`);
   }
 
@@ -179,6 +188,8 @@ test('updated office details, phone numbers and icon navigation render in both l
       const html = read(route(lang, path));
       assert.match(html, /tel:\+989352815189/, `new phone link missing from ${lang}/${path || 'home'}`);
       assert.match(html, /\+98 935 281 5189/, `new phone label missing from ${lang}/${path || 'home'}`);
+      assert.match(html, /tel:\+982832573842/, `head-office number link missing from ${lang}/${path || 'home'}`);
+      assert.match(html, lang === 'fa' ? /۰۲۸ ۳۲۵۷ ۳۸۴۲/ : /\+98 28 3257 3842/, `head-office number label missing from ${lang}/${path || 'home'}`);
       assert.match(html, /Pasteur Hospital|بیمارستان پاستور/, `updated office landmark missing from ${lang}/${path || 'home'}`);
       assert.match(html, /Unit 218|واحد ۲۱۸/, `updated office unit missing from ${lang}/${path || 'home'}`);
       assert.doesNotMatch(html, /Abadgaran|آبادگران|Ferdowsi Street|خیابان فردوسی|Unit 216|واحد ۲۱۶|Khamenei Blvd|آیت‌الله خامنه‌ای/, `old office address remains on ${lang}/${path || 'home'}`);
@@ -189,7 +200,7 @@ test('updated office details, phone numbers and icon navigation render in both l
   const faHome = read(route('fa'));
   const structuredData = [...faHome.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
   const organization = structuredData.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
-  assert.deepEqual(organization?.telephone, ['+989122815189', '+989352815189']);
+  assert.deepEqual(organization?.telephone, ['+982832573842', '+989122815189', '+989352815189']);
   assert.match(organization?.address?.streetAddress ?? '', /جنب بیمارستان پاستور.*مجتمع تجاری نیایش.*۲۱۸/);
 });
 

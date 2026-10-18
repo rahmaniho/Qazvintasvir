@@ -54,7 +54,7 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
           { "@type": "Person", name: "Saeed Aminzadeh", jobTitle: "CEO and Board Member" },
           { "@type": "Person", name: "Asghar Taghilou", jobTitle: "Chairman of the Board" },
         ],
-    telephone: ["+989122815189", "+989352815189"],
+    telephone: ["+982832573842", "+989122815189", "+989352815189"],
     // The office street is company-confirmed; legacy postal code/coordinates remain unverified pending updated details.
     address: isFa
       ? {

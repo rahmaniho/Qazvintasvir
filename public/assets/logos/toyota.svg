@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 110" role="img" aria-label="Toyota">
+  <g fill="none" stroke="#fff" stroke-width="4">
+    <ellipse cx="100" cy="37" rx="39" ry="27" />
+    <ellipse cx="100" cy="37" rx="14" ry="27" />
+    <ellipse cx="100" cy="37" rx="35" ry="12" />
+  </g>
+  <text x="100" y="96" fill="#fff" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="3" text-anchor="middle">TOYOTA</text>
+</svg>
