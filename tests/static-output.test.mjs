@@ -46,6 +46,27 @@ test('Persian about page uses refined copy and stable RTL typography hooks', () 
   assert.match(css, /\.about-page \.about-hero \.hero__lead[^{]*\{[^}]*text-wrap:\s*pretty/);
 });
 
+test('fleet-brand pages render local graphic marks with a subtle neon orbit', () => {
+  const assets = [
+    'scania.svg', 'volvo.svg', 'mercedes.svg', 'iveco.svg',
+    'iran-khodro-diesel.png', 'toyota.svg', 'hyundai.svg',
+  ];
+  for (const lang of ['fa', 'en']) {
+    const html = read(route(lang, 'brands'));
+    assert.equal((html.match(/<li class="brand-partners__item[^\"]*"/g) ?? []).length, assets.length, `all fleet marks should render on ${lang}/brands/`);
+    for (const asset of assets) {
+      assert.ok(html.includes(`/Qazvintasvir/assets/logos/${asset}`), `${asset} missing from ${lang}/brands/`);
+      assert.ok(existsSync(resolve(root, 'public/assets/logos', asset)), `missing local brand asset ${asset}`);
+    }
+    assert.match(html, /aria-label="(?:نشان برندهای خودرو|Vehicle brand logos)"/);
+  }
+
+  const css = readFileSync(resolve(root, 'src/styles/components.css'), 'utf8');
+  assert.match(css, /\.brand-partners__logo-frame::before[^{]*\{[^}]*animation:\s*brand-neon-orbit/);
+  assert.match(css, /@keyframes brand-neon-orbit/);
+  assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.brand-partners__logo-frame::before[^}]*animation:\s*none/);
+});
+
 test('footer credit uses the original bilingual KarenSoft artwork and a secure external link', () => {
   const files = [
     ['mark.png', 256, 256],
@@ -208,7 +229,7 @@ test('homepages act as concise directories while full source sections live on de
   const fleet = read(route('fa', 'fleet'));
   assert.equal((fleet.match(/class="fleet-card reveal"/g) ?? []).length, 3, 'all fleet vehicle cards should be on the fleet page');
   const brands = read(route('fa', 'brands'));
-  assert.equal((brands.match(/class="brand-partners__item reveal"/g) ?? []).length, 7, 'all seven vehicle-brand cards should be on the brands page');
+  assert.equal((brands.match(/class="brand-partners__item[^\"]*\breveal\b[^\"]*"/g) ?? []).length, 7, 'all seven vehicle-brand cards should be on the brands page');
   const whyUs = read(route('fa', 'why-us'));
   assert.equal((whyUs.match(/class="why-card reveal"/g) ?? []).length, 6, 'all source company-strength cards should be on the why-us page');
   const clients = read(route('fa', 'clients'));
@@ -225,8 +246,8 @@ test('homepages act as concise directories while full source sections live on de
   assert.equal((clients.match(/class="testimonial-card reveal"/g) ?? []).length, 3, 'all source testimonials should be present');
   assert.equal((clients.match(/class="history-table"/g) ?? []).length, 1, 'the contract history table should be present');
   assert.equal((clients.match(/<tr><th scope="row">/g) ?? []).length, 11, 'all 11 source collaboration rows should be present');
-  for (const brand of ['scania', 'volvo', 'mercedes', 'iveco', 'irankhodro', 'toyota', 'hyundai']) {
-    assert.ok(brands.includes(`/assets/logos/${brand}.svg`), `missing vehicle brand logo ${brand}`);
+  for (const asset of ['scania.svg', 'volvo.svg', 'mercedes.svg', 'iveco.svg', 'iran-khodro-diesel.png', 'toyota.svg', 'hyundai.svg']) {
+    assert.ok(brands.includes(`/assets/logos/${asset}`), `missing vehicle brand logo ${asset}`);
   }
 
   const trust = read(route('fa', 'trust'));
