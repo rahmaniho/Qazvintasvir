@@ -33,6 +33,12 @@ npm test
 
 The build currently targets the repository's GitHub Pages project path (`/Qazvintasvir`). The `site` value in `astro.config.mjs` is provisional; update it only after the production domain is explicitly confirmed.
 
+## GitHub Pages deployment
+
+The GitHub Pages URL for the current provisional project-path configuration is <https://rahmaniho.github.io/Qazvintasvir/>. `.github/workflows/deploy-pages.yml` builds and deploys the site to GitHub Pages after changes reach `main`; it also supports a manual run from `main`. The workflow runs the same checks, redirect generation, build, and static-output tests before publishing `dist/`.
+
+The workflow configures Pages for GitHub Actions deployment. Once this change is merged to `main`, confirm in **Settings → Pages** that the build and deployment source is **GitHub Actions**, then check the workflow's deployment URL. The site and sitemap use the provisional GitHub Pages host for now; do not configure a custom domain until the production domain is explicitly approved.
+
 ## Routes
 
 - `/fa/` and `/en/` — localized home pages
