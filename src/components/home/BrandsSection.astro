@@ -4,25 +4,25 @@ const { lang } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const fa = lang === 'fa';
 const brands = [
-  { key: 'scania', asset: 'scania.svg', fa: 'اسکانیا', en: 'Scania' },
-  { key: 'volvo', asset: 'volvo.svg', fa: 'ولوو', en: 'Volvo' },
-  { key: 'mercedes', asset: 'mercedes.svg', fa: 'مرسدس‌بنز', en: 'Mercedes-Benz' },
-  { key: 'iveco', asset: 'iveco.svg', fa: 'ایویکو', en: 'IVECO' },
-  { key: 'irankhodro', asset: 'iran-khodro-diesel.png', fa: 'ایران‌خودرو دیزل', en: 'Iran Khodro Diesel' },
-  { key: 'toyota', asset: 'toyota.svg', fa: 'تویوتا', en: 'Toyota' },
-  { key: 'hyundai', asset: 'hyundai.svg', fa: 'هیوندای', en: 'Hyundai' },
+  { key: 'scania', asset: 'scania.png', width: 332, height: 206, fa: 'اسکانیا', en: 'Scania' },
+  { key: 'volvo', asset: 'volvo.png', width: 328, height: 318, fa: 'ولوو', en: 'Volvo' },
+  { key: 'mercedes', asset: 'mercedes.png', width: 969, height: 684, fa: 'مرسدس‌بنز', en: 'Mercedes-Benz' },
+  { key: 'iveco', asset: 'iveco.png', width: 585, height: 666, fa: 'ایویکو', en: 'IVECO' },
+  { key: 'irankhodro', asset: 'iran-khodro-diesel.png', width: 372, height: 186, fa: 'ایران‌خودرو دیزل', en: 'Iran Khodro Diesel' },
+  { key: 'toyota', asset: 'toyota.png', width: 221, height: 185, fa: 'تویوتا', en: 'Toyota' },
+  { key: 'hyundai', asset: 'hyundai.png', width: 287, height: 187, fa: 'هیوندای', en: 'Hyundai' },
 ];
 ---
 
 <section class="section brand-partners" id="brands" aria-labelledby="brands-title">
   <div class="container">
     <header class="section-header reveal">
-      <span class="section-label section-label--onDark">{fa ? 'نشان‌های ناوگان' : 'Fleet marks'}</span>
-      <h2 class="section-title" id="brands-title">{fa ? 'برندهای خودروهای ناوگان' : 'Vehicle brands in our fleet'}</h2>
+      <span class="section-label section-label--onDark">{fa ? 'ناوگان حمل‌ونقل' : 'Transport fleet'}</span>
+      <h2 class="section-title" id="brands-title">{fa ? 'برندهای به‌کاررفته در ناوگان' : 'Vehicle brands in our fleet'}</h2>
       <p class="section-desc">
         {fa
-          ? 'در این بخش، نشان‌های گرافیکی سازندگان خودروهای به‌کاررفته در ناوگان قزوین تصویر را می‌بینید.'
-          : 'Explore the original graphic marks of vehicle manufacturers represented in the Qazvin Tasvir fleet.'}
+          ? 'نشانِ سازندگان خودروهایی را ببینید که در ناوگان حمل‌ونقل قزوین تصویر حضور دارند.'
+          : 'Explore the logos of manufacturers represented in Qazvin Tasvir’s transport fleet.'}
       </p>
     </header>
     <ul class="brand-partners__grid" aria-label={fa ? 'نشان برندهای خودرو' : 'Vehicle brand logos'}>
@@ -33,17 +33,13 @@ const brands = [
               class="brand-partners__logo"
               src={`${base}/assets/logos/${brand.asset}`}
               alt=""
-              width="160"
-              height="96"
-              loading="lazy"
+              width={brand.width}
+              height={brand.height}
+              loading="eager"
               decoding="async"
             />
           </span>
-          <span class="brand-partners__name">
-            {fa
-              ? <>{brand.fa} <bdi dir="ltr">({brand.en})</bdi></>
-              : brand.en}
-          </span>
+          <span class="brand-partners__name">{fa ? brand.fa : brand.en}</span>
         </li>
       ))}
     </ul>

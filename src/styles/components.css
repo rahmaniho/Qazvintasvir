@@ -352,13 +352,15 @@
   .brand-partners__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2vw, 20px); max-inline-size: 1080px; margin-inline: auto; }
   .brand-partners__item { min-inline-size: 0; min-block-size: 184px; padding: 18px 14px; display: grid; justify-items: center; align-content: center; gap: 14px; border: 1px solid rgb(255 255 255 / 12%); border-radius: var(--r-lg); background: rgb(255 255 255 / 4%); text-align: center; color: #fff; transition: transform var(--dur-base) var(--ease-quint), border-color var(--dur-base) ease, background var(--dur-base) ease; }
   .brand-partners__item:hover { transform: translateY(-3px); border-color: rgb(103 232 249 / 32%); background: rgb(255 255 255 / 7%); }
-  .brand-partners__logo-frame { position: relative; display: grid; place-items: center; inline-size: min(100%, 164px); block-size: 100px; overflow: hidden; isolation: isolate; border-radius: 16px; background: #fff; box-shadow: 0 5px 20px rgb(0 0 0 / 12%), 0 0 16px rgb(34 211 238 / 5%); }
-  .brand-partners__logo-frame::before { position: absolute; z-index: 0; inset: -130%; border-radius: inherit; background: conic-gradient(from 0deg, transparent 0deg 236deg, rgb(34 211 238 / 28%) 254deg, rgb(34 211 238 / 95%) 270deg, rgb(139 92 246 / 92%) 288deg, rgb(244 63 171 / 90%) 305deg, rgb(244 63 171 / 24%) 320deg, transparent 340deg 360deg); content: ""; animation: brand-neon-orbit 10s linear infinite; }
-  .brand-partners__logo-frame::after { position: absolute; z-index: 1; inset: 1px; border-radius: 15px; background: #fff; content: ""; }
-  .brand-partners__logo { position: relative; z-index: 2; inline-size: 100%; block-size: 100%; padding: 12px; object-fit: contain; }
-  .brand-partners__item--irankhodro .brand-partners__logo { padding: 5px; }
-  .brand-partners__name { max-inline-size: 100%; color: #f8fafc; font-size: 0.94rem; font-weight: 750; line-height: 1.65; text-wrap: balance; overflow-wrap: anywhere; }
-  .brand-partners__name bdi { display: inline-block; margin-inline-start: 3px; color: #b9c9dc; font-size: 0.85em; font-weight: 600; white-space: nowrap; }
+  .brand-partners__logo-frame { position: relative; display: grid; place-items: center; inline-size: min(100%, 184px); block-size: 110px; overflow: hidden; isolation: isolate; border-radius: 16px; background: #fff; box-shadow: 0 5px 20px rgb(0 0 0 / 12%), 0 0 16px rgb(34 211 238 / 7%); }
+  .brand-partners__logo-frame::before { position: absolute; z-index: 0; inset: -150%; border-radius: inherit; background: conic-gradient(from 0deg, transparent 0deg 236deg, rgb(34 211 238 / 28%) 254deg, rgb(34 211 238 / 95%) 270deg, rgb(139 92 246 / 92%) 288deg, rgb(244 63 171 / 90%) 305deg, rgb(244 63 171 / 24%) 320deg, transparent 340deg 360deg); content: ""; animation: brand-neon-orbit 10s linear infinite; }
+  .brand-partners__logo-frame::after { position: absolute; z-index: 1; inset: 2px; border-radius: 14px; background: #fff; content: ""; }
+  .brand-partners__logo { position: relative; z-index: 2; inline-size: 100%; block-size: 100%; padding: 8px; object-fit: contain; }
+  .brand-partners__item--iveco .brand-partners__logo-frame { inline-size: min(100%, 160px); }
+  .brand-partners__item--volvo .brand-partners__logo-frame,
+  .brand-partners__item--toyota .brand-partners__logo-frame { inline-size: min(100%, 160px); }
+  .brand-partners__item--irankhodro .brand-partners__logo-frame { inline-size: min(100%, 196px); block-size: 104px; }
+  .brand-partners__name { display: grid; place-items: center; min-block-size: 3.1em; max-inline-size: 100%; color: #f8fafc; font-size: 0.94rem; font-weight: 750; line-height: 1.65; text-align: center; text-wrap: balance; overflow-wrap: anywhere; }
   @keyframes brand-neon-orbit { to { transform: rotate(1turn); } }
   .why-us__banner { width: 100%; max-height: 280px; overflow: hidden; margin-block-end: 48px; }
   .why-us__banner img { width: 100%; height: 280px; object-fit: cover; }

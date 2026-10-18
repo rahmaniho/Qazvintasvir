@@ -48,21 +48,30 @@ test('Persian about page uses refined copy and stable RTL typography hooks', () 
 
 test('fleet-brand pages render local graphic marks with a subtle neon orbit', () => {
   const assets = [
-    'scania.svg', 'volvo.svg', 'mercedes.svg', 'iveco.svg',
-    'iran-khodro-diesel.png', 'toyota.svg', 'hyundai.svg',
+    'scania.png', 'volvo.png', 'mercedes.png', 'iveco.png',
+    'iran-khodro-diesel.png', 'toyota.png', 'hyundai.png',
   ];
   for (const lang of ['fa', 'en']) {
     const html = read(route(lang, 'brands'));
     assert.equal((html.match(/<li class="brand-partners__item[^\"]*"/g) ?? []).length, assets.length, `all fleet marks should render on ${lang}/brands/`);
     for (const asset of assets) {
       assert.ok(html.includes(`/Qazvintasvir/assets/logos/${asset}`), `${asset} missing from ${lang}/brands/`);
-      assert.ok(existsSync(resolve(root, 'public/assets/logos', asset)), `missing local brand asset ${asset}`);
+      const path = resolve(root, 'public/assets/logos', asset);
+      assert.ok(existsSync(path), `missing local brand asset ${asset}`);
+      const png = readFileSync(path);
+      assert.equal(png.toString('hex', 0, 8), '89504e470d0a1a0a', `${asset} must be a PNG`);
+      assert.equal(png.readUInt8(25), 6, `${asset} must retain transparency`);
+      assert.ok(png.readUInt32BE(16) > 0 && png.readUInt32BE(20) > 0, `${asset} must have valid dimensions`);
     }
     assert.match(html, /aria-label="(?:نشان برندهای خودرو|Vehicle brand logos)"/);
+    const logoTags = [...html.matchAll(/<img\b(?=[^>]*class="brand-partners__logo")[^>]*>/g)].map(([tag]) => tag);
+    assert.equal(logoTags.length, assets.length, `all logo images should render on ${lang}/brands/`);
+    for (const tag of logoTags) assert.match(tag, /loading="eager"/, `brand logos should load immediately on ${lang}/brands/`);
   }
 
   const css = readFileSync(resolve(root, 'src/styles/components.css'), 'utf8');
   assert.match(css, /\.brand-partners__logo-frame::before[^{]*\{[^}]*animation:\s*brand-neon-orbit/);
+  assert.match(css, /\.brand-partners__logo-frame::after[^{]*\{[^}]*inset:\s*2px/, 'neon orbit should be a visible but still thin 2px ring');
   assert.match(css, /@keyframes brand-neon-orbit/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.brand-partners__logo-frame::before[^}]*animation:\s*none/);
 });
@@ -246,7 +255,7 @@ test('homepages act as concise directories while full source sections live on de
   assert.equal((clients.match(/class="testimonial-card reveal"/g) ?? []).length, 3, 'all source testimonials should be present');
   assert.equal((clients.match(/class="history-table"/g) ?? []).length, 1, 'the contract history table should be present');
   assert.equal((clients.match(/<tr><th scope="row">/g) ?? []).length, 11, 'all 11 source collaboration rows should be present');
-  for (const asset of ['scania.svg', 'volvo.svg', 'mercedes.svg', 'iveco.svg', 'iran-khodro-diesel.png', 'toyota.svg', 'hyundai.svg']) {
+  for (const asset of ['scania.png', 'volvo.png', 'mercedes.png', 'iveco.png', 'iran-khodro-diesel.png', 'toyota.png', 'hyundai.png']) {
     assert.ok(brands.includes(`/assets/logos/${asset}`), `missing vehicle brand logo ${asset}`);
   }
 
