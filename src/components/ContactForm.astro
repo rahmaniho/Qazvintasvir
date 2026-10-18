@@ -15,7 +15,7 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
       <p class="section-desc">{isFa ? 'برای هماهنگی سریع با واحد فروش و عملیات تماس بگیرید یا فرم را پر کنید تا از طریق واتساپ با شما ارتباط بگیریم.' : 'Contact our sales & operations team or fill the form and we will reach you via WhatsApp.'}</p>
     </div>
 
-    <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:32px; align-items:start;">
+    <div class="contact-form-layout">
       <div class="reveal">
         <div class="card" style="display:grid; gap:16px;">
           <div>
@@ -25,7 +25,7 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
           <div>
             <strong>{isFa ? 'تلفن و واتساپ' : 'Phone & WhatsApp'}</strong>
             <p style="margin-top:4px;"><a href="tel:+989122815189" dir="ltr" style="color:var(--sky-blue); font-weight:700;">+98 912 281 5189</a></p>
-            <div style="display:flex; gap:8px; margin-top:8px;">
+            <div class="contact-actions">
               <button type="button" data-copy-phone class="btn btn--sm btn--ghost">{isFa ? 'کپی شماره' : 'Copy number'}</button>
               <a href="https://wa.me/989122815189" target="_blank" rel="noopener" class="btn btn--sm btn--whatsapp">{isFa ? 'واتساپ' : 'WhatsApp'}</a>
             </div>

@@ -106,6 +106,10 @@
     color: var(--text-primary);
   }
 
+  @media (max-width: 640px) {
+    :root { --section-padding-block: 48px; }
+  }
+
   /* Ocean palette preserves the third user-selectable source theme. */
   [data-theme="ocean"] {
     --primary-navy: #155E75;

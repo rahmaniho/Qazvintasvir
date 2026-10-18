@@ -477,6 +477,17 @@
   }
   .lang-switch:hover { border-color: var(--text-muted); color: var(--text-primary); }
   .lang-switch__active { color: var(--primary-navy); }
+  @media (max-width: 380px) {
+    .site-header .container { padding-inline: 14px; }
+    .header-inner, .header-actions { gap: 4px; }
+    .brand { gap: 6px; }
+    .brand-mark { inline-size: 32px; block-size: 32px; }
+    .brand-mark img { inline-size: 24px; block-size: 24px; }
+    .brand-copy strong { font-size: 0.82rem; }
+    .brand-copy small { display: none; }
+    .lang-switch { gap: 2px; padding: 4px 6px; font-size: 0.68rem; }
+    .theme-switch__btn, .menu-toggle { inline-size: 32px; block-size: 32px; }
+  }
 
   /* Footer */
   .site-footer {

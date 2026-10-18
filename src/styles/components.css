@@ -212,10 +212,30 @@
   .cta-block p { color: #CBD5E1; }
 
   /* About / Contact sections extracted from old index */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
-  .fleet-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-  @media (max-width: 860px) { .fleet-grid { grid-template-columns: 1fr; } }
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 28px; } }
+  .contact-form-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 32px; align-items: start; }
+  .contact-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-block-start: 8px; }
+  .fleet-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .hero__facts-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-block-start: 32px; padding-block-start: 18px; border-block-start: 1px solid rgb(255 255 255 / 12%); }
+  .hero__facts-grid > div { min-inline-size: 0; }
+  .fleet-equipment-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-block-start: 32px; }
+  .fleet-equipment-grid img { inline-size: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--r-lg); }
+  .about-activity-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-inline-size: 900px; margin: 24px auto 0; }
+  .services-promises { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-block-start: 32px; text-align: center; }
+  .services-promises > div { min-inline-size: 0; padding: 8px; }
+  @media (max-width: 860px) {
+    .contact-form-layout { grid-template-columns: 1fr; gap: 20px; }
+    .fleet-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .fleet-grid, .fleet-equipment-grid, .about-activity-grid, .services-promises { grid-template-columns: 1fr; }
+    .hero__facts-grid { gap: 8px; margin-block-start: 24px; padding-block-start: 14px; }
+  }
+  @media (max-width: 420px) {
+    .hero__facts-grid { grid-template-columns: 1fr; gap: 10px; }
+  }
+  .contact-form-layout .btn--lg { white-space: normal; line-height: 1.45; }
   .fleet-card { border-radius: var(--r-lg); overflow: hidden; background: var(--surface-white); border: 1px solid var(--line-soft); }
   .fleet-card__media { aspect-ratio: 16/11; overflow: hidden; background: var(--line-soft); }
   .fleet-card__media img { width: 100%; height: 100%; object-fit: cover; }
@@ -427,6 +447,18 @@
     .home-directory__grid { grid-template-columns: 1fr; }
     .home-directory__card { min-block-size: 72px; padding: 12px; }
   }
+  @media (max-width: 640px) {
+    .hero, .service-hero { padding-block: 48px; }
+    .hero__grid, .service-hero__grid { gap: 28px; }
+    .hero__actions .btn, .cta-block .btn { white-space: normal; }
+    .hero__facts-grid { margin-block-start: 24px; }
+    .hero-metrics { margin-block-start: 28px; }
+    .content-section { padding-block: 40px; }
+    .section-header { margin-block-end: 32px; }
+    .section-desc { font-size: 1rem; }
+    .cta-block { gap: 18px; padding: 24px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .home-directory__card, .home-directory__arrow { transition: none; }
   }
