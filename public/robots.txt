@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qazvintasvir.ir/sitemap.xml
+Sitemap: https://rahmaniho.github.io/Qazvintasvir/sitemap-index.xml

@@ -142,12 +142,15 @@ test('legacy URLs emit static redirects and preserve known hash destinations', (
   }
 });
 
-test('sitemap contains canonical language pages, not redirect aliases', () => {
+test('sitemap and robots.txt use the current GitHub Pages project URL', () => {
   const sitemap = read('sitemap-0.xml');
   assert.match(sitemap, /\/Qazvintasvir\/fa\//);
   assert.match(sitemap, /\/Qazvintasvir\/en\//);
   assert.doesNotMatch(sitemap, /\/services\/personnel-food\.html/);
   assert.doesNotMatch(sitemap, /\/Qazvintasvir\/(?!fa\/|en\/)/);
+  const robots = read('robots.txt');
+  assert.match(robots, /^Sitemap: https:\/\/rahmaniho\.github\.io\/Qazvintasvir\/sitemap-index\.xml$/m);
+  assert.doesNotMatch(robots, /qazvintasvir\.ir/);
 });
 
 test('root entry redirects to the localized Persian root with the configured base path', () => {
