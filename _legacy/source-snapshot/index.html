@@ -1,0 +1,2266 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    /* اعمال تم ذخیره‌شدهٔ کاربر پیش از رندر — جلوگیری از فلش رنگی (FOUC) */
+    (function () {
+      try {
+        var t = localStorage.getItem('qt-theme');
+        if (t === 'dark' || t === 'ocean') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <title>قزوین تصویر | بازرگانی، واردات و صادرات، ترابری و تأمین غذای پرسنل — تأسیس ۱۳۷۴</title>
+  
+  <!-- سئو و متادیتا (SEO & Meta) -->
+  <meta name="description" content="شرکت قزوین تصویر (شناسه ملی ۱۰۸۶۱۴۱۵۲۱۵)، با مدیریت سعید امین‌زاده؛ هشت خدمت تخصصی در واردات و صادرات، ترخیص، تأمین صنعتی، ترابری، سرویس VIP و سازمانی، غذای پرسنل و مشاوره بازرگانی. تأسیس ۱۳۷۴. تماس: ۰۹۱۲ ۲۸۱ ۵۱۸۹">
+  <meta name="keywords" content="قزوین تصویر, سعید امین‌زاده, بازرگانی قزوین, واردات و صادرات, ترخیص گمرکی, ترابری کارخانجات قزوین, سرویس ایاب و ذهاب پرسنل, ناوگان ترابری, اتوبوس سرویس پرسنل, مینی‌بوس, ون مسافربری, تأمین غذای پرسنل, کیترینگ سازمانی, وعده‌های سازمانی, غذای کارخانه, پیمان‌کاری غذای پرسنل, صبحانه و ناهار سازمانی, شهرک صنعتی کاسپین, شهرک صنعتی البرز">
+  <meta name="author" content="شرکت قزوین تصویر">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://qazvintasvir.ir/">
+  <!-- QT:HREFLANG:BEGIN -->
+  <link rel="alternate" hreflang="fa" href="https://qazvintasvir.ir/">
+  <link rel="alternate" hreflang="en" href="https://qazvintasvir.ir/en/">
+  <link rel="alternate" hreflang="x-default" href="https://qazvintasvir.ir/">
+  <!-- QT:HREFLANG:END -->
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://qazvintasvir.ir/">
+  <meta property="og:title" content="قزوین تصویر | بازرگانی، واردات و صادرات، ترابری و تأمین غذای پرسنل">
+  <meta property="og:description" content="شرکت قزوین تصویر با بیش از ۳۱ سال سابقه تحت مدیریت سعید امین‌زاده؛ هشت مسیر خدمت در بازرگانی، ترخیص، تأمین صنعتی، ترابری، سرویس VIP، شاتل سازمانی، کیترینگ و مشاوره.">
+  <meta property="og:image" content="https://qazvintasvir.ir/assets/images/og-image.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="ناوگان اتوبوس سرویس پرسنل شرکت قزوین تصویر">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fa_IR">
+  <meta property="og:site_name" content="قزوین تصویر">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="قزوین تصویر | بازرگانی، ترابری و تأمین غذای پرسنل">
+  <meta name="twitter:description" content="شرکت قزوین تصویر (شناسه ۱۰۸۶۱۴۱۵۲۱۵) — هشت مسیر خدمت تخصصی در بازرگانی، ترخیص، تأمین صنعتی، ترابری، کیترینگ و مشاوره با مدیریت سعید امین‌زاده.">
+  <meta name="twitter:image" content="https://qazvintasvir.ir/assets/images/og-image.jpg">
+  <meta name="twitter:image:alt" content="ناوگان اتوبوس سرویس پرسنل شرکت قزوین تصویر">
+
+  <!-- Favicon & Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/brand/qazvin-tasvir-icon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/brand/qazvin-tasvir-apple-touch.png">
+  <meta name="theme-color" content="#0A2540">
+
+  <!-- فونت‌های محلی (بدون وابستگی به CDN خارجی) -->
+  <link rel="preload" href="assets/fonts/vazirmatn-arabic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/sections/hero-port.webp" as="image" type="image/webp" fetchpriority="high">
+
+  <!-- مسیریابی هشی: پیش از بارگذاری CSS مشخص می‌کنیم که صفحه‌ها با هش جدا می‌شوند
+       تا در اولین رنگ‌آمیزی تنها یک صفحه دیده شود (بدون پرش محتوا).
+       بدون جاوااسکریپت این کلاس اضافه نمی‌شود و کل سایت مثل قبل یک صفحهٔ کامل است. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.className += ' js-pages';
+      if (window.location.hash && window.location.hash.length > 1) {
+        root.className += ' qt-deeplink';
+        // شبکهٔ امن: اگر روتر به هر دلیلی اجرا نشد (خطای جاوااسکریپت یا قطع
+        // فایل)، این کلاس برداشته می‌شود تا صفحهٔ اصلی نمایش داده شود، نه صفحهٔ خالی.
+        setTimeout(function () { root.classList.remove('qt-deeplink'); }, 2500);
+      }
+    })();
+  </script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/nav/nav-tokens.css">
+  <link rel="stylesheet" href="assets/css/nav/nav-base.css">
+  <link rel="stylesheet" href="assets/css/nav/nav-sidebar.css">
+
+  <!-- جایگزین بدون جاوااسکریپت: نمایش کامل بخش‌های انیمیشنی -->
+  <noscript>
+    <style>
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .fleet-card__img { opacity: 1 !important; }
+      .fleet-card__media { animation: none !important; }
+      /* اعتبار کارن سافت بدون JS هم کامل و خوانا دیده می‌شود */
+      .ks-label__word, .ks-card-border, .ks-mark-img { opacity: 1 !important; transform: none !important; filter: none !important; }
+      .ks-wordmark--fa, .ks-wordmark--en { clip-path: none !important; }
+    </style>
+  </noscript>
+
+  <!-- داده‌های ساختاریافته Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "LocalBusiness"],
+    "name": "شرکت قزوین تصویر",
+    "alternateName": "قزوین تصویر",
+    "url": "https://qazvintasvir.ir",
+    "logo": "https://qazvintasvir.ir/assets/images/brand/qazvin-tasvir-favicon.png",
+    "image": "https://qazvintasvir.ir/assets/images/og-image.svg",
+    "description": "ارائه‌دهنده خدمات بازرگانی، واردات و صادرات کلیه کالاهای مجاز، ترخیص گمرکی و ترابری و سرویس ایاب و ذهاب پرسنل کارخانه‌ها و شرکت‌ها با بیش از ۳۱ سال سابقه درخشان.",
+    "identifier": "10861415215",
+    "taxID": "411386837665",
+    "foundingDate": "1995-05-04",
+    "founder": {
+      "@type": "Person",
+      "name": "سعید امین‌زاده",
+      "jobTitle": "مدیرعامل و بنیان‌گذار"
+    },
+    "employee": [
+      {
+        "@type": "Person",
+        "name": "سعید امین‌زاده",
+        "jobTitle": "مدیرعامل و عضو هیئت مدیره"
+      },
+      {
+        "@type": "Person",
+        "name": "اصغر تقی‌لو",
+        "jobTitle": "رئیس هیئت مدیره"
+      }
+    ],
+    "telephone": "+989122815189",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴",
+      "addressLocality": "قزوین",
+      "addressRegion": "استان قزوین",
+      "postalCode": "3413691589",
+      "addressCountry": "IR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 36.2687,
+      "longitude": 50.0041
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Saturday",
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday"
+      ],
+      "opens": "08:00",
+      "closes": "20:00"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Iran"
+    },
+    "knowsAbout": [
+      "واردات و صادرات کالاهای مجاز",
+      "ترخیص گمرکی و امور بندری",
+      "تأمین مواد اولیه و تجهیزات",
+      "ترابری پرسنل کارخانجات",
+      "حمل‌ونقل درون‌شهری و سرویس‌های VIP",
+      "سرویس مدارس، ادارات و شرکت‌ها",
+      "تأمین غذای پرسنل و وعده‌های سازمانی",
+      "مشاوره بازرگانی و گشایش"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "خدمات شرکت قزوین تصویر",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "واردات و صادرات کالاهای مجاز",
+            "url": "https://qazvintasvir.ir/services/import-export.html",
+            "description": "هماهنگی مسیر تأمین، اسناد و حمل کالاهای مجاز."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "ترخیص گمرکی و امور بندری",
+            "url": "https://qazvintasvir.ir/services/customs-port.html",
+            "description": "کنترل مدارک و هماهنگی مراحل اجرایی پرونده‌های گمرکی و بندری."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "تأمین مواد اولیه و تجهیزات",
+            "url": "https://qazvintasvir.ir/services/sourcing.html",
+            "description": "نیازسنجی و هماهنگی تأمین، خرید و تحویل اقلام صنعتی."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "ترابری پرسنل کارخانجات",
+            "url": "https://qazvintasvir.ir/services/factory-transport.html",
+            "description": "سرویس شیفتی کارخانه با اتوبوس، مینی‌بوس و ون."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "حمل‌ونقل درون‌شهری و سرویس‌های VIP",
+            "url": "https://qazvintasvir.ir/services/urban-vip.html",
+            "description": "جابجایی سازمانی و VIP با برنامه‌ریزی مسیر و زمان."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "سرویس مدارس، ادارات و شرکت‌ها",
+            "url": "https://qazvintasvir.ir/services/school-office.html",
+            "description": "راهکار رفت‌وآمد روزانه برای مجموعه‌های آموزشی و سازمانی."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "تأمین غذای پرسنل و وعده‌های سازمانی",
+            "url": "https://qazvintasvir.ir/services/personnel-food.html",
+            "description": "تأمین صبحانه، ناهار، شام و میان‌وعده با توزیع در محل."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "مشاوره بازرگانی و گشایش",
+            "url": "https://qazvintasvir.ir/services/trade-consulting.html",
+            "description": "بررسی مسیر پرونده، اسناد و هماهنگی‌های بازرگانی."
+          }
+        }
+      ]
+    },
+    "sameAs": [
+      "https://rasmio.com/company/10861415215/قزوین-تصویر/",
+      "https://wa.me/989122815189"
+    ]
+  }
+  </script>
+
+</head>
+<body class="qt-sidebar-shell">
+
+  <!-- نوار پیشرفت اسکرول بالا -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- دسترسی‌پذیری: رفتن به محتوای اصلی -->
+  <a href="#main-content" class="skip-link">پرش به محتوای اصلی صفحه</a>
+
+  <!-- ========================================================================
+       ۴.۲ هدر چسبان (Sticky Navbar)
+       ======================================================================== -->
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#hero" aria-label="صفحه اصلی شرکت قزوین تصویر" title="قزوین تصویر — بازرگانی، ترابری و غذای سازمانی">
+      <span class="brand-mark"><img src="assets/images/brand/qazvin-tasvir-mark.png" alt="" width="44" height="44"></span>
+      <span class="brand-copy"><strong>قزوین تصویر</strong><small>بازرگانی • ترابری • غذای سازمانی</small></span>
+    </a>
+    <nav class="site-nav" id="main-site-nav" aria-label="منوی اصلی سایت">
+      <a class="site-nav__link" href="#hero" aria-current="page">خانه</a>
+      <a class="site-nav__link" href="#about">درباره ما</a>
+      <div class="site-nav__item--services">
+        <button type="button" class="site-nav__link" aria-expanded="false" aria-controls="main-services-menu">خدمات</button>
+        <div id="main-services-menu" class="site-nav__dropdown" role="group" aria-label="هشت خدمت تخصصی" aria-hidden="true">
+
+        <a href="services/index.html">فهرست هشت خدمت تخصصی</a>
+        <a href="services/import-export.html">واردات و صادرات کالاهای مجاز</a>
+        <a href="services/customs-port.html">ترخیص گمرکی و امور بندری</a>
+        <a href="services/sourcing.html">تأمین مواد اولیه و تجهیزات</a>
+        <a href="services/factory-transport.html">ترابری پرسنل کارخانجات</a>
+        <a href="services/urban-vip.html">حمل‌ونقل درون‌شهری و سرویس‌های VIP</a>
+        <a href="services/school-office.html">سرویس مدارس، ادارات و شرکت‌ها</a>
+        <a href="services/personnel-food.html">تأمین غذای پرسنل و وعده‌های سازمانی</a>
+        <a href="services/trade-consulting.html">مشاوره بازرگانی و گشایش</a>
+        </div>
+      </div>
+      <a class="site-nav__link" href="#fleet">ناوگان</a>
+      <a class="site-nav__link" href="#brands">برندها</a>
+      <a class="site-nav__link" href="#contact">تماس با ما</a>
+      <a class="site-nav__cta" href="#contact">درخواست مشاوره <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></a>
+    </nav>
+    <div class="site-header__tools">
+      <details class="theme-switch">
+        <summary class="theme-switch__btn" aria-label="تغییر تم سایت">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="13.5" cy="6.5" r="1.5"></circle>
+            <circle cx="17.5" cy="10.5" r="1.5"></circle>
+            <circle cx="8.5" cy="7.5" r="1.5"></circle>
+            <circle cx="6.5" cy="12.5" r="1.5"></circle>
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+          </svg>
+        </summary>
+        <div class="theme-switch__panel" role="group" aria-label="انتخاب تم رنگی سایت">
+          <button type="button" class="theme-option" data-theme-value="light" aria-pressed="true">
+            <span class="theme-option__swatch theme-option__swatch--light" aria-hidden="true"></span>
+            <span class="theme-option__name">روشن</span>
+          <svg class="theme-option__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </button>
+          <button type="button" class="theme-option" data-theme-value="dark" aria-pressed="false">
+            <span class="theme-option__swatch theme-option__swatch--dark" aria-hidden="true"></span>
+            <span class="theme-option__name">تیره</span>
+          <svg class="theme-option__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </button>
+          <button type="button" class="theme-option" data-theme-value="ocean" aria-pressed="false">
+            <span class="theme-option__swatch theme-option__swatch--ocean" aria-hidden="true"></span>
+            <span class="theme-option__name">اقیانوسی</span>
+          <svg class="theme-option__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </button>
+        </div>
+      </details>
+      <!-- QT:LANG-SWITCH:BEGIN -->
+        <details class="lang-switch">
+          <summary class="lang-switch__btn" aria-label="تغییر زبان سایت">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span class="lang-switch__code">fa</span>
+          </summary>
+          <nav class="lang-switch__panel" aria-label="تغییر زبان سایت">
+            <a class="lang-switch__item" href="./" hreflang="fa" lang="fa" dir="rtl" aria-current="true"><span class="lang-switch__name">فارسی</span><span class="lang-switch__native">Persian</span></a>
+            <a class="lang-switch__item" href="en/" hreflang="en" lang="en" dir="ltr"><span class="lang-switch__name">English</span><span class="lang-switch__native">English</span></a>
+          </nav>
+        </details>
+        <!-- QT:LANG-SWITCH:END -->
+      <button class="menu-toggle" type="button" aria-label="باز کردن منوی موبایل" aria-expanded="false" aria-controls="main-site-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main-content">
+    <!-- ======================================================================
+         ۴.۳ بخش قهرمان (Hero Section)
+         ====================================================================== -->
+    <section id="hero" class="site-page is-current hero" aria-label="معرفی اصلی قزوین تصویر">
+      <!-- تصویر پس‌زمینهٔ هیرو (تزئینی) -->
+      <div class="hero__photo" aria-hidden="true">
+        <picture>
+<source srcset="assets/img/sections/hero-port.webp" type="image/webp">
+<img src="assets/img/sections/hero-port.jpg" alt="" width="1536" height="1024" loading="eager" decoding="async" fetchpriority="high">
+</picture>
+      </div>
+      <!-- هاله‌های نوری پس‌زمینه و گرید نقطه‌ای -->
+      <div class="hero__glow-top" aria-hidden="true"></div>
+      <div class="hero__glow-bottom" aria-hidden="true"></div>
+      <div class="hero__grid-pattern" aria-hidden="true"></div>
+      <!-- ذرات نورانی متحرک ملایم (تنها در دسکتاپ نمایش داده می‌شود) -->
+      <div class="hero__particles" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero__grid">
+          <!-- ستون راست: متن و پیام اصلی -->
+          <div class="hero__content-col reveal">
+            <div class="hero__badge">
+              <span class="hero__badge-dot" aria-hidden="true"></span>
+              <span>هشت مسیر خدمت تخصصی برای تجارت، ترابری و رفاه سازمانی</span>
+            </div>
+
+            <h1 class="hero__title">
+              قزوین تصویر؛ بیش از ۳۱ سال تجربه در <span class="gradient-text">بازرگانی، واردات و صادرات</span> و ترابری
+            </h1>
+
+            <p class="hero__lead">
+              از تأمین کالا، ترخیص گمرکی تخصصی و واردات ماشین‌آلات تا جابه‌جایی منظم روزانه پرسنل کارخانه‌ها و شرکت‌های صنعتی؛ با تیمی مجرب و متعهد با مدیریت <strong>سعید امین‌زاده</strong> در کنار شما هستیم.
+            </p>
+
+            <div class="hero__actions">
+              <a href="#services" class="btn btn-primary btn-lg">
+                <span>مشاهده خدمات تخصصی</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+
+              <a href="tel:+989122815189" class="btn btn-outline-glass btn-lg" aria-label="تماس فوری با قزوین تصویر">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>تماس فوری (۰۹۱۲ ۲۸۱ ۵۱۸۹)</span>
+              </a>
+            </div>
+
+            <!-- آمار عددی شمارش‌شونده (Stats Count-up) -->
+            <div class="hero__stats" role="region" aria-label="آمار و شاخص‌های کلیدی شرکت">
+              <div class="hero__stat-item">
+                <span class="hero__stat-number" data-count="31" data-prefix="+" data-suffix="">+۳۱</span>
+                <span class="hero__stat-label">سال سابقه (تأسیس ۱۳۷۴)</span>
+              </div>
+              <div class="hero__stat-item">
+                <span class="hero__stat-number" data-count="100" data-prefix="+" data-suffix="">+۱۰۰</span>
+                <span class="hero__stat-label">مشتری فعال سازمانی</span>
+              </div>
+              <div class="hero__stat-item">
+                <span class="hero__stat-number" data-count="500" data-prefix="+" data-suffix="">+۵۰۰</span>
+                <span class="hero__stat-label">پرسنل جابه‌جا شده روزانه</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ستون چپ: ویژوال سه‌بعدی و کارت‌های شناور -->
+          <div class="hero__visual-wrap reveal">
+            <!-- کارت شناور بالا-راست: بازرگانی بین‌الملل -->
+            <div class="float-card float-card--top" aria-hidden="true">
+              <div class="float-card__icon float-card__icon--sky">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                  <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"></path>
+                  <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="float-card__title">بازرگانی بین‌الملل</div>
+                <div class="float-card__sub">واردات، صادرات و ترخیص کالا</div>
+              </div>
+            </div>
+
+            <!-- کارت اصلی شیشه‌ای -->
+            <div class="hero__glass-card">
+              <div class="hero__showcase-header">
+                <div class="hero__showcase-brand">
+                  <div class="brand-logo__emblem brand-logo__emblem--plain" style="width: 38px; height: 38px;">
+                    <img class="brand-logo__mark"
+                         src="assets/images/brand/qazvin-tasvir-mark.png"
+                         width="38" height="38"
+                         alt=""
+                         loading="lazy" decoding="async">
+                  </div>
+                  <div>
+                    <div style="font-weight: 800; font-size: 1rem; color: var(--surface-white);">قزوین تصویر</div>
+                    <div style="font-size: 0.75rem; color: var(--text-light);">شناسه ملی: ۱۰۸۶۱۴۱۵۲۱۵</div>
+                  </div>
+                </div>
+                <span class="hero__showcase-badge">فعال و دارای مجوز</span>
+              </div>
+
+              <!-- تصویر هیرو گرافیکی-رئال: لوگوی طلایی شرکت + صحنه‌های خدمات (مسافربری، بندر، غذای پرسنل) -->
+              <div class="hero__illustration">
+                <picture>
+<source srcset="assets/img/sections/hero-graphic.webp" type="image/webp">
+<img src="assets/img/sections/hero-graphic.jpg" alt="تصویر شاخص قزوین تصویر با لوگوی طلایی شرکت؛ صحنه‌های حمل‌ونقل مسافربری VIP، بندر کانتینری واردات و صادرات و سرویس غذای پرسنل" width="1376" height="768" loading="eager" decoding="async">
+</picture>
+              </div>
+
+              <!-- خلاصه مدیریتی -->
+              <div style="display: flex; align-items: center; justify-content: space-between; background: var(--qt-overlay-dim); padding: 12px 16px; border-radius: var(--r-md); border: 1px solid var(--qt-glass-line);">
+                <div style="font-size: 0.8125rem; color: var(--qt-slate-300);">
+                  <strong style="color: var(--amber-light);">مدیرعامل:</strong> سعید امین‌زاده
+                </div>
+                <div style="font-size: 0.8125rem; color: var(--qt-slate-300);">
+                  <strong style="color: var(--sky-light);">ثبت:</strong> ۲۷۴۹
+                </div>
+              </div>
+            </div>
+
+            <!-- کارت شناور پایین-چپ: سرویس پرسنل -->
+            <div class="float-card float-card--bottom" aria-hidden="true">
+              <div class="float-card__icon float-card__icon--amber">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                  <path d="M7 8h10"></path>
+                  <path d="M7 12h6"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="float-card__title">سرویس پرسنل صنایع</div>
+                <div class="float-card__sub">ناوگان مجهز، منظم و شیفتی</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ۴.۴ بخش درباره ما (About Section)
+         ====================================================================== -->
+    <section id="about" class="site-page section section--alt" aria-label="درباره شرکت قزوین تصویر">
+      <div class="container">
+        <div class="about__grid">
+          <!-- ستون راست: متن روایت شرکت -->
+          <div class="about__content-column reveal">
+            <div class="section-label">
+              <span>درباره شرکت قزوین تصویر</span>
+            </div>
+
+            <h2 class="about__lead-title">
+              بیش از ۳۱ سال اعتماد، از قزوین تا بازارهای جهانی
+            </h2>
+
+            <p class="about__text">
+              شرکت <strong>قزوین تصویر</strong> با مسئولیت محدود، از <strong>اردیبهشت سال ۱۳۷۴</strong> با هدایت و مدیریت جناب آقای <strong>سعید امین‌زاده</strong> فعالیت رسمی خود را آغاز نمود. در طول بیش از سه دهه خدمت مستمر به بخش‌های تولیدی و بازرگانی کشور، ما به یکی از خوش‌نام‌ترین و مطمئن‌ترین مجموعه‌ها در دو حوزه حیاتی <strong>«بازرگانی، واردات و صادرات»</strong> و <strong>«ترابری و ترابری پرسنل کارخانه‌ها»</strong> بدل شده‌ایم.
+            </p>
+
+            <ul class="about__checklist">
+              <li class="about__check-item">
+                <div class="check-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <span>تعهد خدشه‌ناپذیر به زمان‌بندی دقیق و انضباط کامل در تمام پروژه‌ها</span>
+              </li>
+              <li class="about__check-item">
+                <div class="check-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <span>شبکه گسترده تأمین‌کنندگان معتبر داخلی، خارجی و کارگزاران گمرکی</span>
+              </li>
+              <li class="about__check-item">
+                <div class="check-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <span>پشتیبانی شبانه‌روزی ۲۴/۷ و نظارت مستمر میدانی بر ناوگان ترابری</span>
+              </li>
+            </ul>
+
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <a href="#contact" class="btn btn-secondary">
+                <span>ارتباط مستقیم با مدیریت</span>
+              </a>
+              <a href="https://rasmio.com/company/10861415215/قزوین-تصویر/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-glass" style="color: var(--primary-navy); border-color: var(--line-soft);">
+                <span>مشاهده پرونده ثبتی در رسمیو ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- ستون چپ: کارت مدیرعامل و باکس اطلاعات رسمی -->
+          <div class="about__cards-column reveal">
+            <!-- کارت مدیرعامل -->
+            <div class="ceo-card">
+              <div class="ceo-card__header">
+                <div class="ceo-avatar">
+                  <picture>
+                    <source srcset="assets/images/saeed-aminzadeh-avatar.webp" type="image/webp">
+                    <img src="assets/images/saeed-aminzadeh-avatar.jpg" alt="سعید امین‌زاده، مدیرعامل قزوین تصویر" width="240" height="288" loading="lazy" decoding="async">
+                  </picture>
+                </div>
+                <div class="ceo-info">
+                  <div class="ceo-info__name">سعید امین‌زاده</div>
+                  <div class="ceo-info__role">مدیرعامل و عضو هیئت مدیره</div>
+                  <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 2px;">بنیان‌گذار قزوین تصویر (از سال ۱۳۷۴)</div>
+                </div>
+              </div>
+              <p class="ceo-quote">
+                «ما اعتبار ۳۱ ساله خود را بر پایه اعتماد متقابل، شفافیت و حل هوشمندانه دغدغه‌های لجستیکی و بازرگانی کارخانجات بنا نهاده‌ایم.»
+              </p>
+            </div>
+
+            <!-- باکس شیشه‌ای اطلاعات ثبتی -->
+            <div class="registry-glass-box" role="region" aria-label="خلاصه ثبتی شرکت">
+              <div class="registry-glass-box__title">
+                <span>اطلاعات هویتی و ثبتی شرکت</span>
+                <span style="color: var(--qt-emerald-bright); font-size: 0.8rem; background: var(--qt-emerald-tint); padding: 2px 8px; border-radius: 4px;">وضعیت: فعال</span>
+              </div>
+              <div class="registry-grid-mini">
+                <div class="registry-item-mini">
+                  <span class="registry-item-mini__label">شناسه ملی</span>
+                  <span class="registry-item-mini__value">۱۰۸۶۱۴۱۵۲۱۵</span>
+                </div>
+                <div class="registry-item-mini">
+                  <span class="registry-item-mini__label">شماره ثبت</span>
+                  <span class="registry-item-mini__value">۲۷۴۹</span>
+                </div>
+                <div class="registry-item-mini">
+                  <span class="registry-item-mini__label">تاریخ تأسیس</span>
+                  <span class="registry-item-mini__value">۱۳۷۴/۰۲/۱۴</span>
+                </div>
+                <div class="registry-item-mini">
+                  <span class="registry-item-mini__label">نوع شرکت</span>
+                  <span class="registry-item-mini__value" style="font-size: 0.85rem; font-family: var(--font-main);">با مسئولیت محدود</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- باند تصویری بین درباره و خدمات (تزئینی) -->
+      <div class="photo-band reveal" aria-hidden="true">
+        <picture>
+<source srcset="assets/img/sections/about-office.webp" type="image/webp">
+<img src="assets/img/sections/about-office.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+    </div>
+  </section>
+
+    <!-- ======================================================================
+         ۴.۵ بخش خدمات (Services Section) — قلب لندینگ
+         ====================================================================== -->
+    <section id="services" class="site-page section" aria-label="خدمات شرکت قزوین تصویر">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label section-label--sky">
+            <span>خدمات ما</span>
+          </div>
+          <h2 class="section-title">خدمات تخصصی قزوین تصویر</h2>
+          <p class="section-desc">
+            هشت صفحه مستقل برای خدمات بازرگانی، تأمین صنعتی، ترابری سازمانی و تأمین غذای پرسنل؛ هر صفحه با اطلاعات اجرایی و تصویر مرتبط
+          </p>
+        </div>
+
+        <div class="services-cards__grid">
+          <!-- کارت ۱: حمل و نقل مسافربری -->
+          <article class="service-mini-card reveal">
+            <div class="service-mini-card__media" aria-hidden="true">
+              <picture>
+                <source srcset="assets/images/bus-fleet.webp" type="image/webp">
+                <img src="assets/images/bus-fleet.jpg" alt="" width="1000" height="750" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="service-mini-card__icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 6v6"></path>
+                <path d="M15 6v6"></path>
+                <path d="M2 12h19.6"></path>
+                <path d="M18 18h3s.5-3.33.5-6s-.5-6-.5-6H2l2 6-2 6h3"></path>
+                <circle cx="7" cy="18" r="2"></circle>
+                <path d="M9 18h5"></path>
+                <circle cx="16" cy="18" r="2"></circle>
+              </svg>
+            </div>
+            <h3 class="service-mini-card__title">حمل و نقل مسافربری</h3>
+            <p class="service-mini-card__desc">درون شهری، برون شهری، سرویس کارخانجات، ادارات و شرکت‌ها</p>
+            <a href="services/factory-transport.html" class="btn btn-sky btn-sm service-mini-card__btn" aria-label="مشاهده صفحه ترابری پرسنل کارخانجات">مشاهده صفحه خدمت</a>
+          </article>
+
+          <!-- کارت ۲: خدمات و تشریفات و تهیه و پخش غذا -->
+          <article class="service-mini-card reveal">
+            <div class="service-mini-card__media" aria-hidden="true">
+              <picture>
+                <source srcset="assets/img/personnel-food/hero-kitchen.webp" type="image/webp">
+                <img src="assets/img/personnel-food/hero-kitchen.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="service-mini-card__icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+                <path d="M7 2v20"></path>
+                <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+              </svg>
+            </div>
+            <h3 class="service-mini-card__title">خدمات و تشریفات و تهیه و پخش غذا</h3>
+            <p class="service-mini-card__desc">تهیه و پخش غذای ادارات، شرکت‌ها، دانشگاه‌ها، وزارت‌خانه‌ها، سازمان‌های دولتی و خصوصی</p>
+            <a href="services/personnel-food.html" class="btn btn-sky btn-sm service-mini-card__btn" aria-label="مشاهده صفحه تأمین غذای پرسنل">مشاهده صفحه خدمت</a>
+          </article>
+
+          <!-- کارت ۳: واردات و صادرات -->
+          <article class="service-mini-card reveal">
+            <div class="service-mini-card__media" aria-hidden="true">
+              <picture>
+                <source srcset="assets/img/sections/trade-customs.webp" type="image/webp">
+                <img src="assets/img/sections/trade-customs.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="service-mini-card__icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M2 12h20"></path>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <h3 class="service-mini-card__title">واردات و صادرات</h3>
+            <p class="service-mini-card__desc">کلیه کالاهای مجاز بازرگانی</p>
+            <a href="services/import-export.html" class="btn btn-sky btn-sm service-mini-card__btn" aria-label="مشاهده صفحه واردات و صادرات">مشاهده صفحه خدمت</a>
+          </article>
+
+          <!-- کارت ۴: خرید و فروش کالا -->
+          <article class="service-mini-card reveal">
+            <div class="service-mini-card__media" aria-hidden="true">
+              <picture>
+                <source srcset="assets/img/sections/trade-customs.webp" type="image/webp">
+                <img src="assets/img/sections/trade-customs.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="service-mini-card__icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+            </div>
+            <h3 class="service-mini-card__title">تأمین مواد اولیه و تجهیزات</h3>
+            <p class="service-mini-card__desc">تبدیل نیاز کارخانه به مسیر تأمین، خرید و تحویل قابل پیگیری</p>
+            <a href="services/sourcing.html" class="btn btn-sky btn-sm service-mini-card__btn" aria-label="مشاهده صفحه تأمین مواد اولیه و تجهیزات">مشاهده صفحه خدمت</a>
+          </article>
+        </div>
+
+        <div class="services__cta reveal">
+          <a href="services/index.html" class="btn btn-secondary btn-lg" aria-label="مشاهده فهرست هشت خدمت تخصصی">مشاهده هر ۸ صفحه خدمات</a>
+          <a href="#contact" class="btn btn-primary btn-lg" aria-label="تماس با ما">تماس و درخواست همکاری</a>
+        </div>
+      </div>
+    </section>
+    <!-- ======================================================================
+         ۴.۶ بخش ناوگان ترابری (Fleet Section) — جدید
+         ناوگان ملکی: اتوبوس، مینی‌بوس و ون با تصاویر اختصاصی
+         تصاویر: assets/images/bus-fleet.jpg | minibus-fleet.jpg | van-fleet.jpg
+         ====================================================================== -->
+    <section id="fleet" class="site-page fleet-section" aria-label="ناوگان ترابری شرکت قزوین تصویر">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label section-label--sky">
+            <span>ناوگان ملکی و بیمه‌شده</span>
+          </div>
+          <h2 class="section-title">ناوگان مجهز ترابری</h2>
+          <p class="section-desc">
+            سرویس‌دهی منظم و ایمن با اتوبوس، مینی‌بوس و ون‌های ملکی؛ آماده انعقاد قرارداد با کارخانه‌ها، شرکت‌ها، ادارات و مدارس
+          </p>
+        </div>
+
+        <!-- گرید سه‌ستونه کارت‌های ناوگان (موبایل: تک‌ستونه) -->
+        <ul class="fleet-grid">
+          <!-- کارت ۱ — اتوبوس -->
+          <li class="fleet-card reveal">
+            <div class="fleet-card__media">
+              <picture>
+                <source srcset="assets/images/bus-fleet.webp" type="image/webp">
+                <img class="fleet-card__img"
+                     src="assets/images/bus-fleet.jpg"
+                     alt="اتوبوس سرویس پرسنل قزوین تصویر"
+                     width="1000" height="747"
+                     loading="lazy" decoding="async">
+              </picture>
+              <span class="fleet-card__tag">اتوبوس</span>
+            </div>
+            <div class="fleet-card__info">
+              <h3 class="fleet-card__title">اتوبوس‌های بین‌شهری و درون‌شهری</h3>
+              <p class="fleet-card__desc">
+                ظرفیت بالا برای جابه‌جایی پرسنل کارخانه‌ها در شیفت‌های مختلف، با پوشش مسیرهای درون‌شهری و بین‌شهری استان قزوین.
+              </p>
+              <ul class="fleet-card__features">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>پوشش کامل ساعات شیفتی</span>
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>ایمنی و بیمه کامل سرنشین</span>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- کارت ۲ — مینی‌بوس -->
+          <li class="fleet-card reveal">
+            <div class="fleet-card__media">
+              <picture>
+                <source srcset="assets/images/minibus-fleet.webp" type="image/webp">
+                <img class="fleet-card__img"
+                     src="assets/images/minibus-fleet.jpg"
+                     alt="مینی‌بوس سرویس پرسنل قزوین تصویر"
+                     width="1000" height="747"
+                     loading="lazy" decoding="async">
+              </picture>
+              <span class="fleet-card__tag">مینی‌بوس</span>
+            </div>
+            <div class="fleet-card__info">
+              <h3 class="fleet-card__title">مینی‌بوس‌های مسافربری</h3>
+              <p class="fleet-card__desc">
+                مناسب برای مسیرهای کوتاه‌تر و گروه‌های متوسط پرسنل؛ گزینه‌ای بهینه برای واحدهای تولیدی با تعداد نفرات محدودتر.
+              </p>
+              <ul class="fleet-card__features">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>انعطاف در تعریف مسیر</span>
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>رانندگان حرفه‌ای و آموزش‌دیده</span>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- کارت ۳ — ون -->
+          <li class="fleet-card reveal">
+            <div class="fleet-card__media">
+              <picture>
+                <source srcset="assets/images/van-fleet.webp" type="image/webp">
+                <img class="fleet-card__img"
+                     src="assets/images/van-fleet.jpg"
+                     alt="ون سرویس پرسنل قزوین تصویر"
+                     width="1000" height="747"
+                     loading="lazy" decoding="async">
+              </picture>
+              <span class="fleet-card__tag">ون</span>
+            </div>
+            <div class="fleet-card__info">
+              <h3 class="fleet-card__title">ون‌های مسافربری</h3>
+              <p class="fleet-card__desc">
+                گزینه‌ای اقتصادی و سریع برای جابه‌جایی گروه‌های کوچک پرسنل، مدیران و مهمانان سازمانی در کوتاه‌ترین زمان.
+              </p>
+              <ul class="fleet-card__features">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>مقرون‌به‌صرفه و اقتصادی</span>
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>چابکی در ترافیک شهری</span>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+        <!-- نوار تعهدات ناوگان -->
+        <div class="fleet-strip reveal">
+          <div class="fleet-strip__item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span>بیمه کامل سرنشین و معاینه فنی ادواری</span>
+          </div>
+          <div class="fleet-strip__item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>ناوگان جایگزین فوری در شرایط اضطراری</span>
+          </div>
+          <div class="fleet-strip__item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>رانندگان مجرب با سابقه سرویس صنعتی</span>
+          </div>
+        </div>
+
+        <!-- پیوند به صفحهٔ مشخصات فنی ناوگان (برگرفته از رزومه رسمی شرکت) -->
+        <div class="fleet-specs-cta reveal">
+          <a href="services/urban-vip.html" class="btn btn-secondary btn-lg" aria-label="مشاهده صفحه حمل‌ونقل درون‌شهری و سرویس‌های VIP">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 20a8 8 0 1 1 8-8"></path>
+              <path d="M12 12l4.5-4.5"></path>
+              <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"></circle>
+            </svg>
+            <span>مشاهده صفحه حمل‌ونقل درون‌شهری و سرویس VIP</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ======================================================================
+         ۴.۸ بخش برندهای همکار (Partner Vehicle Brands) — جدید
+         لوگوها در مسیر assets/logos/ قرار دارند و قابل جایگزینی با لوگوی رسمی هستند
+         ====================================================================== -->
+    <section id="brands" class="site-page brands-section" aria-label="برندهای خودروسازی مورد استفاده در ناوگان">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label section-label--onDark">
+            <span>کیفیت ناوگان</span>
+          </div>
+          <h2 class="section-title">برندهای همکار و مورد اعتماد</h2>
+          <p class="section-desc">
+            ناوگان ترابری ما مجهز به خودروهای برندهای معتبر جهانی است؛ انتخابی که ایمنی، دوام و آسایش پرسنل شما را تضمین می‌کند.
+          </p>
+        </div>
+
+        <!-- گرید ۵ ستونه (موبایل: ۲ ستون | تبلت: ۳ ستون) -->
+        <ul class="brands-grid reveal">
+          <li class="brand-item">
+            <img class="brand-item__logo" src="assets/logos/scania.svg" alt="لوگوی رسمی برند اسکانیا" width="160" height="88" loading="lazy" decoding="async">
+            <span class="brand-item__name">اسکانیا (Scania)</span>
+          </li>
+          <li class="brand-item">
+            <img class="brand-item__logo" src="assets/logos/volvo.svg" alt="لوگوی رسمی برند ولوو" width="160" height="88" loading="lazy" decoding="async">
+            <span class="brand-item__name">ولوو (Volvo)</span>
+          </li>
+          <li class="brand-item">
+            <img class="brand-item__logo" src="assets/logos/mercedes.svg" alt="لوگوی رسمی برند مرسدس بنز" width="160" height="88" loading="lazy" decoding="async">
+            <span class="brand-item__name">مرسدس بنز (Mercedes-Benz)</span>
+          </li>
+          <li class="brand-item">
+            <img class="brand-item__logo" src="assets/logos/iveco.svg" alt="لوگوی رسمی برند ایویکو" width="160" height="88" loading="lazy" decoding="async">
+            <span class="brand-item__name">ایویکو (Iveco)</span>
+          </li>
+          <li class="brand-item">
+            <img class="brand-item__logo" src="assets/logos/irankhodro.svg" alt="نشان برند ایران خودرو دیزل" width="160" height="88" loading="lazy" decoding="async">
+            <span class="brand-item__name">ایران خودرو دیزل (IKD)</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ۴.۸ بخش چرا ما (Why Us Section)
+         ====================================================================== -->
+    <section id="why-us" class="site-page section section--alt" aria-label="مزایای همکاری با قزوین تصویر">
+      <!-- نوار تصویری بالای بخش مزایا (تزئینی) -->
+      <div class="why-banner reveal" aria-hidden="true">
+        <picture>
+<source srcset="assets/img/sections/why-banner.webp" type="image/webp">
+<img src="assets/img/sections/why-banner.jpg" alt="" width="1600" height="718" loading="lazy" decoding="async">
+</picture>
+      </div>
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label">
+            <span>تمایز و مزیت‌های رقابتی</span>
+          </div>
+          <h2 class="section-title">چرا شرکت‌ها قزوین تصویر را انتخاب می‌کنند؟</h2>
+          <p class="section-desc">
+            ترکیب بیش از ۳۱ سال سابقه عملیاتی با استانداردهای نوین مدیریت لجستیک و بازرگانی
+          </p>
+        </div>
+
+        <div class="why-us__grid">
+          <!-- کارت ۱ -->
+          <div class="why-card reveal">
+            <div class="why-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="7"></circle>
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+              </svg>
+            </div>
+            <h3 class="why-card__title">۳۱+ سال سابقه صنعتی (تأسیس ۱۳۷۴)</h3>
+            <p class="why-card__text">
+              پایداری و تداوم موفق از سال ۱۳۷۴ تاکنون که نشان از تعهد عمیق و ثبات اجرایی در تمام شرایط اقتصادی دارد.
+            </p>
+          </div>
+
+          <!-- کارت ۲ -->
+          <div class="why-card reveal">
+            <div class="why-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h3 class="why-card__title">مدیریت آقای سعید امین‌زاده</h3>
+            <p class="why-card__text">
+              نظارت مستقیم و پاسخگویی شخص مدیرعامل بر کلیه قراردادها و تعاملات مشتریان سازمانی و بازرگانان.
+            </p>
+          </div>
+
+          <!-- کارت ۳ -->
+          <div class="why-card reveal">
+            <div class="why-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </div>
+            <h3 class="why-card__title">ناوگان ملکی و مجهز</h3>
+            <p class="why-card__text">
+              در اختیار داشتن انواع اتوبوس، مینی‌بوس و ون‌های بهینه‌سازی‌شده همراه با خودروهای پشتیبان در صورت لزوم.
+            </p>
+          </div>
+
+          <!-- کارت ۴ -->
+          <div class="why-card reveal">
+            <div class="why-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <h3 class="why-card__title">شبکه تأمین داخلی و خارجی</h3>
+            <p class="why-card__text">
+              روابط بین‌المللی مؤثر با بازارهای مبدأ و زنجیره تأمین بدون واسطه مواد اولیه و تجهیزات تولیدی.
+            </p>
+          </div>
+
+          <!-- کارت ۵ -->
+          <div class="why-card reveal">
+            <div class="why-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="why-card__title">پشتیبانی ۲۴/۷ و قراردادهای منعطف</h3>
+            <p class="why-card__text">
+              انعطاف در نحوه تسویه، ساختار قراردادهای ماهانه و سالانه و پاسخگویی بی‌وقفه به تغییرات شیفت کاری.
+            </p>
+          </div>
+
+          <!-- کارت ۶ -->
+          <div class="why-card reveal">
+            <div class="why-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+              </svg>
+            </div>
+            <h3 class="why-card__title">رضایت بالا و تمدید مداوم قراردادها</h3>
+            <p class="why-card__text">
+              بیش از ۹۰٪ کارخانجات طرف قرارداد بیش از ۵ سال متوالی همکاری خود را با قزوین تصویر تمدید کرده‌اند.
+            </p>
+          </div>
+        </div>
+
+        <!-- نقل‌قول مدیرعامل در بلوک شیشه‌ای -->
+        <div class="quote-block reveal">
+          <svg class="quote-block__quote-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+          <div class="quote-block__content">
+            <div class="quote-block__text">
+              «تعهد ما، آرامش خاطر شماست. در قزوین تصویر، تک‌تک محموله‌های تجاری سرمایه شما و هر سرنشین ناوگان امانت کارخانه شماست.»
+            </div>
+            <div class="quote-block__author">
+              <span class="quote-block__author-avatar" aria-hidden="true">
+                <picture>
+                  <source srcset="assets/images/saeed-aminzadeh-avatar.webp" type="image/webp">
+                  <img src="assets/images/saeed-aminzadeh-avatar.jpg" alt="" width="240" height="288" loading="lazy" decoding="async">
+                </picture>
+              </span>
+              <span>— سعید امین‌زاده | مدیرعامل شرکت قزوین تصویر</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ۴.۹ بخش مشتریان و سابقه همکاری با برندهای مطرح (Clients & Partners)
+         ====================================================================== -->
+    <section id="clients" class="site-page clients-section" aria-label="سابقه همکاری با برندهای معتبر صنعتی">
+      <div class="container">
+        <div class="section-header reveal" style="margin-bottom: 32px;">
+          <div class="section-label section-label--sky">
+            <span>مشتریان و شرکای تجاری</span>
+          </div>
+          <h2 class="section-title">برندهای شاخصی که به قزوین تصویر اعتماد کرده‌اند</h2>
+          <p class="section-desc">
+            افتخار بیش از ۳ دهه همراهی با بزرگ‌ترین کارخانجات و صنایع بین‌المللی و ملی
+          </p>
+        </div>
+
+        <!-- گرید ۱۱ برند مشتری: ۶ کارت با لوگوی رسمی + ۵ کارت آیکونی (در انتظار لوگو) -->
+        <div class="clients-grid reveal">
+          <!-- ۲. یاتاقان بوش ایران -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--square" src="assets/images/clients/yataqan-bosh.png" alt="لوگوی یاتاقان بوش ایران" width="245" height="317" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">یاتاقان بوش ایران</h3>
+            <span class="client-card__name-en">Yataqan Bosh Iran</span>
+            <span class="client-card__tag">صنایع یاتاقان و قطعات صنعتی</span>
+          </div>
+
+          <!-- ۳. شیر سحر -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--square" src="assets/images/clients/sahar.png" alt="لوگوی شیر سحر" width="442" height="342" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">شیر سحر</h3>
+            <span class="client-card__name-en">Shir Sahar</span>
+            <span class="client-card__tag">صنایع لبنی</span>
+          </div>
+
+          <!-- ۴. AGT -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--mid" src="assets/images/clients/agt.png" alt="لوگوی AGT" width="291" height="117" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">AGT</h3>
+            <span class="client-card__name-en">AGT</span>
+            <span class="client-card__tag">شرکت صنعتی</span>
+          </div>
+
+          <!-- ۵. آسان پک -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--square" src="assets/images/clients/asanpack.png" alt="لوگوی آسان پک" width="405" height="313" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">آسان پک</h3>
+            <span class="client-card__name-en">Asan Pack</span>
+            <span class="client-card__tag">صنایع کارتن و بسته‌بندی</span>
+          </div>
+
+          <!-- ۶. هنکل -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--square" src="assets/images/clients/henkel.png" alt="لوگوی هنکل" width="316" height="262" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">هنکل</h3>
+            <span class="client-card__name-en">Henkel</span>
+            <span class="client-card__tag">صنایع شیمیایی و بهداشتی</span>
+          </div>
+
+          <!-- ۷. یونیلیور -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--square" src="assets/images/clients/unilever.png" alt="لوگوی یونیلیور" width="434" height="480" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">یونیلیور</h3>
+            <span class="client-card__name-en">Unilever</span>
+            <span class="client-card__tag">محصولات بهداشتی و غذایی</span>
+          </div>
+
+          <!-- ۸. BAT -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--mid" src="assets/images/clients/bat.png" alt="لوگوی شرکت بریتیش آمریکن تاباکو" width="451" height="257" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">BAT</h3>
+            <span class="client-card__name-en">British American Tobacco</span>
+            <span class="client-card__tag">گروه صنعتی بین‌المللی</span>
+          </div>
+
+          <!-- ۹. گلدایران -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--square" src="assets/images/clients/goldiran.png" alt="لوگوی گلدایران" width="474" height="420" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">گلدایران</h3>
+            <span class="client-card__name-en">Goldiran</span>
+            <span class="client-card__tag">همکار رسمی ال‌جی در ایران</span>
+          </div>
+
+          <!-- ۰. ال‌جی -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--wide" src="assets/images/clients/lg.png" alt="لوگوی ال‌جی" width="480" height="122" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">ال‌جی</h3>
+            <span class="client-card__name-en">LG Electronics</span>
+            <span class="client-card__tag">لوازم خانگی و الکترونیک</span>
+          </div>
+
+          <!-- ۲۱. کابل البرز -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--wide" src="assets/images/clients/alborz-cable.png" alt="لوگوی کابل البرز" width="480" height="148" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">کابل البرز</h3>
+            <span class="client-card__name-en">Alborz Cable</span>
+            <span class="client-card__tag">صنایع سیم و کابل</span>
+          </div>
+
+          <!-- ۲۲. آلکاپلاستیک -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--mid" src="assets/images/clients/alkaplastik.png" alt="لوگوی آلکاپلاستیک" width="349" height="230" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">آلکاپلاستیک</h3>
+            <span class="client-card__name-en">Alkaplastik</span>
+            <span class="client-card__tag">صنایع پلاستیک و پلیمر</span>
+          </div>
+
+          <!-- ۲۳. نستله -->
+          <div class="client-card client-card--logo">
+            <div class="client-card__logo-wrap">
+              <img class="client-card__logo-img client-card__logo-img--square" src="assets/images/clients/nestle.png" alt="لوگوی نستله" width="439" height="454" loading="lazy" decoding="async">
+            </div>
+            <h3 class="client-card__name">نستله</h3>
+            <span class="client-card__name-en">Nestlé</span>
+            <span class="client-card__tag">صنایع غذایی بین‌المللی</span>
+          </div>
+        </div><!-- نوار متحرک مشتریان (Marquee) — تکرار تزئینی نام همکاران برای اثبات اجتماعی -->
+        <div class="clients-marquee-wrapper reveal" aria-hidden="true">
+          <div class="clients-marquee">
+            <span class="clients-marquee__chip">یاتاقان بوش ایران</span>
+            <span class="clients-marquee__chip">شیر سحر</span>
+            <span class="clients-marquee__chip">AGT</span>
+            <span class="clients-marquee__chip">آسان پک</span>
+            <span class="clients-marquee__chip">هنکل</span>
+            <span class="clients-marquee__chip">یونیلیور</span>
+            <span class="clients-marquee__chip">BAT</span>
+            <span class="clients-marquee__chip">گلدایران</span>
+            <span class="clients-marquee__chip">ال‌جی</span>
+            <span class="clients-marquee__chip">کابل البرز</span>
+            <span class="clients-marquee__chip">آلکاپلاستیک</span>
+            <span class="clients-marquee__chip">نستله ایران</span>
+            <span class="clients-marquee__chip">یاتاقان بوش ایران</span>
+            <span class="clients-marquee__chip">شیر سحر</span>
+            <span class="clients-marquee__chip">AGT</span>
+            <span class="clients-marquee__chip">آسان پک</span>
+            <span class="clients-marquee__chip">هنکل</span>
+            <span class="clients-marquee__chip">یونیلیور</span>
+            <span class="clients-marquee__chip">BAT</span>
+            <span class="clients-marquee__chip">گلدایران</span>
+            <span class="clients-marquee__chip">ال‌جی</span>
+            <span class="clients-marquee__chip">کابل البرز</span>
+            <span class="clients-marquee__chip">آلکاپلاستیک</span>
+            <span class="clients-marquee__chip">نستله ایران</span>
+          </div>
+        </div>
+        <!-- نظرات مشتریان — نمونه‌هایی از بازخورد مشتریان سازمانی -->
+        <div class="testimonials reveal">
+          <h3 class="testimonials__title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            نظرات مشتریان
+          </h3>
+          <div class="testimonials__grid">
+            <article class="testimonial-card">
+              <div class="testimonial-card__stars" role="img" aria-label="امتیاز ۵ از ۵ ستاره">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+              </div>
+              <p class="testimonial-card__text">«سه سال است سرویس ایاب‌وذهاب پرسنل کارخانه ما با ناوگان قزوین تصویر انجام می‌شود؛ نظم زمان‌بندی و سلامت خودروها در تمام فصول سال چشمگیر است.»</p>
+              <footer class="testimonial-card__author">
+                <span class="testimonial-card__avatar" aria-hidden="true">ر</span>
+                <div>
+                  <span class="testimonial-card__name">مهندس رضا کریمی</span>
+                  <span class="testimonial-card__role">مدیر لجستیک، شرکت تولیدی صنایع غذایی</span>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-card__stars" role="img" aria-label="امتیاز ۵ از ۵ ستاره">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+              </div>
+              <p class="testimonial-card__text">«از عقد قرارداد تا شروع سرویس همه‌چیز شفاف و مستند پیش رفت؛ پاسخگویی سریع مدیریت، عاملی شد که قراردادمان را تمدید کنیم.»</p>
+              <footer class="testimonial-card__author">
+                <span class="testimonial-card__avatar" aria-hidden="true">س</span>
+                <div>
+                  <span class="testimonial-card__name">خانم سارا محمدی</span>
+                  <span class="testimonial-card__role">مدیر منابع انسانی، هلدینگ صنعتی</span>
+                </div>
+              </footer>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-card__stars" role="img" aria-label="امتیاز ۵ از ۵ ستاره">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>
+              </div>
+              <p class="testimonial-card__text">«تأمین وعده‌های غذایی شیفت شب کارخانه سال‌هاست بر عهده تیم قزوین تصویر است؛ کیفیت منو و پایبندی به نکات بهداشتی رضایت پرسنل را جلب کرده است.»</p>
+              <footer class="testimonial-card__author">
+                <span class="testimonial-card__avatar" aria-hidden="true">م</span>
+                <div>
+                  <span class="testimonial-card__name">آقای مهدی رستمی</span>
+                  <span class="testimonial-card__role">مدیر تدارکات، مجتمع صنعتی</span>
+                </div>
+              </footer>
+            </article>
+          </div>
+        </div>
+
+        <!-- نمونه‌کار: مطالعه موردی سرویس پرسنل -->
+        <article class="case-study reveal">
+          <div class="case-study__content">
+            <span class="case-study__badge">نمونه‌کار</span>
+            <h3 class="case-study__title">مدیریت ایاب‌وذهاب ۵۰۰ پرسنل در شهرک صنعتی کاسپین</h3>
+            <p class="case-study__text">
+              طراحی و اجرای سامانه رفت‌وآمد روزانه پرسنل یک مجموعه صنعتی بزرگ در شهرک صنعتی کاسپین؛ شامل برنامه‌ریزی مسیرها بر مبنای محل سکونت کارکنان، تخصیص ناوگان مینی‌بوس و اتوبوس، و پایش روزانه حضور رانندگان — همه‌روزه و در دو شیفت کاری.
+            </p>
+            <a href="#contact" class="btn btn-primary">درخواست مشاوره برای سرویس پرسنل</a>
+          </div>
+          <dl class="case-study__stats">
+            <div class="case-study__stat">
+              <dt>پرسنل تحت پوشش</dt>
+              <dd>۵۰۰+</dd>
+            </div>
+            <div class="case-study__stat">
+              <dt>شیفت کاری روزانه</dt>
+              <dd>۲ شیفت</dd>
+            </div>
+            <div class="case-study__stat">
+              <dt>پوشش خدمت</dt>
+              <dd>۷ روز هفته</dd>
+            </div>
+          </dl>
+        </article>
+
+
+        <!-- سوابق همکاری قراردادی — برگرفته از رزومه رسمی شرکت -->
+        <div class="clients-history">
+          <div class="section-header reveal" style="margin-bottom: 28px;">
+            <div class="section-label section-label--sky">
+              <span>از رزومه رسمی شرکت</span>
+            </div>
+            <h3 class="section-title">سوابق همکاری قراردادی</h3>
+            <p class="section-desc">
+              شرکتی که سرویس ایاب‌وذهاب پرسنل‌شان در طول سال‌های فعالیت، با ناوگان و رانندگان قزوین تصویر انجام شده است؛ به‌همراه تعداد دستگاه‌های واگذارشده و بازهٔ همکاری.
+            </p>
+          </div>
+
+          <div class="clients-history__scroll reveal">
+            <table class="history-table">
+              <caption class="visually-hidden">سوابق همکاری قراردادی شرکت قزوین تصویر با شرکت‌های صنعتی و تولیدی</caption>
+              <thead>
+                <tr>
+                  <th scope="col">شرکت</th>
+                  <th scope="col">ناوگان واگذارشده</th>
+                  <th scope="col">بازهٔ همکاری</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">نستله ایران</th>
+                  <td>۵ دستگاه</td>
+                  <td>۱۳۸۹ تا ۱۳۹۸</td>
+                </tr>
+                <tr>
+                  <th scope="row">گلدایران (ال‌جی)</th>
+                  <td>۹ دستگاه</td>
+                  <td>۱۳۹۰ تا ۱۴۰۲</td>
+                </tr>
+                <tr>
+                  <th scope="row">یونیلیور</th>
+                  <td>۹ دستگاه + ۳ دستگاه سرویس VIP</td>
+                  <td>۱۳۹۳ تا ۱۳۹۶</td>
+                </tr>
+                <tr>
+                  <th scope="row">هنکل</th>
+                  <td>۲ دستگاه</td>
+                  <td>۱۳۹۴ تا ۱۳۹۷</td>
+                </tr>
+                <tr>
+                  <th scope="row">BAT</th>
+                  <td>۷ دستگاه + ۱۰ دستگاه VIP</td>
+                  <td>۱۳۹۳ تا ۱۳۹۶</td>
+                </tr>
+                <tr>
+                  <th scope="row">آلکاپلاستیک</th>
+                  <td>۶ دستگاه</td>
+                  <td>۱۳۸۹ تا ۱۳۹۵</td>
+                </tr>
+                <tr>
+                  <th scope="row">کابل البرز</th>
+                  <td>۷ دستگاه</td>
+                  <td>۱۳۹۰ تا ۱۳۹۶</td>
+                </tr>
+                <tr>
+                  <th scope="row">شیر سحر</th>
+                  <td>۸ دستگاه</td>
+                  <td>۱۴۰۲ تا کنون</td>
+                </tr>
+                <tr>
+                  <th scope="row">AGT</th>
+                  <td>۹ دستگاه</td>
+                  <td>۱۴۰۰ تا ۱۴۰۲</td>
+                </tr>
+                <tr>
+                  <th scope="row">آسان پک</th>
+                  <td>۱۷ دستگاه مینی‌بوس و اتوبوس</td>
+                  <td>۱۳۹۷ تا کنون</td>
+                </tr>
+                <tr>
+                  <th scope="row">یاتاقان بوش ایران</th>
+                  <td>۹ دستگاه مینی‌بوس</td>
+                  <td>۱۴۰۳ تا کنون</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="clients-history__note reveal">
+            جمع‌اً <strong>۱۰۱ دستگاه خودرو</strong> در قالب این قراردادها به شرکت‌های بالا واگذار شده است.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ۴.۱۰ بخش اعتبار و اطلاعات ثبتی (Trust & Registry)
+         ====================================================================== -->
+    <section id="trust" class="site-page registry-section" aria-label="اعتبار و شناسه ثبتی شرکت">
+      <div class="container">
+        <div class="registry-header reveal">
+          <div class="section-label" style="margin-bottom: 8px;">
+            <span>شفافیت و هویت حقوقی</span>
+          </div>
+          <h2>اعتبار ثبت‌شده و قابل استعلام</h2>
+          <p>کلیه اطلاعات ثبتی شرکت قزوین تصویر در مراجع رسمی و پایگاه روزنامه رسمی و رسمیو قابل استعلام است.</p>
+        </div>
+
+        <div class="registry-cards-grid reveal">
+          <!-- کارت شناسه ملی -->
+          <div class="registry-card">
+            <div class="registry-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect x="3" y="4" width="18" height="16" rx="3"></rect>
+                <line x1="7" y1="8" x2="17" y2="8"></line>
+                <line x1="7" y1="12" x2="13" y2="12"></line>
+              </svg>
+            </div>
+            <span class="registry-card__label">شناسه ملی</span>
+            <span class="registry-card__value">۱۰۸۶۱۴۱۵۲۱۵</span>
+          </div>
+
+          <!-- کارت شماره ثبت -->
+          <div class="registry-card">
+            <div class="registry-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+            </div>
+            <span class="registry-card__label">شماره ثبت</span>
+            <span class="registry-card__value">۲۷۴۹</span>
+          </div>
+
+          <!-- کارت کد اقتصادی -->
+          <div class="registry-card">
+            <div class="registry-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <span class="registry-card__label">کد اقتصادی</span>
+            <span class="registry-card__value">۴۱۱۳۸۶۸۳۷۶۶۵</span>
+          </div>
+
+          <!-- کارت تاریخ تأسیس -->
+          <div class="registry-card">
+            <div class="registry-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <span class="registry-card__label">تاریخ تأسیس</span>
+            <span class="registry-card__value">۱۳۷۴/۰۲/۱۴</span>
+          </div>
+        </div>
+
+        <div class="registry-footer-bar reveal">
+          <div class="registry-footer-bar__item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>عضو رسمی اتاق بازرگانی، صنایع و معادن</span>
+          </div>
+          <div class="registry-footer-bar__item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>دارای پروانه معتبر ترابری و حمل‌ونقل سازمانی</span>
+          </div>
+          <div class="registry-footer-bar__item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>شرکت با مسئولیت محدود فعال (مدیریت: سعید امین‌زاده)</span>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px; font-size: 0.875rem; color: var(--text-muted);" class="reveal">
+          <strong style="color: var(--primary-navy);">سابقه همکاری با مجموعه‌های پیشرو:</strong>
+          <span>نستله (Nestlé) • ال‌جی (LG) • گلدایران • یونیلیور • آسان پک و ده‌ها کارخانه صنعتی کشور</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ۴.۱۰‌ب بخش رزومه شرکت (Company Resume) — جدید
+         تصویر کامل هویت، توانمندی‌ها و سوابق شرکت در یک صفحه؛
+         برگرفته از رزومه رسمی «حمل و نقل درون شهری» + اطلاعات ثبتی.
+         فایل PDF قابل دریافت: assets/docs/qazvin-tasvir-company-resume.pdf
+         ====================================================================== -->
+    <section id="resume" class="site-page section section--alt resume-section" aria-label="رزومه رسمی شرکت قزوین تصویر">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label section-label--sky">
+            <span>رزومه رسمی شرکت</span>
+          </div>
+          <h2 class="section-title">رزومه شرکت قزوین تصویر</h2>
+          <p class="section-desc">
+            تصویری کامل از هویت، توانمندی‌ها و سوابق شرکت در یک صفحه؛ بر اساس رزومه رسمی «حمل و نقل درون شهری» و اطلاعات ثبتی شرکت — قابل دریافت در قالب PDF.
+          </p>
+        </div>
+
+        <!-- آمار کلیدی شرکت -->
+        <dl class="spec-stats reveal" aria-label="آمار کلیدی شرکت قزوین تصویر">
+          <div class="spec-stat">
+            <dt>سال سابقه فعالیت (از ۱۳۷۴)</dt>
+            <dd><span class="spec-stat__plus">+</span><span class="spec-stat__value">۳۱</span></dd>
+          </div>
+          <div class="spec-stat">
+            <dt>دستگاه خودرو واگذارشده در قراردادها</dt>
+            <dd><span class="spec-stat__value">۱۰۱</span></dd>
+          </div>
+          <div class="spec-stat">
+            <dt>قرارداد همکاری سازمانی</dt>
+            <dd><span class="spec-stat__value">۱۱</span></dd>
+          </div>
+          <div class="spec-stat">
+            <dt>حوزه فعالیت تخصصی</dt>
+            <dd><span class="spec-stat__value">۳</span></dd>
+          </div>
+        </dl>
+
+        <div class="resume-grid">
+
+          <!-- ستون ۱ — شناسنامه شرکت -->
+          <article class="resume-card reveal">
+            <h3 class="resume-card__title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              <span>شناسنامه شرکت</span>
+            </h3>
+            <dl class="spec-card__list">
+              <div class="spec-row"><dt>نام شرکت</dt><dd>قزوین تصویر (با مسئولیت محدود)</dd></div>
+              <div class="spec-row"><dt>نام لاتین</dt><dd>QAZVIN TASVIR CO. LTD</dd></div>
+              <div class="spec-row"><dt>شماره ثبت</dt><dd>۲۷۴۹</dd></div>
+              <div class="spec-row"><dt>شناسه ملی</dt><dd>۱۰۸۶۱۴۱۵۲۱۵</dd></div>
+              <div class="spec-row"><dt>کد اقتصادی</dt><dd>۴۱۱۳۸۶۸۳۷۶۶۵</dd></div>
+              <div class="spec-row"><dt>تاریخ تأسیس</dt><dd>۱۳۷۴/۰۲/۱۴</dd></div>
+              <div class="spec-row"><dt>مدیرعامل</dt><dd>سعید امین‌زاده</dd></div>
+              <div class="spec-row"><dt>رئیس هیئت مدیره</dt><dd>اصغر تقی‌لو</dd></div>
+              <div class="spec-row"><dt>نشانی</dt><dd>قزوین، اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴</dd></div>
+              <div class="spec-row"><dt>کد پستی</dt><dd>۳۴۱۳۶۹۱۵۸۹</dd></div>
+              <div class="spec-row"><dt>تلفن</dt><dd><a href="tel:+989122815189" class="tel-link">۰۹۱۲ ۲۸۱ ۵۱۸۹</a></dd></div>
+              <div class="spec-row"><dt>وضعیت</dt><dd>فعال</dd></div>
+            </dl>
+          </article>
+
+          <!-- ستون ۲ — حوزه‌های فعالیت و ناوگان -->
+          <div class="resume-col">
+            <article class="resume-card reveal">
+              <h3 class="resume-card__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                <span>حوزه‌های فعالیت</span>
+              </h3>
+              <ul class="resume-activities">
+                <li class="resume-activity">
+                  <h4 class="resume-activity__title">بازرگانی، واردات و صادرات</h4>
+                  <p class="resume-activity__desc">واردات ماشین‌آلات و مواد اولیه، صادرات کالاهای مجاز، ترخیص گمرکی و مشاوره بازرگانی.</p>
+                  <a href="services/import-export.html" class="resume-activity__link" aria-label="مشاهده صفحه واردات و صادرات">مشاهده صفحه خدمت</a>
+                </li>
+                <li class="resume-activity">
+                  <h4 class="resume-activity__title">ترابری و سرویس ایاب‌وذهاب پرسنل</h4>
+                  <p class="resume-activity__desc">ناوگان ملکی اتوبوس، مینی‌بوس و ون با بیمه کامل سرنشین؛ حمل‌ونقل درون‌شهری و سرویس‌های VIP.</p>
+                  <a href="#fleet" class="resume-activity__link" aria-label="مشاهده ناوگان ترابری">مشاهده ناوگان</a>
+                </li>
+                <li class="resume-activity">
+                  <h4 class="resume-activity__title">تأمین غذای پرسنل (کیترینگ سازمانی)</h4>
+                  <p class="resume-activity__desc">تأمین صبحانه، ناهار، شام و میان‌وعده پرسنل کارخانه‌ها با استانداردهای بهداشتی.</p>
+                  <a href="services/personnel-food.html" class="resume-activity__link" aria-label="مشاهده صفحه تأمین غذای پرسنل">مشاهده صفحه خدمت</a>
+                </li>
+              </ul>
+            </article>
+
+            <article class="resume-card resume-card--fleet reveal">
+              <h3 class="resume-card__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="1" y="5" width="15" height="11" rx="1"></rect>
+                  <path d="M16 8h4l3 3v5h-7V8z"></path>
+                  <circle cx="5.5" cy="18.5" r="1.5"></circle>
+                  <circle cx="18.5" cy="18.5" r="1.5"></circle>
+                </svg>
+                <span>ناوگان و تجهیزات</span>
+              </h3>
+              <p class="resume-card__text">
+                مینی‌بوس‌های مسافربری ۱۷+۱ نفره با موتور توربودیزل D4AL، گیربکس M3S5 و تجهیزات کامل رفاهی و ایمنی؛ شامل صندلی‌های VIP، سبد مطبوعاتی و سامانه پیامک.
+              </p>
+              <a href="services/urban-vip.html" class="btn btn-sky btn-sm" aria-label="مشاهده صفحه حمل‌ونقل درون‌شهری و سرویس‌های VIP">مشاهده صفحه سرویس VIP</a>
+            </article>
+          </div>
+        </div>
+
+        <!-- سوابق همکاری -->
+        <div class="resume-clients reveal">
+          <h3 class="resume-clients__title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span>سوابق همکاری قراردادی</span>
+          </h3>
+          <ul class="amenity-chips">
+            <li class="amenity-chip">نستله ایران</li>
+            <li class="amenity-chip">گلدایران</li>
+            <li class="amenity-chip">ال‌جی</li>
+            <li class="amenity-chip">یونیلیور</li>
+            <li class="amenity-chip">هنکل</li>
+            <li class="amenity-chip">BAT</li>
+            <li class="amenity-chip">آلکاپلاستیک</li>
+            <li class="amenity-chip">کابل البرز</li>
+            <li class="amenity-chip">شیر سحر</li>
+            <li class="amenity-chip">AGT</li>
+            <li class="amenity-chip">آسان پک</li>
+            <li class="amenity-chip">یاتاقان بوش ایران</li>
+          </ul>
+          <a href="#clients" class="resume-clients__link" aria-label="مشاهده جدول کامل سوابق همکاری">جدول کامل سوابق همکاری و تعداد دستگاه‌ها ←</a>
+        </div>
+
+        <!-- دریافت رزومه -->
+        <div class="fleet-specs-cta fleet-specs-cta--end reveal">
+          <p class="fleet-specs-cta__text">
+            فایل رزومه رسمی شرکت (PDF) شامل مشخصات فنی کامل ناوگان، تجهیزات و سوابق همکاری را دریافت کنید.
+          </p>
+          <div class="fleet-specs-cta__actions">
+            <a href="assets/docs/qazvin-tasvir-company-resume.pdf" download="qazvin-tasvir-company-resume.pdf" class="btn btn-primary btn-lg" aria-label="دریافت فایل رزومه شرکت قزوین تصویر در قالب PDF">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>دریافت رزومه شرکت (PDF)</span>
+            </a>
+            <a href="#contact" class="btn btn-secondary btn-lg" aria-label="تماس و درخواست مشاوره">تماس و درخواست مشاوره</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ۴.۱۰‌ج بخش اعتبارنامه و شناسنامه حقوقی شرکت (Legal Registry) — جدید
+         اطلاعات ثبتی و حقوقی؛ هماهنگ با اطلاعات رسمی سایت
+         (مرکز اصلی: مجتمع تجاری آبادگران — رئیس هیئت مدیره: اصغر تقی‌لو).
+         ====================================================================== -->
+    <section id="legal" class="site-page section section--alt legal-section" aria-label="اعتبارنامه و شناسنامه حقوقی شرکت قزوین تصویر">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label section-label--sky">
+            <span>مستندات رسمی و اسناد ثبتی</span>
+          </div>
+          <h2 class="section-title">اعتبارنامه و شناسنامه حقوقی شرکت</h2>
+          <p class="section-desc">
+            اطلاعات حقوقی و ثبتی شرکت قزوین تصویر، عیناً استخراج‌شده از اسناد رسمی و آگهی‌های ثبتی — شامل شناسنامه شرکت، ترکیب مدیریت و سهامداران و زمینه‌های کامل فعالیت مجاز.
+          </p>
+        </div>
+
+        <div class="legal-grid">
+
+          <!-- کارت ۱ — شناسنامه شرکت -->
+          <article class="legal-card reveal">
+            <h3 class="legal-card__title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              <span>شناسنامه شرکت</span>
+            </h3>
+            <dl class="spec-card__list">
+              <div class="spec-row"><dt>نام شرکت</dt><dd>قزوین تصویر (با مسئولیت محدود)</dd></div>
+              <div class="spec-row"><dt>شماره ثبت</dt><dd>۲۷۴۹</dd></div>
+              <div class="spec-row"><dt>شناسه ملی</dt><dd>۱۰۸۶۱۴۱۵۲۱۵</dd></div>
+              <div class="spec-row"><dt>سرمایه ثبتی</dt><dd>۱۳,۰۰۰,۰۰۰ ریال</dd></div>
+              <div class="spec-row"><dt>تاریخ ثبت</dt><dd>۱۴۰۵/۰۲/۰۷</dd></div>
+              <div class="spec-row"><dt>مرکز اصلی</dt><dd>قزوین، اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴</dd></div>
+            </dl>
+          </article>
+
+          <!-- کارت ۲ — مدیریت و سهامداران -->
+          <article class="legal-card reveal">
+            <h3 class="legal-card__title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>مدیریت و سهامداران</span>
+            </h3>
+            <ul class="legal-people">
+              <li class="legal-person">
+                <span class="legal-person__badge" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </span>
+                <div class="legal-person__info">
+                  <h4 class="legal-person__name">سعید امین‌زاده</h4>
+                  <p class="legal-person__role">مدیرعامل و عضو هیئت مدیره</p>
+                </div>
+                <span class="legal-person__shares">دارای ۴,۰۰۰,۰۰۰ سهم</span>
+              </li>
+              <li class="legal-person">
+                <span class="legal-person__badge" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </span>
+                <div class="legal-person__info">
+                  <h4 class="legal-person__name">اصغر تقی‌لو</h4>
+                  <p class="legal-person__role">رئیس هیئت مدیره</p>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- زمینه‌های فعالیت — آکاردئون -->
+        <div class="legal-fields reveal">
+          <h3 class="legal-fields__title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>زمینه‌های فعالیت (موضوعات ثبت‌شده)</span>
+          </h3>
+          <p class="legal-fields__note">فهرست کامل موضوعات فعالیت شرکت طبق اسناد ثبتی؛ برای مشاهدهٔ جزئیات، روی هر عنوان کلیک کنید.</p>
+
+          <div class="legal-accordion">
+
+            <details class="legal-acc" open>
+              <summary class="legal-acc__summary">
+                <span class="legal-acc__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="5" width="15" height="11" rx="1"></rect>
+                    <path d="M16 8h4l3 3v5h-7V8z"></path>
+                    <circle cx="5.5" cy="18.5" r="1.5"></circle>
+                    <circle cx="18.5" cy="18.5" r="1.5"></circle>
+                  </svg>
+                </span>
+                <span class="legal-acc__label">حمل و نقل</span>
+                <span class="legal-acc__chevron" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <div class="legal-acc__body">
+                <ul class="legal-acc__list">
+                  <li>حمل و نقل مسافربری درون‌شهری</li>
+                  <li>باربری</li>
+                  <li>حمل بار اینترنتی</li>
+                  <li>سرویس مدارس و دانش‌آموزان</li>
+                  <li>اتوبوس و مینی‌بوس‌رانی</li>
+                  <li>تاکسی اینترنتی</li>
+                  <li>پیک موتوری</li>
+                  <li>پخش غذا</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="legal-acc">
+              <summary class="legal-acc__summary">
+                <span class="legal-acc__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                  </svg>
+                </span>
+                <span class="legal-acc__label">امور مالی و حسابداری</span>
+                <span class="legal-acc__chevron" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <div class="legal-acc__body">
+                <ul class="legal-acc__list">
+                  <li>انجام امور حسابداری</li>
+                  <li>مشاوره مالیاتی</li>
+                  <li>تنظیم اظهارنامه‌های مالیاتی</li>
+                  <li>حسابرسی</li>
+                  <li>طراحی سیستم‌های مالی</li>
+                  <li>آموزش نرم‌افزارهای حسابداری</li>
+                  <li>ارزیابی مالی پروژه‌ها</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="legal-acc">
+              <summary class="legal-acc__summary">
+                <span class="legal-acc__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 7h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
+                    <path d="M16 7V4h-4v3h4z"></path>
+                  </svg>
+                </span>
+                <span class="legal-acc__label">خدمات اداری و رفاهی</span>
+                <span class="legal-acc__chevron" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <div class="legal-acc__body">
+                <ul class="legal-acc__list">
+                  <li>خدمات پرسنلی</li>
+                  <li>محاسبه حقوق و دستمزد</li>
+                  <li>کارگزینی</li>
+                  <li>رستوران‌داری</li>
+                  <li>تالار پذیرایی</li>
+                  <li>آشپزی</li>
+                  <li>تأمین غذای ادارات و مدارس</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="legal-acc">
+              <summary class="legal-acc__summary">
+                <span class="legal-acc__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                </span>
+                <span class="legal-acc__label">بازرگانی و بازاریابی</span>
+                <span class="legal-acc__chevron" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <div class="legal-acc__body">
+                <ul class="legal-acc__list">
+                  <li>واردات و صادرات کالاهای مجاز</li>
+                  <li>ماشین‌آلات راهسازی</li>
+                  <li>تجهیزات الکترونیک</li>
+                  <li>بازاریابی غیرهرمی</li>
+                  <li>گشایش اعتبارات اسنادی (LC)</li>
+                  <li>شرکت در مناقصات و مزایده‌ها</li>
+                  <li>اخذ نمایندگی‌ها</li>
+                  <li>مشارکت در تولید</li>
+                  <li>تأمین نیروی انسانی متخصص</li>
+                </ul>
+              </div>
+            </details>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ======================================================================
+         ۴.۱۲ بخش تماس با ما (Contact Section)
+         ====================================================================== -->
+    <section id="contact" class="site-page section" aria-label="تماس با شرکت قزوین تصویر">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-label">
+            <span>ارتباط با کارشناسان</span>
+          </div>
+          <h2 class="section-title">درخواست مشاوره، استعلام قیمت و عقد قرارداد</h2>
+          <p class="section-desc">
+            فرم زیر را تکمیل فرمایید تا کارشناسان ما ظرف حداکثر ۲ ساعت کاری با شما تماس بگیرند یا مستقیماً تماس بگیرید.
+          </p>
+        </div>
+
+        <div class="contact__grid">
+          <!-- فرم تماس با Floating Labels -->
+          <div class="contact-form-card reveal">
+            <div class="contact-form-header">
+              <h3>ارسال پیام و درخواست همکاری</h3>
+              <p style="font-size: 0.9rem;">مشخصات خود را وارد کنید تا بهترین راهکار را ارائه دهیم.</p>
+            </div>
+
+            <form id="contact-form" novalidate>
+              <!-- فیلد نام -->
+              <div class="form-group">
+                <input type="text" id="contact-name" class="form-control" placeholder=" " required>
+                <label for="contact-name" class="form-label">نام و نام خانوادگی / نام شرکت *</label>
+              </div>
+
+              <!-- فیلد شماره تماس -->
+              <div class="form-group">
+                <input type="tel" id="contact-phone" class="form-control" placeholder=" " dir="ltr" style="text-align: right;" required>
+                <label for="contact-phone" class="form-label">شماره تلفن همراه (مانند ۰۹۱۲...) *</label>
+              </div>
+
+              <!-- فیلد نوع خدمت -->
+              <div class="form-group">
+                <select id="contact-service" class="form-control form-select">
+                  <option value="both">هر دو حوزه (بازرگانی و ترابری)</option>
+                  <option value="trade">بازرگانی، واردات و صادرات و ترخیص گمرکی</option>
+                  <option value="transport">ترابری و سرویس ایاب‌وذهاب پرسنل</option>
+                  <option value="food">تأمین غذای پرسنل (کیترینگ سازمانی)</option>
+                  <option value="consultation">مشاوره تخصصی و امور ارزی</option>
+                </select>
+                <label for="contact-service" class="form-label" style="top: -10px; right: 14px; font-size: 0.775rem; font-weight: 700; color: var(--sky-blue); background: var(--surface-white);">نوع خدمت مورد نظر</label>
+              </div>
+
+              <!-- فیلد پیام -->
+              <div class="form-group">
+                <textarea id="contact-message" class="form-control" rows="4" placeholder=" " style="resize: vertical;"></textarea>
+                <label for="contact-message" class="form-label">توضیحات تکمیلی یا جزئیات درخواست...</label>
+              </div>
+
+              <!-- دکمه ارسال -->
+              <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-lg btn-full">
+                <span>ارسال درخواست مشاوره</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+
+              <p class="form-whatsapp-hint">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654z"></path></svg>
+                  <span>با کلیک روی دکمه، اطلاعات فرم در واتساپ آمادهٔ ارسال می‌شود.</span>
+                </p>
+            </form>
+          </div>
+
+          <!-- اطلاعات تماس و کارت آدرس -->
+          <div class="contact-info-card reveal">
+            <div class="contact-info-card__media" aria-hidden="true">
+              <picture>
+<source srcset="assets/img/sections/contact-city.webp" type="image/webp">
+<img src="assets/img/sections/contact-city.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+            </div>
+            <div class="contact-detail-box">
+              <!-- تلفن رسمی -->
+              <div class="contact-detail-box__item">
+                <div class="contact-detail-box__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <div style="flex: 1;">
+                  <div class="contact-detail-box__title">تلفن تماس مستقیم و رسمی</div>
+                  <div class="contact-detail-box__value" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                    <a href="tel:+989122815189" style="color: var(--primary-navy); direction: ltr;">۰۹۱۲ ۲۸۱ ۵۱۸۹</a>
+                    <button type="button" class="copy-phone-btn" data-copy-phone aria-label="کپی شماره تماس">کپی شماره</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- واتساپ -->
+              <div class="contact-detail-box__item">
+                <div class="contact-detail-box__icon" style="background: var(--qt-whatsapp-tint); color: var(--whatsapp);" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-detail-box__title">ارتباط مستقیم در واتساپ</div>
+                  <div class="contact-detail-box__value">
+                    <a href="https://wa.me/989122815189" target="_blank" rel="noopener noreferrer" style="color: var(--whatsapp); font-size: 0.95rem;">گفتگو با پشتیبانی در واتساپ ↗</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- نشانی ثبتی -->
+              <div class="contact-detail-box__item">
+                <div class="contact-detail-box__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-detail-box__title">نشانی دفتر مرکزی</div>
+                  <div class="contact-detail-box__value" style="font-size: 0.95rem; line-height: 1.7;">
+                    قزوین، اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴
+                  </div>
+                  <div style="font-size: 0.8125rem; color: var(--text-light); margin-top: 4px;">
+                    کد پستی: ۳۴۱۳۶۹۱۵۸۹
+                  </div>
+                </div>
+              </div>
+
+              <!-- ساعات پاسخگویی -->
+              <div class="contact-detail-box__item">
+                <div class="contact-detail-box__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-detail-box__title">ساعات پاسخگویی اداری و پشتیبانی</div>
+                  <div class="contact-detail-box__value" style="font-size: 0.925rem;">
+                    شنبه تا پنجشنبه: ۸:۰۰ صبح الی ۲۰:۰۰ شب
+                  </div>
+                  <div style="font-size: 0.8125rem; color: var(--amber-accent); margin-top: 4px;">
+                    عملیات ترابری و شیفت شب: ۲۴ ساعته شبانه‌روزی
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- نقشه و موقعیت مکانی استراتژیک -->
+            <div class="map-preview-box">
+              <div class="map-preview-box__title">موقعیت استراتژیک در قطب صنعتی قزوین</div>
+              <p class="map-preview-box__text">
+                دسترسی سریع به شهرک‌های صنعتی البرز، کاسپین، لیا، حیدریه، خرمدشت و شاهراه‌های ترانزیتی شمال‌غرب و گمرکات کشور.
+              </p>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 0.75rem; background: var(--qt-glass-tint); padding: 4px 10px; border-radius: var(--r-full);">شهرک کاسپین</span>
+                <span style="font-size: 0.75rem; background: var(--qt-glass-tint); padding: 4px 10px; border-radius: var(--r-full);">شهرک البرز</span>
+                <span style="font-size: 0.75rem; background: var(--qt-glass-tint); padding: 4px 10px; border-radius: var(--r-full);">شهرک لیا</span>
+                <span style="font-size: 0.75rem; background: var(--qt-glass-tint); padding: 4px 10px; border-radius: var(--r-full);">گمرک قزوین</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       ۴.۹ فوتر (Footer)
+       ======================================================================== -->
+  <footer class="footer" aria-label="پاورقی سایت">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- ستون ۱: لوگو و معرفی شرکت -->
+        <div>
+          <div class="brand-logo" style="margin-bottom: 12px;">
+            <div class="brand-logo__emblem brand-logo__emblem--plain">
+              <img class="brand-logo__mark"
+                   src="assets/images/brand/qazvin-tasvir-mark.png"
+                   width="44" height="44"
+                   alt=""
+                   loading="lazy" decoding="async">
+            </div>
+            <div class="brand-logo__text">
+              <span class="brand-logo__title" style="color: var(--surface-white);">شرکت قزوین تصویر</span>
+              <span class="brand-logo__subtitle" style="color: var(--text-light);">با مسئولیت محدود — تأسیس ۱۳۷۴</span>
+            </div>
+          </div>
+          <p class="footer__about-text">
+            ارائه‌دهنده خدمات تخصصی بازرگانی، واردات و صادرات کالا، ترابری و سرویس ایاب و ذهاب پرسنل و تأمین غذای پرسنل و وعده‌های سازمانی کارخانه‌ها و شرکت‌های صنعتی، با بیش از ۳۱ سال سابقه درخشان و با مدیریت سعید امین‌زاده.
+          </p>
+        </div>
+
+        <!-- ستون ۲: دسترسی سریع -->
+        <div>
+          <h4 class="footer__col-title">دسترسی سریع</h4>
+          <ul class="footer__links">
+            <li><a href="#hero" class="footer__link">صفحه اصلی</a></li>
+            <li><a href="#about" class="footer__link">درباره قزوین تصویر</a></li>
+            <li><a href="services/index.html" class="footer__link">خدمات تخصصی</a></li>
+            <li><a href="#fleet" class="footer__link">ناوگان ترابری</a></li>
+            <li><a href="services/urban-vip.html" class="footer__link">حمل‌ونقل درون‌شهری و سرویس VIP</a></li>
+            <li><a href="services/personnel-food.html" class="footer__link">تأمین غذای پرسنل</a></li>
+            <li><a href="#brands" class="footer__link">برندهای همکار</a></li>
+            <li><a href="#why-us" class="footer__link">چرا قزوین تصویر؟</a></li>
+            <li><a href="#trust" class="footer__link">اعتبار و اطلاعات ثبتی</a></li>
+            <li><a href="#resume" class="footer__link">رزومه شرکت</a></li>
+            <li><a href="#legal" class="footer__link">اعتبارنامه حقوقی</a></li>
+            <li><a href="#contact" class="footer__link">تماس با ما</a></li>
+          </ul>
+        </div>
+
+        <!-- ستون ۳: خدمات -->
+        <div>
+          <h4 class="footer__col-title">خدمات تخصصی</h4>
+          <ul class="footer__links">
+            <li><a href="services/index.html" class="footer__link">فهرست هشت خدمت تخصصی</a></li>
+            <li><a href="services/import-export.html" class="footer__link">واردات و صادرات کالاهای مجاز</a></li>
+            <li><a href="services/customs-port.html" class="footer__link">ترخیص گمرکی و امور بندری</a></li>
+            <li><a href="services/sourcing.html" class="footer__link">تأمین مواد اولیه و تجهیزات</a></li>
+            <li><a href="services/factory-transport.html" class="footer__link">ترابری پرسنل کارخانجات</a></li>
+            <li><a href="services/urban-vip.html" class="footer__link">حمل‌ونقل درون‌شهری و سرویس‌های VIP</a></li>
+            <li><a href="services/school-office.html" class="footer__link">سرویس مدارس، ادارات و شرکت‌ها</a></li>
+            <li><a href="services/personnel-food.html" class="footer__link">تأمین غذای پرسنل و وعده‌های سازمانی</a></li>
+            <li><a href="services/trade-consulting.html" class="footer__link">مشاوره بازرگانی و گشایش</a></li>
+          </ul>
+        </div>
+
+        <!-- ستون ۴: اطلاعات تماس و لینک رسمیو -->
+        <div>
+          <h4 class="footer__col-title">اطلاعات تماس</h4>
+          <ul class="footer__links">
+            <li style="display: flex; flex-direction: column; gap: 4px;">
+              <span style="font-size: 0.8125rem; color: var(--text-light);">تلفن تماس:</span>
+              <a href="tel:+989122815189" class="footer__link" style="font-size: 1.1rem; color: var(--amber-light); font-weight: 800; direction: ltr;">۰۹۱۲ ۲۸۱ ۵۱۸۹</a>
+            </li>
+            <li style="display: flex; flex-direction: column; gap: 4px; margin-top: 8px;">
+              <span style="font-size: 0.8125rem; color: var(--text-light);">نشانی دفتر:</span>
+              <span style="font-size: 0.875rem; color: var(--qt-slate-300); line-height: 1.7;">قزوین، اول خ فردوسی، مجتمع آبادگران، ط ۶، اتاق ۶۰۴</span>
+            </li>
+            <li style="margin-top: 12px;">
+              <a href="https://rasmio.com/company/10861415215/قزوین-تصویر/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-glass btn-sm" style="font-size: 0.8rem; width: 100%;">
+                پروفایل رسمی در رسمیو ↗
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- نوار اطلاعات ثبتی در فوتر -->
+      <div class="footer__registry-strip">
+        <span><strong>شناسه ملی:</strong> ۱۰۸۶۱۴۱۵۲۱۵</span>
+        <span>•</span>
+        <span><strong>شماره ثبت:</strong> ۲۷۴۹</span>
+        <span>•</span>
+        <span><strong>کد اقتصادی:</strong> ۴۱۱۳۸۶۸۳۷۶۶۵</span>
+        <span>•</span>
+        <span><strong>تاریخ تأسیس:</strong> ۱۳۷۴/۰۲/۱۴</span>
+        <span>•</span>
+        <span><strong>مدیرعامل:</strong> سعید امین‌زاده</span>
+      </div>
+
+      <!-- نوار پایینی و کپی‌رایت -->
+      <div class="footer__bottom-bar">
+        <div class="footer__copyright">
+          © کلیه حقوق مادی و معنوی متعلق به <strong>شرکت قزوین تصویر</strong> (با مسئولیت محدود — به مدیریت سعید امین‌زاده) می‌باشد — ۱۴۰۴ / ۲۰۲۶
+        </div>
+
+        <!-- اعتبار طراحی و توسعه: کارن سافت (انیمیشنی — لوگوی اصلی برند به صورت تصویر) -->
+        <a class="ks-credit"
+           id="ks-credit"
+           href="https://www.karen-soft.ir"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="طراحی و توسعه: کارن سافت | KarenSoft — www.karen-soft.ir"
+           aria-label="طراحی و توسعه: کارن سافت | KarenSoft — www.karen-soft.ir">
+
+          <span class="ks-label ks-label--fa" lang="fa" dir="rtl">
+            <span class="ks-label__word ks-label-gradient">طراحی</span>
+            <span class="ks-label__word ks-label-gradient">و</span>
+            <span class="ks-label__word ks-label-gradient">توسعه:</span>
+          </span>
+          <span class="ks-label ks-label--en" lang="en" dir="ltr">
+            <span class="ks-label__word ks-label-gradient">Designed</span>
+            <span class="ks-label__word ks-label-gradient">&amp;</span>
+            <span class="ks-label__word ks-label-gradient">Developed</span>
+            <span class="ks-label__word ks-label-gradient">by</span>
+          </span>
+
+          <span class="ks-card-border">
+            <span class="ks-ring" aria-hidden="true"></span>
+
+            <span class="ks-card" dir="ltr">
+              <span class="ks-shine" aria-hidden="true"></span>
+
+              <span class="ks-logo-wrap">
+                <span class="ks-ripple" aria-hidden="true"></span>
+                <span class="ks-ripple ks-ripple--2" aria-hidden="true"></span>
+                <span class="ks-logo-ring" aria-hidden="true"></span>
+                <span class="ks-orbit" aria-hidden="true"><span class="ks-orbit__dot"></span></span>
+                <span class="ks-inner-bg" aria-hidden="true"></span>
+
+                <span class="ks-mark">
+                  <span class="ks-particle ks-particle--1" aria-hidden="true"></span>
+                  <span class="ks-particle ks-particle--2" aria-hidden="true"></span>
+                  <span class="ks-particle ks-particle--3" aria-hidden="true"></span>
+                  <span class="ks-particle ks-particle--4" aria-hidden="true"></span>
+                  <span class="ks-mark-img">
+                    <span class="ks-mark-spin">
+                      <img class="ks-float ks-mark-logo"
+                           src="assets/images/karensoft/mark.png"
+                           width="36" height="36"
+                           alt=""
+                           decoding="async"
+                           loading="lazy">
+                    </span>
+                  </span>
+                </span>
+              </span>
+
+              <span class="ks-divider" aria-hidden="true"></span>
+
+              <span class="ks-wordmarks">
+                <span class="ks-wordmark ks-wordmark--fa">
+                  <img src="assets/images/karensoft/wordmark-fa.png"
+                       width="96" height="24"
+                       alt="کارن سافت"
+                       decoding="async"
+                       loading="lazy">
+                  <span class="ks-text-shine-mask" aria-hidden="true">
+                    <span class="ks-text-shine"></span>
+                  </span>
+                </span>
+                <span class="ks-wordmark ks-wordmark--en">
+                  <img src="assets/images/karensoft/wordmark-en.png"
+                       width="94" height="11"
+                       alt="KarenSoft"
+                       decoding="async"
+                       loading="lazy">
+                  <span class="ks-text-shine-mask" aria-hidden="true">
+                    <span class="ks-text-shine"></span>
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </a>
+
+        <div class="social-links">
+          <a href="tel:+989122815189" class="social-link" title="تماس تلفنی" aria-label="تماس تلفنی با قزوین تصویر">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </a>
+          <a href="https://wa.me/989122815189" target="_blank" rel="noopener noreferrer" class="social-link" title="واتساپ" aria-label="ارتباط در واتساپ">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       ۵. دکمه‌های شناور (Floating Action Buttons) و Toast و Modal
+       ======================================================================== -->
+  
+  <!-- دکمه‌های شناور تماس و واتساپ (پایین-چپ در RTL) -->
+  <div class="floating-actions" role="group" aria-label="دکمه‌های تماس سریع شناور">
+    <!-- دکمه واتساپ -->
+    <a href="https://wa.me/989122815189" target="_blank" rel="noopener noreferrer" class="fab-btn fab-btn--whatsapp" title="ارتباط مستقیم در واتساپ" aria-label="ارتباط مستقیم در واتساپ قزوین تصویر">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+    </a>
+
+    <!-- دکمه تماس تلفنی -->
+    <a href="tel:+989122815189" class="fab-btn fab-btn--call" title="تماس تلفنی با ۰۹۱۲ ۲۸۱ ۵۱۸۹" aria-label="تماس مستقیم با قزوین تصویر">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+      </svg>
+    </a>
+  </div>
+
+  <!-- دکمه بازگشت به بالا -->
+  <button type="button" id="back-to-top" class="back-to-top" title="بازگشت به بالای صفحه" aria-label="بازگشت به بالای صفحه">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- بنر Toast شیشه‌ای برای کپی شماره -->
+  <div id="toast-notice" class="toast-notice" role="status" aria-live="polite">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-text">شماره ۰۹۱۲۲۸۱۵۱۸۹ با موفقیت کپی شد!</span>
+  </div>
+
+  <!-- اسکریپت جاوااسکریپت اصلی -->
+  <!-- فاز ۴-۲: defer برای یکدستی با 404.html؛ ترتیب اجرا حفظ می‌شود و parse متوقف نمی‌شود -->
+  <script src="assets/js/navigation.js" defer></script>
+  <script src="assets/js/service-pages.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

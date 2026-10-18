@@ -1,6 +1,6 @@
 # BEHAVIOR-INVENTORY.md
 
-> **منبع بررسی:** `rahmaniho/Qazvi_tasvir`، `main`، commit `9a3cb79` (۱۸ اکتبر ۲۰۲۶)، فایل‌های `assets/js/main.js` (811 خط)، `assets/js/navigation.js` (582 خط) و `assets/js/service-pages.js` (47 خط). checkout محلی `rahmaniho/Qazvintasvir` در ابتدای نشست فاقد این فایل‌ها بود و مخزن متفاوتی است؛ پیش از هر انتقال رفتاری باید target repository تأیید شود.
+> **منبع بررسی:** snapshot آرشیوشدهٔ `rahmaniho/Qazvi_tasvir`, `main`, commit `9a3cb79` (۱۸ اکتبر ۲۰۲۶) در `_legacy/source-snapshot/`; فایل‌های JS شامل `assets/js/main.js` (811 خط)، `assets/js/navigation.js` (582 خط) و `assets/js/service-pages.js` (47 خط). بازسازی در مخزن فعال `rahmaniho/Qazvintasvir`, branch `arena/ca3732d7-qazvintasvir` انجام می‌شود.
 
 ## رفتارهای `main.js`
 

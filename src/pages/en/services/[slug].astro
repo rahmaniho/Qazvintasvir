@@ -4,9 +4,9 @@ import ServiceLayout from '../../../layouts/ServiceLayout.astro';
 
 export async function getStaticPaths() {
   const all = await getCollection('services');
-  const enServices = all.filter(s => s.slug.startsWith('en/'));
+  const enServices = all.filter(s => s.id.startsWith('en/'));
   return enServices.map(entry => {
-    const slug = entry.slug.replace('en/', '');
+    const slug = entry.id.slice('en/'.length);
     return {
       params: { slug },
       props: { entry }

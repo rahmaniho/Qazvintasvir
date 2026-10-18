@@ -6,14 +6,10 @@ interface Props {
   baseUrl: string;
 }
 const { lang, services, currentPath, baseUrl } = Astro.props;
-const labels = lang === 'fa' ? {
-  viewAll: 'مشاهدهٔ همهٔ خدمات →',
-  servicesLabel: 'خدمات'
-} : {
-  viewAll: 'View all services →',
-  servicesLabel: 'Services'
-};
-const isActive = services.some(s => currentPath.includes(s.slug));
+const labels = lang === 'fa'
+  ? { viewAll: 'مشاهدهٔ همهٔ خدمات →', services: 'خدمات' }
+  : { viewAll: 'View all services →', services: 'Services' };
+const isActive = services.some((service) => currentPath.includes(service.slug));
 ---
 
 <div class="nav-menu__item" data-mega>
@@ -24,16 +20,20 @@ const isActive = services.some(s => currentPath.includes(s.slug));
     aria-controls="services-menu"
     aria-haspopup="true"
   >
-    {labels.servicesLabel}
+    {labels.services}
   </button>
   <div id="services-menu" class="mega-menu" hidden>
     <div class="mega-menu__grid">
-      {services.map(s => (
-        <a href={s.href} class="mega-menu__link" aria-current={currentPath.includes(s.slug) ? "page" : undefined}>
+      {services.map((service) => (
+        <a
+          href={service.href}
+          class="mega-menu__link"
+          aria-current={currentPath.includes(service.slug) ? 'page' : undefined}
+        >
           <span class="mega-menu__icon" aria-hidden="true">◆</span>
           <span class="mega-menu__text">
-            <strong>{s.title}</strong>
-            <span>{s.summary}</span>
+            <strong>{service.title}</strong>
+            <span>{service.summary}</span>
           </span>
         </a>
       ))}
@@ -45,68 +45,74 @@ const isActive = services.some(s => currentPath.includes(s.slug));
 </div>
 
 <script>
-  const items = document.querySelectorAll('[data-mega]');
-  items.forEach(item => {
-    const btn = item.querySelector('button');
-    const panel = item.querySelector('.mega-menu');
-    if (!btn || !panel) return;
-    const toggle = (open) => {
-      const willOpen = open ?? panel.hasAttribute('hidden');
-      btn.setAttribute('aria-expanded', String(willOpen));
-      item.classList.toggle('is-open', willOpen);
-      if (willOpen) panel.removeAttribute('hidden');
-      else panel.setAttribute('hidden','');
+  const megaItems = document.querySelectorAll<HTMLElement>('[data-mega]');
+
+  megaItems.forEach((item) => {
+    const trigger = item.querySelector<HTMLButtonElement>('button[aria-controls]');
+    const panel = item.querySelector<HTMLDivElement>('.mega-menu');
+    if (!trigger || !panel) return;
+
+    const setOpen = (open: boolean) => {
+      trigger.setAttribute('aria-expanded', String(open));
+      item.classList.toggle('is-open', open);
+      panel.hidden = !open;
     };
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      toggle();
-    });
-    // Keyboard
-    btn.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') { toggle(false); btn.focus(); }
-      if (e.key === 'ArrowDown' && panel.hasAttribute('hidden')) { e.preventDefault(); toggle(true); const first = panel.querySelector('a'); if(first) first.focus(); }
-    });
-    panel.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') { e.preventDefault(); toggle(false); btn.focus(); }
-      // Arrow navigation
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        const links = Array.from(panel.querySelectorAll('a'));
-        const idx = links.indexOf(document.activeElement);
-        if (idx !== -1) {
-          e.preventDefault();
-          const next = e.key === 'ArrowDown' ? (idx + 1) % links.length : (idx - 1 + links.length) % links.length;
-          links[next].focus();
-        }
+
+    trigger.addEventListener('click', () => setOpen(panel.getAttribute('hidden') !== null));
+    trigger.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        trigger.focus();
+      } else if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        setOpen(true);
+        panel.querySelector<HTMLAnchorElement>('a[href]')?.focus();
       }
     });
-    item.addEventListener('mouseenter', () => { if (window.innerWidth > 1023) { btn.setAttribute('aria-expanded','true'); item.classList.add('is-open'); panel.removeAttribute('hidden'); } });
-    item.addEventListener('mouseleave', () => { if (window.innerWidth > 1023 && !item.contains(document.activeElement)) { btn.setAttribute('aria-expanded','false'); item.classList.remove('is-open'); panel.setAttribute('hidden',''); } });
-  });
-  document.addEventListener('click', (e) => {
-    items.forEach(item => {
-      if (!item.contains(e.target)) {
-        const btn = item.querySelector('button');
-        const panel = item.querySelector('.mega-menu');
-        if (btn && panel && !panel.hasAttribute('hidden')) {
-          btn.setAttribute('aria-expanded','false');
-          item.classList.remove('is-open');
-          panel.setAttribute('hidden','');
-        }
+
+    const links = Array.from(panel.querySelectorAll<HTMLAnchorElement>('a[href]'));
+    panel.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setOpen(false);
+        trigger.focus();
+        return;
+      }
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      const activeIndex = links.indexOf(document.activeElement as HTMLAnchorElement);
+      if (activeIndex < 0 || links.length === 0) return;
+      event.preventDefault();
+      const step = event.key === 'ArrowDown' ? 1 : -1;
+      links[(activeIndex + step + links.length) % links.length]?.focus();
+    });
+
+    item.addEventListener('mouseenter', () => {
+      if (window.matchMedia('(min-width: 1024px)').matches) setOpen(true);
+    });
+    item.addEventListener('mouseleave', () => {
+      if (window.matchMedia('(min-width: 1024px)').matches && !item.contains(document.activeElement)) {
+        setOpen(false);
       }
     });
+    item.addEventListener('focusout', (event: FocusEvent) => {
+      const next = event.relatedTarget;
+      if (next instanceof Node && item.contains(next)) return;
+      setOpen(false);
+    });
   });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      items.forEach(item => {
-        const btn = item.querySelector('button');
-        const panel = item.querySelector('.mega-menu');
-        if (btn && panel && !panel.hasAttribute('hidden')) {
-          btn.setAttribute('aria-expanded','false');
-          item.classList.remove('is-open');
-          panel.setAttribute('hidden','');
-          btn.focus();
-        }
-      });
-    }
+
+  document.addEventListener('click', (event: MouseEvent) => {
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    megaItems.forEach((item) => {
+      if (item.contains(target)) return;
+      const trigger = item.querySelector<HTMLButtonElement>('button[aria-controls]');
+      const panel = item.querySelector<HTMLDivElement>('.mega-menu');
+      if (trigger && panel && !panel.hidden) {
+        trigger.setAttribute('aria-expanded', 'false');
+        item.classList.remove('is-open');
+        panel.hidden = true;
+      }
+    });
   });
 </script>
