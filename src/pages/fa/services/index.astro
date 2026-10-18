@@ -14,14 +14,14 @@ const hreflang = [
 ];
 
 const all = await getCollection('services');
-const services = all.filter(s => s.slug.startsWith('fa/')).sort((a,b) => (a.data.order||0) - (b.data.order||0));
+const services = all.filter(s => s.id.startsWith('fa/')).sort((a,b) => (a.data.order||0) - (b.data.order||0));
 
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "خدمات تخصصی شرکت قزوین تصویر",
   itemListElement: services.map((s, idx) => {
-    const slug = s.slug.replace('fa/','');
+    const slug = s.id.slice('fa/'.length);
     return {
     "@type": "ListItem",
     position: idx+1,
@@ -51,7 +51,7 @@ const itemListSchema = {
 
       <div class="services-grid">
         {services.map(s => {
-          const slug = s.slug.replace('fa/','');
+          const slug = s.id.slice('fa/'.length);
           return (
           <article class="service-card reveal">
             <a href={`${baseUrl}/fa/services/${slug}/`} style="display:flex; flex-direction:column; height:100%;">
