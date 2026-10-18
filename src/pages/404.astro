@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title="۴۰۴ — صفحه پیدا نشد | قزوین تصویر" description="صفحه‌ای که به دنبال آن بودید پیدا نشد." noindex={true}>
+  <div style="min-height:70vh; display:grid; place-items:center; text-align:center; padding:64px 20px; background: linear-gradient(155deg, #061829 0%, #0A2540 55%, #0E4B6E 100%); color:#E2E8F0;">
+    <div style="max-width:560px;">
+      <div style="font-size: clamp(5rem, 16vw, 8rem); font-weight:800; line-height:1; background: linear-gradient(135deg, #FCD34D 10%, #F59E0B 90%); -webkit-background-clip:text; color:transparent;">۴۰۴</div>
+      <h1 style="color:#fff; margin-top:18px;">صفحه‌ای که به دنبال آن بودید پیدا نشد</h1>
+      <p style="color:#94A3B8; margin-top:12px;">نشانی واردشده وجود ندارد یا جابه‌جا شده است. از صفحهٔ اصلی می‌توانید به همهٔ بخش‌های سایت دسترسی داشته باشید.</p>
+      <p style="color:#94A3B8; font-size:0.85rem;" dir="ltr" lang="en">The page you are looking for was not found or has moved. Head back to the homepage to explore the site.</p>
+      <div style="margin-top:28px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+        <a href={`${baseUrl}/fa/`} class="btn btn--accent">بازگشت به صفحه اصلی</a>
+        <a href={`${baseUrl}/fa/contact/`} class="btn" style="color:#E2E8F0; border:1px solid rgba(255,255,255,0.25); background:rgba(255,255,255,0.07);">تماس با ما</a>
+      </div>
+      <p style="margin-top:36px; font-size:0.78rem; color:#64748B;">
+        <strong style="color:#94A3B8;">شرکت قزوین تصویر (با مسئولیت محدود)</strong><br />
+        قزوین، اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴ — تلفن ۰۹۱۲ ۲۸۱ ۵۱۸۹
+      </p>
+    </div>
+  </div>
+</BaseLayout>

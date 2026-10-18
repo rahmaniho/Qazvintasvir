@@ -1,0 +1,68 @@
+---
+import HomeLayout from '../../layouts/HomeLayout.astro';
+import Hero from '../../components/home/Hero.astro';
+import AboutSection from '../../components/home/AboutSection.astro';
+import ServicesGrid from '../../components/home/ServicesGrid.astro';
+import FleetSection from '../../components/home/FleetSection.astro';
+import StatsSection from '../../components/home/StatsSection.astro';
+import ClientsSection from '../../components/home/ClientsSection.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { organizationSchema, itemListSchema } from '../../lib/schema';
+
+const lang = 'en';
+const site = Astro.site?.toString() || 'https://rahmaniho.github.io';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteClean = site.endsWith('/') ? site.slice(0,-1) : site;
+const siteUrl = `${siteClean}${base}`;
+const canonical = `${siteUrl}/en/`;
+const hreflang = [
+  { lang: 'fa', href: `${siteUrl}/fa/` },
+  { lang: 'en', href: canonical },
+  { lang: 'x-default', href: `${siteUrl}/fa/` },
+];
+const org = organizationSchema(siteUrl);
+const servicesList = itemListSchema("Services of Qazvin Tasvir Company", [
+  { name: "Permitted goods import and export", url: `${siteUrl}/en/services/import-export/` },
+  { name: "Customs clearance and port affairs", url: `${siteUrl}/en/services/customs-port/` },
+  { name: "Raw materials and equipment sourcing", url: `${siteUrl}/en/services/sourcing/` },
+  { name: "Factory staff transportation", url: `${siteUrl}/en/services/factory-transport/` },
+  { name: "Urban transport and VIP services", url: `${siteUrl}/en/services/urban-vip/` },
+  { name: "School, office and company shuttles", url: `${siteUrl}/en/services/school-office/` },
+  { name: "Staff meals and corporate catering", url: `${siteUrl}/en/services/personnel-food/` },
+  { name: "Trade consulting and opening letters of credit", url: `${siteUrl}/en/services/trade-consulting/` },
+]);
+---
+
+<HomeLayout
+  lang={lang}
+  title="Qazvin Tasvir Company | Trading, Import & Export, Transport and Staff Catering — Founded 1995"
+  description="Qazvin Tasvir Company (National ID 10861415215), managed by Saeed Aminzadeh: eight specialist services spanning permitted trade, customs, industrial sourcing, staff transport, VIP mobility, corporate shuttles, catering and trade consulting. Founded 1995. Phone: 0912 281 5189"
+  canonical={canonical}
+  hreflang={hreflang}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(org)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(servicesList)}></script>
+  </Fragment>
+
+  <Hero lang={lang} />
+  <AboutSection lang={lang} />
+  <ServicesGrid lang={lang} />
+  <FleetSection lang={lang} />
+  <StatsSection lang={lang} />
+  <ClientsSection lang={lang} />
+  <ContactForm lang={lang} />
+
+  <section class="section">
+    <div class="container">
+      <div class="card reveal" style="max-width:800px; margin-inline:auto; text-align:center;">
+        <h3>About Qazvin Tasvir</h3>
+        <p style="margin-top:8px;">Qazvin Tasvir Company (Ltd — est. 1995) with National ID 10861415215, managed by Saeed Aminzadeh, provides trading, transport and catering services for industries in Qazvin Province. For full Persian details, please visit the Persian version or contact us directly.</p>
+        <div style="margin-top:16px; display:flex; gap:12px; justify-content:center;">
+          <a href={`${base}/en/about/`} class="btn btn--primary">More about us</a>
+          <a href={`${base}/fa/`} class="btn btn--ghost">View Persian site</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</HomeLayout>

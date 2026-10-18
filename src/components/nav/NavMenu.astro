@@ -1,0 +1,81 @@
+---
+import ServicesMegaMenu from './ServicesMegaMenu.astro';
+
+interface Props {
+  lang: 'fa' | 'en';
+  currentPath: string;
+  baseUrl: string;
+}
+const { lang, currentPath, baseUrl } = Astro.props;
+
+const labelsFa = {
+  home: 'خانه',
+  about: 'درباره ما',
+  services: 'خدمات',
+  fleet: 'ناوگان',
+  brands: 'برندها',
+  contact: 'تماس با ما'
+};
+const labelsEn = {
+  home: 'Home',
+  about: 'About',
+  services: 'Services',
+  fleet: 'Fleet',
+  brands: 'Brands',
+  contact: 'Contact'
+};
+const L = lang === 'fa' ? labelsFa : labelsEn;
+
+// Service data
+const servicesFa = [
+  { slug: 'import-export', title: 'واردات و صادرات کالاهای مجاز', summary: 'هماهنگی مسیر تأمین و جابه‌جایی کالاهای مجاز', href: `${baseUrl}/fa/services/import-export/` },
+  { slug: 'customs-port', title: 'ترخیص گمرکی و امور بندری', summary: 'کنترل مدارک و هماهنگی مراحل گمرکی', href: `${baseUrl}/fa/services/customs-port/` },
+  { slug: 'sourcing', title: 'تأمین مواد اولیه و تجهیزات', summary: 'نیازسنجی و هماهنگی خرید صنعتی', href: `${baseUrl}/fa/services/sourcing/` },
+  { slug: 'factory-transport', title: 'ترابری پرسنل کارخانجات', summary: 'سرویس شیفتی کارخانه با ناوگان مجهز', href: `${baseUrl}/fa/services/factory-transport/` },
+  { slug: 'urban-vip', title: 'حمل‌ونقل درون‌شهری و VIP', summary: 'جابه‌جایی سازمانی و VIP با پشتیبانی', href: `${baseUrl}/fa/services/urban-vip/` },
+  { slug: 'school-office', title: 'سرویس مدارس، ادارات و شرکت‌ها', summary: 'رفت‌وآمد روزانه مدارس و سازمان‌ها', href: `${baseUrl}/fa/services/school-office/` },
+  { slug: 'personnel-food', title: 'تأمین غذای پرسنل', summary: 'کیترینگ قراردادی وعده‌های سازمانی', href: `${baseUrl}/fa/services/personnel-food/` },
+  { slug: 'trade-consulting', title: 'مشاوره بازرگانی و گشایش', summary: 'بررسی مسیر تجارت و گشایش اعتبار', href: `${baseUrl}/fa/services/trade-consulting/` },
+];
+const servicesEn = [
+  { slug: 'import-export', title: 'Import & Export', summary: 'Supply-route coordination', href: `${baseUrl}/en/services/import-export/` },
+  { slug: 'customs-port', title: 'Customs & Port Affairs', summary: 'Document control & operations', href: `${baseUrl}/en/services/customs-port/` },
+  { slug: 'sourcing', title: 'Industrial Sourcing', summary: 'Needs assessment & procurement', href: `${baseUrl}/en/services/sourcing/` },
+  { slug: 'factory-transport', title: 'Factory Transport', summary: 'Shift shuttles with fleet', href: `${baseUrl}/en/services/factory-transport/` },
+  { slug: 'urban-vip', title: 'Urban & VIP Transport', summary: 'VIP mobility & support', href: `${baseUrl}/en/services/urban-vip/` },
+  { slug: 'school-office', title: 'School & Office Shuttles', summary: 'Daily commute solutions', href: `${baseUrl}/en/services/school-office/` },
+  { slug: 'personnel-food', title: 'Staff Catering', summary: 'Corporate meal services', href: `${baseUrl}/en/services/personnel-food/` },
+  { slug: 'trade-consulting', title: 'Trade Consulting', summary: 'Trade & LC consulting', href: `${baseUrl}/en/services/trade-consulting/` },
+];
+const services = lang === 'fa' ? servicesFa : servicesEn;
+
+const isActive = (pathPart: string) => currentPath === pathPart || currentPath.startsWith(pathPart + '/') || (pathPart !== `/${lang}/` && currentPath.includes(pathPart));
+
+// Build nav links for desktop
+const homeHref = `${baseUrl}/${lang}/`;
+const aboutHref = `${baseUrl}/${lang}/about/`;
+const fleetHref = `${baseUrl}/${lang}/#fleet`;
+const brandsHref = `${baseUrl}/${lang}/#brands`;
+const contactHref = `${baseUrl}/${lang}/contact/`;
+---
+
+<nav class="nav-menu" aria-label={lang === 'fa' ? 'ناوبری اصلی' : 'Main navigation'}>
+  <ul class="nav-menu__list" role="list">
+    <li class="nav-menu__item">
+      <a href={homeHref} class="nav-menu__link" aria-current={currentPath === homeHref || currentPath === `${baseUrl}/${lang}/` || currentPath === `${baseUrl}/${lang}/index.html` ? "page" : undefined}>{L.home}</a>
+    </li>
+    <li class="nav-menu__item">
+      <a href={aboutHref} class="nav-menu__link" aria-current={currentPath.includes('/about') ? "page" : undefined}>{L.about}</a>
+    </li>
+    <li class="nav-menu__item"><ServicesMegaMenu lang={lang} services={services} currentPath={currentPath} baseUrl={baseUrl} /></li>
+    <li class="nav-menu__item">
+      <a href={fleetHref} class="nav-menu__link">{L.fleet}</a>
+    </li>
+    <li class="nav-menu__item">
+      <a href={brandsHref} class="nav-menu__link">{L.brands}</a>
+    </li>
+    <li class="nav-menu__item">
+      <a href={contactHref} class="nav-menu__link" aria-current={currentPath.includes('/contact') ? "page" : undefined}>{L.contact}</a>
+    </li>
+  </ul>
+</nav>

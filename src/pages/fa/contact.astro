@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactForm from '../../components/ContactForm.astro';
+const lang = 'fa';
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = Astro.site?.toString() || 'https://rahmaniho.github.io';
+const siteClean = site.endsWith('/') ? site.slice(0,-1) : site;
+const canonical = `${siteClean}${baseUrl}/fa/contact/`;
+const hreflang = [
+  { lang: 'fa', href: canonical },
+  { lang: 'en', href: `${siteClean}${baseUrl}/en/contact/` },
+  { lang: 'x-default', href: canonical },
+];
+---
+
+<BaseLayout lang={lang} title="تماس با قزوین تصویر | درخواست مشاوره، استعلام قیمت و عقد قرارداد" description="تماس مستقیم ۰۹۱۲ ۲۸۱ ۵۱۸۹، واتساپ و فرم درخواست مشاوره رایگان؛ قزوین، اول خیابان فردوسی، مجتمع آبادگران، طبقه ۶، اتاق ۶۰۴." canonical={canonical} hreflang={hreflang}>
+  <section class="hero" style="padding-block:48px;">
+    <div class="container">
+      <h1 style="color:#fff;">تماس با قزوین تصویر</h1>
+      <p class="hero__lead">درخواست مشاوره، استعلام قیمت و عقد قرارداد — پاسخ در کمترین زمان.</p>
+    </div>
+  </section>
+  <ContactForm lang={lang} />
+
+  <section class="section">
+    <div class="container">
+      <div class="card reveal" style="max-width:900px; margin-inline:auto; text-align:center;">
+        <h3>اطلاعات تماس مستقیم</h3>
+        <p style="margin-top:8px;">شرکت قزوین تصویر — قزوین، اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴</p>
+        <p style="margin-top:8px;"><strong>تلفن:</strong> <a href="tel:+989122815189" dir="ltr" style="color:var(--sky-blue);">۰۹۱۲ ۲۸۱ ۵۱۸۹</a> — <strong>واتساپ:</strong> <a href="https://wa.me/989122815189" target="_blank" rel="noopener" style="color:var(--whatsapp);">ارسال پیام</a></p>
+        <p style="margin-top:8px; font-size:0.9rem; color:var(--text-muted);">شناسه ملی: ۱۰۸۶۱۴۱۵۲۱۵ — کد پستی: ۳۴۱۳۶۹۱۵۸۹</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

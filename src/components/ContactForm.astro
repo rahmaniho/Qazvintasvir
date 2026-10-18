@@ -1,0 +1,120 @@
+---
+interface Props { lang: 'fa' | 'en'; }
+const { lang } = Astro.props;
+const isFa = lang === 'fa';
+const serviceOptionsFa = ["واردات و صادرات", "ترخیص گمرکی", "تأمین مواد اولیه", "ترابری کارخانجات", "حمل‌ونقل VIP", "سرویس مدارس و سازمانی", "تأمین غذای پرسنل", "مشاوره بازرگانی"];
+const serviceOptionsEn = ["Import & Export", "Customs Clearance", "Industrial Sourcing", "Factory Transport", "VIP Transport", "School & Office", "Staff Catering", "Trade Consulting"];
+const options = isFa ? serviceOptionsFa : serviceOptionsEn;
+---
+
+<section class="section section--alt" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">{isFa ? 'تماس' : 'Contact'}</span>
+      <h2 class="section-title">{isFa ? 'درخواست مشاوره، استعلام قیمت و عقد قرارداد' : 'Request consultation, quotation or contract'}</h2>
+      <p class="section-desc">{isFa ? 'برای هماهنگی سریع با واحد فروش و عملیات تماس بگیرید یا فرم را پر کنید تا از طریق واتساپ با شما ارتباط بگیریم.' : 'Contact our sales & operations team or fill the form and we will reach you via WhatsApp.'}</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:32px; align-items:start;">
+      <div class="reveal">
+        <div class="card" style="display:grid; gap:16px;">
+          <div>
+            <strong>{isFa ? 'آدرس' : 'Address'}</strong>
+            <p style="margin-top:4px;">{isFa ? 'قزوین، اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴' : 'Abadgaran Commercial Complex, 6th floor, room 604, Ferdowsi St, Qazvin, Iran'}</p>
+          </div>
+          <div>
+            <strong>{isFa ? 'تلفن و واتساپ' : 'Phone & WhatsApp'}</strong>
+            <p style="margin-top:4px;"><a href="tel:+989122815189" dir="ltr" style="color:var(--sky-blue); font-weight:700;">+98 912 281 5189</a></p>
+            <div style="display:flex; gap:8px; margin-top:8px;">
+              <button type="button" data-copy-phone class="btn btn--sm btn--ghost">{isFa ? 'کپی شماره' : 'Copy number'}</button>
+              <a href="https://wa.me/989122815189" target="_blank" rel="noopener" class="btn btn--sm btn--whatsapp">{isFa ? 'واتساپ' : 'WhatsApp'}</a>
+            </div>
+          </div>
+          <div>
+            <strong>{isFa ? 'ساعات کاری' : 'Working hours'}</strong>
+            <p style="margin-top:4px;">{isFa ? 'شنبه تا پنجشنبه — ۰۸:۰۰ تا ۲۰:۰۰' : 'Sat–Thu — 08:00 to 20:00'}</p>
+          </div>
+        </div>
+      </div>
+
+      <form id="contact-form" class="card reveal" novalidate style="display:grid; gap:16px;">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="contact-name">{isFa ? 'نام و نام خانوادگی / شرکت' : 'Name / Company'} *</label>
+            <input id="contact-name" name="name" type="text" class="form-control" placeholder={isFa ? 'مثال: شرکت نمونه' : 'e.g. Sample Co.'} required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-phone">{isFa ? 'شماره موبایل' : 'Phone'} *</label>
+            <input id="contact-phone" name="phone" type="tel" class="form-control" placeholder="0912..." required autocomplete="tel" dir="ltr" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contact-service">{isFa ? 'نوع خدمت' : 'Service'}</label>
+          <select id="contact-service" name="service" class="form-control">
+            {options.map(o => <option>{o}</option>)}
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contact-message">{isFa ? 'توضیحات' : 'Message'}</label>
+          <textarea id="contact-message" name="message" class="form-control" rows="4" placeholder={isFa ? 'شرح کوتاهی از نیازتان بنویسید...' : 'Brief description of your needs...'}></textarea>
+        </div>
+        <button id="contact-submit-btn" type="submit" class="btn btn--accent btn--lg" style="width:100%;">
+          {isFa ? 'ارسال درخواست از طریق واتساپ' : 'Send via WhatsApp'} →
+        </button>
+        <p style="font-size:0.82rem; color:var(--text-light); text-align:center;">{isFa ? 'پس از ثبت، پیام شما در واتساپ آماده می‌شود. دکمه ارسال را بزنید.' : 'After submit, your message will be ready in WhatsApp.'}</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function(){
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    const WHATSAPP_NUMBER = '989122815189';
+    function toLatinDigits(value){
+      const persian={'۰':'0','۱':'1','۲':'2','۳':'3','۴':'4','۵':'5','۶':'6','۷':'7','۸':'8','۹':'9'};
+      const arabic={'٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9'};
+      return String(value).replace(/[۰-۹٠-٩]/g, d => persian[d] || arabic[d] || d);
+    }
+    function openWhatsApp(msg){
+      window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    }
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameInput = form.querySelector('#contact-name');
+      const phoneInput = form.querySelector('#contact-phone');
+      const serviceSelect = form.querySelector('#contact-service');
+      const messageInput = form.querySelector('#contact-message');
+      const submitBtn = form.querySelector('#contact-submit-btn');
+      let isValid = true;
+      if (!nameInput.value.trim() || nameInput.value.trim().length < 2) { nameInput.classList.add('is-invalid'); isValid = false; } else nameInput.classList.remove('is-invalid');
+      const phoneVal = toLatinDigits(phoneInput.value.trim()).replace(/[\s\-()]/g,'');
+      const phoneRegex = /^(\+98|0)?9\d{9}$/;
+      if (!phoneRegex.test(phoneVal)) { phoneInput.classList.add('is-invalid'); isValid = false; } else phoneInput.classList.remove('is-invalid');
+      if (!isValid) { window.showToast(form.lang === 'en' ? 'Please fill required fields correctly.' : 'لطفاً فیلدهای الزامی را به درستی تکمیل فرمایید.'); return; }
+      const originalBtnText = submitBtn.innerHTML;
+      const serviceText = serviceSelect.options[serviceSelect.selectedIndex].text.trim();
+      const lines = [
+        'درخواست مشاوره — وب‌سایت قزوین تصویر',
+        '',
+        'نام / شرکت: ' + nameInput.value.trim(),
+        'شماره تماس: ' + toLatinDigits(phoneInput.value.trim()),
+        'نوع خدمت: ' + serviceText
+      ];
+      const extra = messageInput.value.trim();
+      if (extra) lines.push('توضیحات: ' + extra);
+      openWhatsApp(lines.join('\n'));
+      submitBtn.innerHTML = '✓ ' + (document.documentElement.lang === 'en' ? 'Sent to WhatsApp' : 'درخواست شما به واتساپ ارسال شد');
+      submitBtn.style.background = '#10B981';
+      submitBtn.style.color = '#fff';
+      window.showToast(document.documentElement.lang === 'en' ? 'Your request is ready in WhatsApp. Please tap Send.' : 'درخواست شما در واتساپ آماده شد؛ لطفاً در صفحهٔ باز شده دکمهٔ ارسال را بزنید.');
+      setTimeout(() => {
+        form.reset();
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.style.background = '';
+        submitBtn.style.color = '';
+      }, 4000);
+    });
+  })();
+</script>

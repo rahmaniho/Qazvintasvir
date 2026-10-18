@@ -1,0 +1,92 @@
+---
+import HomeLayout from '../../layouts/HomeLayout.astro';
+import Hero from '../../components/home/Hero.astro';
+import AboutSection from '../../components/home/AboutSection.astro';
+import ServicesGrid from '../../components/home/ServicesGrid.astro';
+import FleetSection from '../../components/home/FleetSection.astro';
+import StatsSection from '../../components/home/StatsSection.astro';
+import ClientsSection from '../../components/home/ClientsSection.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { organizationSchema, itemListSchema } from '../../lib/schema';
+
+const lang = 'fa';
+const site = Astro.site?.toString() || 'https://rahmaniho.github.io';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteClean = site.endsWith('/') ? site.slice(0,-1) : site;
+const baseClean = base;
+const siteUrl = `${siteClean}${baseClean}`;
+const canonical = `${siteUrl}/fa/`;
+const hreflang = [
+  { lang: 'fa', href: `${siteUrl}/fa/` },
+  { lang: 'en', href: `${siteUrl}/en/` },
+  { lang: 'x-default', href: `${siteUrl}/fa/` },
+];
+
+const org = organizationSchema(siteUrl);
+const servicesList = itemListSchema("خدمات تخصصی شرکت قزوین تصویر", [
+  { name: "واردات و صادرات کالاهای مجاز", url: `${siteUrl}/fa/services/import-export/` },
+  { name: "ترخیص گمرکی و امور بندری", url: `${siteUrl}/fa/services/customs-port/` },
+  { name: "تأمین مواد اولیه و تجهیزات", url: `${siteUrl}/fa/services/sourcing/` },
+  { name: "ترابری پرسنل کارخانجات", url: `${siteUrl}/fa/services/factory-transport/` },
+  { name: "حمل‌ونقل درون‌شهری و سرویس‌های VIP", url: `${siteUrl}/fa/services/urban-vip/` },
+  { name: "سرویس مدارس، ادارات و شرکت‌ها", url: `${siteUrl}/fa/services/school-office/` },
+  { name: "تأمین غذای پرسنل و وعده‌های سازمانی", url: `${siteUrl}/fa/services/personnel-food/` },
+  { name: "مشاوره بازرگانی و گشایش", url: `${siteUrl}/fa/services/trade-consulting/` },
+]);
+---
+
+<HomeLayout
+  lang={lang}
+  title="قزوین تصویر | بازرگانی، واردات و صادرات، ترابری و تأمین غذای پرسنل — تأسیس ۱۳۷۴"
+  description="شرکت قزوین تصویر (شناسه ملی ۱۰۸۶۱۴۱۵۲۱۵)، با مدیریت سعید امین‌زاده؛ هشت خدمت تخصصی در واردات و صادرات، ترخیص، تأمین صنعتی، ترابری، سرویس VIP و سازمانی، غذای پرسنل و مشاوره بازرگانی. تأسیس ۱۳۷۴. تماس: ۰۹۱۲ ۲۸۱ ۵۱۸۹"
+  canonical={canonical}
+  hreflang={hreflang}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(org)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(servicesList)}></script>
+  </Fragment>
+
+  <Hero lang={lang} />
+  <AboutSection lang={lang} />
+  <ServicesGrid lang={lang} />
+  <FleetSection lang={lang} />
+  <StatsSection lang={lang} />
+  <ClientsSection lang={lang} />
+
+  <!-- Registry / Resume Section -->
+  <section class="section section--alt" id="resume">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">اعتبار ثبت‌شده</span>
+        <h2>رزومه شرکت قزوین تصویر</h2>
+        <p>شناسه ملی ۱۰۸۶۱۴۱۵۲۱۵ — سرمایه ثبتی ۱۳,۰۰۰,۰۰۰ ریال — مدیریت سعید امین‌زاده — تأسیس ۱۳۷۴</p>
+      </div>
+      <div class="card reveal" style="max-width:900px; margin-inline:auto; display:grid; gap:16px;">
+        <p>شرکت قزوین تصویر (با مسئولیت محدود) با بیش از ۳۱ سال سابقه در زمینه بازرگانی، ترابری و خدمات پشتیبانی، به‌عنوان شریک مورد اعتماد صنایع بزرگ استان قزوین شناخته می‌شود. زمینه‌های فعالیت ثبت‌شده شامل حمل‌ونقل، امور مالی و حسابداری، خدمات اداری و رفاهی، بازرگانی و بازاریابی است.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px;">
+          <a href={`${baseClean}/assets/docs/qazvin-tasvir-company-resume.pdf`} target="_blank" class="btn btn--primary">دانلود رزومه PDF</a>
+          <a href={`${baseClean}/fa/about/`} class="btn btn--ghost">شناسنامه حقوقی</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal -->
+  <section class="section" id="legal">
+    <div class="container">
+      <div class="card reveal" style="max-width:900px; margin-inline:auto; text-align:center;">
+        <h3>اعتبارنامه و شناسنامه حقوقی شرکت</h3>
+        <p style="margin-top:8px;">اطلاعات حقوقی و ثبتی شرکت قزوین تصویر از اسناد رسمی: سرمایه ثبتی ۱۳,۰۰۰,۰۰۰ ریال، ترکیب مدیریت و سهامداران، و زمینه‌های کامل فعالیت ثبت‌شده (حمل‌ونقل، امور مالی و حسابداری، خدمات اداری و رفاهی، بازرگانی و بازاریابی).</p>
+        <div style="display:flex; flex-wrap:wrap; gap:24px; justify-content:center; margin-top:20px; font-size:0.9rem;">
+          <span><strong>شناسه ملی:</strong> ۱۰۸۶۱۴۱۵۲۱۵</span>
+          <span><strong>شناسه مالیاتی:</strong> ۴۱۱۳۸۶۸۳۷۶۶۵</span>
+          <span><strong>تأسیس:</strong> ۱۳۷۴/۰۲/۱۴</span>
+          <span><strong>مدیریت:</strong> سعید امین‌زاده</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactForm lang={lang} />
+</HomeLayout>

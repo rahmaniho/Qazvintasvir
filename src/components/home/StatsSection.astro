@@ -1,0 +1,37 @@
+---
+interface Props { lang: 'fa' | 'en'; }
+const { lang } = Astro.props;
+const isFa = lang === 'fa';
+---
+
+<section class="section section--dark" id="why-us" style="background: var(--grad-hero); color:#fff;">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 style="color:#fff;">{isFa ? 'چرا شرکت‌ها قزوین تصویر را انتخاب می‌کنند؟' : 'Why companies choose Qazvin Tasvir'}</h2>
+      <p style="color:#CBD5E1;">{isFa ? 'ترکیب تجربه، ناوگان مجهز و تعهد به کیفیت، تمایز ما در بازار ترابری و بازرگانی قزوین است.' : 'Experience, fleet and commitment to quality set us apart in Qazvin transport and trade.'}</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="card reveal" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.12); backdrop-filter:blur(8px); text-align:center;">
+        <strong style="display:block; font-size:2rem; color:#fff;">{isFa ? '۳۱+' : '31+'}</strong>
+        <span style="color:#CBD5E1; font-weight:600;">{isFa ? 'سال تجربه' : 'Years experience'}</span>
+        <p style="color:#94A3B8; font-size:0.84rem; margin-top:8px;">{isFa ? 'از ۱۳۷۴ در کنار صنایع قزوین' : 'Since 1995 beside Qazvin industries'}</p>
+      </div>
+      <div class="card reveal" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.12); backdrop-filter:blur(8px); text-align:center;">
+        <strong style="display:block; font-size:2rem; color:#fff;">۸</strong>
+        <span style="color:#CBD5E1; font-weight:600;">{isFa ? 'خدمت تخصصی' : 'Specialist services'}</span>
+        <p style="color:#94A3B8; font-size:0.84rem; margin-top:8px;">{isFa ? 'از بازرگانی تا کیترینگ' : 'From trade to catering'}</p>
+      </div>
+      <div class="card reveal" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.12); backdrop-filter:blur(8px); text-align:center;">
+        <strong style="display:block; font-size:2rem; color:#fff;">{isFa ? '۱۰۰+' : '100+'}</strong>
+        <span style="color:#CBD5E1; font-weight:600;">{isFa ? 'سازمان همکار' : 'Partner organizations'}</span>
+        <p style="color:#94A3B8; font-size:0.84rem; margin-top:8px;">{isFa ? 'در قزوین و شهرک‌های صنعتی' : 'In Qazvin industrial parks'}</p>
+      </div>
+      <div class="card reveal" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.12); backdrop-filter:blur(8px); text-align:center;">
+        <strong style="display:block; font-size:2rem; color:#fff;">۲۴/۷</strong>
+        <span style="color:#CBD5E1; font-weight:600;">{isFa ? 'پشتیبانی' : 'Support'}</span>
+        <p style="color:#94A3B8; font-size:0.84rem; margin-top:8px;">{isFa ? 'هماهنگی و پیگیری مستمر' : 'Continuous coordination'}</p>
+      </div>
+    </div>
+  </div>
+</section>

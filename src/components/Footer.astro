@@ -1,0 +1,93 @@
+---
+interface Props {
+  lang: 'fa' | 'en';
+}
+const { lang } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = new Date().toLocaleDateString(lang === 'fa' ? 'fa-IR' : 'en-US', { calendar: lang === 'fa' ? 'persian' as any : 'gregory' } as any).slice(0,4) || new Date().getFullYear().toString();
+const yearDisplay = lang === 'fa' ? '۱۴۰۵' : new Date().getFullYear().toString();
+
+const servicesFa = [
+  ["واردات و صادرات کالاهای مجاز", `${baseUrl}/fa/services/import-export/`],
+  ["ترخیص گمرکی و امور بندری", `${baseUrl}/fa/services/customs-port/`],
+  ["تأمین مواد اولیه و تجهیزات", `${baseUrl}/fa/services/sourcing/`],
+  ["ترابری پرسنل کارخانجات", `${baseUrl}/fa/services/factory-transport/`],
+  ["حمل‌ونقل درون‌شهری و VIP", `${baseUrl}/fa/services/urban-vip/`],
+  ["سرویس مدارس و سازمانی", `${baseUrl}/fa/services/school-office/`],
+  ["تأمین غذای پرسنل", `${baseUrl}/fa/services/personnel-food/`],
+  ["مشاوره بازرگانی و گشایش", `${baseUrl}/fa/services/trade-consulting/`],
+];
+const servicesEn = [
+  ["Import & Export", `${baseUrl}/en/services/import-export/`],
+  ["Customs & Port", `${baseUrl}/en/services/customs-port/`],
+  ["Industrial Sourcing", `${baseUrl}/en/services/sourcing/`],
+  ["Factory Transport", `${baseUrl}/en/services/factory-transport/`],
+  ["Urban & VIP", `${baseUrl}/en/services/urban-vip/`],
+  ["School & Office", `${baseUrl}/en/services/school-office/`],
+  ["Staff Catering", `${baseUrl}/en/services/personnel-food/`],
+  ["Trade Consulting", `${baseUrl}/en/services/trade-consulting/`],
+];
+const services = lang === 'fa' ? servicesFa : servicesEn;
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="footer-brand__logo" href={`${baseUrl}/${lang}/`} aria-label={lang==='fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}>
+          <img src={`${baseUrl}/assets/images/brand/qazvin-tasvir-mark.png`} alt="" width="34" height="34" loading="lazy" decoding="async" />
+          <span>{lang==='fa' ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company'}</span>
+        </a>
+        <p>
+          {lang==='fa'
+            ? 'شرکت قزوین تصویر (با مسئولیت محدود — تأسیس ۱۳۷۴) ارائه‌دهنده خدمات بازرگانی، ترابری و تأمین غذای سازمانی برای صنایع استان قزوین.'
+            : 'Qazvin Tasvir Company (Ltd — est. 1995) provides trading, transport and corporate catering services for industries in Qazvin.'}
+        </p>
+        <p style="font-size:0.84rem; color:#64748B;">
+          {lang==='fa'
+            ? 'قزوین، اول خیابان فردوسی، مجتمع آبادگران، طبقه ۶، اتاق ۶۰۴ — ۰۹۱۲ ۲۸۱ ۵۱۸۹'
+            : 'Abadgaran Complex, 6th floor, Ferdowsi St, Qazvin — +98 912 281 5189'}
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>{lang==='fa' ? 'خدمات' : 'Services'}</h4>
+        <ul>
+          {services.slice(0,4).map(([label, href]) => <li><a href={href}>{label}</a></li>)}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>{lang==='fa' ? 'خدمات (۲)' : 'Services (2)'}</h4>
+        <ul>
+          {services.slice(4).map(([label, href]) => <li><a href={href}>{label}</a></li>)}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>{lang==='fa' ? 'تماس' : 'Contact'}</h4>
+        <ul>
+          <li><a href={`${baseUrl}/${lang}/#about`}>{lang==='fa' ? 'درباره ما' : 'About us'}</a></li>
+          <li><a href={`${baseUrl}/${lang}/services/`}>{lang==='fa' ? 'همه خدمات' : 'All services'}</a></li>
+          <li><a href={`${baseUrl}/${lang}/contact/`}>{lang==='fa' ? 'تماس و درخواست همکاری' : 'Contact & consultation'}</a></li>
+          <li><a href="tel:+989122815189" dir="ltr">+98 912 281 5189</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span data-year>{yearDisplay}</span> {lang==='fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}</span>
+      <span style="display:flex; gap:12px; align-items:center;">
+        <a href={`${baseUrl}/fa/`} hreflang="fa">FA</a>
+        <span aria-hidden="true">/</span>
+        <a href={`${baseUrl}/en/`} hreflang="en">EN</a>
+        <span style="margin-inline-start:8px; opacity:0.6;">{lang==='fa' ? 'شناسه ملی ۱۰۸۶۱۴۱۵۲۱۵' : 'ID 10861415215'}</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // update year to Persian if needed (already rendered); ensure dynamic
+  document.querySelectorAll('[data-year]').forEach(el => {
+    // keep static 1405 for fa, current year for en already done server-side
+  });
+</script>

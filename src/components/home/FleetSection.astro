@@ -1,0 +1,45 @@
+---
+interface Props { lang: 'fa' | 'en'; }
+const { lang } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const isFa = lang === 'fa';
+---
+
+<section class="section" id="fleet">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label section-label--sky">{isFa ? 'ناوگان' : 'Fleet'}</span>
+      <h2 class="section-title">{isFa ? 'ناوگان مجهز ترابری' : 'Modern Transport Fleet'}</h2>
+      <p class="section-desc">{isFa ? 'اتوبوس، مینی‌بوس و ون‌های مجهز برای جابه‌جایی ایمن و منظم پرسنل در تمام شیفت‌ها.' : 'Buses, minibuses and vans for safe, regular personnel transport across all shifts.'}</p>
+    </div>
+
+    <div class="fleet-grid">
+      <div class="fleet-card reveal">
+        <div class="fleet-card__media"><img src={`${baseUrl}/assets/images/bus-fleet.webp`} alt={isFa ? 'اتوبوس سرویس پرسنل' : 'Staff bus'} width="400" height="280" loading="lazy" decoding="async" /></div>
+        <div class="fleet-card__body">
+          <h3>{isFa ? 'اتوبوس' : 'Bus'}</h3>
+          <p>{isFa ? 'ظرفیت ۴۴ نفره — مناسب سرویس‌های پرجمعیت کارخانه و شهرک‌های صنعتی' : '44 seats — for large factory and industrial park shuttles'}</p>
+        </div>
+      </div>
+      <div class="fleet-card reveal">
+        <div class="fleet-card__media"><img src={`${baseUrl}/assets/images/minibus-fleet.webp`} alt={isFa ? 'مینی‌بوس' : 'Minibus'} width="400" height="280" loading="lazy" decoding="async" /></div>
+        <div class="fleet-card__body">
+          <h3>{isFa ? 'مینی‌بوس' : 'Minibus'}</h3>
+          <p>{isFa ? 'ظرفیت ۱۸ نفره — چابک برای مسیرهای شهری و بین‌شهری' : '18 seats — agile for urban and intercity routes'}</p>
+        </div>
+      </div>
+      <div class="fleet-card reveal">
+        <div class="fleet-card__media"><img src={`${baseUrl}/assets/images/van-fleet.webp`} alt={isFa ? 'ون' : 'Van'} width="400" height="280" loading="lazy" decoding="async" /></div>
+        <div class="fleet-card__body">
+          <h3>{isFa ? 'ون مسافربری' : 'Passenger Van'}</h3>
+          <p>{isFa ? 'ظرفیت ۱۴ نفره — مناسب گروه‌های کوچک و سرویس VIP' : '14 seats — for small groups and VIP service'}</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; display:grid; grid-template-columns: 1fr 1fr; gap:20px;" class="reveal">
+      <img src={`${baseUrl}/assets/img/fleet-specs/vip-seats.webp`} alt={isFa ? 'صندلی VIP' : 'VIP seats'} width="560" height="320" loading="lazy" decoding="async" style="border-radius:var(--r-lg); width:100%; aspect-ratio:16/10; object-fit:cover;" />
+      <img src={`${baseUrl}/assets/img/fleet-specs/vip-catering.webp`} alt={isFa ? 'پذیرایی VIP' : 'VIP catering'} width="560" height="320" loading="lazy" decoding="async" style="border-radius:var(--r-lg); width:100%; aspect-ratio:16/10; object-fit:cover;" />
+    </div>
+  </div>
+</section>

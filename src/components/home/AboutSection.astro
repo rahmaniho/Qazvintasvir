@@ -1,0 +1,33 @@
+---
+interface Props { lang: 'fa' | 'en'; }
+const { lang } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const isFa = lang === 'fa';
+---
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <span class="section-label">{isFa ? 'درباره ما' : 'About us'}</span>
+        <h2 class="section-title">{isFa ? 'بیش از ۳۱ سال اعتماد، از قزوین تا بازارهای جهانی' : '31+ years of trust, from Qazvin to global markets'}</h2>
+        <p class="section-desc">
+          {isFa
+            ? 'قزوین تصویر از سال ۱۳۷۴ در کنار صنایع استان قزوین بوده است. از شهرک‌های صنعتی کاسپین و البرز تا بندرهای جنوبی، زنجیره تأمین و جابه‌جایی شما را با نظم و شفافیت همراهی می‌کنیم.'
+            : 'Since 1995, Qazvin Tasvir has stood beside industries in Qazvin Province. From Caspian and Alborz industrial parks to southern ports, we keep your supply and mobility chain organized and transparent.'}
+        </p>
+        <ul style="margin-top:20px; display:grid; gap:10px;">
+          <li style="display:flex; gap:10px; align-items:center; font-weight:600;"><span style="color:var(--success);">✓</span><span>{isFa ? 'شناسه ملی ۱۰۸۶۱۴۱۵۲۱۵ — ثبت رسمی' : 'National ID 10861415215 — officially registered'}</span></li>
+          <li style="display:flex; gap:10px; align-items:center; font-weight:600;"><span style="color:var(--success);">✓</span><span>{isFa ? 'مدیریت سعید امین‌زاده — عضو هیئت مدیره' : 'Led by Saeed Aminzadeh — Board member'}</span></li>
+          <li style="display:flex; gap:10px; align-items:center; font-weight:600;"><span style="color:var(--success);">✓</span><span>{isFa ? 'پوشش کامل قزوین و شهرک‌های صنعتی' : 'Full coverage of Qazvin industrial zones'}</span></li>
+        </ul>
+        <div style="margin-top:24px;">
+          <a href={`${baseUrl}/${lang}/about/`} class="btn btn--primary">{isFa ? 'بیشتر درباره ما' : 'More about us'} →</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <img src={`${baseUrl}/assets/img/sections/about-office.webp`} alt={isFa ? 'دفتر قزوین تصویر' : 'Qazvin Tasvir office'} width="560" height="380" loading="lazy" decoding="async" style="border-radius: var(--r-lg); width:100%; object-fit:cover; aspect-ratio:4/3;" />
+      </div>
+    </div>
+  </div>
+</section>

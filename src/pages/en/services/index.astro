@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const lang = 'en';
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = Astro.site?.toString() || 'https://rahmaniho.github.io';
+const siteClean = site.endsWith('/') ? site.slice(0,-1) : site;
+const canonical = `${siteClean}${baseUrl}/en/services/`;
+const hreflang = [
+  { lang: 'fa', href: `${siteClean}${baseUrl}/fa/services/` },
+  { lang: 'en', href: canonical },
+  { lang: 'x-default', href: `${siteClean}${baseUrl}/fa/services/` },
+];
+
+const all = await getCollection('services');
+const services = all.filter(s => s.slug.startsWith('en/')).sort((a,b) => (a.data.order||0) - (b.data.order||0));
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Services of Qazvin Tasvir Company",
+  itemListElement: services.map((s, idx) => {
+    const slug = s.slug.replace('en/','');
+    return {
+    "@type": "ListItem",
+    position: idx+1,
+    name: s.data.title,
+    url: `${siteClean}${baseUrl}/en/services/${slug}/`
+    };
+  })
+};
+---
+
+<BaseLayout lang={lang} title="Services | Qazvin Tasvir — Eight specialist service paths" description="Eight specialist service pages of Qazvin Tasvir in trade, customs, sourcing, transport, VIP, shuttles, catering and consulting." canonical={canonical} hreflang={hreflang} schema={itemListSchema}>
+  <section class="hero" style="padding-block:48px 32px;">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={`${baseUrl}/en/`}>Home</a><span class="breadcrumbs__sep">/</span><span aria-current="page">Services</span></nav>
+      <h1 style="color:#fff; margin-top:16px;">Services of Qazvin Tasvir</h1>
+      <p class="hero__lead">Eight service paths covering trade, transport and corporate support — from import to staff meals.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Eight Services</span>
+        <h2>Solutions to keep your operations moving</h2>
+        <p>Each service starts with understanding your real needs and continues through execution and support.</p>
+      </div>
+
+      <div class="services-grid">
+        {services.map(s => {
+          const slug = s.slug.replace('en/','');
+          return (
+          <article class="service-card reveal">
+            <a href={`${baseUrl}/en/services/${slug}/`} style="display:flex; flex-direction:column; height:100%;">
+              <div class="service-card__media">
+                {s.data.image ? (
+                  <img src={`${baseUrl}${s.data.image.replace('/Qazvintasvir','')}`} alt={s.data.title} width="400" height="250" loading="lazy" decoding="async" />
+                ) : <div style="height:100%; background:var(--line-soft); display:grid; place-items:center; color:var(--text-muted);">{s.data.title}</div>}
+                <span style="position:absolute; top:12px; inset-inline-start:12px; background:rgba(0,0,0,0.6); color:#fff; padding:4px 10px; border-radius:9999px; font-size:0.74rem; font-weight:700;">{String(s.data.order).padStart(2,'0')}</span>
+              </div>
+              <div class="service-card__body">
+                <span class="service-card__tag">{s.data.tag}</span>
+                <h3>{s.data.title}</h3>
+                <p>{s.data.summary || s.data.description}</p>
+                <span class="service-card__link">View details <span aria-hidden="true">→</span></span>
+              </div>
+            </a>
+          </article>
+        )})}
+      </div>
+
+      <div style="margin-top:32px;" class="reveal">
+        <div class="cta-block">
+          <div>
+            <h2>Not sure where to start?</h2>
+            <p>Send a short description of your needs and we will find the right path together.</p>
+          </div>
+          <a href={`${baseUrl}/en/contact/`} class="btn btn--accent">Request consultation →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
