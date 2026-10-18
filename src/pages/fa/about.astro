@@ -12,53 +12,87 @@ const hreflang = [
 ];
 ---
 
-<BaseLayout lang={lang} title="درباره قزوین تصویر — ۳۱ سال تجربه در بازرگانی و ترابری | تأسیس ۱۳۷۴" description="معرفی شرکت قزوین تصویر (شناسه ملی ۱۰۸۶۱۴۱۵۲۱۵) با مدیریت سعید امین‌زاده — بیش از ۳۱ سال تجربه در بازرگانی، واردات و صادرات، ترابری و تأمین غذای پرسنل از سال ۱۳۷۴." canonical={canonical} hreflang={hreflang}>
-  <section class="hero" style="padding-block:48px 40px;">
-    <div class="container">
-      <h1 style="color:#fff;">بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال اعتماد، از قزوین تا بازارهای جهانی</h1>
-      <p class="hero__lead">قزوین تصویر از سال <bdi class="bidi-ltr" dir="ltr">۱۳۷۴</bdi> در کنار صنایع استان قزوین بوده است.</p>
-    </div>
-  </section>
+<BaseLayout lang={lang} title="دربارهٔ قزوین تصویر | همراه صنایع قزوین از ۱۳۷۴" description="با قزوین تصویر آشنا شوید؛ شرکتی با بیش از ۳۱ سال تجربه در بازرگانی، حمل‌ونقل و پشتیبانی سازمانی برای صنایع استان قزوین." canonical={canonical} hreflang={hreflang}>
+  <div class="about-page">
+    <section class="hero about-hero" aria-labelledby="about-hero-title">
+      <div class="container about-hero__content">
+        <h1 id="about-hero-title">بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال، همراه صنایع قزوین</h1>
+        <p class="hero__lead">از سال <bdi class="bidi-ltr" dir="ltr">۱۳۷۴</bdi> تاکنون، در مسیر بازرگانی، حمل‌ونقل و پشتیبانی سازمانی، در کنار صنایع استان قزوین بوده‌ایم.</p>
+      </div>
+    </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="about-grid">
-        <div class="reveal">
-          <h2>شرکت قزوین تصویر</h2>
-          <p style="margin-top:12px;">شرکت قزوین تصویر (با مسئولیت محدود) در سال <bdi class="bidi-ltr" dir="ltr">۱۳۷۴</bdi> با مدیریت سعید امین‌زاده تأسیس شد. مأموریت ما تسهیل زنجیرهٔ تأمین، حمل‌ونقل و پشتیبانی سازمانی برای صنایع بزرگ استان قزوین است.</p>
-          <p style="margin-top:12px;">با تکیه بر ناوگان مجهز اتوبوس، مینی‌بوس و ون و همکاری با برندهای معتبری همچون ال‌جی، نستله، یونیلیور و هنکل، توانسته‌ایم اعتماد بیش از <bdi class="bidi-ltr" dir="ltr">۱۰۰</bdi> سازمان را جلب کنیم.</p>
-          <p style="margin-top:12px;">از شهرک‌های صنعتی کاسپین و البرز تا بنادر جنوبی، زنجیرهٔ تأمین و جابه‌جایی شما را با نظم و شفافیت همراهی می‌کنیم.</p>
-          <ul style="margin-top:20px; display:grid; gap:10px;">
-            <li style="display:flex; gap:8px; align-items:center; font-weight:600;"><span style="color:var(--success);">✓</span> شناسه ملی <bdi class="bidi-ltr" dir="ltr">۱۰۸۶۱۴۱۵۲۱۵</bdi> — شناسه مالیاتی <bdi class="bidi-ltr" dir="ltr">۴۱۱۳۸۶۸۳۷۶۶۵</bdi></li>
-            <li style="display:flex; gap:8px; align-items:center; font-weight:600;"><span style="color:var(--success);">✓</span> مدیریت: سعید امین‌زاده (مدیرعامل) — اصغر تقی‌لو (رئیس هیئت مدیره)</li>
-            <li style="display:flex; gap:8px; align-items:center; font-weight:600;"><span style="color:var(--success);">✓</span> دفتر مرکزی: قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi>، شرکت قزوین تصویر</li>
-            <li style="display:flex; gap:8px; align-items:center; font-weight:600;"><span style="color:var(--success);">✓</span> پوشش کامل قزوین و شهرک‌های صنعتی</li>
-          </ul>
-        </div>
-        <div class="reveal">
-          <img src={`${baseUrl}/assets/img/sections/about-office.webp`} alt="دفتر قزوین تصویر" width="560" height="380" loading="eager" decoding="async" style="border-radius:var(--r-lg); width:100%; object-fit:cover; aspect-ratio:4/3;" />
-          <div class="card" style="margin-top:20px; display:flex; gap:16px; align-items:center;">
-            <img src={`${baseUrl}/assets/images/saeed-aminzadeh-avatar.webp`} alt="سعید امین‌زاده" width="64" height="64" style="border-radius:50%; width:64px; height:64px; object-fit:cover;" loading="lazy" decoding="async" />
-            <div>
-              <strong>سعید امین‌زاده</strong>
-              <span style="display:block; color:var(--text-muted); font-size:0.9rem;">مدیرعامل و بنیان‌گذار — عضو هیئت مدیره</span>
-              <span style="display:block; color:var(--text-muted); font-size:0.84rem; margin-top:4px;">بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال تجربه در بازرگانی و ترابری صنعتی</span>
+    <section class="section" aria-labelledby="about-company-title">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <h2 class="about-section-title" id="about-company-title">دربارهٔ قزوین تصویر</h2>
+            <p>شرکت قزوین تصویر (با مسئولیت محدود) در سال <bdi class="bidi-ltr" dir="ltr">۱۳۷۴</bdi> با مدیریت سعید امین‌زاده فعالیت خود را آغاز کرد. امروز، با پشتوانهٔ بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال تجربه، در حوزه‌های بازرگانی، حمل‌ونقل و پشتیبانی سازمانی به کسب‌وکارهای استان قزوین خدمت می‌کنیم.</p>
+            <p>با ناوگانی شامل اتوبوس، مینی‌بوس و ون و همکاری با برندهایی مانند ال‌جی، نستله، یونیلیور و هنکل، اعتماد بیش از <bdi class="bidi-ltr" dir="ltr">۱۰۰</bdi> سازمان را به دست آورده‌ایم.</p>
+            <p>از شهرک‌های صنعتی کاسپین و البرز تا بنادر جنوبی کشور، همراه زنجیرهٔ تأمین و جابه‌جایی کسب‌وکارها هستیم؛ با تأکید بر نظم، شفافیت و پاسخ‌گویی.</p>
+
+            <dl class="about-facts" aria-label="اطلاعات شرکت">
+              <div>
+                <dt>شناسهٔ ملی</dt>
+                <dd><bdi class="bidi-ltr" dir="ltr">۱۰۸۶۱۴۱۵۲۱۵</bdi></dd>
+              </div>
+              <div>
+                <dt>کد اقتصادی</dt>
+                <dd><bdi class="bidi-ltr" dir="ltr">۴۱۱۳۸۶۸۳۷۶۶۵</bdi></dd>
+              </div>
+              <div>
+                <dt>مدیران</dt>
+                <dd>سعید امین‌زاده، مدیرعامل؛ اصغر تقی‌لو، رئیس هیئت‌مدیره</dd>
+              </div>
+              <div>
+                <dt>نشانی دفتر مرکزی</dt>
+                <dd>قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، <span class="about-address-unit">طبقهٔ <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi></span></dd>
+              </div>
+              <div>
+                <dt>محدودهٔ خدمات</dt>
+                <dd>قزوین و شهرک‌های صنعتی استان</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="about-visual reveal">
+            <img class="about-office-image" src={`${baseUrl}/assets/img/sections/about-office.webp`} alt="دفتر شرکت قزوین تصویر" width="560" height="380" loading="eager" decoding="async" />
+            <div class="card about-founder">
+              <img class="about-founder__avatar" src={`${baseUrl}/assets/images/saeed-aminzadeh-avatar.webp`} alt="سعید امین‌زاده" width="64" height="64" loading="lazy" decoding="async" />
+              <div class="about-founder__content">
+                <strong class="about-founder__name">سعید امین‌زاده</strong>
+                <span class="about-founder__role">مدیرعامل و بنیان‌گذار</span>
+                <span class="about-founder__experience">بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال تجربه در بازرگانی و حمل‌ونقل صنعتی</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section section--alt">
-    <div class="container">
-      <h2 style="text-align:center;">زمینه‌های فعالیت ثبت‌شده</h2>
-      <div class="about-activity-grid">
-        <div class="card reveal"><h3 style="font-size:1rem;">حمل‌ونقل و ترابری</h3><p style="margin-top:8px; font-size:0.92rem;">جابه‌جایی پرسنل، سرویس درون‌شهری و VIP با ناوگان مجهز</p></div>
-        <div class="card reveal"><h3 style="font-size:1rem;">بازرگانی و بازاریابی</h3><p style="margin-top:8px; font-size:0.92rem;">واردات و صادرات کالاهای مجاز، ترخیص و تأمین</p></div>
-        <div class="card reveal"><h3 style="font-size:1rem;">امور مالی و حسابداری</h3><p style="margin-top:8px; font-size:0.92rem;">مشاوره مالی، حسابداری و گشایش اعتبار</p></div>
-        <div class="card reveal"><h3 style="font-size:1rem;">خدمات اداری و رفاهی</h3><p style="margin-top:8px; font-size:0.92rem;">تأمین غذای پرسنل و خدمات رفاهی سازمانی</p></div>
+    <section class="section section--alt" aria-labelledby="about-activities-title">
+      <div class="container">
+        <header class="section-header about-activities-header">
+          <h2 class="section-title" id="about-activities-title">حوزه‌های فعالیت</h2>
+        </header>
+        <div class="about-activity-grid">
+          <article class="card reveal">
+            <h3>حمل‌ونقل</h3>
+            <p>جابه‌جایی کارکنان، سرویس‌های شهری و خدمات VIP با ناوگانی متنوع.</p>
+          </article>
+          <article class="card reveal">
+            <h3>بازرگانی و بازاریابی</h3>
+            <p>واردات و صادرات کالاهای مجاز، ترخیص و تأمین کالا.</p>
+          </article>
+          <article class="card reveal">
+            <h3>خدمات مالی و حسابداری</h3>
+            <p>مشاورهٔ مالی و حسابداری و همراهی در فرایند گشایش اعتبار.</p>
+          </article>
+          <article class="card reveal">
+            <h3>خدمات اداری و رفاهی</h3>
+            <p>تأمین غذای کارکنان و ارائهٔ خدمات رفاهی به سازمان‌ها.</p>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </BaseLayout>
