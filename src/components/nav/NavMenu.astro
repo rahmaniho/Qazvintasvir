@@ -14,6 +14,7 @@ const labelsFa = {
   services: 'خدمات',
   fleet: 'ناوگان',
   brands: 'برندها',
+  clients: 'مشتریان',
   contact: 'تماس با ما'
 };
 const labelsEn = {
@@ -22,6 +23,7 @@ const labelsEn = {
   services: 'Services',
   fleet: 'Fleet',
   brands: 'Brands',
+  clients: 'Clients',
   contact: 'Contact'
 };
 const L = lang === 'fa' ? labelsFa : labelsEn;
@@ -52,8 +54,9 @@ const services = lang === 'fa' ? servicesFa : servicesEn;
 // Build nav links for desktop
 const homeHref = `${baseUrl}/${lang}/`;
 const aboutHref = `${baseUrl}/${lang}/about/`;
-const fleetHref = `${baseUrl}/${lang}/#fleet`;
-const brandsHref = `${baseUrl}/${lang}/#brands`;
+const fleetHref = `${baseUrl}/${lang}/fleet/`;
+const brandsHref = `${baseUrl}/${lang}/brands/`;
+const clientsHref = `${baseUrl}/${lang}/clients/`;
 const contactHref = `${baseUrl}/${lang}/contact/`;
 ---
 
@@ -67,10 +70,13 @@ const contactHref = `${baseUrl}/${lang}/contact/`;
     </li>
     <li class="nav-menu__item"><ServicesMegaMenu lang={lang} services={services} currentPath={currentPath} baseUrl={baseUrl} /></li>
     <li class="nav-menu__item">
-      <a href={fleetHref} class="nav-menu__link">{L.fleet}</a>
+      <a href={fleetHref} class="nav-menu__link" aria-current={currentPath.includes('/fleet') ? "page" : undefined}>{L.fleet}</a>
     </li>
     <li class="nav-menu__item">
-      <a href={brandsHref} class="nav-menu__link">{L.brands}</a>
+      <a href={brandsHref} class="nav-menu__link" aria-current={currentPath.includes('/brands') ? "page" : undefined}>{L.brands}</a>
+    </li>
+    <li class="nav-menu__item">
+      <a href={clientsHref} class="nav-menu__link" aria-current={currentPath.includes('/clients') ? "page" : undefined}>{L.clients}</a>
     </li>
     <li class="nav-menu__item">
       <a href={contactHref} class="nav-menu__link" aria-current={currentPath.includes('/contact') ? "page" : undefined}>{L.contact}</a>

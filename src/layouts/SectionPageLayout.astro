@@ -1,0 +1,43 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  lang: 'fa' | 'en';
+  slug: string;
+  title: string;
+  description: string;
+}
+
+const { lang, slug, title, description } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://rahmaniho.github.io';
+const canonical = `${site}${base}/${lang}/${slug}/`;
+const hreflang = [
+  { lang: 'fa', href: `${site}${base}/fa/${slug}/` },
+  { lang: 'en', href: `${site}${base}/en/${slug}/` },
+  { lang: 'x-default', href: `${site}${base}/fa/${slug}/` },
+];
+const homeLabel = lang === 'fa' ? 'خانه' : 'Home';
+const companyName = lang === 'fa' ? 'قزوین تصویر' : 'Qazvin Tasvir';
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${title} | ${companyName}`}
+  description={description}
+  canonical={canonical}
+  hreflang={hreflang}
+>
+  <section class="hero section-page-hero" aria-labelledby="section-page-title">
+    <div class="container">
+      <nav class="breadcrumbs section-page-hero__crumbs" aria-label={lang === 'fa' ? 'مسیر صفحه' : 'Breadcrumb'}>
+        <a href={`${base}/${lang}/`}>{homeLabel}</a>
+        <span class="breadcrumbs__sep" aria-hidden="true">/</span>
+        <span aria-current="page">{title}</span>
+      </nav>
+      <h1 id="section-page-title">{title}</h1>
+      <p class="hero__lead">{description}</p>
+    </div>
+  </section>
+  <slot />
+</BaseLayout>

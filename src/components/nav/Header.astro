@@ -19,15 +19,17 @@ const brandSub = lang === 'fa' ? 'بازرگانی • ترابری • غذای
 const navLinksFa = [
   { href: `${baseUrl}/fa/`, label: 'خانه', current: currentPath === `${baseUrl}/fa/` || currentPath === `${baseUrl}/fa` },
   { href: `${baseUrl}/fa/about/`, label: 'درباره ما', current: currentPath.includes('/about') },
-  { href: `${baseUrl}/fa/#fleet`, label: 'ناوگان' },
-  { href: `${baseUrl}/fa/#brands`, label: 'برندها' },
+  { href: `${baseUrl}/fa/fleet/`, label: 'ناوگان', current: currentPath.includes('/fleet') },
+  { href: `${baseUrl}/fa/brands/`, label: 'برندها', current: currentPath.includes('/brands') },
+  { href: `${baseUrl}/fa/clients/`, label: 'مشتریان', current: currentPath.includes('/clients') },
   { href: `${baseUrl}/fa/contact/`, label: 'تماس با ما', current: currentPath.includes('/contact') },
 ];
 const navLinksEn = [
   { href: `${baseUrl}/en/`, label: 'Home', current: currentPath === `${baseUrl}/en/` },
   { href: `${baseUrl}/en/about/`, label: 'About', current: currentPath.includes('/about') },
-  { href: `${baseUrl}/en/#fleet`, label: 'Fleet' },
-  { href: `${baseUrl}/en/#brands`, label: 'Brands' },
+  { href: `${baseUrl}/en/fleet/`, label: 'Fleet', current: currentPath.includes('/fleet') },
+  { href: `${baseUrl}/en/brands/`, label: 'Brands', current: currentPath.includes('/brands') },
+  { href: `${baseUrl}/en/clients/`, label: 'Clients', current: currentPath.includes('/clients') },
   { href: `${baseUrl}/en/contact/`, label: 'Contact', current: currentPath.includes('/contact') },
 ];
 const navLinks = lang === 'fa' ? navLinksFa : navLinksEn;

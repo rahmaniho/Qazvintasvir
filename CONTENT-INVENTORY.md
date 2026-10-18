@@ -801,8 +801,10 @@ Schema.org JSON-LD موجود و تعهدات حفظ:
 
 ## ۱۱) وضعیت پیاده‌سازی مهاجرت در Qazvintasvir
 
-- صفحه‌های خانهٔ `/fa/` و `/en/` اکنون شامل شناسه‌های اصلی source (`hero`, `about`, `services`, `fleet`, `brands`, `why-us`, `clients`, `trust`, `resume`, `legal`, `contact`) هستند.
-- بخش‌های ناوگان/برندها شامل پنج لوگوی سازنده؛ بخش مشتریان شامل ۱۲ نشان، سه testimonial و جدول ۱۱ ردیف سابقهٔ همکاری است. داده‌ها با متن و دارایی‌های source تطبیق داده شده‌اند.
+- صفحه‌های خانهٔ `/fa/` و `/en/` اکنون به هیرو و فهرست کوتاه صفحه‌های مستقل محدودند؛ بخش‌های طولانی از خانه خارج شده‌اند و محتوای اصلی هر بخش در مسیر اختصاصی خود باقی است.
+- مسیرهای مستقل دوزبانهٔ `/fleet/`، `/brands/`، `/why-us/`، `/clients/`، `/trust/`، `/resume/` و `/legal/` ایجاد شده‌اند؛ صفحه‌های `/about/`، `/services/`، جزئیات خدمات و `/contact/` از قبل مستقل بودند.
+- ناوگان شامل سه کارت خودرو و تصاویر تجهیزات، برندها شامل پنج لوگوی سازنده، صفحهٔ مشتریان شامل ۱۲ نشان، سه testimonial و جدول ۱۱ ردیف سابقهٔ همکاری است. محتوای trust/resume/legal نیز در سه route مستقل، بدون حذف منتقل شده است.
+- لینک‌های ناوبری و Footer به مسیرهای مستقل اشاره می‌کنند؛ hashهای قدیمی بخش‌های خانه نیز به صفحهٔ متناظر redirect می‌شوند.
 - صفحهٔ فارسی `/fa/services/personnel-food/` از بخش کامل source (۱۰۱۷ خط HTML) مهاجرت داده شده و ۱۶ کارت غذا، چهار تب وعده، گالری، فرم قرارداد و FAQ را حفظ می‌کند. نسخهٔ انگلیسی `/en/services/personnel-food/` نیز اکنون component اختصاصی با منوی ترجمه‌شده (۱۶ کارت، چهار تب)، شش تصویر گالری، فرم قرارداد، FAQ و metadata/schema انگلیسی دارد. فایل‌های فعال: `src/content/food/personnel-food-fa.html`, `src/components/food/PersonnelFoodSectionEn.astro`, `src/scripts/food-service.js`; stylesheet مشترک و محدود به صفحه در `src/styles/food-service.css`.
 - URLهای legacy `/services/` و `/services/{slug}.html` به HTMLهای ایستا در `public/services/` منتقل می‌شوند؛ generator آن‌ها `scripts/generate-legacy-redirects.mjs` است و fragmentهای فهرست‌شده در `BEHAVIOR-INVENTORY.md` در مقصد جدید حفظ/نگاشت می‌شوند.
 - URL ریشهٔ `/` اکنون با slash صحیح به `/fa/` می‌رود؛ sitemap فقط مسیرهای محتوایی اصلی را می‌گیرد، نه redirectهای ریشه/legacy.

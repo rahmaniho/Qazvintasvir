@@ -1,4 +1,33 @@
 ---
-const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
-return Astro.redirect(`${base}fa/`, 301);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const defaultPage = `${base}/fa/`;
 ---
+
+<!doctype html>
+<html lang="fa" dir="rtl" data-base={base}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={`0;url=${defaultPage}`} />
+    <meta name="robots" content="noindex,follow" />
+    <title>قزوین تصویر | انتقال به صفحهٔ اصلی</title>
+    <script is:inline>
+      (() => {
+        const pageByLegacyHash = {
+          about: 'about', services: 'services', fleet: 'fleet', brands: 'brands',
+          'why-us': 'why-us', clients: 'clients', trust: 'trust', resume: 'resume',
+          legal: 'legal', contact: 'contact',
+        };
+        const base = document.documentElement.dataset.base || '';
+        let oldHash = '';
+        try { oldHash = decodeURIComponent(location.hash.slice(1)); } catch { oldHash = location.hash.slice(1); }
+        const page = pageByLegacyHash[oldHash];
+        const destination = page ? `${base}/fa/${page}/` : `${base}/fa/`;
+        location.replace(`${destination}${location.search}`);
+      })();
+    </script>
+  </head>
+  <body>
+    <p><a href={defaultPage}>ادامه به صفحهٔ اصلی فارسی قزوین تصویر</a></p>
+  </body>
+</html>
