@@ -6,10 +6,10 @@ description: "Organized urban passenger transport for staff, managers and guests
 meta: "Qazvin Tasvir urban and VIP transport: planned passenger services for meetings, industrial visits, organizational guests and small groups."
 summary: "Passenger transport arranged around your schedule, route and group size."
 highlight: "VIP Services"
-image: "/Qazvintasvir/assets/img/sections/fleet-van.jpg"
-image_alt: "Passenger van prepared for urban and VIP transportation"
-story_image: "/Qazvintasvir/assets/img/fleet-specs/vip-seats.jpg"
-story_alt: "Comfortable passenger seating in a VIP transport vehicle"
+image: "/Qazvintasvir/assets/img/fleet-specs/urban-vip-city-van.jpg"
+image_alt: "Passenger van for urban and corporate transportation in Qazvin"
+story_image: "/Qazvintasvir/assets/img/fleet-specs/urban-vip-interior.jpg"
+story_alt: "Comfortable, well-appointed interior of a VIP passenger van"
 order: 5
 points:
   - "Urban transport services"

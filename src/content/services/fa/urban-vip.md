@@ -6,10 +6,10 @@ description: "برای جابه‌جایی مدیران، مهمانان و گر
 meta: "خدمات حمل‌ونقل درون‌شهری و سرویس‌های VIP قزوین تصویر؛ جابه‌جایی مدیران، مهمانان و گروه‌های سازمانی."
 summary: "جابه‌جایی سازمانی و VIP با برنامه‌ریزی دقیق، خودروی مناسب و پشتیبانی هماهنگ."
 highlight: "سرویس‌های VIP"
-image: "/Qazvintasvir/assets/img/fleet-specs/vip-catering.jpg"
-image_alt: "فضای داخلی سرویس VIP برای جابه‌جایی سازمانی"
-story_image: "/Qazvintasvir/assets/images/van-fleet.jpg"
-story_alt: "ون مسافربری برای حمل‌ونقل درون‌شهری و سازمانی"
+image: "/Qazvintasvir/assets/img/fleet-specs/urban-vip-city-van.jpg"
+image_alt: "ون مسافربری سفید برای حمل‌ونقل درون‌شهری و سازمانی در قزوین"
+story_image: "/Qazvintasvir/assets/img/fleet-specs/urban-vip-interior.jpg"
+story_alt: "فضای داخلی راحت و مرتب ون VIP برای سفرهای سازمانی"
 order: 5
 points:
   - "سرویس‌های درون‌شهری"
