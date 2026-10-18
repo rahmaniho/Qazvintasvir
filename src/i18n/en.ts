@@ -33,7 +33,7 @@ export default {
     services: "Services",
     contact: "Contact",
     social: "Follow us",
-    address: "Niayesh Commercial Complex, 2nd floor, Unit 216, Ayatollah Khamenei Blvd, Qazvin, Iran",
+    address: "Qazvin Tasvir Company, 2nd floor, Unit 218, Niayesh Commercial Complex, next to Pasteur Hospital, Qazvin, Iran",
     phone: "+98 912 281 5189 — +98 935 281 5189",
     copyright: "© {year} Qazvin Tasvir — All rights reserved.",
     madeWith: "Designed & built"

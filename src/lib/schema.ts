@@ -55,10 +55,11 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
           { "@type": "Person", name: "Asghar Taghilou", jobTitle: "Chairman of the Board" },
         ],
     telephone: ["+989122815189", "+989352815189"],
+    // The office street is company-confirmed; legacy postal code/coordinates remain unverified pending updated details.
     address: isFa
       ? {
           "@type": "PostalAddress",
-          streetAddress: "بلوار آیت‌الله خامنه‌ای، مجتمع تجاری نیایش، طبقه ۲، واحد ۲۱۶",
+          streetAddress: "جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقه ۲، واحد ۲۱۸",
           addressLocality: "قزوین",
           addressRegion: "استان قزوین",
           postalCode: "3413691589",
@@ -66,7 +67,7 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
         }
       : {
           "@type": "PostalAddress",
-          streetAddress: "Ayatollah Khamenei Boulevard, Niayesh Commercial Complex, 2nd floor, Unit 216",
+          streetAddress: "Next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit 218",
           addressLocality: "Qazvin",
           addressRegion: "Qazvin Province",
           postalCode: "3413691589",
