@@ -19,11 +19,6 @@ const brands = [
     <header class="section-header reveal">
       <span class="section-label section-label--onDark">{fa ? 'ناوگان حمل‌ونقل' : 'Transport fleet'}</span>
       <h2 class="section-title" id="brands-title">{fa ? 'برندهای به‌کاررفته در ناوگان' : 'Vehicle brands in our fleet'}</h2>
-      <p class="section-desc">
-        {fa
-          ? 'نشانِ سازندگان خودروهایی را ببینید که در ناوگان حمل‌ونقل قزوین تصویر حضور دارند.'
-          : 'Explore the logos of manufacturers represented in Qazvin Tasvir’s transport fleet.'}
-      </p>
     </header>
     <ul class="brand-partners__grid" aria-label={fa ? 'نشان برندهای خودرو' : 'Vehicle brand logos'}>
       {brands.map((brand) => (

@@ -212,6 +212,35 @@ test('service detail pages render source notes, related services and localized C
   }
 });
 
+test('homepages place an accessible bilingual client-logo ticker immediately after the hero', () => {
+  const assets = [
+    'yataqan-bosh.png', 'sahar.png', 'agt.png', 'asanpack.png', 'henkel.png', 'unilever.png',
+    'bat.png', 'goldiran.png', 'lg.png', 'alborz-cable.png', 'alkaplastik.png', 'nestle.png',
+  ];
+  for (const lang of ['fa', 'en']) {
+    const html = read(route(lang));
+    const heroIndex = html.indexOf('id="hero"');
+    const tickerIndex = html.indexOf('class="client-marquee"');
+    const directoryIndex = html.indexOf('id="home-directory-title"');
+    assert.ok(heroIndex >= 0 && heroIndex < tickerIndex && tickerIndex < directoryIndex, `client ticker should sit between the hero and directory on ${lang}/`);
+    assert.match(html, lang === 'fa' ? /برندهایی که به ما اعتماد کرده‌اند/ : /Brands that trust Qazvin Tasvir/);
+    assert.match(html, /aria-label="(?:نوار لوگوهای مشتریان|Client brand logo ticker)"/);
+    assert.match(html, /class="client-marquee__viewport"[^>]*tabindex="0"/, 'the logo viewport should be keyboard-scrollable');
+    for (const asset of assets) {
+      const url = `/Qazvintasvir/assets/images/clients/${asset}`;
+      assert.equal(html.split(url).length - 1, 2, `${asset} should be included in both ticker cycles on ${lang}/`);
+      assert.ok(existsSync(resolve(root, 'public/assets/images/clients', asset)), `missing local client logo ${asset}`);
+    }
+  }
+  const faBrands = read(route('fa', 'brands'));
+  assert.doesNotMatch(faBrands, /نشان‌های گرافیکی سازندگان خودروهای به‌کاررفته در ناوگان قزوین تصویر را ببینید/);
+
+  const css = readFileSync(resolve(root, 'src/styles/components.css'), 'utf8');
+  assert.match(css, /\.client-marquee__panel[^{]*\{[^}]*backdrop-filter:\s*blur/);
+  assert.match(css, /@keyframes client-marquee-scroll/);
+  assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.client-marquee__track\s*\{\s*animation:\s*none/);
+});
+
 test('homepages act as concise directories while full source sections live on dedicated pages', () => {
   const faHome = read(route('fa'));
   const enHome = read(route('en'));

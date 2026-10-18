@@ -1,6 +1,7 @@
 ---
 import HomeLayout from '../../layouts/HomeLayout.astro';
 import Hero from '../../components/home/Hero.astro';
+import ClientLogoMarquee from '../../components/home/ClientLogoMarquee.astro';
 import HomeDirectory from '../../components/home/HomeDirectory.astro';
 import { organizationSchema, itemListSchema } from '../../lib/schema';
 
@@ -43,5 +44,6 @@ const servicesList = itemListSchema("خدمات تخصصی شرکت قزوین �
   </Fragment>
 
   <Hero lang={lang} />
+  <ClientLogoMarquee lang={lang} />
   <HomeDirectory lang={lang} />
 </HomeLayout>
