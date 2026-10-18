@@ -76,6 +76,19 @@ test('urban and VIP service pages use the generated local transport imagery', ()
   }
 });
 
+test('fleet pages show the Hyundai minibus exterior and branded interior', () => {
+  const exteriorUrl = '/Qazvintasvir/assets/images/hyundai-minibus-exterior.jpg';
+  const interiorUrl = '/Qazvintasvir/assets/images/hyundai-minibus-interior.jpg';
+  for (const lang of ['fa', 'en']) {
+    const html = read(route(lang, 'fleet'));
+    assert.ok(html.includes(exteriorUrl), `missing Hyundai minibus exterior on ${lang} fleet page`);
+    assert.ok(html.includes(interiorUrl), `missing branded Hyundai minibus interior on ${lang} fleet page`);
+    assert.match(html, lang === 'fa' ? /مینی‌بوس هیوندای/ : /Hyundai Minibus/);
+  }
+  assert.ok(existsSync(resolve(dist, 'assets/images/hyundai-minibus-exterior.jpg')));
+  assert.ok(existsSync(resolve(dist, 'assets/images/hyundai-minibus-interior.jpg')));
+});
+
 test('service detail pages render source notes, related services and localized CTAs', () => {
   for (const lang of ['fa', 'en']) {
     for (const slug of serviceSlugs) {
