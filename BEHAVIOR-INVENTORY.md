@@ -1,6 +1,6 @@
 # BEHAVIOR-INVENTORY.md
 
-> **منبع بررسی:** snapshot آرشیوشدهٔ `rahmaniho/Qazvi_tasvir`, `main`, commit `9a3cb79` (۱۸ اکتبر ۲۰۲۶) در `_legacy/source-snapshot/`; فایل‌های JS شامل `assets/js/main.js` (811 خط)، `assets/js/navigation.js` (582 خط) و `assets/js/service-pages.js` (47 خط). بازسازی در مخزن فعال `rahmaniho/Qazvintasvir`, branch `arena/ca3732d7-qazvintasvir` انجام می‌شود.
+> **منبع بررسی:** snapshot آرشیوشدهٔ `rahmaniho/Qazvi_tasvir`, `main`, commit `9a3cb79` (۱۸ اکتبر ۲۰۲۶) در `_legacy/source-snapshot/`; فایل‌های JS شامل `assets/js/main.js` (811 خط)، `assets/js/navigation.js` (582 خط) و `assets/js/service-pages.js` (47 خط). بازسازی در مخزن فعال `rahmaniho/Qazvintasvir`, branch `arena/5931c2bd-qazvintasvir` ادامه می‌یابد.
 
 ## رفتارهای `main.js`
 
@@ -53,10 +53,12 @@
 - فایل‌های nav سه‌گانه و ماژول CSS قدیمی هنوز در snapshot منبع حاضرند؛ کد sidebar در JS به این فایل‌ها وابستگی دارد. شواهد منبع با توصیف کاربر («ناوبری حذف شده») یکسان نیست.
 - `main.js`/`navigation.js` کد حذف‌شده/بایگانی‌شده در commitهای قبلی دارند؛ گزارش اینجا فقط رفتارهای موجود در working tree فعلی commit `9a3cb79` را ثبت می‌کند.
 
-## نکات تصمیم‌گیری پیش از بازسازی
+## تصمیم‌ها و موارد باز در مهاجرت
 
-1. تأیید کنید repository هدف `Qazvi_tasvir` است یا checkout `Qazvintasvir`؛ هر دو URL/remote جدا دارند.
-2. تأیید کنید ناوبری source فعلی (هدر افقی، dropdown و drawer) و ابزارهای sidebar (search, profile, messages/collapse) وضعیت واقعی production هستند یا سایت باید به نسخهٔ پیشین برگردد.
-3. تم فعلی سه حالته است (light/dark/ocean)؛ معماری خواسته‌شده فقط dark را تصریح می‌کند. آیا ocean هم باید حفظ شود؟
-4. تأیید کنید همهٔ anchorهای قدیمی و hashها—including hashهای غذا—باید به آدرس جدید منتقل شوند.
-5. شمارهٔ ۱۴۰۵ در source hardcoded است؛ سال باید خودکار شود یا همین مقدار متنی بماند؟
+1. **مخزن مقصد مشخص است:** بازنویسی در checkout فعال `rahmaniho/Qazvintasvir` و شاخهٔ Arena آن انجام می‌شود؛ `rahmaniho/Qazvi_tasvir` فقط منبع خواندنی و snapshot آن در `_legacy/source-snapshot/` است.
+2. **ناوبری:** Header، زیرمنوی خدمات و mobile drawer در سایت جدید پیاده‌سازی شده‌اند. با این حال، رفتارهای sidebar شامل search، profile/messages و collapse در source دیده می‌شوند و هنوز دربارهٔ ضرورت انتقال یا حذف آن‌ها تصمیم نهایی ثبت نشده است؛ پیش از کنارگذاشتن هر رفتار احتمالی، باید بررسی/تأیید شود.
+3. **تم‌ها:** انتخاب سه‌حالتهٔ light/dark/ocean، ذخیرهٔ `qt-theme` و کنترل دسترس‌پذیر Header در بازنویسی حفظ شده است.
+4. **URL و hashهای legacy:** redirectهای ایستای مسیرهای قدیمی ساخته شده‌اند؛ hashهای `fleet-specs` و مقصدهای غذای پرسنل به URLهای جدید نگاشت شده‌اند. smoke test این redirectها و hashها را بررسی می‌کند.
+5. **سال:** نمایش سال در Footer به‌صورت پویا و locale-aware است؛ برای صفحهٔ خدمات نیز سال ثابت source به رفتار پویا تبدیل شده است.
+6. **فرم تماس عمومی:** validation و متن/قالب پیام WhatsApp باید همچنان با رفتار دقیق source تطبیق نهایی شود؛ فرم غذای پرسنل، جداگانه و با تمام فیلدهای درخواست قرارداد منتقل شده است.
+7. **ادامهٔ تطبیق:** انتقال کامل محتوا، metadata و schema هشت خدمت و ترجمهٔ کامل انگلیسی صفحهٔ غذای پرسنل هنوز باز است؛ مواردی که با source اختلاف دارند باید در همین inventory ثبت شوند.

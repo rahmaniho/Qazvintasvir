@@ -4,8 +4,7 @@ interface Props {
 }
 const { lang } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-const year = new Date().toLocaleDateString(lang === 'fa' ? 'fa-IR' : 'en-US', { calendar: lang === 'fa' ? 'persian' as any : 'gregory' } as any).slice(0,4) || new Date().getFullYear().toString();
-const yearDisplay = lang === 'fa' ? '۱۴۰۵' : new Date().getFullYear().toString();
+const yearDisplay = new Intl.DateTimeFormat(lang === 'fa' ? 'fa-IR-u-ca-persian' : 'en-US', { year: 'numeric' }).format(new Date());
 
 const servicesFa = [
   ["واردات و صادرات کالاهای مجاز", `${baseUrl}/fa/services/import-export/`],
@@ -84,10 +83,3 @@ const services = lang === 'fa' ? servicesFa : servicesEn;
     </div>
   </div>
 </footer>
-
-<script>
-  // update year to Persian if needed (already rendered); ensure dynamic
-  document.querySelectorAll('[data-year]').forEach(el => {
-    // keep static 1405 for fa, current year for en already done server-side
-  });
-</script>

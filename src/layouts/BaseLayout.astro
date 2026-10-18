@@ -19,6 +19,7 @@ interface Props {
   noindex?: boolean;
   schema?: any;
   hreflang?: Array<{ lang: string; href: string }>;
+  bodyClass?: string;
 }
 
 const {
@@ -28,6 +29,7 @@ const {
   image: propImage,
   canonical: propCanonical,
   noindex,
+  bodyClass,
   schema,
   hreflang
 } = Astro.props;
@@ -71,7 +73,7 @@ const currentPath = url.pathname;
 ---
 
 <!doctype html>
-<html lang={lang} dir={dir}>
+<html lang={lang} dir={dir} data-base={baseClean}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -97,11 +99,12 @@ const currentPath = url.pathname;
   <link rel="icon" type="image/png" sizes="32x32" href={`${baseClean}/assets/images/brand/qazvin-tasvir-icon-32.png`} />
   <link rel="apple-touch-icon" sizes="180x180" href={`${baseClean}/assets/images/brand/qazvin-tasvir-apple-touch.png`} />
 
-  <link rel="preload" href={`${baseClean}/fonts/vazirmatn-arabic-wght-normal.woff2`} as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href={`${baseClean}/assets/fonts/vazirmatn-arabic-wght-normal.woff2`} as="font" type="font/woff2" crossorigin />
   <link rel="preload" href={`${baseClean}/assets/img/sections/hero-port.webp`} as="image" type="image/webp" fetchpriority="high" />
 
   <script is:inline>
     (function(){
+      document.documentElement.classList.add('js');
       try {
         var t = localStorage.getItem('qt-theme');
         if(t === 'dark' || t === 'ocean') document.documentElement.setAttribute('data-theme', t);
@@ -111,7 +114,7 @@ const currentPath = url.pathname;
   {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
   <slot name="head" />
 </head>
-<body>
+<body class={bodyClass}>
   <a class="skip-link" href="#main-content">{t.nav.skipToContent}</a>
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
   <Header lang={lang} currentPath={currentPath} />
@@ -175,15 +178,55 @@ const currentPath = url.pathname;
       });
     });
     // Theme switch (injected if exists)
+    const savedTheme = (() => {
+      try { return localStorage.getItem('qt-theme') || 'light'; } catch { return 'light'; }
+    })();
+    const updateThemeButtons = (theme) => {
+      document.querySelectorAll('.theme-option').forEach((button) => {
+        button.setAttribute('aria-pressed', button.getAttribute('data-theme-value') === theme ? 'true' : 'false');
+      });
+    };
+    updateThemeButtons(savedTheme);
     document.querySelectorAll('.theme-option').forEach(btn => {
       btn.addEventListener('click', () => {
         const theme = btn.getAttribute('data-theme-value');
-        if(theme === 'light') document.documentElement.removeAttribute('data-theme');
-        else document.documentElement.setAttribute('data-theme', theme);
-        try{ localStorage.setItem('qt-theme', theme); }catch(e){}
-        document.querySelectorAll('.theme-option').forEach(b=> b.setAttribute('aria-pressed', b.getAttribute('data-theme-value')===theme ? 'true':'false'));
+        if (theme === 'light') document.documentElement.removeAttribute('data-theme');
+        else if (theme === 'dark' || theme === 'ocean') document.documentElement.setAttribute('data-theme', theme);
+        try { localStorage.setItem('qt-theme', theme || 'light'); } catch {}
+        updateThemeButtons(theme || 'light');
+        const parent = btn.closest('details.theme-switch');
+        if (parent) parent.open = false;
       });
     });
+    document.querySelectorAll('details.theme-switch').forEach((details) => {
+      details.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        details.open = false;
+        details.querySelector('summary')?.focus();
+      });
+    });
+    document.addEventListener('click', (event) => {
+      if (!(event.target instanceof Node)) return;
+      document.querySelectorAll('details.theme-switch[open]').forEach((details) => {
+        if (!details.contains(event.target)) details.open = false;
+      });
+    });
+    // Preserve legacy home-page hash links by routing the old service anchors to their dedicated pages.
+    const legacyHashRoutes = {
+      'fleet-specs': ['urban-vip', 'fleet-specs'],
+      'personnel-food': ['personnel-food', 'personnel-food'],
+      'food-menu': ['personnel-food', 'food-menu'],
+      'food-gallery': ['personnel-food', 'food-gallery'],
+      'food-request': ['personnel-food', 'food-request'],
+      'food-faq': ['personnel-food', 'food-faq'],
+    };
+    let currentHash = '';
+    try { currentHash = decodeURIComponent(window.location.hash.slice(1)); } catch {}
+    const legacyRoute = legacyHashRoutes[currentHash];
+    if (legacyRoute && !document.getElementById(currentHash)) {
+      const basePath = document.documentElement.dataset.base || '';
+      window.location.replace(`${basePath}/fa/services/${legacyRoute[0]}/#${legacyRoute[1]}`);
+    }
   </script>
   <slot name="scripts" />
 </body>

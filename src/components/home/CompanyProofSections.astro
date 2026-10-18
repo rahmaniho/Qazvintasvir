@@ -1,0 +1,185 @@
+---
+interface Props { lang: 'fa' | 'en'; }
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fa = lang === 'fa';
+const fields: Array<[string, string[]]> = fa
+  ? [
+      ['حمل و نقل', ['حمل و نقل مسافربری درون‌شهری', 'باربری', 'حمل بار اینترنتی', 'سرویس مدارس و دانش‌آموزان', 'اتوبوس و مینی‌بوس‌رانی', 'تاکسی اینترنتی', 'پیک موتوری', 'پخش غذا']],
+      ['امور مالی و حسابداری', ['انجام امور حسابداری', 'مشاوره مالیاتی', 'تنظیم اظهارنامه‌های مالیاتی', 'حسابرسی', 'طراحی سیستم‌های مالی', 'آموزش نرم‌افزارهای حسابداری', 'ارزیابی مالی پروژه‌ها']],
+      ['خدمات اداری و رفاهی', ['خدمات پرسنلی', 'محاسبه حقوق و دستمزد', 'کارگزینی', 'رستوران‌داری', 'تالار پذیرایی', 'آشپزی', 'تأمین غذای ادارات و مدارس']],
+      ['بازرگانی و بازاریابی', ['واردات و صادرات کالاهای مجاز', 'ماشین‌آلات راهسازی', 'تجهیزات الکترونیک', 'بازاریابی غیرهرمی', 'گشایش اعتبارات اسنادی (LC)', 'شرکت در مناقصات و مزایده‌ها', 'اخذ نمایندگی‌ها', 'مشارکت در تولید', 'تأمین نیروی انسانی متخصص']],
+    ]
+  : [
+      ['Transportation', ['Urban passenger transportation', 'Freight transport', 'Online freight transport', 'School and student transport services', 'Bus and minibus operation', 'Online taxi (ride-hailing)', 'Motorcycle courier services', 'Food delivery']],
+      ['Finance & Accounting', ['Accounting services', 'Tax advisory', 'Preparation of tax returns', 'Auditing', 'Design of financial systems', 'Accounting software training', 'Financial evaluation of projects']],
+      ['Administrative & Welfare Services', ['Personnel services', 'Payroll calculation', 'Employment agency services', 'Restaurant operation', 'Reception hall services', 'Cooking services', 'Food supply for government offices and schools']],
+      ['Trading & Marketing', ['Import and export of permitted goods', 'Road construction machinery', 'Electronic equipment', 'Non-pyramid marketing', 'Opening letters of credit (LC)', 'Participation in tenders and auctions', 'Obtaining representation agencies', 'Participation in production', 'Supply of specialized human resources']],
+    ];
+const vehicleHistory = fa
+  ? [
+      ['نستله ایران', 'گلدایران', 'ال‌جی', 'یونیلیور', 'هنکل', 'BAT', 'آلکاپلاستیک', 'کابل البرز', 'شیر سحر', 'AGT', 'آسان پک', 'یاتاقان بوش ایران'],
+      ['شرکت با مسئولیت محدود', 'QAZVIN TASVIR CO. LTD', '۲۷۴۹', '۱۰۸۶۱۴۱۵۲۱۵', '۴۱۱۳۸۶۸۳۷۶۶۵', '۱۳۷۴/۰۲/۱۴', 'سعید امین‌زاده', 'اصغر تقی‌لو', 'قزوین، اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴', '۳۴۱۳۶۹۱۵۸۹', '۰۹۱۲ ۲۸۱ ۵۱۸۹', 'فعال'],
+    ]
+  : [
+      ['Nestlé Iran', 'Goldiran', 'LG', 'Unilever', 'Henkel', 'BAT', 'Alkaplastik', 'Alborz Cable', 'Shir Sahar', 'AGT', 'Asan Pack', 'Yataqan Bosh Iran'],
+      ['Qazvin Tasvir Company (limited liability)', 'QAZVIN TASVIR CO. LTD', '2749', '10861415215', '411386837665', '1374/02/14', 'Saeed Aminzadeh', 'Asghar Taghilou', 'Qazvin, beginning of Ferdowsi Street, Abadgaran Commercial Complex, sixth floor, room 604', '3413691589', '0912 281 5189', 'Active'],
+    ];
+const regLabels = fa
+  ? ['نام شرکت', 'نام لاتین', 'شماره ثبت', 'شناسه ملی', 'کد اقتصادی', 'تاریخ تأسیس', 'مدیرعامل', 'رئیس هیئت مدیره', 'نشانی', 'کد پستی', 'تلفن', 'وضعیت']
+  : ['Company name', 'Latin name', 'Registration number', 'National ID', 'Economic code', 'Founding date', 'CEO', 'Chairman of the Board', 'Address', 'Postal code', 'Phone', 'Status'];
+---
+
+<section class="section registry-section" id="trust" aria-labelledby="trust-title">
+  <div class="container">
+    <header class="section-header reveal">
+      <span class="section-label">{fa ? 'شفافیت و هویت حقوقی' : 'Transparency and legal identity'}</span>
+      <h2 class="section-title" id="trust-title">{fa ? 'اعتبار ثبت‌شده و قابل استعلام' : 'Registered credentials open to verification'}</h2>
+      <p class="section-desc">
+        {fa
+          ? 'کلیه اطلاعات ثبتی شرکت قزوین تصویر در مراجع رسمی و پایگاه روزنامه رسمی و رسمیو قابل استعلام است.'
+          : 'All registration details of Qazvin Tasvir Company can be verified with the official authorities and on the Official Gazette and Rasmiyo databases.'}
+      </p>
+    </header>
+    <dl class="registry-facts reveal">
+      <div><dt>{fa ? 'شناسه ملی' : 'National ID'}</dt><dd>{fa ? '۱۰۸۶۱۴۱۵۲۱۵' : '10861415215'}</dd></div>
+      <div><dt>{fa ? 'شماره ثبت' : 'Registration number'}</dt><dd>{fa ? '۲۷۴۹' : '2749'}</dd></div>
+      <div><dt>{fa ? 'کد اقتصادی' : 'Economic code'}</dt><dd>{fa ? '۴۱۱۳۸۶۸۳۷۶۶۵' : '411386837665'}</dd></div>
+      <div><dt>{fa ? 'تاریخ تأسیس' : 'Founding date'}</dt><dd>{fa ? '۱۳۷۴/۰۲/۱۴' : '1374/02/14'}</dd></div>
+    </dl>
+    <ul class="registry-claims reveal">
+      <li>{fa ? 'عضو رسمی اتاق بازرگانی، صنایع و معادن' : 'Official member of the Chamber of Commerce, Industries and Mines'}</li>
+      <li>{fa ? 'دارای پروانه معتبر ترابری و حمل‌ونقل سازمانی' : 'Holder of a valid corporate transport and freight licence'}</li>
+      <li>{fa ? 'شرکت با مسئولیت محدود فعال (مدیریت: سعید امین‌زاده)' : 'Active limited liability company (management: Saeed Aminzadeh)'}</li>
+    </ul>
+    <p class="registry-partners reveal">
+      <strong>{fa ? 'سابقه همکاری با مجموعه‌های پیشرو:' : 'Track record with leading organisations:'}</strong>
+      {' '}{fa ? 'نستله (Nestlé) • ال‌جی (LG) • گلدایران • یونیلیور • آسان پک و ده‌ها کارخانه صنعتی کشور' : 'Nestlé • LG • Goldiran • Unilever • Asan Pack and dozens of industrial factories across the country'}
+    </p>
+  </div>
+</section>
+
+<section class="section section--alt resume-section" id="resume" aria-labelledby="resume-title">
+  <div class="container">
+    <header class="section-header reveal">
+      <span class="section-label">{fa ? 'رزومه رسمی شرکت' : 'Official Company Resume'}</span>
+      <h2 class="section-title" id="resume-title">{fa ? 'رزومه شرکت قزوین تصویر' : 'Qazvin Tasvir Company Resume'}</h2>
+      <p class="section-desc">
+        {fa
+          ? 'تصویری کامل از هویت، توانمندی‌ها و سوابق شرکت در یک صفحه؛ بر اساس رزومه رسمی «حمل و نقل درون شهری» و اطلاعات ثبتی شرکت — قابل دریافت در قالب PDF.'
+          : 'A complete one-page overview of the company’s identity, capabilities and track record; based on the official “Urban Transportation” resume and the company’s registered information — also available as a downloadable PDF.'}
+      </p>
+    </header>
+    <p class="resume-intro">
+      {fa
+        ? 'شرکت قزوین تصویر (با مسئولیت محدود) با بیش از ۳۱ سال سابقه در زمینه بازرگانی، ترابری و خدمات پشتیبانی، به‌عنوان شریک مورد اعتماد صنایع بزرگ استان قزوین شناخته می‌شود. زمینه‌های فعالیت ثبت‌شده شامل حمل‌ونقل، امور مالی و حسابداری، خدمات اداری و رفاهی، بازرگانی و بازاریابی است.'
+        : 'Qazvin Tasvir Company (Ltd — est. 1995) with National ID 10861415215, managed by Saeed Aminzadeh, provides trading, transport and catering services for industries in Qazvin Province.'}
+    </p>
+    {!fa && (
+      <div class="resume-existing-about">
+        <h3>About Qazvin Tasvir</h3>
+        <p>Qazvin Tasvir Company (Ltd — est. 1995) with National ID 10861415215, managed by Saeed Aminzadeh, provides trading, transport and catering services for industries in Qazvin Province. For full Persian details, please visit the Persian version or contact us directly.</p>
+        <div>
+          <a href={`${base}/en/about/`}>More about us</a>
+          <a href={`${base}/fa/`}>View Persian site</a>
+        </div>
+      </div>
+    )}
+    <dl class="resume-metrics">
+      <div><dt>{fa ? 'سال سابقه فعالیت (از ۱۳۷۴)' : 'Years of operation (since 1995)'}</dt><dd>{fa ? '+۳۱' : '+31'}</dd></div>
+      <div><dt>{fa ? 'دستگاه خودرو واگذارشده در قراردادها' : 'Vehicles leased under contracts'}</dt><dd>{fa ? '۱۰۱' : '101'}</dd></div>
+      <div><dt>{fa ? 'قرارداد همکاری سازمانی' : 'Organizational cooperation contracts'}</dt><dd>{fa ? '۱۱' : '11'}</dd></div>
+      <div><dt>{fa ? 'حوزه فعالیت تخصصی' : 'Specialized fields of activity'}</dt><dd>{fa ? '۳' : '3'}</dd></div>
+    </dl>
+
+    <div class="resume-details">
+      <section class="resume-card" aria-labelledby="company-identity-title">
+        <h3 id="company-identity-title">{fa ? 'شناسنامه شرکت' : 'Company Registration Details'}</h3>
+        <dl class="resume-data">
+          {regLabels.map((label, index) => (
+            <div><dt>{label}</dt><dd>{vehicleHistory[1][index]}</dd></div>
+          ))}
+        </dl>
+      </section>
+      <section class="resume-card">
+        <h3>{fa ? 'حوزه‌های فعالیت' : 'Fields of Activity'}</h3>
+        <div class="resume-service-list">
+          <article>
+            <h4>{fa ? 'بازرگانی، واردات و صادرات' : 'Trading, Import & Export'}</h4>
+            <p>{fa ? 'واردات ماشین‌آلات و مواد اولیه، صادرات کالاهای مجاز، ترخیص گمرکی و مشاوره بازرگانی.' : 'Import of machinery and raw materials, export of permitted goods, customs clearance and trading consultancy.'}</p>
+            <a href={`${base}/${lang}/services/import-export/`}>{fa ? 'مشاهده صفحه خدمت' : 'View service page'}</a>
+          </article>
+          <article>
+            <h4>{fa ? 'ترابری و سرویس ایاب‌وذهاب پرسنل' : 'Transport & Staff Commute Services'}</h4>
+            <p>{fa ? 'ناوگان ملکی اتوبوس، مینی‌بوس و ون با بیمه کامل سرنشین؛ حمل‌ونقل درون‌شهری و سرویس‌های VIP.' : 'Company-owned fleet of buses, minibuses and vans with full passenger insurance; urban transportation and VIP services.'}</p>
+            <a href={`${base}/${lang}/#fleet`}>{fa ? 'مشاهده ناوگان' : 'View fleet'}</a>
+          </article>
+          <article>
+            <h4>{fa ? 'تأمین غذای پرسنل (کیترینگ سازمانی)' : 'Staff Catering (Corporate Catering)'}</h4>
+            <p>{fa ? 'تأمین صبحانه، ناهار، شام و میان‌وعده پرسنل کارخانه‌ها با استانداردهای بهداشتی.' : 'Breakfast, lunch, dinner and snack provision for factory and company personnel under hygienic standards.'}</p>
+            <a href={`${base}/${lang}/services/personnel-food/`}>{fa ? 'مشاهده صفحه خدمت' : 'View service page'}</a>
+          </article>
+        </div>
+      </section>
+      <section class="resume-card">
+        <h3>{fa ? 'ناوگان و تجهیزات' : 'Fleet & Equipment'}</h3>
+        <p>{fa ? 'مینی‌بوس‌های مسافربری ۱۷+۱ نفره با موتور توربودیزل D4AL، گیربکس M3S5 و تجهیزات کامل رفاهی و ایمنی؛ شامل صندلی‌های VIP، سبد مطبوعاتی و سامانه پیامک.' : '17+1-seater passenger minibuses with D4AL turbo-diesel engines, M3S5 gearboxes and complete comfort and safety equipment; including VIP seats, press kits and an SMS notification system.'}</p>
+        <a href={`${base}/${lang}/services/urban-vip/`}>{fa ? 'مشاهده صفحه سرویس VIP' : 'Urban transport and VIP service'}</a>
+      </section>
+      <section class="resume-card">
+        <h3>{fa ? 'سوابق همکاری قراردادی' : 'Contract Collaboration History'}</h3>
+        <ul class="resume-client-list">{vehicleHistory[0].map((client) => <li>{client}</li>)}</ul>
+        <a href={`${base}/${lang}/#clients`}>{fa ? 'جدول کامل سوابق همکاری و تعداد دستگاه‌ها ←' : 'Full cooperation track record and vehicle counts →'}</a>
+      </section>
+    </div>
+    <div class="resume-actions">
+      <p>{fa ? 'فایل رزومه رسمی شرکت (PDF) شامل مشخصات فنی کامل ناوگان، تجهیزات و سوابق همکاری را دریافت کنید.' : 'Download the official company resume (PDF) with complete fleet technical specifications, equipment details and the cooperation track record.'}</p>
+      <a href={`${base}/assets/docs/qazvin-tasvir-company-resume.pdf`} class="btn btn--primary" target="_blank" rel="noreferrer">{fa ? 'دریافت رزومه شرکت (PDF)' : 'Download Company Resume (PDF)'}</a>
+      {fa && <a href={`${base}/fa/about/`} class="btn btn--ghost">شناسنامه حقوقی</a>}
+    </div>
+  </div>
+</section>
+
+<section class="section legal-section" id="legal" aria-labelledby="legal-title">
+  <div class="container">
+    <header class="section-header reveal">
+      <span class="section-label">{fa ? 'مستندات رسمی و اسناد ثبتی' : 'Official Documents & Registry Records'}</span>
+      <h2 class="section-title" id="legal-title">{fa ? 'اعتبارنامه و شناسنامه حقوقی شرکت' : 'Company Legal Credentials & Registration Identity'}</h2>
+      <p class="section-desc">
+        {fa
+          ? 'اطلاعات حقوقی و ثبتی شرکت قزوین تصویر، عیناً استخراج‌شده از اسناد رسمی و آگهی‌های ثبتی — شامل شناسنامه شرکت، ترکیب مدیریت و سهامداران و زمینه‌های کامل فعالیت مجاز.'
+          : 'Legal and registration information of Qazvin Tasvir Company, extracted verbatim from official documents and registry notices — covering the company registration identity, the composition of management and shareholders, and the complete registered fields of activity.'}
+      </p>
+    </header>
+    <section class="resume-card legal-identity" aria-labelledby="legal-identity-title">
+      <h3 id="legal-identity-title">{fa ? 'شناسنامه شرکت' : 'Company Registration Details'}</h3>
+      <dl class="resume-data">
+        <div><dt>{fa ? 'نام شرکت' : 'Company name'}</dt><dd>{fa ? 'قزوین تصویر (با مسئولیت محدود)' : 'Qazvin Tasvir Company (limited liability)'}</dd></div>
+        <div><dt>{fa ? 'شماره ثبت' : 'Registration number'}</dt><dd>{fa ? '۲۷۴۹' : '2749'}</dd></div>
+        <div><dt>{fa ? 'شناسه ملی' : 'National ID'}</dt><dd>{fa ? '۱۰۸۶۱۴۱۵۲۱۵' : '10861415215'}</dd></div>
+        <div><dt>{fa ? 'سرمایه ثبتی' : 'Registered capital'}</dt><dd>{fa ? '۱۳,۰۰۰,۰۰۰ ریال' : '13,000,000 rials'}</dd></div>
+        <div><dt>{fa ? 'تاریخ ثبت' : 'Registration date'}</dt><dd>{fa ? '۱۴۰۵/۰۲/۰۷' : '1405/02/07'}</dd></div>
+        <div><dt>{fa ? 'مرکز اصلی' : 'Head office'}</dt><dd>{fa ? 'قزوین، اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴' : 'Qazvin, beginning of Ferdowsi Street, Abadgaran Commercial Complex, sixth floor, room 604'}</dd></div>
+      </dl>
+    </section>
+    <section class="resume-card legal-management">
+      <h3>{fa ? 'مدیریت و سهامداران' : 'Management & Shareholders'}</h3>
+      <ul>
+        <li><strong>{fa ? 'سعید امین‌زاده' : 'Saeed Aminzadeh'}</strong> — {fa ? 'مدیرعامل و عضو هیئت مدیره' : 'CEO and Board Member'}{fa && <span> — دارای ۴,۰۰۰,۰۰۰ سهم</span>}{!fa && <span> — Holds 4,000,000 shares</span>}</li>
+        <li><strong>{fa ? 'اصغر تقی‌لو' : 'Asghar Taghilou'}</strong> — {fa ? 'رئیس هیئت مدیره' : 'Chairman of the Board'}</li>
+      </ul>
+    </section>
+    <div class="legal-fields">
+      <header class="section-header">
+        <h3>{fa ? 'زمینه‌های فعالیت (موضوعات ثبت‌شده)' : 'Fields of Activity (Registered Subjects)'}</h3>
+        <p class="section-desc">{fa ? 'فهرست کامل موضوعات فعالیت شرکت طبق اسناد ثبتی؛ برای مشاهدهٔ جزئیات، روی هر عنوان کلیک کنید.' : 'The complete list of the company’s registered subjects of activity; click each heading to see the details.'}</p>
+      </header>
+      {fields.map(([title, items]) => (
+        <details class="legal-field">
+          <summary>{title}</summary>
+          <ul>{items.map((item) => <li>{item}</li>)}</ul>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
