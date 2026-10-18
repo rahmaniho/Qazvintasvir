@@ -646,8 +646,79 @@
     .card { padding: 18px; }
   }
 
+  /* Client logo ticker: the translucent panel keeps the marks legible while allowing the hero colors to show through. */
+  .client-marquee {
+    position: relative;
+    z-index: 2;
+    margin-block-start: -28px;
+    padding-block-end: 18px;
+  }
+  .client-marquee__panel {
+    display: grid;
+    grid-template-columns: minmax(190px, 0.28fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 22px;
+    overflow: hidden;
+    padding: 18px 20px;
+    border: 1px solid rgb(255 255 255 / 74%);
+    border-radius: 24px;
+    background: rgb(255 255 255 / 76%);
+    -webkit-backdrop-filter: blur(18px) saturate(155%);
+    backdrop-filter: blur(18px) saturate(155%);
+    box-shadow: 0 18px 44px rgb(10 37 64 / 12%), inset 0 1px 0 rgb(255 255 255 / 88%);
+  }
+  .client-marquee__intro { display: grid; justify-items: start; gap: 4px; min-inline-size: 0; }
+  .client-marquee__eyebrow { color: var(--amber-accent); font-size: 0.74rem; font-weight: 800; letter-spacing: 0.035em; }
+  .client-marquee__intro h2 { margin: 0; color: var(--navy-deep); font-size: clamp(0.96rem, 1.35vw, 1.12rem); line-height: 1.5; }
+  .client-marquee__link { display: inline-flex; align-items: center; gap: 5px; margin-block-start: 3px; color: var(--primary-navy); font-size: 0.8rem; font-weight: 750; text-decoration: none; }
+  .client-marquee__link:hover { color: var(--amber-accent); }
+  .client-marquee__link:focus-visible { outline: 2px solid var(--sky-blue); outline-offset: 3px; border-radius: 3px; }
+  .client-marquee__viewport { min-inline-size: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); }
+  .client-marquee__track { display: flex; inline-size: max-content; animation: client-marquee-scroll 44s linear infinite; }
+  .client-marquee__group { display: flex; flex: 0 0 auto; align-items: center; gap: 12px; margin: 0; padding: 0 6px; list-style: none; }
+  .client-marquee__logo-card {
+    display: grid;
+    flex: 0 0 126px;
+    inline-size: 126px;
+    block-size: 70px;
+    place-items: center;
+    padding: 9px 12px;
+    border: 1px solid rgb(255 255 255 / 88%);
+    border-radius: 15px;
+    background: rgb(255 255 255 / 67%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 92%), 0 5px 14px rgb(10 37 64 / 6%);
+  }
+  .client-marquee__logo-card img { display: block; inline-size: 100%; block-size: 100%; object-fit: contain; }
+  .client-marquee__logo-card--lg { border-color: rgb(255 255 255 / 16%); background: rgb(15 28 48 / 94%); box-shadow: inset 0 1px 0 rgb(255 255 255 / 12%), 0 5px 14px rgb(10 37 64 / 14%); }
+  .client-marquee__viewport:hover .client-marquee__track, .client-marquee__viewport:focus-within .client-marquee__track { animation-play-state: paused; }
+  [dir="rtl"] .client-marquee__viewport { -webkit-mask-image: linear-gradient(to left, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(to left, transparent, #000 4%, #000 96%, transparent); }
+  [dir="rtl"] .client-marquee__track { animation-name: client-marquee-scroll-rtl; }
+  @keyframes client-marquee-scroll { to { transform: translateX(-50%); } }
+  @keyframes client-marquee-scroll-rtl { to { transform: translateX(50%); } }
+  [data-theme="dark"] .client-marquee__panel { border-color: rgb(255 255 255 / 18%); background: rgb(10 21 38 / 78%); box-shadow: 0 18px 44px rgb(0 0 0 / 24%), inset 0 1px 0 rgb(255 255 255 / 9%); }
+  [data-theme="dark"] .client-marquee__intro h2 { color: #f7faff; }
+  [data-theme="dark"] .client-marquee__link { color: #c6defd; }
+  [data-theme="dark"] .client-marquee__logo-card { border-color: rgb(255 255 255 / 15%); background: rgb(255 255 255 / 90%); }
+  [data-theme="dark"] .client-marquee__logo-card--lg { background: rgb(15 28 48 / 96%); }
+  @media (max-width: 900px) {
+    .client-marquee__panel { grid-template-columns: minmax(160px, 0.32fr) minmax(0, 1fr); gap: 16px; padding: 16px; }
+    .client-marquee__logo-card { flex-basis: 112px; inline-size: 112px; }
+  }
+  @media (max-width: 640px) {
+    .client-marquee { margin-block-start: -20px; padding-block-end: 10px; }
+    .client-marquee__panel { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 16px 14px 12px; border-radius: 20px; }
+    .client-marquee__intro { grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 12px; }
+    .client-marquee__eyebrow, .client-marquee__intro h2 { grid-column: 1; }
+    .client-marquee__link { grid-column: 2; grid-row: 1 / span 2; white-space: nowrap; }
+    .client-marquee__viewport { margin-inline: -14px; }
+    .client-marquee__logo-card { flex-basis: 104px; inline-size: 104px; block-size: 64px; }
+    .client-marquee__group { gap: 9px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     .home-directory__card, .home-directory__arrow { transition: none; }
+    .client-marquee__track { animation: none; }
+    .client-marquee__viewport { overflow-x: auto; scrollbar-width: none; }
+    .client-marquee__viewport::-webkit-scrollbar { display: none; }
   }
 
 }

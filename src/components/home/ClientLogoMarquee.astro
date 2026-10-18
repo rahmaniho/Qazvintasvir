@@ -1,0 +1,53 @@
+---
+interface Props { lang: 'fa' | 'en'; }
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fa = lang === 'fa';
+const logos = [
+  { key: 'nestle', asset: 'nestle.png', fa: 'نستله', en: 'Nestlé' },
+  { key: 'lg', asset: 'lg.png', fa: 'ال‌جی', en: 'LG' },
+  { key: 'unilever', asset: 'unilever.png', fa: 'یونیلیور', en: 'Unilever' },
+  { key: 'henkel', asset: 'henkel.png', fa: 'هنکل', en: 'Henkel' },
+  { key: 'bat', asset: 'bat.png', fa: 'بی‌ای‌تی', en: 'BAT' },
+  { key: 'goldiran', asset: 'goldiran.png', fa: 'گلدایران', en: 'Goldiran' },
+  { key: 'agt', asset: 'agt.png', fa: 'AGT', en: 'AGT' },
+  { key: 'asanpack', asset: 'asanpack.png', fa: 'آسان‌پک', en: 'Asan Pack' },
+  { key: 'sahar', asset: 'sahar.png', fa: 'شیر سحر', en: 'Shir Sahar' },
+  { key: 'yataqan-bosh', asset: 'yataqan-bosh.png', fa: 'یاتاقان بوش ایران', en: 'Yataqan Bosh Iran' },
+  { key: 'alborz-cable', asset: 'alborz-cable.png', fa: 'کابل البرز', en: 'Alborz Cable' },
+  { key: 'alkaplastik', asset: 'alkaplastik.png', fa: 'آلکاپلاستیک', en: 'Alkaplastik' },
+];
+---
+
+<section class="client-marquee" dir={fa ? 'rtl' : 'ltr'} aria-labelledby="client-marquee-title">
+  <div class="container">
+    <div class="client-marquee__panel">
+      <header class="client-marquee__intro">
+        <span class="client-marquee__eyebrow">{fa ? 'همراهان تجاری ما' : 'Our business partners'}</span>
+        <h2 id="client-marquee-title">{fa ? 'برندهایی که به ما اعتماد کرده‌اند' : 'Brands that trust Qazvin Tasvir'}</h2>
+        <a class="client-marquee__link" href={`${base}/${lang}/clients/`}>
+          {fa ? 'مشاهدهٔ همه' : 'View all'} <span aria-hidden="true">↗</span>
+        </a>
+      </header>
+
+      <div class="client-marquee__viewport" role="region" tabindex="0" aria-label={fa ? 'نوار لوگوهای مشتریان' : 'Client brand logo ticker'}>
+        <div class="client-marquee__track">
+          <ul class="client-marquee__group">
+            {logos.map((logo) => (
+              <li class={`client-marquee__logo-card${logo.key === 'lg' ? ' client-marquee__logo-card--lg' : ''}`}>
+                <img src={`${base}/assets/images/clients/${logo.asset}`} alt={fa ? logo.fa : logo.en} width="132" height="56" loading="eager" decoding="async" />
+              </li>
+            ))}
+          </ul>
+          <ul class="client-marquee__group" aria-hidden="true">
+            {logos.map((logo) => (
+              <li class={`client-marquee__logo-card${logo.key === 'lg' ? ' client-marquee__logo-card--lg' : ''}`}>
+                <img src={`${base}/assets/images/clients/${logo.asset}`} alt="" width="132" height="56" loading="eager" decoding="async" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
