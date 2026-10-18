@@ -61,6 +61,21 @@ test('English service pages use translated visible copy and structured data', ()
   }
 });
 
+test('urban and VIP service pages use the generated local transport imagery', () => {
+  const cityImageUrl = '/Qazvintasvir/assets/img/fleet-specs/urban-vip-city-van.jpg';
+  const interiorImageUrl = '/Qazvintasvir/assets/img/fleet-specs/urban-vip-interior.jpg';
+  for (const lang of ['fa', 'en']) {
+    const index = read(route(lang, 'services'));
+    const detail = read(route(lang, 'services/urban-vip'));
+    assert.ok(index.includes(cityImageUrl), `/${lang}/services/ should display the generated city van image`);
+    assert.ok(detail.includes(cityImageUrl), `/${lang}/services/urban-vip/ should display the generated van image`);
+    assert.ok(detail.includes(interiorImageUrl), `/${lang}/services/urban-vip/ should display the generated VIP interior image`);
+  }
+  for (const asset of ['urban-vip-city-van.jpg', 'urban-vip-interior.jpg']) {
+    assert.ok(existsSync(resolve(dist, 'assets/img/fleet-specs', asset)), `missing generated local asset ${asset}`);
+  }
+});
+
 test('service detail pages render source notes, related services and localized CTAs', () => {
   for (const lang of ['fa', 'en']) {
     for (const slug of serviceSlugs) {
