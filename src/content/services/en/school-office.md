@@ -1,52 +1,69 @@
 ---
-title: "School, Office & Corporate Shuttles"
-kicker: "Corporate Shuttles"
-tag: "سرویس سازمانی"
-description: "Daily commute solutions for schools, offices and companies with regular scheduling."
-meta: "Daily commute solutions for schools, offices and companies with regular scheduling."
-summary: "Daily commute for schools, offices and companies."
-highlight: "مدارس، ادارات و شرکت‌ها"
-image: "/Qazvintasvir/assets/images/minibus-fleet.jpg"
-image_alt: "مینی‌بوس سرویس برای جابه‌جایی گروهی در محیط شهری"
-story_image: "/Qazvintasvir/assets/images/van-fleet.jpg"
-story_alt: "ون سرویس شهری برای جابه‌جایی گروه‌های کوچک"
+title: "School, Office and Company Shuttle Services"
+kicker: "Organizational Transport"
+tag: "School and office shuttles"
+description: "Scheduled passenger services for schools, offices and companies, planned around routes, operating hours and suitable vehicle capacity."
+meta: "Qazvin Tasvir school, office and company transport: route planning, schedules and bus, minibus or van options."
+summary: "Organized daily passenger routes for students, employees and visitors."
+highlight: "Shuttle Services"
+image: "/Qazvintasvir/assets/img/sections/fleet-van.jpg"
+image_alt: "Passenger van used for a scheduled organizational shuttle"
+story_image: "/Qazvintasvir/assets/img/sections/fleet-minibus.jpg"
+story_alt: "Minibus ready for a school or office shuttle route"
 order: 6
 points:
-  - "مسیرهای منظم روزانه"
-  - "اتوبوس، مینی‌بوس و ون"
+  - "Planned daily routes"
+  - "Bus, minibus and van options"
+  - "Schedules coordinated with operating hours"
 metrics:
-  - ["۳", "گروه خدمت سازمانی"]
-  - ["۳۱+", "سال سابقه"]
+  - ["3", "Organizational service groups"]
+  - ["31+", "Years of company experience"]
+  - ["Scheduled", "Round-trip services"]
 features:
-  - ["۰۱", "مسیر و زمان‌بندی", "مبداها، مقصدها، ساعت شروع و پایان برنامه برای تنظیم جدول سرویس بررسی می‌شوند."]
-  - ["۰۲", "انتخاب وسیله نقلیه", "برای گروه‌های مختلف، وسیله نقلیه با ظرفیت و چابکی متناسب پیشنهاد می‌شود."]
+  - ["01", "Plan routes and schedules", "Origins, destinations, start and finish times are reviewed to prepare a practical shuttle timetable."]
+  - ["02", "Select a suitable vehicle", "Vehicle capacity and flexibility are considered for each group and route."]
+  - ["03", "Coordinate the service", "The vehicle type, timetable and responsibilities are set out clearly with the organization."]
 process:
-  - ["۰۱", "شناخت مجموعه", "نوع سازمان، تعداد مسافر، مقصدها و ساعات فعالیت دریافت می‌شود."]
-  - ["۰۲", "مسیرسنجی", "نقاط توقف و مسیرهای قابل اجرا با توجه به زمان و ظرفیت بررسی می‌شوند."]
-  - ["۰۳", "پیشنهاد و قرارداد", "نوع خودرو، جدول سرویس و تعهدات دو طرف به شکل شفاف تنظیم می‌شود."]
-process_title: "راه‌اندازی یک سرویس منظم"
-process_desc: "اطلاعات پایه مسیر، قبل از انتخاب خودرو و برنامه نهایی جمع‌آوری و بررسی می‌شود."
-details_title: "سه محیط، سه مدل نیاز"
-details_body: "یک برنامه مناسب برای مدرسه، شرکت یا اداره باید با الگوی تردد همان مجموعه تنظیم شود."
+  - ["01", "Understand the organization", "We collect organization type, passenger numbers, destinations and operating hours."]
+  - ["02", "Review routes", "Stops and workable routes are considered against timing and capacity."]
+  - ["03", "Agree on the proposal", "Vehicle type, service schedule and responsibilities are documented for both parties."]
+  - ["04", "Prepare for launch", "Operational details are coordinated with your organization before the service begins."]
+process_title: "A clear route from planning to daily service"
+process_desc: "A shuttle plan works best when passengers, coordinators and drivers have clear route and timing information."
+details_title: "For schools, offices and companies"
+details_body: "This service supports organizations that need scheduled passenger transportation for students, employees or groups of visitors."
 details_items:
-  - "سرویس دانش‌آموزان و کارکنان مدارس"
-  - "رفت‌وآمد پرسنل ادارات"
-intro_title: "رفت‌وآمد روزانه، با برنامه‌ای قابل اتکا"
+  - "Students and school staff"
+  - "Employees commuting to offices"
+  - "Daily company and organizational routes"
+  - "Groups requiring a suitable vehicle and clear timetable"
+intro_title: "Make the route clear for every passenger"
 intro:
-  - "برای یک مدرسه، اداره یا شرکت، سرویس رفت‌وآمد زمانی موفق است که برنامه آن برای مسافر، خانواده، مدیر و راننده روشن باشد. قزوین تصویر از شناخت نقاط مبدا و مقصد تا تعیین ظرفیت و زمان حرکت، مسیر اجرا را با مجموعه شما هماهنگ می‌کند."
-aside_title: "سرویس متناسب با جامعه هدف"
-aside_text: "نیاز مدرسه با اداره یا شرکت یکسان نیست؛ ظرفیت، ساعت حرکت و شیوه هماهنگی برای هر مجموعه جداگانه تعریف می‌شود."
+  - "For a school, office or company, a shuttle works when its plan is clear to passengers, families, managers and drivers. Qazvin Tasvir coordinates origins and destinations, vehicle capacity and departure times with your organization."
+  - "We review passenger numbers and operating hours, then consider routes and stops that fit the schedule. Vehicle type and service responsibilities are agreed before the route begins."
+aside_title: "A practical plan for daily travel"
+aside_text: "Each route is reviewed against its passenger group, operating hours, stops and vehicle capacity."
 aside_items:
-  - "مدارس و مراکز آموزشی"
-  - "ادارات و سازمان‌ها"
-story_kicker: "سرویس برای هر روز"
-story_title: "اعتماد از تکرار منظم ساخته می‌شود"
-story_body: "وقتی سرویس هر روز در مسیر و زمان درست اجرا شود، رفت‌وآمد از یک دغدغه روزانه به بخشی قابل پیش‌بینی از برنامه تبدیل می‌شود."
+  - "School and student transportation"
+  - "Office and employee commuting"
+  - "A defined timetable and vehicle plan"
+story_kicker: "Scheduled passenger service"
+story_title: "Clear timing supports a smoother journey"
+story_body: "When route and schedule information is shared clearly, organizations can coordinate passenger movement more easily. The agreed plan is prepared around the real operating needs of each group."
 story_items:
-  - "جدول زمان‌بندی مشخص"
-  - "خودروی مناسب هر مسیر"
+  - "A timetable matched to operating hours"
+  - "Vehicle choice suited to each route"
+  - "Coordination with the organization"
+note_title: "Safety first, then scheduling"
+note_body: "Vehicle, driver, route conditions and organizational requirements are reviewed before service begins so the operating schedule is realistic."
+note_items:
+  - "Review capacity and route conditions"
+  - "Share clear information with the organization"
+  - "Follow up on changes and feedback"
+cta_title: "Let’s discuss your organization’s needs"
+cta_body: "Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together."
+cta_label: "Call and request a consultation"
 theme: "theme-transport"
 ---
 
-This service provides daily commute solutions for schools, offices and companies with regular scheduling. For full details in Persian, please contact us or view the Persian version.
-
+We plan shuttle services around the people who use them: students, employees or organizational groups. Routes, stops, schedules and vehicle capacity are reviewed with the organization before daily service begins.

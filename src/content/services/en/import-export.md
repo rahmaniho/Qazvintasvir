@@ -1,52 +1,69 @@
 ---
-title: "Import & Export of Permitted Goods"
+title: "Import and Export of Permitted Goods"
 kicker: "International Trade"
-tag: "واردات و صادرات"
-description: "Supply-route, documentation and freight coordination for permitted goods."
-meta: "Supply-route, documentation and freight coordination for permitted goods."
-summary: "Coordinated supply and transfer of permitted goods with step-by-step tracking."
-highlight: "کالاهای مجاز"
+tag: "Import & export"
+description: "Coordination for permitted-goods trade, from reviewing supply needs to aligning documents, freight and delivery planning."
+meta: "Qazvin Tasvir import and export services for permitted goods: needs review, purchasing coordination, documentation and international freight follow-up."
+summary: "Coordinated sourcing and movement of permitted goods with step-by-step follow-up."
+highlight: "Permitted Goods"
 image: "/Qazvintasvir/assets/img/sections/hero-port.jpg"
-image_alt: "بندر کانتینری و کشتی باری در زمان غروب برای خدمات واردات و صادرات"
+image_alt: "Container port and cargo vessel at sunset"
 story_image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
-story_alt: "بارگیری محموله در انبار و هماهنگی اسناد حمل"
+story_alt: "Shipment preparation and coordination of transport documents"
 order: 1
 points:
-  - "بررسی نیاز و مشخصات کالا"
-  - "هماهنگی خرید و حمل"
+  - "Review goods and purchasing requirements"
+  - "Coordinate sourcing and freight"
+  - "Follow up on documents and agreed milestones"
 metrics:
-  - ["۳۱+", "سال تجربه مجموعه"]
-  - ["۰۱", "مسیر روشن پیگیری"]
+  - ["31+", "Years of company experience"]
+  - ["01", "A defined follow-up route"]
+  - ["24/7", "Coordination availability"]
 features:
-  - ["۰۱", "شناخت دقیق نیاز", "نوع کالا، مقدار، مقصد، زمان مورد انتظار و محدودیت‌های عملیاتی شما در شروع کار ثبت و دسته‌بندی می‌شود."]
-  - ["۰۲", "هماهنگی خرید و حمل", "مسیرهای تأمین و گزینه‌های حمل بررسی می‌شوند تا انتخاب نهایی با زمان‌بندی و شرایط پرونده هماهنگ باشد."]
+  - ["01", "Understand the requirement", "Goods type, quantity, destination, timing and operational constraints are recorded at the start of the case."]
+  - ["02", "Coordinate sourcing and freight", "Supply routes and freight options are reviewed so the selected approach fits the case and its schedule."]
+  - ["03", "Track documents and progress", "Documentation and coordination milestones are followed so your team can see what needs attention next."]
 process:
-  - ["۰۱", "دریافت درخواست", "مشخصات کالا، مقصد، مقدار و محدودیت زمانی را از شما دریافت می‌کنیم."]
-  - ["۰۲", "بررسی مسیر", "مسیر تأمین، اسناد و گزینه‌های حمل متناسب با پرونده بررسی می‌شود."]
-  - ["۰۳", "هماهنگی اجرا", "ارتباط میان طرف‌های درگیر و زمان‌بندی مراحل هماهنگ می‌شود."]
-process_title: "فرآیند همکاری برای شروع یک پرونده بازرگانی"
-process_desc: "هر پرونده با شناخت نیاز واقعی شما شروع می‌شود و در هر مرحله، مسئولیت و خروجی مورد انتظار مشخص می‌ماند."
-details_title: "مناسب برای چه مجموعه‌هایی؟"
-details_body: "هر مجموعه‌ای که برای تأمین یا فروش کالاهای مجاز، به همراهی یک تیم هماهنگ‌کننده نیاز دارد می‌تواند گفت‌وگو را آغاز کند."
+  - ["01", "Receive the request", "We collect the goods details, destination, quantity and timing constraints."]
+  - ["02", "Review the route", "Supply options, documents and freight approaches are considered for the case."]
+  - ["03", "Coordinate execution", "Communication among the parties and the timing of each stage are coordinated."]
+  - ["04", "Report and follow up", "We share the case status and the information needed for the next decision."]
+process_title: "A coordinated process for a trade case"
+process_desc: "Each case starts with your actual requirements. Responsibilities and expected outputs are made clear at every agreed stage."
+details_title: "For organizations trading permitted goods"
+details_body: "Organizations that need coordination for the supply or sale of permitted goods can discuss a case with our team. The scope is defined after reviewing product details and applicable requirements."
 details_items:
-  - "کارخانه‌ها و واحدهای تولیدی"
-  - "شرکت‌های بازرگانی و توزیعی"
-intro_title: "یک نقطه تماس برای زنجیره واردات و صادرات"
+  - "Factories and manufacturing businesses"
+  - "Trading and distribution companies"
+  - "Buyers of raw materials and equipment"
+  - "Permitted-goods import or export cases"
+intro_title: "One point of coordination across the trade chain"
 intro:
-  - "در تجارت بین‌الملل، تصمیم درست فقط به پیدا کردن کالا محدود نمی‌شود؛ زمان‌بندی، اسناد، حمل و هماهنگی میان چند طرف، نتیجه نهایی را تعیین می‌کند. قزوین تصویر با تکیه بر تجربه بازرگانی، نیاز مجموعه شما را به یک برنامه اجرایی قابل پیگیری تبدیل می‌کند."
-aside_title: "تجارت، با تصویر کامل‌تر"
-aside_text: "پیش از شروع هر پرونده، جزئیات کالا، مقصد، زمان‌بندی و مدارک مورد نیاز را کنار هم می‌گذاریم تا مسیر همکاری شفاف باشد."
+  - "International trade involves more than finding a product. Timing, documentation, freight and coordination among several parties all affect the outcome. Qazvin Tasvir helps turn your requirements into an operational plan that can be followed."
+  - "This service is intended for cases that need organized coordination among buyers, sellers, freight providers, brokers and finance teams. After the goods and applicable requirements are reviewed, the scope is tailored to the case."
+aside_title: "A clearer view of the trade route"
+aside_text: "Before a case starts, we bring the goods details, destination, schedule and required documents together so the proposed coordination is clear."
 aside_items:
-  - "کالاهای مجاز و قانونی"
-  - "ارتباط با تأمین‌کنندگان و کارگزاران"
-story_kicker: "همراهی در عملیات"
-story_title: "از محموله تا مقصد، هر مرحله قابل پیگیری است"
-story_body: "تصویر درست از عملیات، تصمیم‌گیری را سریع‌تر می‌کند. ما تلاش می‌کنیم اطلاعات پرونده، از وضعیت اسناد تا هماهنگی حمل، برای افراد تصمیم‌گیرنده قابل دسترسی و قابل فهم باشد."
+  - "Permitted and lawful goods"
+  - "Supplier and broker coordination"
+  - "Progress updates at agreed stages"
+story_kicker: "Operational coordination"
+story_title: "Follow the shipment from planning to destination"
+story_body: "A clear operational picture supports better decisions. We aim to make case information—from document status to freight coordination—accessible to the people who need it."
 story_items:
-  - "بررسی پرونده بر اساس اسناد موجود"
-  - "هماهنگی با طرف‌های اجرایی"
+  - "Review the case against available documents"
+  - "Coordinate with the relevant parties"
+  - "Follow up to delivery or the agreed milestone"
+note_title: "Clarity before commitment"
+note_body: "Service details, required documents, timing and costs are shared after the case is reviewed and before work begins."
+note_items:
+  - "Define the service scope"
+  - "Record checkpoints and timing"
+  - "Coordinate with finance and operations"
+cta_title: "Let’s discuss your organization’s needs"
+cta_body: "Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together."
+cta_label: "Call and request a consultation"
 theme: "theme-trade"
 ---
 
-This service provides supply-route, documentation and freight coordination for permitted goods. For full details in Persian, please contact us or view the Persian version.
-
+We coordinate permitted-goods trade cases by bringing requirements, supply options, documents, freight and timing into a plan agreed with your organization. The exact scope depends on the goods, route and applicable requirements.

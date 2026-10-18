@@ -4,12 +4,25 @@ import '../../styles/food-service.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { organizationSchema, serviceSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
 
+interface Props {
+  noteTitle?: string;
+  noteBody?: string;
+  noteItems?: string[];
+}
+const { noteTitle, noteBody, noteItems } = Astro.props;
+const escapeHtml = (value: string) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const site = Astro.site?.toString().replace(/\/$/, '') || 'https://rahmaniho.github.io';
 const canonical = `${site}${base}/fa/services/personnel-food/`;
 const description = 'خدمات تأمین غذای پرسنل و وعده‌های سازمانی قزوین تصویر؛ منوی چرخشی، آشپزخانه بهداشتی و توزیع در محل.';
 const image = `${site}${base}/assets/img/personnel-food/hero-kitchen.jpg`;
-const content = foodSectionSource.replaceAll('${base}', base);
+const socialImage = `${site}${base}/assets/images/og-image.jpg`;
+const noteMarkup = noteTitle
+  ? `<section class="content-section" aria-labelledby="food-service-note-title"><div class="container"><aside class="service-detail-card service-detail-card--note"><h2 id="food-service-note-title">${escapeHtml(noteTitle)}</h2>${noteBody ? `<p>${escapeHtml(noteBody)}</p>` : ''}${noteItems?.length ? `<ul class="service-detail-list">${noteItems.map((item) => `<li><span aria-hidden="true">✓</span><span>${escapeHtml(item)}</span></li>`).join('')}</ul>` : ''}</aside></div></section>`
+  : '';
+const content = foodSectionSource
+  .replaceAll('${base}', base)
+  .replace('<!-- ۴.۱۱.۸ CTA پایانی بخش غذا -->', `${noteMarkup}<!-- ۴.۱۱.۸ CTA پایانی بخش غذا -->`);
 const organization = organizationSchema(`${site}${base}`);
 const service = serviceSchema({
   title: 'تأمین غذای پرسنل و وعده‌های سازمانی',
@@ -36,7 +49,7 @@ const faqs = faqSchema([
   bodyClass="food-service-page theme-food"
   title="تأمین غذای پرسنل و وعده‌های سازمانی | قزوین تصویر"
   description={description}
-  image={image}
+  image={socialImage}
   canonical={canonical}
   hreflang={[
     { lang: 'fa', href: canonical },

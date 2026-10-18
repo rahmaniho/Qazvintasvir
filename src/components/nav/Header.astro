@@ -81,7 +81,7 @@ const switchHref = `${baseUrl}/${otherLang}${suffix === '/' ? '/' : suffix}`;
     <NavMenu lang={lang} currentPath={currentPath} baseUrl={baseUrl} />
 
     <div class="header-actions">
-      <a href={switchHref} class="lang-switch" aria-label={lang === 'fa' ? 'Switch to English' : 'تغییر به فارسی'} hreflang={otherLang}>
+      <a href={switchHref} class="lang-switch" aria-label={lang === 'fa' ? 'Switch to English' : 'Switch to Persian'} hreflang={otherLang}>
         <span class:list={{ 'is-current': lang === 'fa' }}>FA</span>
         <span aria-hidden="true">/</span>
         <span class:list={{ 'is-current': lang === 'en' }}>EN</span>

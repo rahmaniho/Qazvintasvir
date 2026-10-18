@@ -372,4 +372,37 @@
     .registry-facts, .resume-metrics, .resume-client-list, .legal-field ul { grid-template-columns: 1fr; }
   }
 
+  .service-feature__title { margin: 0; color: var(--text-primary); font-size: 1rem; }
+  .service-detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .service-detail-card { padding: clamp(20px, 3vw, 32px); border: 1px solid var(--line-soft); border-radius: var(--r-lg); background: var(--surface-white); }
+  .service-detail-card h2 { margin-block-end: 12px; font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
+  .service-detail-card p { margin-block-end: 12px; color: var(--text-muted); }
+  .service-detail-card--note { background: var(--surface-bg); }
+  .service-detail-list { display: grid; gap: 10px; margin-block-start: 16px; }
+  .service-detail-list li { display: flex; align-items: flex-start; gap: 9px; font-weight: 600; }
+  .service-detail-list li > span:first-child { flex: 0 0 auto; color: var(--success, var(--sky-blue)); }
+  .service-story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 48px); align-items: center; margin-block-start: 32px; }
+  .service-story__image { overflow: hidden; border: 1px solid var(--line-soft); border-radius: var(--r-lg); }
+  .service-story__image img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .service-story__copy h2 { margin-block: 8px 12px; }
+  .service-story__copy > p { color: var(--text-muted); }
+  .related-services { margin-block-start: 48px; }
+  .related-services__heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-block-end: 20px; }
+  .related-services__heading h2 { margin-block-start: 6px; }
+  .related-services__heading > a { flex: 0 0 auto; color: var(--primary-navy); font-weight: 700; text-underline-offset: 4px; }
+  .related-services__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .related-service-card { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 22px; border: 1px solid var(--line-soft); border-radius: var(--r-md); background: var(--surface-white); color: inherit; text-decoration: none; transition: border-color var(--dur-fast) ease, transform var(--dur-fast) ease; }
+  .related-service-card:hover { transform: translateY(-2px); border-color: var(--sky-blue); }
+  .related-service-card small { color: var(--sky-blue); font-weight: 700; }
+  .related-service-card strong { color: var(--primary-navy); font-size: 1.05rem; }
+  .related-service-card > span { color: var(--text-muted); font-size: 0.92rem; }
+  @media (max-width: 800px) {
+    .service-detail-grid, .related-services__grid { grid-template-columns: 1fr 1fr; }
+    .service-story { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .service-detail-grid, .related-services__grid { grid-template-columns: 1fr; }
+    .related-services__heading { align-items: flex-start; flex-direction: column; }
+  }
+
 }

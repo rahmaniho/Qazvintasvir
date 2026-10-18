@@ -1,6 +1,6 @@
 # CONTENT-INVENTORY.md
 
-> **منبع بررسی:** snapshot خواندنی `rahmaniho/Qazvi_tasvir`، شاخهٔ `main`، commit `9a3cb79` (۱۸ اکتبر ۲۰۲۶)، اکنون آرشیوشده در `_legacy/source-snapshot/`. پیاده‌سازی Astro هدف این نشست در مخزن فعال `rahmaniho/Qazvintasvir` و شاخهٔ `arena/5931c2bd-qazvintasvir` ادامه می‌یابد. این snapshot مرجع محتوا/دارایی است؛ هدف deployment و URL پروژه، مخزن فعال است.
+> **منبع بررسی:** snapshot خواندنی `rahmaniho/Qazvi_tasvir`، شاخهٔ `main`، commit `9a3cb79` (۱۸ اکتبر ۲۰۲۶)، اکنون آرشیوشده در `_legacy/source-snapshot/`. پیاده‌سازی Astro هدف این نشست در مخزن فعال `rahmaniho/Qazvintasvir` و شاخهٔ `arena/b912c1b2-qazvintasvir` ادامه می‌یابد. این snapshot مرجع محتوا/دارایی است؛ هدف deployment و URL پروژه، مخزن فعال است.
 
 ## ۱) نمای کلی و URLهای فعلی
 
@@ -786,20 +786,27 @@ Schema.org JSON-LD موجود و تعهدات حفظ:
 ## ۹) نکات حفظ محتوا و ابهام‌های نیازمند تأیید
 
 - صفحهٔ اصلی فارسی و انگلیسی هرکدام ۱۱ بخش اصلی و متن‌های متعدد دارند؛ انتقال نباید صرفاً به محتوای نمونه/خلاصه محدود شود.
-- صفحهٔ `personnel-food` حجم ویژه دارد: منو، چهار دسته وعده، ۱۶ تصویر غذا، گالری، FAQ، درخواست قرارداد/فرم و رفتارهای تب‌محور/تعاملات. این بخش باید با فهرست دقیق و کنترل تعداد آیتم‌ها مهاجرت کند.
+- صفحهٔ `personnel-food` حجم ویژه دارد: منو، چهار دسته وعده، ۱۶ تصویر غذا، گالری، FAQ، درخواست قرارداد/فرم و رفتارهای تب‌محور/تعاملات. نسخهٔ فارسی با source تطبیق داده شده است؛ نسخهٔ انگلیسی اکنون ساختار متناظر و ترجمه‌شده با ۱۶ کارت غذا، چهار تب، شش تصویر گالری، فرم و چهار FAQ دارد و تست‌ها آن را کنترل می‌کنند.
 - source فعلی خودش لینک hash قدیمی را به صفحات مستقل خدمات هدایت می‌کند؛ URLها و hashهای قدیمی در BEHAVIOR-INVENTORY آمده‌اند.
 - canonical فعلی HTMLها روی `https://qazvintasvir.ir` است؛ مقصد canonical نهایی و وضعیت اتصال دامنه در فاز ۵ باید با تأیید صریح کاربر انتخاب شود. تا آن زمان از URL آزمایشی GitHub Pages مخزن فعال استفاده می‌شود.
 - snapshot کامل source (شامل HTML، CSS، JS، تصاویر، فونت‌ها، PDF رزومه، ترجمه‌ها و ابزارها) در `_legacy/source-snapshot/` نگهداری شده است. این آرشیو برای مقایسه/بازگشت است و در build جدید به‌عنوان صفحهٔ قابل انتشار استفاده نمی‌شود.
 - مسیرهای قدیمی، hashها، تصاویر و Schema باید در گزارش نهایی map شوند؛ هیچ متن/تصویر/دادهٔ ساختاری را حذف‌شده تلقی نکنید.
 
-## ۱۰) وضعیت پیاده‌سازی مهاجرت در Qazvintasvir
+## ۱۰) تکمیل محتوای صفحه‌های اختصاصی خدمات
+
+- برای هر هشت خدمت، note اختصاصی از دادهٔ generator آرشیوشده در سند Markdown محلی نگهداری می‌شود؛ صفحه‌های معمولی آن را کنار جزئیات خدمت نشان می‌دهند و صفحهٔ اختصاصی غذا آن را پیش از CTA اختصاصی خود می‌آورد.
+- صفحات معمولی فارسی و انگلیسی سه کارت خدمات مرتبط را بر اساس ترتیب فهرست source و با خلاصه و لینک locale خود نمایش می‌دهند؛ صفحهٔ غذای پرسنل به‌دلیل الگوی اختصاصی و ساختار کامل منو/فرم، از این بلوک عمومی استفاده نمی‌کند.
+- عنوان، متن و برچسب CTA صفحات معمولی از دادهٔ هر locale خوانده می‌شود و متن فارسی generator حفظ شده است؛ صفحهٔ غذا CTA اختصاصی تلفن/درخواست قرارداد/واتساپ خود را دارد.
+- featureهای صفحه‌های خدمات با headingهای `h3` معنایی خروجی می‌گیرند؛ محتوای meta/تصاویر و metadata شبکه‌های اجتماعی با اطلاعات هر route حفظ می‌شود.
+
+## ۱۱) وضعیت پیاده‌سازی مهاجرت در Qazvintasvir
 
 - صفحه‌های خانهٔ `/fa/` و `/en/` اکنون شامل شناسه‌های اصلی source (`hero`, `about`, `services`, `fleet`, `brands`, `why-us`, `clients`, `trust`, `resume`, `legal`, `contact`) هستند.
 - بخش‌های ناوگان/برندها شامل پنج لوگوی سازنده؛ بخش مشتریان شامل ۱۲ نشان، سه testimonial و جدول ۱۱ ردیف سابقهٔ همکاری است. داده‌ها با متن و دارایی‌های source تطبیق داده شده‌اند.
-- صفحهٔ فارسی `/fa/services/personnel-food/` از بخش کامل source (۱۰۱۷ خط HTML) مهاجرت داده شده و ۱۶ کارت غذا، چهار تب وعده، گالری، فرم قرارداد و FAQ را حفظ می‌کند. فایل فعال: `src/content/food/personnel-food-fa.html`; script تعاملی مستقل در `src/scripts/food-service.js`; stylesheet لایه‌بندی‌شده و محدود به صفحه در `src/styles/food-service.css`.
+- صفحهٔ فارسی `/fa/services/personnel-food/` از بخش کامل source (۱۰۱۷ خط HTML) مهاجرت داده شده و ۱۶ کارت غذا، چهار تب وعده، گالری، فرم قرارداد و FAQ را حفظ می‌کند. نسخهٔ انگلیسی `/en/services/personnel-food/` نیز اکنون component اختصاصی با منوی ترجمه‌شده (۱۶ کارت، چهار تب)، شش تصویر گالری، فرم قرارداد، FAQ و metadata/schema انگلیسی دارد. فایل‌های فعال: `src/content/food/personnel-food-fa.html`, `src/components/food/PersonnelFoodSectionEn.astro`, `src/scripts/food-service.js`; stylesheet مشترک و محدود به صفحه در `src/styles/food-service.css`.
 - URLهای legacy `/services/` و `/services/{slug}.html` به HTMLهای ایستا در `public/services/` منتقل می‌شوند؛ generator آن‌ها `scripts/generate-legacy-redirects.mjs` است و fragmentهای فهرست‌شده در `BEHAVIOR-INVENTORY.md` در مقصد جدید حفظ/نگاشت می‌شوند.
 - URL ریشهٔ `/` اکنون با slash صحیح به `/fa/` می‌رود؛ sitemap فقط مسیرهای محتوایی اصلی را می‌گیرد، نه redirectهای ریشه/legacy.
 - فونت‌های local در build از assetهای `src/assets/fonts/` بسته‌بندی می‌شوند؛ تم‌های light/dark/ocean و انتخاب کاربر از `localStorage` در Header حفظ شده‌اند.
 - تست‌های smoke مبتنی بر Node در `tests/static-output.test.mjs` و workflow در `.github/workflows/ci.yml` مسیرها، تعداد کلیدی محتوا، assetها، redirectها و sitemap را بررسی می‌کنند.
-- انتقال کامل متن/metadata/schema همهٔ هشت خدمت و تکمیل ترجمهٔ انگلیسی صفحهٔ ویژهٔ غذا هنوز کار جاری است؛ این milestone به‌تنهایی پایان بازنویسی نیست.
+- متن فعال و metadata هشت سند انگلیسی در `src/content/services/en/` ترجمه/تکمیل شده‌اند؛ schemaهای Organization و Service نیز برای انگلیسی localized هستند. هنوز لازم است محتوای اختصاصی هر هشت صفحه با generator و HTMLهای قدیمی snapshot سطر‌به‌سطر تطبیق داده شود؛ ترجمهٔ انگلیسی صفحهٔ غذا نیز باید با جزئیات metadata/schema منبع بازبینی نهایی شود. این milestone پایان بازنویسی نیست.
 - دامنهٔ canonical در `astro.config.mjs` همچنان provisional است؛ انتخاب/تغییر دامنهٔ نهایی تا تأیید صریح کاربر انجام نمی‌شود. `public/robots.txt` هنوز دستور sitemap منبع (`https://qazvintasvir.ir/sitemap.xml`) را دارد، درحالی‌که build فعلی `sitemap-index.xml` تولید می‌کند؛ پس از تأیید دامنه باید آدرس sitemap نیز با خروجی واقعی هماهنگ شود، بدون تغییر دامنه پیش از تأیید.

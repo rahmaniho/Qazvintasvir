@@ -1,54 +1,83 @@
 ---
 import { getCollection } from 'astro:content';
 import ServiceLayout from '../../../layouts/ServiceLayout.astro';
+import PersonnelFoodSectionEn from '../../../components/food/PersonnelFoodSectionEn.astro';
 
 export async function getStaticPaths() {
   const all = await getCollection('services');
-  const enServices = all.filter(s => s.id.startsWith('en/'));
-  return enServices.map(entry => {
+  const enServices = all
+    .filter((entry) => entry.id.startsWith('en/'))
+    .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+  return enServices.map((entry) => {
     const slug = entry.id.slice('en/'.length);
-    return {
-      params: { slug },
-      props: { entry }
-    };
+    const relatedServices = enServices
+      .filter((candidate) => candidate.id !== entry.id)
+      .slice(0, 3)
+      .map((candidate) => ({
+        slug: candidate.id.slice('en/'.length),
+        title: candidate.data.title,
+        tag: candidate.data.tag || candidate.data.kicker || '',
+        summary: candidate.data.summary || candidate.data.description,
+      }));
+    return { params: { slug }, props: { entry, relatedServices } };
   });
 }
 
-const { entry } = Astro.props;
+const { entry, relatedServices } = Astro.props;
 const data = entry.data;
 const slug = Astro.params.slug!;
 const lang = 'en';
 ---
 
-<ServiceLayout
-  lang={lang}
-  slug={slug}
-  title={data.title}
-  description={data.description}
-  image={data.image}
-  imageAlt={data.image_alt}
-  kicker={data.kicker}
-  highlight={data.highlight}
-  excerpt={data.summary || data.description}
-  points={data.points}
-  metrics={data.metrics as any}
-  features={data.features as any}
-  processTitle={data.process_title}
-  processDesc={data.process_desc}
-  process={data.process as any}
-  detailsTitle={data.details_title}
-  detailsBody={data.details_body}
-  detailsItems={data.details_items}
-  introTitle={data.intro_title}
-  intro={data.intro}
-  asideTitle={data.aside_title}
-  asideText={data.aside_text}
-  asideItems={data.aside_items}
-  storyKicker={data.story_kicker}
-  storyTitle={data.story_title}
-  storyBody={data.story_body}
-  storyItems={data.story_items}
-  storyImage={data.story_image}
-  storyAlt={data.story_alt}
-  faqs={data.faqs}
-/>
+{slug === 'personnel-food' ? (
+  <PersonnelFoodSectionEn
+    title={data.title}
+    description={data.description}
+    metaDescription={data.meta}
+    faqs={data.faqs}
+    noteTitle={data.note_title}
+    noteBody={data.note_body}
+    noteItems={data.note_items}
+  />
+) : (
+  <ServiceLayout
+    lang={lang}
+    slug={slug}
+    title={data.title}
+    description={data.description}
+    metaDescription={data.meta}
+    image={data.image}
+    imageAlt={data.image_alt}
+    kicker={data.kicker}
+    highlight={data.highlight}
+    excerpt={data.summary || data.description}
+    points={data.points}
+    metrics={data.metrics as any}
+    features={data.features as any}
+    processTitle={data.process_title}
+    processDesc={data.process_desc}
+    process={data.process as any}
+    detailsTitle={data.details_title}
+    detailsBody={data.details_body}
+    detailsItems={data.details_items}
+    noteTitle={data.note_title}
+    noteBody={data.note_body}
+    noteItems={data.note_items}
+    relatedServices={relatedServices}
+    ctaTitle={data.cta_title}
+    ctaBody={data.cta_body}
+    ctaLabel={data.cta_label}
+    introTitle={data.intro_title}
+    intro={data.intro}
+    asideTitle={data.aside_title}
+    asideText={data.aside_text}
+    asideItems={data.aside_items}
+    storyKicker={data.story_kicker}
+    storyTitle={data.story_title}
+    storyBody={data.story_body}
+    storyItems={data.story_items}
+    storyImage={data.story_image}
+    storyAlt={data.story_alt}
+    faqs={data.faqs}
+  />
+)}

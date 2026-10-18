@@ -1,6 +1,6 @@
 # BEHAVIOR-INVENTORY.md
 
-> **منبع بررسی:** snapshot آرشیوشدهٔ `rahmaniho/Qazvi_tasvir`, `main`, commit `9a3cb79` (۱۸ اکتبر ۲۰۲۶) در `_legacy/source-snapshot/`; فایل‌های JS شامل `assets/js/main.js` (811 خط)، `assets/js/navigation.js` (582 خط) و `assets/js/service-pages.js` (47 خط). بازسازی در مخزن فعال `rahmaniho/Qazvintasvir`, branch `arena/5931c2bd-qazvintasvir` ادامه می‌یابد.
+> **منبع بررسی:** snapshot آرشیوشدهٔ `rahmaniho/Qazvi_tasvir`, `main`, commit `9a3cb79` (۱۸ اکتبر ۲۰۲۶) در `_legacy/source-snapshot/`; فایل‌های JS شامل `assets/js/main.js` (811 خط)، `assets/js/navigation.js` (582 خط) و `assets/js/service-pages.js` (47 خط). بازسازی در مخزن فعال `rahmaniho/Qazvintasvir`, branch `arena/b912c1b2-qazvintasvir` ادامه می‌یابد.
 
 ## رفتارهای `main.js`
 
@@ -61,4 +61,4 @@
 4. **URL و hashهای legacy:** redirectهای ایستای مسیرهای قدیمی ساخته شده‌اند؛ hashهای `fleet-specs` و مقصدهای غذای پرسنل به URLهای جدید نگاشت شده‌اند. smoke test این redirectها و hashها را بررسی می‌کند.
 5. **سال:** نمایش سال در Footer به‌صورت پویا و locale-aware است؛ برای صفحهٔ خدمات نیز سال ثابت source به رفتار پویا تبدیل شده است.
 6. **فرم تماس عمومی:** validation و متن/قالب پیام WhatsApp باید همچنان با رفتار دقیق source تطبیق نهایی شود؛ فرم غذای پرسنل، جداگانه و با تمام فیلدهای درخواست قرارداد منتقل شده است.
-7. **ادامهٔ تطبیق:** انتقال کامل محتوا، metadata و schema هشت خدمت و ترجمهٔ کامل انگلیسی صفحهٔ غذای پرسنل هنوز باز است؛ مواردی که با source اختلاف دارند باید در همین inventory ثبت شوند.
+7. **ادامهٔ تطبیق:** محتوای فعال صفحات انگلیسی هشت خدمت ترجمه شده و صفحهٔ انگلیسی غذای پرسنل اکنون ساختار منو/فرم/FAQ متناظر دارد؛ کار باقیمانده تطبیق سطر‌به‌سطر متن، metadata و schema همهٔ صفحات خدمات با generator/HTMLهای snapshot است. تب‌های غذا و پیام فرم WhatsApp اکنون با جهت RTL/LTR و زبان صفحه هماهنگ می‌شوند.

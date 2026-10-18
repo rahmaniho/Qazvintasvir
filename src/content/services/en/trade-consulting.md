@@ -1,52 +1,69 @@
 ---
-title: "Trade Consulting & LC Opening"
-kicker: "Trade Consulting"
-tag: "مشاوره بازرگانی"
-description: "Decision support for purchasing, import/export and LC opening routes."
-meta: "Decision support for purchasing, import/export and LC opening routes."
-summary: "Decision support for trade and LC opening."
-highlight: "مشاوره بازرگانی"
-image: "/Qazvintasvir/assets/img/sections/about-office.jpg"
-image_alt: "دفتر کار و جلسه مدیریتی برای مشاوره بازرگانی"
+title: "Trade Consulting and Letters of Credit"
+kicker: "Trade Advisory"
+tag: "Trade consulting"
+description: "Practical trade case review covering transaction goals, available documents, route options and the next steps to consider."
+meta: "Qazvin Tasvir trade consulting: review of commercial routes, documents, transaction considerations and letters of credit."
+summary: "Organize the case information and clarify the options before the next trade decision."
+highlight: "Trade Consulting"
+image: "/Qazvintasvir/assets/img/sections/hero-port.jpg"
+image_alt: "Cargo vessel and container port for international trade operations"
 story_image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
-story_alt: "بررسی اسناد و محموله در یک عملیات بازرگانی"
+story_alt: "Commercial shipment and transport documents under review"
 order: 8
 points:
-  - "تحلیل مسیر پرونده"
-  - "بررسی اسناد و ریسک‌ها"
+  - "Review the transaction route"
+  - "Consider documents and case risks"
+  - "Clarify practical next steps"
 metrics:
-  - ["۰۱", "جلسه شناخت پرونده"]
-  - ["۳۱+", "سال تجربه تجاری"]
+  - ["01", "Case review meeting"]
+  - ["31+", "Years of trade experience"]
+  - ["Clear", "Decision summaries"]
 features:
-  - ["۰۱", "شناخت پرونده", "هدف تجاری، طرف‌های معامله، کالا، مقصد، زمان و محدودیت‌های پروژه در یک جلسه بررسی می‌شود."]
-  - ["۰۲", "تحلیل مسیر و مدارک", "مدارک موجود، نقاط ابهام و هماهنگی‌های مورد نیاز برای انتخاب مسیر مناسب مرور می‌شوند."]
+  - ["01", "Understand the case", "The commercial objective, transaction parties, goods, destination, timing and project constraints are reviewed together."]
+  - ["02", "Review routes and documents", "Available records, open questions and coordination needs are considered to help identify suitable options."]
+  - ["03", "Clarify the next decision", "The discussion is organized around the options to examine, documents to gather and practical actions to consider."]
 process:
-  - ["۰۱", "تعریف مسئله", "هدف، مانع اصلی و تصمیمی که باید گرفته شود مشخص می‌شود."]
-  - ["۰۲", "مطالعه اطلاعات", "اسناد و داده‌های مرتبط با کالا، معامله و مسیر بررسی می‌شوند."]
-  - ["۰۳", "ارائه گزینه‌ها", "مسیرهای قابل بررسی، نیازهای اسنادی و نکات اجرایی توضیح داده می‌شوند."]
-process_title: "مشاوره از سؤال درست شروع می‌شود"
-process_desc: "هرچه اطلاعات پرونده کامل‌تر باشد، جلسه مشاوره می‌تواند خروجی عملی‌تری برای تیم شما داشته باشد."
-details_title: "موضوعات قابل بررسی"
-details_body: "مشاوره بر اساس مسئله واقعی شما تعریف می‌شود و می‌تواند یک جلسه تصمیم‌سازی یا همراهی مرحله‌ای باشد."
+  - ["01", "Define the question", "We identify the objective, main obstacle and decision that needs to be made."]
+  - ["02", "Review available information", "Relevant documents and details about the goods, transaction and route are considered."]
+  - ["03", "Discuss possible options", "We explain routes to examine, document needs and operational considerations."]
+  - ["04", "Summarize next steps", "The meeting closes with a clear summary of information to gather and actions to consider."]
+process_title: "From a trade question to practical next steps"
+process_desc: "The review starts with your objective and available case information; its scope is tailored to the decision at hand."
+details_title: "For organizations planning a trade transaction"
+details_body: "Organizations considering a trade route or needing to review transaction documents can discuss their case and the information available with our team."
 details_items:
-  - "انتخاب مسیر واردات یا صادرات"
-  - "بررسی مدارک و قرارداد بازرگانی"
-intro_title: "مشاوره‌ای که به اقدام بعدی وصل می‌شود"
+  - "Choosing an import or export route"
+  - "Reviewing commercial documents and agreements"
+  - "Considering letters of credit (LC)"
+  - "Identifying documents and coordination needs"
+intro_title: "Consulting that helps clarify the next move"
 intro:
-  - "مشاوره بازرگانی زمانی ارزشمند است که از توصیه کلی فراتر برود و به اقدام بعدی برسد. قزوین تصویر با بررسی هدف، نوع کالا، طرف‌های معامله و مدارک موجود، نقاط ابهام و گزینه‌های پیش‌رو را برای شما مرتب می‌کند."
-aside_title: "قبل از اقدام، تصویر بسازید"
-aside_text: "تصمیم بازرگانی وقتی مطمئن‌تر است که مسیر قانونی، مدارک، هزینه‌های قابل پیش‌بینی و مسئولیت هر طرف روشن باشد."
+  - "Trade consulting is most useful when it moves beyond general advice and helps clarify a decision. Qazvin Tasvir reviews your objective, goods, transaction parties and available documents to organize the questions and options in front of you."
+  - "The review is based on the information provided and the scope agreed for the case. It helps identify points that need further examination; it does not replace formal legal, tax or financial advice where that is required."
+aside_title: "A structured review of your case"
+aside_text: "Before recommending next steps, we bring the goal, goods, transaction parties, documents and timing into one discussion."
 aside_items:
-  - "بررسی خرید و واردات"
-  - "مطالعه مسیر اسناد و پرداخت"
-story_kicker: "اتاق تصمیم‌گیری"
-story_title: "وقتی اطلاعات پراکنده به یک مسیر تبدیل می‌شود"
-story_body: "هدف مشاوره این است که تیم شما بداند اکنون در چه نقطه‌ای قرار دارد، چه اطلاعاتی کم است و تصمیم بعدی را بر چه اساسی بگیرد."
+  - "Review of purchasing and import considerations"
+  - "Consideration of documents and payment route"
+  - "A clear meeting summary"
+story_kicker: "Commercial decision support"
+story_title: "Turn open questions into an organized checklist"
+story_body: "A useful review makes it easier to see what is known, what still needs checking and which actions could move the case forward."
 story_items:
-  - "جمع‌بندی روشن جلسه"
-  - "فهرست مدارک و اقدامات"
-theme: "theme-consulting"
+  - "Review the available case information"
+  - "List documents and questions to follow up"
+  - "Coordinate relevant parties where agreed"
+note_title: "Consulting does not replace legal review"
+note_body: "Legal, tax and banking matters should also be reviewed by a qualified specialist where needed. Our role is to clarify the commercial coordination route for the case."
+note_items:
+  - "Set clear responsibility boundaries"
+  - "Record assumptions and risks"
+  - "Identify a measurable next action"
+cta_title: "Let’s discuss your organization’s needs"
+cta_body: "Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together."
+cta_label: "Call and request a consultation"
+theme: "theme-trade"
 ---
 
-This service provides decision support for purchasing, import/export and lc opening routes. For full details in Persian, please contact us or view the Persian version.
-
+Trade consulting begins with a specific decision or question. We review the goal, transaction details and available documents, then organize the options and follow-up needs for discussion with your organization.
