@@ -12,6 +12,7 @@ const serviceSlugs = [
   'customs-port', 'factory-transport', 'import-export', 'personnel-food',
   'school-office', 'sourcing', 'trade-consulting', 'urban-vip',
 ];
+const standaloneSectionSlugs = ['fleet', 'brands', 'why-us', 'clients', 'trust', 'resume', 'legal'];
 
 test('build emits the bilingual public route set', () => {
   for (const lang of ['fa', 'en']) {
@@ -19,11 +20,25 @@ test('build emits the bilingual public route set', () => {
     assert.ok(existsSync(resolve(dist, route(lang, 'about'))), `missing /${lang}/about/`);
     assert.ok(existsSync(resolve(dist, route(lang, 'contact'))), `missing /${lang}/contact/`);
     assert.ok(existsSync(resolve(dist, route(lang, 'services'))), `missing /${lang}/services/`);
+    for (const slug of standaloneSectionSlugs) {
+      assert.ok(existsSync(resolve(dist, route(lang, slug))), `missing /${lang}/${slug}/`);
+    }
     for (const slug of serviceSlugs) {
       assert.ok(existsSync(resolve(dist, route(lang, `services/${slug}`))), `missing /${lang}/services/${slug}/`);
     }
   }
   assert.ok(existsSync(resolve(dist, '404.html')), 'missing localized 404 output');
+});
+
+test('English standalone section pages have localized visible copy and language-aware canonicals', () => {
+  const persianOrArabic = /[\u0600-\u06FF]/;
+  for (const slug of standaloneSectionSlugs) {
+    const html = read(route('en', slug));
+    const visibleHtml = html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
+    assert.doesNotMatch(visibleHtml, persianOrArabic, `English page ${slug} contains untranslated visible copy`);
+    assert.match(html, new RegExp(`rel="canonical" href="[^"]*/en/${slug}/"`), `missing English canonical for ${slug}`);
+    assert.match(html, new RegExp(`hreflang="fa" href="[^"]*/fa/${slug}/"`), `missing Persian alternate for ${slug}`);
+  }
 });
 
 test('English service pages use translated visible copy and structured data', () => {
@@ -62,24 +77,51 @@ test('service detail pages render source notes, related services and localized C
   }
 });
 
-test('homepage preserves the original section anchors and client history', () => {
-  const html = read(route('fa'));
-  const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
-  const organization = jsonLd.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
+test('homepages act as concise directories while full source sections live on dedicated pages', () => {
+  const faHome = read(route('fa'));
+  const enHome = read(route('en'));
+  for (const [lang, html] of [['fa', faHome], ['en', enHome]]) {
+    assert.match(html, /id="hero"/, `/${lang}/ should keep the landing hero`);
+    assert.match(html, /id="home-directory-title"/, `/${lang}/ should list its dedicated pages`);
+    for (const oldSection of ['about', 'services', 'fleet', 'brands', 'why-us', 'clients', 'trust', 'resume', 'legal', 'contact']) {
+      assert.doesNotMatch(html, new RegExp(`\\bid="${oldSection}"`), `full #${oldSection} section should no longer be embedded on /${lang}/`);
+    }
+    for (const slug of ['about', 'services', ...standaloneSectionSlugs, 'contact']) {
+      assert.ok(html.includes(`/Qazvintasvir/${lang}/${slug}/`), `/${lang}/ directory should link to /${lang}/${slug}/`);
+    }
+  }
+
+  const faHomeSchema = [...faHome.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+  const organization = faHomeSchema.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
   assert.equal(organization?.knowsAbout?.length, 8, 'all eight source areas of expertise should remain in the Persian schema');
   assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 8, 'all eight source offers should remain in the Persian schema');
   assert.equal(organization?.openingHoursSpecification?.closes, '20:00');
   assert.ok(organization?.sameAs?.some((url) => url.includes('rasmio.com/company/10861415215')));
-  for (const id of ['hero', 'about', 'services', 'fleet', 'brands', 'why-us', 'clients', 'trust', 'resume', 'legal', 'contact']) {
-    assert.match(html, new RegExp(`\\bid="${id}"`), `missing homepage anchor #${id}`);
-  }
-  assert.equal((html.match(/class="client-card client-card--full reveal"/g) ?? []).length, 12, 'all 12 client brands should be listed');
-  assert.equal((html.match(/class="testimonial-card reveal"/g) ?? []).length, 3, 'all source testimonials should be present');
-  assert.equal((html.match(/class="history-table"/g) ?? []).length, 1, 'contract history table should be present');
-  assert.equal((html.match(/<tr><th scope="row">/g) ?? []).length, 11, 'all 11 source collaboration rows should be present');
+
+  const fleet = read(route('fa', 'fleet'));
+  assert.equal((fleet.match(/class="fleet-card reveal"/g) ?? []).length, 3, 'all fleet vehicle cards should be on the fleet page');
+  const brands = read(route('fa', 'brands'));
+  assert.equal((brands.match(/class="brand-partners__item reveal"/g) ?? []).length, 5, 'all five vehicle-brand cards should be on the brands page');
+  const whyUs = read(route('fa', 'why-us'));
+  assert.equal((whyUs.match(/class="why-card reveal"/g) ?? []).length, 6, 'all source company-strength cards should be on the why-us page');
+  const clients = read(route('fa', 'clients'));
+  assert.equal((clients.match(/class="client-card client-card--full reveal"/g) ?? []).length, 12, 'all 12 client brands should be listed');
+  assert.equal((clients.match(/class="testimonial-card reveal"/g) ?? []).length, 3, 'all source testimonials should be present');
+  assert.equal((clients.match(/class="history-table"/g) ?? []).length, 1, 'the contract history table should be present');
+  assert.equal((clients.match(/<tr><th scope="row">/g) ?? []).length, 11, 'all 11 source collaboration rows should be present');
   for (const brand of ['scania', 'volvo', 'mercedes', 'iveco', 'irankhodro']) {
-    assert.ok(html.includes(`/assets/logos/${brand}.svg`), `missing vehicle brand logo ${brand}`);
+    assert.ok(brands.includes(`/assets/logos/${brand}.svg`), `missing vehicle brand logo ${brand}`);
   }
+
+  const trust = read(route('fa', 'trust'));
+  const resume = read(route('fa', 'resume'));
+  const legal = read(route('fa', 'legal'));
+  assert.match(trust, /class="section registry-section"/);
+  assert.doesNotMatch(trust, /class="section section--alt resume-section"|class="section legal-section"/);
+  assert.match(resume, /class="section section--alt resume-section"/);
+  assert.doesNotMatch(resume, /class="section registry-section"|class="section legal-section"/);
+  assert.match(legal, /class="section legal-section"/);
+  assert.doesNotMatch(legal, /class="section registry-section"|class="section section--alt resume-section"/);
 });
 
 test('English catering page preserves the complete localized menu, gallery, form and FAQ structure', () => {
@@ -157,4 +199,8 @@ test('root entry redirects to the localized Persian root with the configured bas
   const html = read('index.html');
   assert.match(html, /url=\/Qazvintasvir\/fa\//);
   assert.doesNotMatch(html, /Qazvintasvirfa/);
+  assert.match(html, /pageByLegacyHash/);
+  for (const slug of ['about', 'services', ...standaloneSectionSlugs, 'contact']) {
+    assert.ok(html.includes(`${slug}: '${slug}'`) || html.includes(`'${slug}': '${slug}'`), `root redirect should resolve legacy #${slug} links`);
+  }
 });

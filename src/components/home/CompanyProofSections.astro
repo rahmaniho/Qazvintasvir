@@ -1,6 +1,6 @@
 ---
-interface Props { lang: 'fa' | 'en'; }
-const { lang } = Astro.props;
+interface Props { lang: 'fa' | 'en'; section?: 'all' | 'trust' | 'resume' | 'legal'; }
+const { lang, section = 'all' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const fa = lang === 'fa';
 const fields: Array<[string, string[]]> = fa
@@ -30,7 +30,8 @@ const regLabels = fa
   : ['Company name', 'Latin name', 'Registration number', 'National ID', 'Economic code', 'Founding date', 'CEO', 'Chairman of the Board', 'Address', 'Postal code', 'Phone', 'Status'];
 ---
 
-<section class="section registry-section" id="trust" aria-labelledby="trust-title">
+{(section === 'all' || section === 'trust') && (
+  <section class="section registry-section" id="trust" aria-labelledby="trust-title">
   <div class="container">
     <header class="section-header reveal">
       <span class="section-label">{fa ? 'شفافیت و هویت حقوقی' : 'Transparency and legal identity'}</span>
@@ -58,8 +59,10 @@ const regLabels = fa
     </p>
   </div>
 </section>
+)}
 
-<section class="section section--alt resume-section" id="resume" aria-labelledby="resume-title">
+{(section === 'all' || section === 'resume') && (
+  <section class="section section--alt resume-section" id="resume" aria-labelledby="resume-title">
   <div class="container">
     <header class="section-header reveal">
       <span class="section-label">{fa ? 'رزومه رسمی شرکت' : 'Official Company Resume'}</span>
@@ -112,7 +115,7 @@ const regLabels = fa
           <article>
             <h4>{fa ? 'ترابری و سرویس ایاب‌وذهاب پرسنل' : 'Transport & Staff Commute Services'}</h4>
             <p>{fa ? 'ناوگان ملکی اتوبوس، مینی‌بوس و ون با بیمه کامل سرنشین؛ حمل‌ونقل درون‌شهری و سرویس‌های VIP.' : 'Company-owned fleet of buses, minibuses and vans with full passenger insurance; urban transportation and VIP services.'}</p>
-            <a href={`${base}/${lang}/#fleet`}>{fa ? 'مشاهده ناوگان' : 'View fleet'}</a>
+            <a href={`${base}/${lang}/fleet/`}>{fa ? 'مشاهده ناوگان' : 'View fleet'}</a>
           </article>
           <article>
             <h4>{fa ? 'تأمین غذای پرسنل (کیترینگ سازمانی)' : 'Staff Catering (Corporate Catering)'}</h4>
@@ -129,7 +132,7 @@ const regLabels = fa
       <section class="resume-card">
         <h3>{fa ? 'سوابق همکاری قراردادی' : 'Contract Collaboration History'}</h3>
         <ul class="resume-client-list">{vehicleHistory[0].map((client) => <li>{client}</li>)}</ul>
-        <a href={`${base}/${lang}/#clients`}>{fa ? 'جدول کامل سوابق همکاری و تعداد دستگاه‌ها ←' : 'Full cooperation track record and vehicle counts →'}</a>
+        <a href={`${base}/${lang}/clients/`}>{fa ? 'جدول کامل سوابق همکاری و تعداد دستگاه‌ها ←' : 'Full cooperation track record and vehicle counts →'}</a>
       </section>
     </div>
     <div class="resume-actions">
@@ -139,8 +142,10 @@ const regLabels = fa
     </div>
   </div>
 </section>
+)}
 
-<section class="section legal-section" id="legal" aria-labelledby="legal-title">
+{(section === 'all' || section === 'legal') && (
+  <section class="section legal-section" id="legal" aria-labelledby="legal-title">
   <div class="container">
     <header class="section-header reveal">
       <span class="section-label">{fa ? 'مستندات رسمی و اسناد ثبتی' : 'Official Documents & Registry Records'}</span>
@@ -183,3 +188,4 @@ const regLabels = fa
     </div>
   </div>
 </section>
+)}

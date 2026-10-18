@@ -46,9 +46,10 @@ The workflow configures Pages for GitHub Actions deployment. Once this change is
 - `/fa/contact/`, `/en/contact/`
 - `/fa/services/`, `/en/services/`
 - Eight localized service detail routes under each language's `/services/`
+- `/fa/fleet/`, `/fa/brands/`, `/fa/why-us/`, `/fa/clients/`, `/fa/trust/`, `/fa/resume/`, `/fa/legal/` and matching `/en/` routes — dedicated pages for homepage sections
 - `/services/` and `/services/*.html` — static compatibility redirects for the legacy Persian service URLs
 
-The old `#fleet-specs` and catering fragments (`#personnel-food`, `#food-menu`, `#food-gallery`, `#food-request`, `#food-faq`) are mapped to the new service routes. The dedicated Persian staff-catering page preserves the source menu, sixteen dish cards, gallery, request form, four accessible tabs, and FAQ content; its migrated HTML and styles are kept in active source files and scoped to that page.
+The homepages keep the hero and a concise page directory; full sections are on their own routes. Legacy homepage fragments (`#about`, `#services`, `#fleet`, `#brands`, `#why-us`, `#clients`, `#trust`, `#resume`, `#legal`, `#contact`) now route to the matching pages. The old `#fleet-specs` and catering fragments (`#personnel-food`, `#food-menu`, `#food-gallery`, `#food-request`, `#food-faq`) are mapped to the new service routes. The dedicated Persian staff-catering page preserves the source menu, sixteen dish cards, gallery, request form, four accessible tabs, and FAQ content; its migrated HTML and styles are kept in active source files and scoped to that page.
 
 ## Project structure
 

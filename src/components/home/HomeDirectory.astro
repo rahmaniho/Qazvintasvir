@@ -1,0 +1,57 @@
+---
+interface Props { lang: 'fa' | 'en'; }
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fa = lang === 'fa';
+const pages = fa
+  ? [
+      { slug: 'about', number: '01', title: 'درباره قزوین تصویر', description: 'تاریخچه، مدیریت و معرفی شرکت' },
+      { slug: 'services', number: '02', title: 'خدمات تخصصی', description: 'هشت مسیر مستقل برای خدمات شرکت' },
+      { slug: 'fleet', number: '03', title: 'ناوگان ترابری', description: 'اتوبوس، مینی‌بوس، ون و تجهیزات' },
+      { slug: 'brands', number: '04', title: 'برندهای ناوگان', description: 'برندهای همکار و مورد اعتماد' },
+      { slug: 'why-us', number: '05', title: 'چرا قزوین تصویر؟', description: 'مزیت‌ها و شیوه همکاری' },
+      { slug: 'clients', number: '06', title: 'مشتریان و سوابق', description: 'مشتریان، دیدگاه‌ها و قراردادها' },
+      { slug: 'trust', number: '07', title: 'اعتبار و شفافیت', description: 'اطلاعات ثبتی و قابلیت استعلام' },
+      { slug: 'resume', number: '08', title: 'رزومه شرکت', description: 'سوابق، توانمندی‌ها و دریافت PDF' },
+      { slug: 'legal', number: '09', title: 'شناسنامه حقوقی', description: 'اطلاعات رسمی و زمینه‌های فعالیت' },
+      { slug: 'contact', number: '10', title: 'تماس و درخواست همکاری', description: 'گفت‌وگو درباره نیاز مجموعه شما' },
+    ]
+  : [
+      { slug: 'about', number: '01', title: 'About Qazvin Tasvir', description: 'Company history, leadership and overview' },
+      { slug: 'services', number: '02', title: 'Specialist Services', description: 'Eight dedicated service routes' },
+      { slug: 'fleet', number: '03', title: 'Transport Fleet', description: 'Buses, minibuses, vans and equipment' },
+      { slug: 'brands', number: '04', title: 'Fleet Brands', description: 'Trusted vehicle and equipment partners' },
+      { slug: 'why-us', number: '05', title: 'Why Qazvin Tasvir?', description: 'Our strengths and how we work' },
+      { slug: 'clients', number: '06', title: 'Clients & Track Record', description: 'Clients, testimonials and contracts' },
+      { slug: 'trust', number: '07', title: 'Credentials & Transparency', description: 'Verifiable company registration details' },
+      { slug: 'resume', number: '08', title: 'Company Resume', description: 'Experience, capabilities and PDF' },
+      { slug: 'legal', number: '09', title: 'Legal Identity', description: 'Official records and registered activities' },
+      { slug: 'contact', number: '10', title: 'Contact & Partnership', description: 'Discuss your organization’s needs' },
+    ];
+---
+
+<section class="section home-directory" aria-labelledby="home-directory-title">
+  <div class="container">
+    <header class="section-header reveal">
+      <span class="section-label">{fa ? 'صفحه‌های مستقل' : 'Dedicated pages'}</span>
+      <h2 class="section-title" id="home-directory-title">{fa ? 'هر بخش، در صفحهٔ خودش' : 'Explore each area on its own page'}</h2>
+      <p class="section-desc">
+        {fa
+          ? 'برای دسترسی سریع‌تر، هر بخش اصلی سایت را در صفحه‌ای جداگانه ببینید.'
+          : 'Find the information you need faster: each major area has its own dedicated page.'}
+      </p>
+    </header>
+    <nav class="home-directory__grid" aria-label={fa ? 'فهرست صفحه‌های سایت' : 'Site pages'}>
+      {pages.map((page) => (
+        <a class="home-directory__card reveal" href={`${base}/${lang}/${page.slug}/`}>
+          <span class="home-directory__number" aria-hidden="true">{page.number}</span>
+          <span class="home-directory__copy">
+            <strong>{page.title}</strong>
+            <span>{page.description}</span>
+          </span>
+          <span class="home-directory__arrow" aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </nav>
+  </div>
+</section>

@@ -1,14 +1,7 @@
 ---
 import HomeLayout from '../../layouts/HomeLayout.astro';
 import Hero from '../../components/home/Hero.astro';
-import AboutSection from '../../components/home/AboutSection.astro';
-import ServicesGrid from '../../components/home/ServicesGrid.astro';
-import FleetSection from '../../components/home/FleetSection.astro';
-import BrandsSection from '../../components/home/BrandsSection.astro';
-import StatsSection from '../../components/home/StatsSection.astro';
-import ClientsSection from '../../components/home/ClientsSection.astro';
-import CompanyProofSections from '../../components/home/CompanyProofSections.astro';
-import ContactForm from '../../components/ContactForm.astro';
+import HomeDirectory from '../../components/home/HomeDirectory.astro';
 import { organizationSchema, itemListSchema } from '../../lib/schema';
 
 const lang = 'fa';
@@ -50,14 +43,5 @@ const servicesList = itemListSchema("خدمات تخصصی شرکت قزوین �
   </Fragment>
 
   <Hero lang={lang} />
-  <AboutSection lang={lang} />
-  <ServicesGrid lang={lang} />
-  <FleetSection lang={lang} />
-  <BrandsSection lang={lang} />
-  <StatsSection lang={lang} />
-  <ClientsSection lang={lang} />
-
-  <CompanyProofSections lang={lang} />
-
-  <ContactForm lang={lang} />
+  <HomeDirectory lang={lang} />
 </HomeLayout>

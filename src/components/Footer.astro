@@ -27,6 +27,27 @@ const servicesEn = [
   ["Trade Consulting", `${baseUrl}/en/services/trade-consulting/`],
 ];
 const services = lang === 'fa' ? servicesFa : servicesEn;
+const pageLinks = lang === 'fa'
+  ? [
+      ['درباره ما', `${baseUrl}/fa/about/`],
+      ['ناوگان ترابری', `${baseUrl}/fa/fleet/`],
+      ['برندهای ناوگان', `${baseUrl}/fa/brands/`],
+      ['چرا قزوین تصویر؟', `${baseUrl}/fa/why-us/`],
+      ['مشتریان و سوابق', `${baseUrl}/fa/clients/`],
+      ['اعتبار و شفافیت', `${baseUrl}/fa/trust/`],
+      ['رزومه شرکت', `${baseUrl}/fa/resume/`],
+      ['شناسنامه حقوقی', `${baseUrl}/fa/legal/`],
+    ]
+  : [
+      ['About us', `${baseUrl}/en/about/`],
+      ['Transport fleet', `${baseUrl}/en/fleet/`],
+      ['Fleet brands', `${baseUrl}/en/brands/`],
+      ['Why Qazvin Tasvir?', `${baseUrl}/en/why-us/`],
+      ['Clients & track record', `${baseUrl}/en/clients/`],
+      ['Credentials', `${baseUrl}/en/trust/`],
+      ['Company resume', `${baseUrl}/en/resume/`],
+      ['Legal identity', `${baseUrl}/en/legal/`],
+    ];
 ---
 
 <footer class="site-footer" role="contentinfo">
@@ -62,11 +83,16 @@ const services = lang === 'fa' ? servicesFa : servicesEn;
         </ul>
       </div>
       <div class="footer-col">
-        <h4>{lang==='fa' ? 'تماس' : 'Contact'}</h4>
+        <h4>{lang === 'fa' ? 'صفحه‌های شرکت' : 'Company pages'}</h4>
         <ul>
-          <li><a href={`${baseUrl}/${lang}/#about`}>{lang==='fa' ? 'درباره ما' : 'About us'}</a></li>
-          <li><a href={`${baseUrl}/${lang}/services/`}>{lang==='fa' ? 'همه خدمات' : 'All services'}</a></li>
-          <li><a href={`${baseUrl}/${lang}/contact/`}>{lang==='fa' ? 'تماس و درخواست همکاری' : 'Contact & consultation'}</a></li>
+          {pageLinks.map(([label, href]) => <li><a href={href}>{label}</a></li>)}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>{lang === 'fa' ? 'تماس' : 'Contact'}</h4>
+        <ul>
+          <li><a href={`${baseUrl}/${lang}/contact/`}>{lang === 'fa' ? 'تماس و درخواست همکاری' : 'Contact & consultation'}</a></li>
+          <li><a href={`${baseUrl}/${lang}/services/`}>{lang === 'fa' ? 'همه خدمات' : 'All services'}</a></li>
           <li><a href="tel:+989122815189" dir="ltr">+98 912 281 5189</a></li>
         </ul>
       </div>
