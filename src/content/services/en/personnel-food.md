@@ -63,6 +63,12 @@ faqs:
     a: "Under Iranian labor rules, food provided to staff is treated as a non-cash benefit and may have insurance and tax implications. The contract documents how meals are calculated and recorded. We recommend coordinating with your organization's finance and insurance advisers before signing."
   - q: "How are meal delivery times arranged?"
     a: "Delivery is planned around your work shifts and recorded in the contract. Night shifts, holidays and production peaks can be considered; temporary schedule changes are coordinated in advance."
+note_title: "Menu and meal quantities are open for discussion"
+note_body: "Final pricing and terms depend on meal quantities, meal periods, delivery location and the selected menu. They are shared after your organization’s requirements are reviewed."
+note_items:
+  - "Review a sample menu and preferences"
+  - "Plan delivery around shifts"
+  - "Follow up on feedback about quality and quantity"
 theme: "theme-food"
 ---
 

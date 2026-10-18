@@ -54,6 +54,15 @@ story_items:
   - "Review the case using available documents"
   - "Coordinate with execution partners"
   - "Track agreed checkpoints and next steps"
+note_title: "Every case has its own route"
+note_body: "Timing, documents and next actions are determined after reviewing your records. No definite clearance outcome or timeframe is promised before the case is assessed."
+note_items:
+  - "Case-by-case document review"
+  - "Clear responsibilities for each party"
+  - "Follow-up based on case priorities"
+cta_title: "Let’s discuss your organization’s needs"
+cta_body: "Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together."
+cta_label: "Call and request a consultation"
 theme: "theme-trade"
 ---
 

@@ -54,6 +54,15 @@ story_items:
   - "A timetable matched to operating hours"
   - "Vehicle choice suited to each route"
   - "Coordination with the organization"
+note_title: "Safety first, then scheduling"
+note_body: "Vehicle, driver, route conditions and organizational requirements are reviewed before service begins so the operating schedule is realistic."
+note_items:
+  - "Review capacity and route conditions"
+  - "Share clear information with the organization"
+  - "Follow up on changes and feedback"
+cta_title: "Let’s discuss your organization’s needs"
+cta_body: "Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together."
+cta_label: "Call and request a consultation"
 theme: "theme-transport"
 ---
 

@@ -33,18 +33,43 @@ test('English service pages use translated visible copy and structured data', ()
     const visibleHtml = html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
     assert.doesNotMatch(visibleHtml, persianOrArabic, `English route ${slug} contains untranslated visible copy`);
 
-    const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
-      .map((match) => JSON.parse(match[1]));
+    const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
     const organization = jsonLd.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
     const service = jsonLd.find((item) => item['@type'] === 'Service');
     assert.equal(organization?.name, 'Qazvin Tasvir Company', `English organization schema name missing for ${slug}`);
     assert.doesNotMatch(organization?.description ?? '', persianOrArabic, `English organization description not localized for ${slug}`);
     assert.doesNotMatch(service?.description ?? '', persianOrArabic, `English service schema not localized for ${slug}`);
+    assert.equal(organization?.knowsAbout?.length, 8, 'all eight source areas of expertise should remain in schema');
+    assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 8, 'all eight source offers should remain in schema');
+    assert.equal(organization?.openingHoursSpecification?.closes, '20:00', 'source opening hours should remain in schema');
+    assert.ok(organization?.sameAs?.some((url) => url.includes('rasmio.com/company/10861415215')), 'source Rasmio sameAs URL should remain in schema');
+  }
+});
+
+test('service detail pages render source notes, related services and localized CTAs', () => {
+  for (const lang of ['fa', 'en']) {
+    for (const slug of serviceSlugs) {
+      const html = read(route(lang, `services/${slug}`));
+      assert.match(html, /service-detail-card--note/, `missing source note on ${lang}/${slug}`);
+      if (slug !== 'personnel-food') {
+        assert.match(html, /related-services__grid/, `missing related services on ${lang}/${slug}`);
+        assert.equal((html.match(/class="related-service-card"/g) ?? []).length, 3, `expected three related service cards on ${lang}/${slug}`);
+        assert.match(html, /cta-title/, `missing source CTA on ${lang}/${slug}`);
+        assert.match(html, lang === 'fa' ? /برای بررسی نیاز مجموعه‌تان گفت‌وگو کنیم/ : /Let’s discuss your organization’s needs/);
+        assert.match(html, new RegExp(`/Qazvintasvir/${lang}/services/`), `related-service links should remain in the ${lang} locale`);
+      }
+    }
   }
 });
 
 test('homepage preserves the original section anchors and client history', () => {
   const html = read(route('fa'));
+  const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+  const organization = jsonLd.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
+  assert.equal(organization?.knowsAbout?.length, 8, 'all eight source areas of expertise should remain in the Persian schema');
+  assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 8, 'all eight source offers should remain in the Persian schema');
+  assert.equal(organization?.openingHoursSpecification?.closes, '20:00');
+  assert.ok(organization?.sameAs?.some((url) => url.includes('rasmio.com/company/10861415215')));
   for (const id of ['hero', 'about', 'services', 'fleet', 'brands', 'why-us', 'clients', 'trust', 'resume', 'legal', 'contact']) {
     assert.match(html, new RegExp(`\\bid="${id}"`), `missing homepage anchor #${id}`);
   }

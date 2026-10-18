@@ -54,6 +54,15 @@ story_items:
   - "Defined pickup and drop-off points"
   - "Routes planned for shift changes"
   - "Operational follow-up with your team"
+note_title: "Safety and discipline come first"
+note_body: "Vehicle condition, documentation and service requirements are reviewed before launch. The operating plan is based on your organization’s actual information."
+note_items:
+  - "Vehicle inspection and condition"
+  - "Driver and route coordination"
+  - "Support for urgent situations"
+cta_title: "Let’s discuss your organization’s needs"
+cta_body: "Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together."
+cta_label: "Call and request a consultation"
 theme: "theme-transport"
 ---
 

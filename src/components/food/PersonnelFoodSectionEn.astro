@@ -8,11 +8,16 @@ const site = Astro.site?.toString().replace(/\/$/, '') || 'https://rahmaniho.git
 interface Props {
   title: string;
   description: string;
+  metaDescription?: string;
   faqs?: Array<{ q: string; a: string }>;
+  noteTitle?: string;
+  noteBody?: string;
+  noteItems?: string[];
 }
-const { title, description, faqs: translatedFaqs } = Astro.props;
+const { title, description, metaDescription, faqs: translatedFaqs, noteTitle, noteBody, noteItems } = Astro.props;
 const canonical = `${site}${base}/en/services/personnel-food/`;
 const image = `${site}${base}/assets/img/personnel-food/hero-kitchen.jpg`;
+const socialImage = `${site}${base}/assets/images/og-image.jpg`;
 const asset = (name: string) => `${base}/assets/img/personnel-food/${name}`;
 const organization = organizationSchema(`${site}${base}`, 'en');
 const service = serviceSchema({ title, description, image, url: canonical, providerUrl: `${site}${base}`, lang: 'en' });
@@ -102,8 +107,8 @@ const steps = [
   lang="en"
   bodyClass="food-service-page theme-food"
   title={`${title} | Qazvin Tasvir`}
-  description={description}
-  image={image}
+  description={metaDescription || description}
+  image={socialImage}
   canonical={canonical}
   hreflang={[
     { lang: 'fa', href: `${site}${base}/fa/services/personnel-food/` },
@@ -245,6 +250,18 @@ const steps = [
         <div class="food-faq">{faqs.map((item, index) => <details class="food-faq__item reveal" open={index === 0}><summary class="food-faq__question"><span>{item.q}</span><span class="food-faq__toggle" aria-hidden="true">+</span></summary><div class="food-faq__answer"><p>{item.a}</p></div></details>)}</div>
       </div>
     </div>
+
+    {noteTitle && (
+      <section class="content-section" aria-labelledby="food-service-note-title">
+        <div class="container">
+          <aside class="service-detail-card service-detail-card--note reveal">
+            <h2 id="food-service-note-title">{noteTitle}</h2>
+            {noteBody && <p>{noteBody}</p>}
+            {noteItems && noteItems.length > 0 && <ul class="service-detail-list">{noteItems.map((item) => <li><span aria-hidden="true">✓</span><span>{item}</span></li>)}</ul>}
+          </aside>
+        </div>
+      </section>
+    )}
 
     <div class="food-cta"><div class="container"><div class="food-cta__panel reveal"><div class="food-cta__glow" aria-hidden="true"></div><div class="food-cta__body"><span class="food-cta__badge">Ready to discuss a contract?</span><h2 class="food-cta__title">Plan staff catering around your workplace</h2><p class="food-cta__text">Contact our team to arrange a site visit, review a sample menu and discuss a clear proposal for hot, hygienically prepared meals delivered to your location.</p><div class="food-cta__actions"><a href="tel:+989122815189" class="food-cta__phone"><span class="food-cta__phone-label">Call our catering team</span><span class="food-cta__phone-number">+98 912 281 5189</span></a><a href="#food-request" class="btn btn-primary btn-lg">Send a catering request →</a></div><p class="food-cta__note">Site visit and initial proposal are complimentary • Serving Qazvin Province and its industrial parks</p></div></div></div></div>
   </section>

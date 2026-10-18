@@ -54,6 +54,15 @@ story_items:
   - "Review the available case information"
   - "List documents and questions to follow up"
   - "Coordinate relevant parties where agreed"
+note_title: "Consulting does not replace legal review"
+note_body: "Legal, tax and banking matters should also be reviewed by a qualified specialist where needed. Our role is to clarify the commercial coordination route for the case."
+note_items:
+  - "Set clear responsibility boundaries"
+  - "Record assumptions and risks"
+  - "Identify a measurable next action"
+cta_title: "Let’s discuss your organization’s needs"
+cta_body: "Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together."
+cta_label: "Call and request a consultation"
 theme: "theme-trade"
 ---
 

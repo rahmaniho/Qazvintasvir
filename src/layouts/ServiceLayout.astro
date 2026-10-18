@@ -6,6 +6,7 @@ interface Props {
   lang: 'fa' | 'en';
   title: string;
   description: string;
+  metaDescription?: string;
   image?: string;
   imageAlt?: string;
   kicker?: string;
@@ -21,6 +22,13 @@ interface Props {
   detailsTitle?: string;
   detailsBody?: string;
   detailsItems?: string[];
+  noteTitle?: string;
+  noteBody?: string;
+  noteItems?: string[];
+  relatedServices?: Array<{ slug: string; tag: string; title: string; summary: string }>;
+  ctaTitle?: string;
+  ctaBody?: string;
+  ctaLabel?: string;
   introTitle?: string;
   intro?: string[];
   asideTitle?: string;
@@ -68,7 +76,7 @@ const hreflang = [
 const canonical = serviceUrl;
 ---
 
-<BaseLayout title={`${props.title} | ${lang==='fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}`} description={props.description} lang={lang} image={props.image ? `${siteClean}${props.image}` : undefined} canonical={canonical} hreflang={hreflang} schema={null}>
+<BaseLayout title={`${props.title} | ${lang==='fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}`} description={props.metaDescription || props.description} lang={lang} image={`${siteUrl}/assets/images/og-image.jpg`} canonical={canonical} hreflang={hreflang} schema={null}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(org)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(svcSchema)}></script>
@@ -158,7 +166,7 @@ const canonical = serviceUrl;
                   <div style="display:flex; gap:16px; align-items:flex-start; background:var(--surface-white); border:1px solid var(--line-soft); border-radius:var(--r-md); padding:16px;">
                     <span style="flex:0 0 36px; height:36px; display:grid; place-items:center; background:var(--grad-amber); color:var(--navy-deep); font-weight:800; border-radius:8px;">{num}</span>
                     <div>
-                      <strong style="display:block; color:var(--text-primary);">{title}</strong>
+                      <h3 class="service-feature__title">{title}</h3>
                       <span style="color:var(--text-muted); font-size:0.92rem;">{text}</span>
                     </div>
                   </div>
@@ -193,36 +201,82 @@ const canonical = serviceUrl;
     </section>
   )}
 
-  <!-- Details -->
-  {(props.detailsTitle || props.storyTitle) && (
-    <section class="content-section" aria-labelledby="details-title">
+  <!-- Service details, source note, story and related services -->
+  {(props.detailsTitle || props.noteTitle || props.storyTitle || (props.relatedServices && props.relatedServices.length > 0)) && (
+    <section class="content-section service-details" aria-label={lang === 'fa' ? 'جزئیات خدمت' : 'Service details'}>
       <div class="container">
-        <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:32px; align-items:center;">
-          <div class="reveal">
-            {props.detailsTitle && <h2 id="details-title">{props.detailsTitle}</h2>}
-            {props.detailsBody && <p style="margin-top:12px;">{props.detailsBody}</p>}
-            {props.detailsItems && (
-              <ul style="margin-top:16px; display:grid; gap:10px;">
-                {props.detailsItems.map(it => <li style="display:flex; gap:8px; align-items:center; font-weight:600;"><span style="color:var(--success);">✓</span><span>{it}</span></li>)}
-              </ul>
+        {(props.detailsTitle || props.noteTitle) && (
+          <div class="service-detail-grid">
+            {props.detailsTitle && (
+              <article class="service-detail-card reveal">
+                <h2>{props.detailsTitle}</h2>
+                {props.detailsBody && <p>{props.detailsBody}</p>}
+                {props.detailsItems && props.detailsItems.length > 0 && (
+                  <ul class="service-detail-list">
+                    {props.detailsItems.map((item) => <li><span aria-hidden="true">✓</span><span>{item}</span></li>)}
+                  </ul>
+                )}
+              </article>
             )}
-            {props.storyTitle && (
-              <div style="margin-top:32px; background:var(--surface-white); border:1px solid var(--line-soft); border-radius:var(--r-lg); padding:24px;">
-                <span style="font-size:0.78rem; font-weight:700; color:var(--sky-blue); text-transform:uppercase; letter-spacing:0.04em;">{props.storyKicker}</span>
-                <h3 style="margin-top:8px;">{props.storyTitle}</h3>
-                <p style="margin-top:8px;">{props.storyBody}</p>
-                {props.storyItems && <ul style="margin-top:12px; display:grid; gap:8px;">{props.storyItems.map(s => <li style="display:flex; gap:8px; align-items:center; font-size:0.9rem;"><span style="color:var(--sky-blue);">✓</span><span>{s}</span></li>)}</ul>}
+            {props.noteTitle && (
+              <aside class="service-detail-card service-detail-card--note reveal">
+                <h2>{props.noteTitle}</h2>
+                {props.noteBody && <p>{props.noteBody}</p>}
+                {props.noteItems && props.noteItems.length > 0 && (
+                  <ul class="service-detail-list">
+                    {props.noteItems.map((item) => <li><span aria-hidden="true">✓</span><span>{item}</span></li>)}
+                  </ul>
+                )}
+              </aside>
+            )}
+          </div>
+        )}
+
+        {props.storyTitle && (
+          <div class="service-story reveal">
+            {(props.storyImage || props.image) && (
+              <div class="service-story__image">
+                <img
+                  src={`${baseClean}${(props.storyImage || props.image)!.replace('/Qazvintasvir', '')}`}
+                  alt={props.storyAlt || props.storyTitle || props.title}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             )}
+            <div class="service-story__copy">
+              {props.storyKicker && <span class="section-label">{props.storyKicker}</span>}
+              <h2>{props.storyTitle}</h2>
+              {props.storyBody && <p>{props.storyBody}</p>}
+              {props.storyItems && props.storyItems.length > 0 && (
+                <ul class="service-detail-list">
+                  {props.storyItems.map((item) => <li><span aria-hidden="true">✓</span><span>{item}</span></li>)}
+                </ul>
+              )}
+            </div>
           </div>
-          <div class="reveal" style="border-radius:var(--r-lg); overflow:hidden; border:1px solid var(--line-soft);">
-            {props.storyImage ? (
-              <img src={`${baseClean}${props.storyImage.replace('/Qazvintasvir','')}`} alt={props.storyAlt || props.storyTitle || props.title} loading="lazy" decoding="async" style="width:100%; aspect-ratio:4/3; object-fit:cover;" />
-            ) : props.image ? (
-              <img src={`${baseClean}${props.image.replace('/Qazvintasvir','')}`} alt={props.title} loading="lazy" decoding="async" style="width:100%; aspect-ratio:4/3; object-fit:cover;" />
-            ) : null}
-          </div>
-        </div>
+        )}
+
+        {props.relatedServices && props.relatedServices.length > 0 && (
+          <section class="related-services" aria-labelledby="related-services-title">
+            <div class="related-services__heading">
+              <div>
+                <span class="section-label">{lang === 'fa' ? 'راهکارهای دیگر' : 'Explore more'}</span>
+                <h2 id="related-services-title">{lang === 'fa' ? 'خدمات مرتبط' : 'Related services'}</h2>
+              </div>
+              <a href={servicesUrl}>{lang === 'fa' ? 'بازگشت به فهرست خدمات' : 'Back to all services'} <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="related-services__grid">
+              {props.relatedServices.map((service) => (
+                <a class="related-service-card" href={`${baseClean}/${lang}/services/${service.slug}/`}>
+                  <small>{service.tag}</small>
+                  <strong>{service.title}</strong>
+                  <span>{service.summary}</span>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </section>
   )}
@@ -251,10 +305,10 @@ const canonical = serviceUrl;
     <div class="container">
       <div class="cta-block reveal">
         <div>
-          <h2 id="cta-title">{lang==='fa' ? 'آمادهٔ شروع گفت‌وگو هستید؟' : 'Ready to start?'}</h2>
-          <p>{lang==='fa' ? 'شرح کوتاهی از نیازتان را ارسال کنید تا مسیر مناسب همکاری را مشخص کنیم.' : 'Send a short description of your needs and we will find the right path together.'}</p>
+          <h2 id="cta-title">{props.ctaTitle || (lang === 'fa' ? 'برای بررسی نیاز مجموعه‌تان گفت‌وگو کنیم' : 'Let’s discuss your organization’s needs')}</h2>
+          <p>{props.ctaBody || (lang === 'fa' ? 'مشخصات اولیه، تعداد، زمان‌بندی و مقصد را با ما در میان بگذارید؛ کارشناس قزوین تصویر مسیر مناسب همکاری را با شما بررسی می‌کند.' : 'Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together.')}</p>
         </div>
-        <a href={`${baseClean}/${lang}/contact/`} class="btn btn--accent btn--lg">{lang==='fa' ? 'درخواست مشاوره' : 'Request consultation'} →</a>
+        <a href={`${baseClean}/${lang}/contact/`} class="btn btn--accent btn--lg">{props.ctaLabel || (lang === 'fa' ? 'تماس و درخواست مشاوره' : 'Call and request a consultation')} →</a>
       </div>
     </div>
   </section>

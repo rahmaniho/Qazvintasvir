@@ -54,6 +54,15 @@ story_items:
   - "Collect technical information"
   - "Coordinate decision-making teams"
   - "Follow up on agreed purchasing steps"
+note_title: "Technical specifications are the starting point"
+note_body: "Price, timing and availability depend on the item, specifications, market and documentation. A final proposal is made after the actual requirements are reviewed."
+note_items:
+  - "Record item versions and specifications"
+  - "Compare available options clearly"
+  - "Coordinate purchasing and operations"
+cta_title: "Let’s discuss your organization’s needs"
+cta_body: "Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together."
+cta_label: "Call and request a consultation"
 theme: "theme-trade"
 ---
 

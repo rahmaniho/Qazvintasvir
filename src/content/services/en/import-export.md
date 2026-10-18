@@ -54,6 +54,15 @@ story_items:
   - "Review the case against available documents"
   - "Coordinate with the relevant parties"
   - "Follow up to delivery or the agreed milestone"
+note_title: "Clarity before commitment"
+note_body: "Service details, required documents, timing and costs are shared after the case is reviewed and before work begins."
+note_items:
+  - "Define the service scope"
+  - "Record checkpoints and timing"
+  - "Coordinate with finance and operations"
+cta_title: "Let’s discuss your organization’s needs"
+cta_body: "Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together."
+cta_label: "Call and request a consultation"
 theme: "theme-trade"
 ---
 

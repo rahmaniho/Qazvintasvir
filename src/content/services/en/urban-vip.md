@@ -54,6 +54,15 @@ story_items:
   - "Vehicle suited to the group"
   - "Pickup, stops and return coordinated"
   - "Operational support during the trip"
+note_title: "VIP service is shaped around actual needs"
+note_body: "Vehicle type and amenities are proposed around timing, route, passenger numbers and the program. Details are coordinated before final confirmation."
+note_items:
+  - "Confirm the journey plan"
+  - "Match vehicle and capacity"
+  - "Keep a contact route for changes"
+cta_title: "Let’s discuss your organization’s needs"
+cta_body: "Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together."
+cta_label: "Call and request a consultation"
 theme: "theme-transport"
 ---
 
