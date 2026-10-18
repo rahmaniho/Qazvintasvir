@@ -85,8 +85,8 @@
     --z-toast: 1400;
 
     /* Header specific */
-    --header-height: 72px;
-    --header-height-mobile: 64px;
+    --header-height: 64px;
+    --header-height-mobile: 56px;
   }
 
   /* تم تاریک */
