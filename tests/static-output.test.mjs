@@ -179,7 +179,9 @@ test('updated office details, phone numbers and icon navigation render in both l
       const html = read(route(lang, path));
       assert.match(html, /tel:\+989352815189/, `new phone link missing from ${lang}/${path || 'home'}`);
       assert.match(html, /\+98 935 281 5189/, `new phone label missing from ${lang}/${path || 'home'}`);
-      assert.match(html, /Niayesh Commercial Complex|مجتمع تجاری نیایش/, `updated office address missing from ${lang}/${path || 'home'}`);
+      assert.match(html, /Pasteur Hospital|بیمارستان پاستور/, `updated office landmark missing from ${lang}/${path || 'home'}`);
+      assert.match(html, /Unit 218|واحد ۲۱۸/, `updated office unit missing from ${lang}/${path || 'home'}`);
+      assert.doesNotMatch(html, /Abadgaran|آبادگران|Ferdowsi Street|خیابان فردوسی|Unit 216|واحد ۲۱۶|Khamenei Blvd|آیت‌الله خامنه‌ای/, `old office address remains on ${lang}/${path || 'home'}`);
       assert.match(html, /class="navigation-icon" data-icon="home"/, `navigation icon missing from ${lang}/${path || 'home'}`);
     }
   }
@@ -188,7 +190,7 @@ test('updated office details, phone numbers and icon navigation render in both l
   const structuredData = [...faHome.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
   const organization = structuredData.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
   assert.deepEqual(organization?.telephone, ['+989122815189', '+989352815189']);
-  assert.match(organization?.address?.streetAddress ?? '', /بلوار آیت‌الله خامنه‌ای.*مجتمع تجاری نیایش/);
+  assert.match(organization?.address?.streetAddress ?? '', /جنب بیمارستان پاستور.*مجتمع تجاری نیایش.*۲۱۸/);
 });
 
 test('legacy URLs emit static redirects and preserve known hash destinations', () => {

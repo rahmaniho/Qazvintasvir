@@ -19,15 +19,15 @@ const fields: Array<[string, string[]]> = fa
 const vehicleHistory = fa
   ? [
       ['نستله ایران', 'گلدایران', 'ال‌جی', 'یونیلیور', 'هنکل', 'BAT', 'آلکاپلاستیک', 'کابل البرز', 'شیر سحر', 'AGT', 'آسان پک', 'یاتاقان بوش ایران'],
-      ['شرکت با مسئولیت محدود', 'QAZVIN TASVIR CO. LTD', '۲۷۴۹', '۱۰۸۶۱۴۱۵۲۱۵', '۴۱۱۳۸۶۸۳۷۶۶۵', '۱۳۷۴/۰۲/۱۴', 'سعید امین‌زاده', 'اصغر تقی‌لو', 'قزوین، اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴', '۳۴۱۳۶۹۱۵۸۹', '۰۹۱۲ ۲۸۱ ۵۱۸۹', 'فعال'],
+      ['شرکت با مسئولیت محدود', 'QAZVIN TASVIR CO. LTD', '۲۷۴۹', '۱۰۸۶۱۴۱۵۲۱۵', '۴۱۱۳۸۶۸۳۷۶۶۵', '۱۳۷۴/۰۲/۱۴', 'سعید امین‌زاده', 'اصغر تقی‌لو', 'قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ ۲، واحد ۲۱۸', '۳۴۱۳۶۹۱۵۸۹', '۰۹۱۲ ۲۸۱ ۵۱۸۹', 'فعال'],
     ]
   : [
       ['Nestlé Iran', 'Goldiran', 'LG', 'Unilever', 'Henkel', 'BAT', 'Alkaplastik', 'Alborz Cable', 'Shir Sahar', 'AGT', 'Asan Pack', 'Yataqan Bosh Iran'],
-      ['Qazvin Tasvir Company (limited liability)', 'QAZVIN TASVIR CO. LTD', '2749', '10861415215', '411386837665', '1374/02/14', 'Saeed Aminzadeh', 'Asghar Taghilou', 'Qazvin, beginning of Ferdowsi Street, Abadgaran Commercial Complex, sixth floor, room 604', '3413691589', '0912 281 5189', 'Active'],
+      ['Qazvin Tasvir Company (limited liability)', 'QAZVIN TASVIR CO. LTD', '2749', '10861415215', '411386837665', '1374/02/14', 'Saeed Aminzadeh', 'Asghar Taghilou', 'Qazvin, next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit 218', '3413691589', '0912 281 5189', 'Active'],
     ];
 const regLabels = fa
-  ? ['نام شرکت', 'نام لاتین', 'شماره ثبت', 'شناسه ملی', 'کد اقتصادی', 'تاریخ تأسیس', 'مدیرعامل', 'رئیس هیئت مدیره', 'نشانی', 'کد پستی', 'تلفن', 'وضعیت']
-  : ['Company name', 'Latin name', 'Registration number', 'National ID', 'Economic code', 'Founding date', 'CEO', 'Chairman of the Board', 'Address', 'Postal code', 'Phone', 'Status'];
+  ? ['نام شرکت', 'نام لاتین', 'شماره ثبت', 'شناسه ملی', 'کد اقتصادی', 'تاریخ تأسیس', 'مدیرعامل', 'رئیس هیئت مدیره', 'نشانی دفتر فعلی', 'کد پستی (تأییدنشده)', 'تلفن', 'وضعیت']
+  : ['Company name', 'Latin name', 'Registration number', 'National ID', 'Economic code', 'Founding date', 'CEO', 'Chairman of the Board', 'Current office address', 'Postal code (unverified)', 'Phone', 'Status'];
 ---
 
 {(section === 'all' || section === 'trust') && (
@@ -152,8 +152,8 @@ const regLabels = fa
       <h2 class="section-title" id="legal-title">{fa ? 'اعتبارنامه و شناسنامه حقوقی شرکت' : 'Company Legal Credentials & Registration Identity'}</h2>
       <p class="section-desc">
         {fa
-          ? 'اطلاعات حقوقی و ثبتی شرکت قزوین تصویر، عیناً استخراج‌شده از اسناد رسمی و آگهی‌های ثبتی — شامل شناسنامه شرکت، ترکیب مدیریت و سهامداران و زمینه‌های کامل فعالیت مجاز.'
-          : 'Legal and registration information of Qazvin Tasvir Company, extracted verbatim from official documents and registry notices — covering the company registration identity, the composition of management and shareholders, and the complete registered fields of activity.'}
+          ? 'اطلاعات ثبتی شرکت قزوین تصویر بر پایهٔ اسناد رسمی است؛ نشانی دفتر و شماره‌های تماس در این صفحه مطابق اطلاعات به‌روز شرکت درج شده‌اند.'
+          : 'Company registration details are based on official records; the office address and phone numbers shown here reflect the company’s latest supplied contact information.'}
       </p>
     </header>
     <section class="resume-card legal-identity" aria-labelledby="legal-identity-title">
@@ -164,7 +164,7 @@ const regLabels = fa
         <div><dt>{fa ? 'شناسه ملی' : 'National ID'}</dt><dd>{fa ? '۱۰۸۶۱۴۱۵۲۱۵' : '10861415215'}</dd></div>
         <div><dt>{fa ? 'سرمایه ثبتی' : 'Registered capital'}</dt><dd>{fa ? '۱۳,۰۰۰,۰۰۰ ریال' : '13,000,000 rials'}</dd></div>
         <div><dt>{fa ? 'تاریخ ثبت' : 'Registration date'}</dt><dd>{fa ? '۱۴۰۵/۰۲/۰۷' : '1405/02/07'}</dd></div>
-        <div><dt>{fa ? 'مرکز اصلی' : 'Head office'}</dt><dd>{fa ? 'قزوین، بلوار آیت‌الله خامنه‌ای، مجتمع تجاری نیایش، طبقه ۲، واحد ۲۱۶' : 'Qazvin, Ayatollah Khamenei Boulevard, Niayesh Commercial Complex, 2nd floor, Unit 216'}</dd></div>
+        <div><dt>{fa ? 'مرکز اصلی' : 'Head office'}</dt><dd>{fa ? 'قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ ۲، واحد ۲۱۸، شرکت قزوین تصویر' : 'Qazvin Tasvir Company, next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit 218'}</dd></div>
       </dl>
     </section>
     <section class="resume-card legal-management">

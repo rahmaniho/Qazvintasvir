@@ -73,7 +73,7 @@
     <text x="610" y="200" font-family="'Vazirmatn', system-ui, sans-serif" font-size="18" font-weight="400" fill="#E2E8F0" text-anchor="end">مدیریت: سعید امین‌زاده | تأمین کالا، ترخیص گمرکی، ناوگان سازمانی</text>
 
     <!-- Address snippet -->
-    <text x="610" y="235" font-family="'Vazirmatn', system-ui, sans-serif" font-size="15" font-weight="400" fill="#94A3B8" text-anchor="end">قزوین، بلوار آیت‌الله خامنه‌ای، مجتمع تجاری نیایش، طبقه ۲، واحد ۲۱۶</text>
+    <text x="610" y="235" font-family="'Vazirmatn', system-ui, sans-serif" font-size="15" font-weight="400" fill="#94A3B8" text-anchor="end">قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ ۲، واحد ۲۱۸، شرکت قزوین تصویر</text>
 
     <!-- Contact & Phone Info Bar -->
     <g transform="translate(130, 275)">
