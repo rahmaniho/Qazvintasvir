@@ -1,40 +1,168 @@
 ---
 interface Props { lang: 'fa' | 'en'; }
 const { lang } = Astro.props;
-const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-const isFa = lang === 'fa';
-const clients = [
-  { name: 'LG', img: '/assets/images/clients/lg.png' },
-  { name: 'Nestle', img: '/assets/images/clients/nestle.png' },
-  { name: 'Unilever', img: '/assets/images/clients/unilever.png' },
-  { name: 'Henkel', img: '/assets/images/clients/henkel.png' },
-  { name: 'Goldiran', img: '/assets/images/clients/goldiran.png' },
-  { name: 'AGT', img: '/assets/images/clients/agt.png' },
-  { name: 'Alborz Cable', img: '/assets/images/clients/alborz-cable.png' },
-  { name: 'BAT', img: '/assets/images/clients/bat.png' },
-];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fa = lang === 'fa';
+const clients = fa
+  ? [
+      ['یاتاقان بوش ایران', 'Yataqan Bosh Iran', 'صنایع یاتاقان و قطعات صنعتی', 'yataqan-bosh.png'],
+      ['شیر سحر', 'Shir Sahar', 'صنایع لبنی', 'sahar.png'],
+      ['AGT', 'AGT', 'شرکت صنعتی', 'agt.png'],
+      ['آسان پک', 'Asan Pack', 'صنایع کارتن و بسته‌بندی', 'asanpack.png'],
+      ['هنکل', 'Henkel', 'صنایع شیمیایی و بهداشتی', 'henkel.png'],
+      ['یونیلیور', 'Unilever', 'محصولات بهداشتی و غذایی', 'unilever.png'],
+      ['BAT', 'British American Tobacco', 'گروه صنعتی بین‌المللی', 'bat.png'],
+      ['گلدایران', 'Goldiran', 'همکار رسمی ال‌جی در ایران', 'goldiran.png'],
+      ['ال‌جی', 'LG Electronics', 'لوازم خانگی و الکترونیک', 'lg.png'],
+      ['کابل البرز', 'Alborz Cable', 'صنایع سیم و کابل', 'alborz-cable.png'],
+      ['آلکاپلاستیک', 'Alkaplastik', 'صنایع پلاستیک و پلیمر', 'alkaplastik.png'],
+      ['نستله', 'Nestlé', 'صنایع غذایی بین‌المللی', 'nestle.png'],
+    ]
+  : [
+      ['Yataqan Bosh Iran', 'Yataqan Bosh Iran', 'Bearing and industrial parts industry', 'yataqan-bosh.png'],
+      ['Shir Sahar', 'Shir Sahar', 'Dairy industries', 'sahar.png'],
+      ['AGT', 'AGT', 'Industrial company', 'agt.png'],
+      ['Asan Pack', 'Asan Pack', 'Carton and packaging industry', 'asanpack.png'],
+      ['Henkel', 'Henkel', 'Chemical & consumer goods industry', 'henkel.png'],
+      ['Unilever', 'Unilever', 'Personal care & food products', 'unilever.png'],
+      ['BAT', 'British American Tobacco', 'International industrial group', 'bat.png'],
+      ['Goldiran', 'Goldiran', 'Official LG partner in Iran', 'goldiran.png'],
+      ['LG', 'LG Electronics', 'Home appliances & electronics', 'lg.png'],
+      ['Alborz Cable', 'Alborz Cable', 'Wire & cable industries', 'alborz-cable.png'],
+      ['Alkaplastik', 'Alkaplastik', 'Plastics & polymer industries', 'alkaplastik.png'],
+      ['Nestlé', 'Nestlé', 'International food industry', 'nestle.png'],
+    ];
+const testimonials = fa
+  ? [
+      ['«سه سال است سرویس ایاب‌وذهاب پرسنل کارخانه ما با ناوگان قزوین تصویر انجام می‌شود؛ نظم زمان‌بندی و سلامت خودروها در تمام فصول سال چشمگیر است.»', 'مهندس رضا کریمی', 'مدیر لجستیک، شرکت تولیدی صنایع غذایی'],
+      ['«از عقد قرارداد تا شروع سرویس همه‌چیز شفاف و مستند پیش رفت؛ پاسخگویی سریع مدیریت، عاملی شد که قراردادمان را تمدید کنیم.»', 'خانم سارا محمدی', 'مدیر منابع انسانی، هلدینگ صنعتی'],
+      ['«تأمین وعده‌های غذایی شیفت شب کارخانه سال‌هاست بر عهده تیم قزوین تصویر است؛ کیفیت منو و پایبندی به نکات بهداشتی رضایت پرسنل را جلب کرده است.»', 'آقای مهدی رستمی', 'مدیر تدارکات، مجتمع صنعتی'],
+    ]
+  : [
+      ['“For three years, our factory\'s staff shuttle service has been run with the Qazvin Tasvir fleet; the scheduling discipline and the condition of the vehicles in every season are remarkable.”', 'Eng. Reza Karimi', 'Logistics Manager, food manufacturing company'],
+      ['“From signing the contract to the start of services, everything moved forward transparently and systematically; the management\'s quick responsiveness is the reason we renewed our contract.”', 'Ms. Sara Mohammadi', 'HR Manager, industrial holding'],
+      ['“For years, the night-shift catering at our factory has been in the hands of the Qazvin Tasvir team; the menu quality and adherence to hygiene standards have won our staff\'s satisfaction.”', 'Mr. Mahdi Rostami', 'Procurement Manager, industrial complex'],
+    ];
+const history = fa
+  ? [
+      ['نستله ایران', '۵ دستگاه', '۱۳۸۹ تا ۱۳۹۸'],
+      ['گلدایران (ال‌جی)', '۹ دستگاه', '۱۳۹۰ تا ۱۴۰۲'],
+      ['یونیلیور', '۹ دستگاه + ۳ دستگاه سرویس VIP', '۱۳۹۳ تا ۱۳۹۶'],
+      ['هنکل', '۲ دستگاه', '۱۳۹۴ تا ۱۳۹۷'],
+      ['BAT', '۷ دستگاه + ۱۰ دستگاه VIP', '۱۳۹۳ تا ۱۳۹۶'],
+      ['آلکاپلاستیک', '۶ دستگاه', '۱۳۸۹ تا ۱۳۹۵'],
+      ['کابل البرز', '۷ دستگاه', '۱۳۹۰ تا ۱۳۹۶'],
+      ['شیر سحر', '۸ دستگاه', '۱۴۰۲ تا کنون'],
+      ['AGT', '۹ دستگاه', '۱۴۰۰ تا ۱۴۰۲'],
+      ['آسان پک', '۱۷ دستگاه مینی‌بوس و اتوبوس', '۱۳۹۷ تا کنون'],
+      ['یاتاقان بوش ایران', '۹ دستگاه مینی‌بوس', '۱۴۰۳ تا کنون'],
+    ]
+  : [
+      ['Nestlé Iran', '5 vehicles', '1389 to 1398'],
+      ['Goldiran (LG)', '9 vehicles', '1390 to 1402'],
+      ['Unilever', '9 vehicles + 3 VIP service vehicles', '1393 to 1396'],
+      ['Henkel', '2 vehicles', '1394 to 1397'],
+      ['BAT', '7 vehicles + 10 VIP vehicles', '1393 to 1396'],
+      ['Alkaplastik', '6 vehicles', '1389 to 1395'],
+      ['Alborz Cable', '7 vehicles', '1390 to 1396'],
+      ['Shir Sahar', '8 vehicles', '1402 to present'],
+      ['AGT', '9 vehicles', '1400 to 1402'],
+      ['Asan Pack', '17 minibuses and coaches', '1397 to present'],
+      ['Yataqan Bosh Iran', '9 minibuses', '1403 to present'],
+    ];
+const caseTitle = fa ? 'مدیریت ایاب‌وذهاب ۵۰۰ پرسنل در شهرک صنعتی کاسپین' : 'Managing daily transport for 500 staff at Caspian Industrial Park';
+const caseText = fa
+  ? 'طراحی و اجرای سامانه رفت‌وآمد روزانه پرسنل یک مجموعه صنعتی بزرگ در شهرک صنعتی کاسپین؛ شامل برنامه‌ریزی مسیرها بر مبنای محل سکونت کارکنان، تخصیص ناوگان مینی‌بوس و اتوبوس، و پایش روزانه حضور رانندگان — همه‌روزه و در دو شیفت کاری.'
+  : 'Design and operation of a daily staff commuting system for a large industrial group at Caspian Industrial Park: route planning based on employees\' places of residence, allocation of a dedicated minibus and coach fleet, and daily monitoring of driver attendance — every day, across two work shifts.';
 ---
 
-<section class="section" id="clients">
+<section class="section clients-section" id="clients" aria-labelledby="clients-title">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label section-label--sky">{isFa ? 'مشتریان' : 'Clients'}</span>
-      <h2 class="section-title">{isFa ? 'برندهای شاخصی که به قزوین تصویر اعتماد کرده‌اند' : 'Leading brands that trust Qazvin Tasvir'}</h2>
-    </div>
+    <header class="section-header reveal">
+      <span class="section-label section-label--sky">{fa ? 'مشتریان و شرکای تجاری' : 'Clients and Business Partners'}</span>
+      <h2 class="section-title" id="clients-title">{fa ? 'برندهای شاخصی که به قزوین تصویر اعتماد کرده‌اند' : 'Leading brands that have trusted Qazvin Tasvir'}</h2>
+      <p class="section-desc">
+        {fa
+          ? 'افتخار بیش از ۳ دهه همراهی با بزرگ‌ترین کارخانجات و صنایع بین‌المللی و ملی'
+          : 'Proud to have served the largest factories and international industries of the country for more than three decades'}
+      </p>
+    </header>
 
-    <div class="clients-grid">
-      {clients.map(c => (
-        <div class="client-card reveal">
-          <img src={`${baseUrl}${c.img}`} alt={c.name} width="120" height="48" loading="lazy" decoding="async" />
-        </div>
+    <ul class="clients-grid clients-grid--full">
+      {clients.map(([name, nameEn, sector, image]) => (
+        <li class="client-card client-card--full reveal">
+          <div class="client-card__logo-wrap">
+            <img src={`${base}/assets/images/clients/${image}`} alt={fa ? `لوگوی ${name}` : `${name} logo`} loading="lazy" decoding="async" />
+          </div>
+          <h3>{name}</h3>
+          <span class="client-card__name-en">{nameEn}</span>
+          <span class="client-card__tag">{sector}</span>
+        </li>
       ))}
-    </div>
+    </ul>
 
-    <div class="brands-strip reveal" style="margin-top:40px;">
-      <img src={`${baseUrl}/assets/logos/scania.svg`} alt="Scania" width="80" height="32" loading="lazy" decoding="async" />
-      <img src={`${baseUrl}/assets/logos/volvo.svg`} alt="Volvo" width="80" height="32" loading="lazy" decoding="async" />
-      <img src={`${baseUrl}/assets/logos/mercedes.svg`} alt="Mercedes" width="80" height="32" loading="lazy" decoding="async" />
-      <img src={`${baseUrl}/assets/logos/iveco.svg`} alt="Iveco" width="80" height="32" loading="lazy" decoding="async" />
-    </div>
+    <section class="testimonials" aria-labelledby="testimonials-title">
+      <h3 id="testimonials-title">{fa ? 'نظرات مشتریان' : 'Client Testimonials'}</h3>
+      <div class="testimonials__grid">
+        {testimonials.map(([text, name, role]) => (
+          <figure class="testimonial-card reveal">
+            <div class="testimonial-card__stars" role="img" aria-label={fa ? 'امتیاز ۵ از ۵ ستاره' : 'Rated 5 out of 5 stars'}>★★★★★</div>
+            <blockquote>{text}</blockquote>
+            <figcaption>
+              <strong>{name}</strong>
+              <span>{role}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <article class="client-case-study reveal">
+      <div>
+        <span class="section-label section-label--sky">{fa ? 'نمونه‌کار' : 'Case Study'}</span>
+        <h3>{caseTitle}</h3>
+        <p>{caseText}</p>
+        <a href={`${base}/${lang}/contact/`} class="btn btn--primary">
+          {fa ? 'درخواست مشاوره برای سرویس پرسنل' : 'Request a staff transport consultation'}
+        </a>
+      </div>
+      <dl class="client-case-study__stats">
+        <div><dt>{fa ? 'پرسنل تحت پوشش' : 'Staff covered'}</dt><dd>۵۰۰+</dd></div>
+        <div><dt>{fa ? 'شیفت کاری روزانه' : 'Daily work shifts'}</dt><dd>{fa ? '۲ شیفت' : '2 shifts'}</dd></div>
+        <div><dt>{fa ? 'پوشش خدمت' : 'Service coverage'}</dt><dd>{fa ? '۷ روز هفته' : '7 days a week'}</dd></div>
+      </dl>
+    </article>
+
+    <section class="clients-history" aria-labelledby="clients-history-title">
+      <header class="section-header">
+        <span class="section-label section-label--sky">{fa ? 'از رزومه رسمی شرکت' : 'From the official company resume'}</span>
+        <h3 class="section-title" id="clients-history-title">{fa ? 'سوابق همکاری قراردادی' : 'Contract Collaboration History'}</h3>
+        <p class="section-desc">
+          {fa
+            ? 'شرکتی که سرویس ایاب‌وذهاب پرسنل‌شان در طول سال‌های فعالیت، با ناوگان و رانندگان قزوین تصویر انجام شده است؛ به‌همراه تعداد دستگاه‌های واگذارشده و بازهٔ همکاری.'
+            : 'Companies whose staff shuttle service has been run with Qazvin Tasvir’s fleet and drivers over the years, together with the number of vehicles provided and the period of cooperation (Solar Hijri calendar years).'}
+        </p>
+      </header>
+      <div class="clients-history__scroll">
+        <table class="history-table">
+          <caption class="visually-hidden">{fa ? 'سوابق همکاری قراردادی شرکت قزوین تصویر با شرکت‌های صنعتی و تولیدی' : 'Qazvin Tasvir Company’s contract collaboration history with industrial and manufacturing companies'}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{fa ? 'شرکت' : 'Company'}</th>
+              <th scope="col">{fa ? 'ناوگان واگذارشده' : 'Fleet provided'}</th>
+              <th scope="col">{fa ? 'بازهٔ همکاری' : 'Cooperation period'}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {history.map(([company, vehicles, period]) => (
+              <tr><th scope="row">{company}</th><td>{vehicles}</td><td>{period}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="clients-history__note">
+        {fa ? <>جمعاً <strong>۱۰۱ دستگاه خودرو</strong> در قالب این قراردادها به شرکت‌های بالا واگذار شده است.</> : <>In total, <strong>101 vehicles</strong> have been leased to the companies above under these contracts.</>}
+      </p>
+    </section>
   </div>
 </section>

@@ -1,37 +1,61 @@
 ---
 interface Props { lang: 'fa' | 'en'; }
 const { lang } = Astro.props;
-const isFa = lang === 'fa';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fa = lang === 'fa';
+const reasons = fa
+  ? [
+      ['۳۱+ سال سابقه صنعتی (تأسیس ۱۳۷۴)', 'پایداری و تداوم موفق از سال ۱۳۷۴ تاکنون که نشان از تعهد عمیق و ثبات اجرایی در تمام شرایط اقتصادی دارد.'],
+      ['مدیریت آقای سعید امین‌زاده', 'نظارت مستقیم و پاسخگویی شخص مدیرعامل بر کلیه قراردادها و تعاملات مشتریان سازمانی و بازرگانان.'],
+      ['ناوگان ملکی و مجهز', 'در اختیار داشتن انواع اتوبوس، مینی‌بوس و ون‌های بهینه‌سازی‌شده همراه با خودروهای پشتیبان در صورت لزوم.'],
+      ['شبکه تأمین داخلی و خارجی', 'روابط بین‌المللی مؤثر با بازارهای مبدأ و زنجیره تأمین بدون واسطه مواد اولیه و تجهیزات تولیدی.'],
+      ['پشتیبانی ۲۴/۷ و قراردادهای منعطف', 'انعطاف در نحوه تسویه، ساختار قراردادهای ماهانه و سالانه و پاسخگویی بی‌وقفه به تغییرات شیفت کاری.'],
+      ['رضایت بالا و تمدید مداوم قراردادها', 'بیش از ۹۰٪ کارخانجات طرف قرارداد بیش از ۵ سال متوالی همکاری خود را با قزوین تصویر تمدید کرده‌اند.'],
+    ]
+  : [
+      ['31+ years of industrial experience (founded 1995)', 'Stability and successful continuity since 1995, reflecting deep commitment and operational consistency through every economic condition.'],
+      ['Management by Mr Saeed Aminzadeh', 'Direct supervision and personal accountability of the CEO for every contract and every interaction with corporate clients and traders.'],
+      ['Company-owned, fully equipped fleet', 'Optimised buses, minibuses and vans on hand, together with backup vehicles whenever needed.'],
+      ['Domestic and international supply network', 'Effective international relationships with source markets and a supply chain for raw materials and production equipment with no middlemen.'],
+      ['24/7 support and flexible contracts', 'Flexibility in payment terms, monthly and annual contract structures, and uninterrupted responsiveness to shift changes.'],
+      ['High satisfaction and continuous contract renewals', 'More than 90% of contracted factories have renewed their cooperation with Qazvin Tasvir for more than 5 consecutive years.'],
+    ];
+const quote = fa
+  ? '«تعهد ما، آرامش خاطر شماست. در قزوین تصویر، تک‌تک محموله‌های تجاری سرمایه شما و هر سرنشین ناوگان امانت کارخانه شماست.»'
+  : 'Our commitment is your peace of mind. At Qazvin Tasvir, every commercial consignment — your capital — and every passenger on our fleet is a trust placed in us by your factory.';
 ---
 
-<section class="section section--dark" id="why-us" style="background: var(--grad-hero); color:#fff;">
+<section class="section section--alt why-us" id="why-us" aria-labelledby="why-us-title">
+  <div class="why-us__banner" aria-hidden="true">
+    <picture>
+      <source srcset={`${base}/assets/img/sections/why-banner.webp`} type="image/webp" />
+      <img src={`${base}/assets/img/sections/why-banner.jpg`} alt="" width="1600" height="718" loading="lazy" decoding="async" />
+    </picture>
+  </div>
   <div class="container">
-    <div class="section-header reveal">
-      <h2 style="color:#fff;">{isFa ? 'چرا شرکت‌ها قزوین تصویر را انتخاب می‌کنند؟' : 'Why companies choose Qazvin Tasvir'}</h2>
-      <p style="color:#CBD5E1;">{isFa ? 'ترکیب تجربه، ناوگان مجهز و تعهد به کیفیت، تمایز ما در بازار ترابری و بازرگانی قزوین است.' : 'Experience, fleet and commitment to quality set us apart in Qazvin transport and trade.'}</p>
+    <header class="section-header reveal">
+      <span class="section-label">{fa ? 'تمایز و مزیت‌های رقابتی' : 'Distinction and competitive advantages'}</span>
+      <h2 class="section-title" id="why-us-title">{fa ? 'چرا شرکت‌ها قزوین تصویر را انتخاب می‌کنند؟' : 'Why do companies choose Qazvin Tasvir?'}</h2>
+      <p class="section-desc">
+        {fa
+          ? 'ترکیب بیش از ۳۱ سال سابقه عملیاتی با استانداردهای نوین مدیریت لجستیک و بازرگانی'
+          : 'More than 31 years of operating experience combined with modern standards of logistics and trading management'}
+      </p>
+    </header>
+    <div class="why-us__grid">
+      {reasons.map(([title, description]) => (
+        <article class="why-card reveal">
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </article>
+      ))}
     </div>
-
-    <div class="stats-grid">
-      <div class="card reveal" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.12); backdrop-filter:blur(8px); text-align:center;">
-        <strong style="display:block; font-size:2rem; color:#fff;">{isFa ? '۳۱+' : '31+'}</strong>
-        <span style="color:#CBD5E1; font-weight:600;">{isFa ? 'سال تجربه' : 'Years experience'}</span>
-        <p style="color:#94A3B8; font-size:0.84rem; margin-top:8px;">{isFa ? 'از ۱۳۷۴ در کنار صنایع قزوین' : 'Since 1995 beside Qazvin industries'}</p>
-      </div>
-      <div class="card reveal" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.12); backdrop-filter:blur(8px); text-align:center;">
-        <strong style="display:block; font-size:2rem; color:#fff;">۸</strong>
-        <span style="color:#CBD5E1; font-weight:600;">{isFa ? 'خدمت تخصصی' : 'Specialist services'}</span>
-        <p style="color:#94A3B8; font-size:0.84rem; margin-top:8px;">{isFa ? 'از بازرگانی تا کیترینگ' : 'From trade to catering'}</p>
-      </div>
-      <div class="card reveal" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.12); backdrop-filter:blur(8px); text-align:center;">
-        <strong style="display:block; font-size:2rem; color:#fff;">{isFa ? '۱۰۰+' : '100+'}</strong>
-        <span style="color:#CBD5E1; font-weight:600;">{isFa ? 'سازمان همکار' : 'Partner organizations'}</span>
-        <p style="color:#94A3B8; font-size:0.84rem; margin-top:8px;">{isFa ? 'در قزوین و شهرک‌های صنعتی' : 'In Qazvin industrial parks'}</p>
-      </div>
-      <div class="card reveal" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.12); backdrop-filter:blur(8px); text-align:center;">
-        <strong style="display:block; font-size:2rem; color:#fff;">۲۴/۷</strong>
-        <span style="color:#CBD5E1; font-weight:600;">{isFa ? 'پشتیبانی' : 'Support'}</span>
-        <p style="color:#94A3B8; font-size:0.84rem; margin-top:8px;">{isFa ? 'هماهنگی و پیگیری مستمر' : 'Continuous coordination'}</p>
-      </div>
-    </div>
+    <blockquote class="why-us__quote reveal">
+      <p>{quote}</p>
+      <footer>
+        <img src={`${base}/assets/images/saeed-aminzadeh-avatar.webp`} alt="" width="60" height="72" loading="lazy" decoding="async" />
+        <span>{fa ? '— سعید امین‌زاده | مدیرعامل شرکت قزوین تصویر' : '— Saeed Aminzadeh | CEO of Qazvin Tasvir Company'}</span>
+      </footer>
+    </blockquote>
   </div>
 </section>

@@ -1,0 +1,43 @@
+---
+interface Props { lang: 'fa' | 'en'; }
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fa = lang === 'fa';
+const brands = [
+  { key: 'scania', fa: 'اسکانیا (Scania)', en: 'Scania', altFa: 'لوگوی رسمی برند اسکانیا', altEn: 'Scania brand logo' },
+  { key: 'volvo', fa: 'ولوو (Volvo)', en: 'Volvo', altFa: 'لوگوی رسمی برند ولوو', altEn: 'Volvo brand logo' },
+  { key: 'mercedes', fa: 'مرسدس بنز (Mercedes-Benz)', en: 'Mercedes-Benz', altFa: 'لوگوی رسمی برند مرسدس بنز', altEn: 'Mercedes-Benz brand logo' },
+  { key: 'iveco', fa: 'ایویکو (Iveco)', en: 'Iveco', altFa: 'لوگوی رسمی برند ایویکو', altEn: 'Iveco brand logo' },
+  { key: 'irankhodro', fa: 'ایران خودرو دیزل (IKD)', en: 'Iran Khodro Diesel (IKD)', altFa: 'نشان برند ایران خودرو دیزل', altEn: 'Iran Khodro Diesel brand emblem' },
+];
+---
+
+<section class="section brand-partners" id="brands" aria-labelledby="brands-title">
+  <div class="container">
+    <header class="section-header reveal">
+      <span class="section-label section-label--onDark">{fa ? 'کیفیت ناوگان' : 'Fleet quality'}</span>
+      <h2 class="section-title" id="brands-title">{fa ? 'برندهای همکار و مورد اعتماد' : 'Trusted partner brands'}</h2>
+      <p class="section-desc">
+        {fa
+          ? 'ناوگان ترابری ما مجهز به خودروهای برندهای معتبر جهانی است؛ انتخابی که ایمنی، دوام و آسایش پرسنل شما را تضمین می‌کند.'
+          : 'Our transport fleet is built from vehicles of leading global brands — a choice that guarantees the safety, durability and comfort of your staff.'}
+      </p>
+    </header>
+    <ul class="brand-partners__grid">
+      {brands.map((brand) => (
+        <li class="brand-partners__item reveal">
+          <img
+            class="brand-partners__logo"
+            src={`${base}/assets/logos/${brand.key}.svg`}
+            alt={fa ? brand.altFa : brand.altEn}
+            width="160"
+            height="88"
+            loading="lazy"
+            decoding="async"
+          />
+          <span>{fa ? brand.fa : brand.en}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

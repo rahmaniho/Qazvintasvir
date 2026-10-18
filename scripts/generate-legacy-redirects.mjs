@@ -1,0 +1,66 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const outputDir = resolve(root, 'public/services');
+const serviceSlugs = [
+  'customs-port',
+  'factory-transport',
+  'import-export',
+  'personnel-food',
+  'school-office',
+  'sourcing',
+  'trade-consulting',
+  'urban-vip',
+];
+const legacyAliases = {
+  'fleet-specs': ['urban-vip', 'fleet-specs'],
+  'personnel-food': ['personnel-food', 'personnel-food'],
+  'food-menu': ['personnel-food', 'food-menu'],
+  'food-gallery': ['personnel-food', 'food-gallery'],
+  'food-request': ['personnel-food', 'food-request'],
+  'food-faq': ['personnel-food', 'food-faq'],
+};
+
+function redirectHtml(target, label) {
+  const safeTarget = target.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
+  const safeLabel = label.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+  return `<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <meta http-equiv="refresh" content="1;url=${safeTarget}">
+  <title>${safeLabel} | انتقال صفحه</title>
+  <script>
+    const target = ${JSON.stringify(target)};
+    const aliases = ${JSON.stringify(legacyAliases)};
+    let fragment = '';
+    try { fragment = decodeURIComponent(location.hash.slice(1)); } catch {}
+    const alias = aliases[fragment];
+    const destination = alias
+      ? new URL('../fa/services/' + alias[0] + '/#' + alias[1], location.href)
+      : new URL(target + (fragment ? '#' + encodeURIComponent(fragment) : ''), location.href);
+    location.replace(destination.href);
+  </script>
+</head>
+<body>
+  <p>این صفحه به نشانی جدید منتقل شده است.</p>
+  <p><a href="${safeTarget}">ادامه به ${safeLabel}</a></p>
+</body>
+</html>
+`;
+}
+
+await mkdir(outputDir, { recursive: true });
+await writeFile(resolve(outputDir, 'index.html'), redirectHtml('../fa/services/', 'فهرست خدمات'), 'utf8');
+for (const slug of serviceSlugs) {
+  await writeFile(
+    resolve(outputDir, `${slug}.html`),
+    redirectHtml(`../fa/services/${slug}/`, slug),
+    'utf8',
+  );
+}
+console.log(`Generated ${serviceSlugs.length + 1} legacy service redirects in public/services/.`);

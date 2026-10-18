@@ -105,4 +105,19 @@
     background: var(--surface-bg);
     color: var(--text-primary);
   }
+
+  /* Ocean palette preserves the third user-selectable source theme. */
+  [data-theme="ocean"] {
+    --primary-navy: #155E75;
+    --navy-mid: #0E7490;
+    --teal-industrial: #0F766E;
+    --sky-blue: #0891B2;
+    --sky-light: #22D3EE;
+    --surface-bg: #EFF7FA;
+    --surface-white: #FFFFFF;
+    --line-soft: #D4E7EE;
+    --grad-navy: linear-gradient(135deg, #155E75 0%, #0F766E 100%);
+    --grad-hero: linear-gradient(155deg, #083344 0%, #155E75 50%, #0F766E 100%);
+    --grad-glow-sky: radial-gradient(circle at bottom left, rgba(34, 211, 238, 0.25) 0%, rgba(34, 211, 238, 0) 65%);
+  }
 }

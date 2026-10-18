@@ -60,7 +60,6 @@ const crumbs = breadcrumbSchema([
 const faqList = props.faqs && props.faqs.length ? faqSchema(props.faqs) : null;
 
 // hreflang
-const otherLang = lang === 'fa' ? 'en' : 'fa';
 const hreflang = [
   { lang: 'fa', href: `${siteClean}${baseClean}/fa/services/${props.slug}/` },
   { lang: 'en', href: `${siteClean}${baseClean}/en/services/${props.slug}/` },
@@ -78,7 +77,7 @@ const canonical = serviceUrl;
   </Fragment>
 
   <!-- Service Hero -->
-  <section class="service-hero" aria-labelledby="service-title">
+  <section class="service-hero" id={props.slug === 'urban-vip' ? 'fleet-specs' : undefined} aria-labelledby="service-title">
     <div class="container">
       <nav class="breadcrumbs" aria-label={lang==='fa' ? 'مسیر صفحه' : 'Breadcrumb'}>
         <a href={`${baseClean}/${lang}/`}>{lang==='fa' ? 'خانه' : 'Home'}</a>

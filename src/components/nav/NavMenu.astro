@@ -49,8 +49,6 @@ const servicesEn = [
 ];
 const services = lang === 'fa' ? servicesFa : servicesEn;
 
-const isActive = (pathPart: string) => currentPath === pathPart || currentPath.startsWith(pathPart + '/') || (pathPart !== `/${lang}/` && currentPath.includes(pathPart));
-
 // Build nav links for desktop
 const homeHref = `${baseUrl}/${lang}/`;
 const aboutHref = `${baseUrl}/${lang}/about/`;

@@ -9,6 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "test": "node --test tests/*.test.mjs",
+    "legacy:redirects": "node scripts/generate-legacy-redirects.mjs",
     "astro": "astro"
   },
   "dependencies": {

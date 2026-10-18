@@ -8,7 +8,6 @@ export const languages: Lang[] = ['fa', 'en'];
 export const ui = { fa, en };
 
 export function getLangFromUrl(url: URL): Lang {
-  const [, lang] = url.pathname.split('/');
   // url.pathname includes base? Astro.url.pathname includes base prefix.
   // Check both segments for lang
   const parts = url.pathname.split('/').filter(Boolean);

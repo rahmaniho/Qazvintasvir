@@ -82,19 +82,40 @@ const switchHref = `${baseUrl}/${otherLang}${suffix === '/' ? '/' : suffix}`;
 
     <div class="header-actions">
       <a href={switchHref} class="lang-switch" aria-label={lang === 'fa' ? 'Switch to English' : 'تغییر به فارسی'} hreflang={otherLang}>
-        <span style={lang==='fa' ? "color:var(--primary-navy); font-weight:800" : "opacity:0.6"}>FA</span>
+        <span class:list={{ 'is-current': lang === 'fa' }}>FA</span>
         <span aria-hidden="true">/</span>
-        <span style={lang==='en' ? "color:var(--primary-navy); font-weight:800" : "opacity:0.6"}>EN</span>
+        <span class:list={{ 'is-current': lang === 'en' }}>EN</span>
       </a>
 
-      <a href={ctaHref} class="btn btn--accent" style="display:none; @media(min-width:1024px){display:inline-flex}" >
-        <span class="hide-mobile">{contactLabel}</span>
-        <span class="show-mobile" aria-hidden="true">✉</span>
+      <details class="theme-switch">
+        <summary class="theme-switch__btn" aria-label={lang === 'fa' ? 'تغییر تم سایت' : 'Change site theme'}>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="13.5" cy="6.5" r="1.5"></circle><circle cx="17.5" cy="10.5" r="1.5"></circle><circle cx="8.5" cy="7.5" r="1.5"></circle><circle cx="6.5" cy="12.5" r="1.5"></circle>
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+          </svg>
+        </summary>
+        <div class="theme-switch__panel" role="group" aria-label={lang === 'fa' ? 'انتخاب تم رنگی سایت' : 'Choose a site color theme'}>
+          <button type="button" class="theme-option" data-theme-value="light" aria-pressed="true">
+            <span class="theme-option__swatch theme-option__swatch--light" aria-hidden="true"></span>
+            <span>{lang === 'fa' ? 'روشن' : 'Light'}</span>
+            <span class="theme-option__check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-value="dark" aria-pressed="false">
+            <span class="theme-option__swatch theme-option__swatch--dark" aria-hidden="true"></span>
+            <span>{lang === 'fa' ? 'تیره' : 'Dark'}</span>
+            <span class="theme-option__check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="theme-option" data-theme-value="ocean" aria-pressed="false">
+            <span class="theme-option__swatch theme-option__swatch--ocean" aria-hidden="true"></span>
+            <span>{lang === 'fa' ? 'اقیانوسی' : 'Ocean'}</span>
+            <span class="theme-option__check" aria-hidden="true">✓</span>
+          </button>
+        </div>
+      </details>
+
+      <a href={ctaHref} class="btn btn--accent header-actions__cta">
+        <span>{contactLabel}</span>
       </a>
-      <style>
-        @media (max-width: 1023px) { .header-actions .btn--accent { display: none !important; } }
-        @media (min-width: 1024px) { .header-actions .btn--accent { display: inline-flex !important; } }
-      </style>
 
       <button id="menu-toggle" class="menu-toggle" type="button" aria-label={openLabel} aria-expanded="false" aria-controls="mobile-drawer">
         <span></span><span></span><span></span>

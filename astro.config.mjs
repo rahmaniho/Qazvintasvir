@@ -11,7 +11,14 @@ export default defineConfig({
       prefixDefaultLocale: true
     }
   },
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => {
+        const path = new URL(page).pathname;
+        return path !== '/Qazvintasvir/' && !path.startsWith('/Qazvintasvir/services/');
+      },
+    }),
+  ],
   build: {
     format: 'directory'
   },

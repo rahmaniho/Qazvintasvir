@@ -1,0 +1,58 @@
+---
+import foodSectionSource from '../../content/food/personnel-food-fa.html?raw';
+import '../../styles/food-service.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { organizationSchema, serviceSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://rahmaniho.github.io';
+const canonical = `${site}${base}/fa/services/personnel-food/`;
+const description = 'خدمات تأمین غذای پرسنل و وعده‌های سازمانی قزوین تصویر؛ منوی چرخشی، آشپزخانه بهداشتی و توزیع در محل.';
+const image = `${site}${base}/assets/img/personnel-food/hero-kitchen.jpg`;
+const content = foodSectionSource.replaceAll('${base}', base);
+const organization = organizationSchema(`${site}${base}`);
+const service = serviceSchema({
+  title: 'تأمین غذای پرسنل و وعده‌های سازمانی',
+  description,
+  image,
+  url: canonical,
+  providerUrl: `${site}${base}`,
+});
+const breadcrumbs = breadcrumbSchema([
+  { name: 'خانه', url: `${site}${base}/fa/` },
+  { name: 'خدمات', url: `${site}${base}/fa/services/` },
+  { name: 'تأمین غذای پرسنل و وعده‌های سازمانی' },
+]);
+const faqs = faqSchema([
+  { q: 'حداقل تعداد پرس برای انعقاد قرارداد چقدر است؟', a: 'معمولاً از ۵۰ پرس به بالا؛ برای مجموعه‌های کوچک‌تر نیز با توجه به فاصله محل توزیع و تعداد وعده‌ها، امکان تعریف قرارداد یا پرس‌های ترکیبی وجود دارد. کارشناس ما پس از بازدید، دقیق‌ترین برآورد را ارائه می‌کند.' },
+  { q: 'آیا منو قابل تغییر است؟', a: 'بله؛ منوی هفتگی و فصلی است و بر اساس سلیقه پرسنل، بودجه شما و شرایط تولید قابل بازبینی است. آیتم‌های غیرمحبوب حذف یا جایگزین می‌شوند و می‌توانید گزینه‌های رژیمی، گیاهی یا کم‌نمک را به منو اضافه کنید.' },
+  { q: 'غذای سازمانی جزو حقوق و دستمزد محسوب می‌شود؟', a: 'طبق قانون کار، غذای ارائه‌شده به پرسنل جزو مزایای غیرنقدی محسوب می‌شود و شرایط و آثار بیمه‌ای و مالیاتی خاص خود را دارد. در قرارداد، نحوه محاسبه و مستندسازی وعده‌ها مشخص می‌شود و توصیه می‌کنیم پیش از امضا با مشاور مالی و بیمه‌ای مجموعه خود نیز هماهنگ کنید.' },
+  { q: 'زمان توزیع وعده‌ها چگونه تنظیم می‌شود؟', a: 'طبق شیفت‌های کاری شما؛ برنامه توزیع در قرارداد تعیین می‌شود و برای شیفت‌های شب، تعطیلات و روزهای پیک تولید نیز قابل تنظیم است. تغییرات موقت برنامه با هماهنگی قبلی و در کوتاه‌ترین زمان اعمال می‌شود.' },
+]);
+---
+
+<BaseLayout
+  lang="fa"
+  bodyClass="food-service-page theme-food"
+  title="تأمین غذای پرسنل و وعده‌های سازمانی | قزوین تصویر"
+  description={description}
+  image={image}
+  canonical={canonical}
+  hreflang={[
+    { lang: 'fa', href: canonical },
+    { lang: 'en', href: `${site}${base}/en/services/personnel-food/` },
+    { lang: 'x-default', href: canonical },
+  ]}
+>
+  <Fragment slot="head">
+    <link rel="preload" href={`${base}/assets/img/personnel-food/hero-kitchen.webp`} as="image" type="image/webp" fetchpriority="high" />
+    <script type="application/ld+json" set:html={JSON.stringify(organization)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(service)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqs)}></script>
+  </Fragment>
+  <Fragment set:html={content} />
+  <script>
+    import '../../scripts/food-service.js';
+  </script>
+</BaseLayout>

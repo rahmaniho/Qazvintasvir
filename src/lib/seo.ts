@@ -1,4 +1,4 @@
-export function canonicalURL(url: URL, site?: string, base?: string): string {
+export function canonicalURL(url: URL): string {
   // Astro.url already includes site+base? We just return url.href normalized
   return url.href;
 }
