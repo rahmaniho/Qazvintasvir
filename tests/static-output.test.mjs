@@ -30,6 +30,22 @@ test('build emits the bilingual public route set', () => {
   assert.ok(existsSync(resolve(dist, '404.html')), 'missing localized 404 output');
 });
 
+test('Persian about page uses refined copy and stable RTL typography hooks', () => {
+  const html = read(route('fa', 'about'));
+  assert.match(html, /دربارهٔ قزوین تصویر \| همراه صنایع قزوین از ۱۳۷۴/);
+  assert.match(html, /بیش از <bdi class="bidi-ltr" dir="ltr">۳۱<\/bdi> سال، همراه صنایع قزوین/);
+  assert.match(html, /class="about-facts"/);
+  assert.match(html, /class="about-address-unit"/);
+  assert.match(html, /class="[^"]*\babout-activities-header\b[^"]*"/);
+  assert.match(html, /رئیس هیئت‌مدیره/);
+  assert.doesNotMatch(html, /شناسه مالیاتی/);
+
+  const css = readFileSync(resolve(root, 'src/styles/components.css'), 'utf8');
+  assert.match(css, /\.about-page \.about-facts dd[^{]*\{[^}]*overflow-wrap:\s*anywhere/);
+  assert.match(css, /\.about-page \.about-address-unit[^{]*\{[^}]*white-space:\s*nowrap/);
+  assert.match(css, /\.about-page \.about-hero \.hero__lead[^{]*\{[^}]*text-wrap:\s*pretty/);
+});
+
 test('footer credit uses the original bilingual KarenSoft artwork and a secure external link', () => {
   const files = [
     ['mark.png', 256, 256],
