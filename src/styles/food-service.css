@@ -853,6 +853,8 @@ body.food-service-page {
   border-radius: var(--r-full);
 }
 
+html[dir="rtl"] .food-service-page .food-menu__header-tag { letter-spacing: normal; }
+
 .food-service-page .food-menu__header-title {
   font-size: 1.28rem;
   font-weight: 800;

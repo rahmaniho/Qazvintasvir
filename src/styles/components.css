@@ -177,6 +177,7 @@
   .service-card:hover .service-card__media img { scale: 1.04; }
   .service-card__body { padding: 20px; display: grid; gap: 10px; flex: 1; }
   .service-card__tag { font-size: 0.74rem; font-weight: 700; color: var(--amber-accent); letter-spacing: 0.04em; }
+  html[dir="rtl"] .service-card__tag { letter-spacing: normal; }
   .service-card h3 { font-size: 1.05rem; color: var(--text-primary); }
   .service-card p { font-size: 0.9rem; }
   .service-card__link { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 0.86rem; color: var(--primary-navy); margin-top: auto; padding-top: 6px; }
@@ -498,7 +499,7 @@
     .container { padding-inline: 18px; }
     .section-header { margin-block-end: 32px; }
     .section-desc { max-inline-size: 62ch; margin-inline: auto; }
-    .section-title, h1, h2, h3 { overflow-wrap: anywhere; }
+    .section-title, h1, h2, h3 { overflow-wrap: break-word; word-break: normal; }
     .hero__grid, .service-hero__grid { gap: 24px; }
     .hero__actions { gap: 10px; }
     .hero__actions .btn, .cta-block .btn, .contact-form-layout .btn--lg { max-inline-size: 100%; white-space: normal; line-height: 1.45; }
