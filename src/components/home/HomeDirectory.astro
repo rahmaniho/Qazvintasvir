@@ -5,53 +5,56 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const fa = lang === 'fa';
 const pages = fa
   ? [
-      { slug: 'about', number: '01', title: 'درباره قزوین تصویر', description: 'تاریخچه، مدیریت و معرفی شرکت' },
-      { slug: 'services', number: '02', title: 'خدمات تخصصی', description: 'هشت مسیر مستقل برای خدمات شرکت' },
-      { slug: 'fleet', number: '03', title: 'ناوگان ترابری', description: 'اتوبوس، مینی‌بوس، ون و تجهیزات' },
-      { slug: 'brands', number: '04', title: 'برندهای ناوگان', description: 'برندهای همکار و مورد اعتماد' },
-      { slug: 'why-us', number: '05', title: 'چرا قزوین تصویر؟', description: 'مزیت‌ها و شیوه همکاری' },
-      { slug: 'clients', number: '06', title: 'مشتریان و سوابق', description: 'مشتریان، دیدگاه‌ها و قراردادها' },
-      { slug: 'trust', number: '07', title: 'اعتبار و شفافیت', description: 'اطلاعات ثبتی و قابلیت استعلام' },
-      { slug: 'resume', number: '08', title: 'رزومه شرکت', description: 'سوابق، توانمندی‌ها و دریافت PDF' },
-      { slug: 'legal', number: '09', title: 'شناسنامه حقوقی', description: 'اطلاعات رسمی و زمینه‌های فعالیت' },
-      { slug: 'contact', number: '10', title: 'تماس و درخواست همکاری', description: 'گفت‌وگو درباره نیاز مجموعه شما' },
+      { slug: 'about', icon: 'about', title: 'درباره قزوین تصویر' },
+      { slug: 'services', icon: 'services', title: 'خدمات تخصصی' },
+      { slug: 'fleet', icon: 'fleet', title: 'ناوگان ترابری' },
+      { slug: 'brands', icon: 'brands', title: 'برندهای ناوگان' },
+      { slug: 'why-us', icon: 'consulting', title: 'چرا قزوین تصویر؟' },
+      { slug: 'clients', icon: 'clients', title: 'مشتریان و سوابق' },
+      { slug: 'trust', icon: 'customs', title: 'اعتبار و شفافیت' },
+      { slug: 'resume', icon: 'sourcing', title: 'رزومه شرکت' },
+      { slug: 'legal', icon: 'customs', title: 'شناسنامه حقوقی' },
+      { slug: 'contact', icon: 'contact', title: 'تماس و درخواست همکاری' },
     ]
   : [
-      { slug: 'about', number: '01', title: 'About Qazvin Tasvir', description: 'Company history, leadership and overview' },
-      { slug: 'services', number: '02', title: 'Specialist Services', description: 'Eight dedicated service routes' },
-      { slug: 'fleet', number: '03', title: 'Transport Fleet', description: 'Buses, minibuses, vans and equipment' },
-      { slug: 'brands', number: '04', title: 'Fleet Brands', description: 'Trusted vehicle and equipment partners' },
-      { slug: 'why-us', number: '05', title: 'Why Qazvin Tasvir?', description: 'Our strengths and how we work' },
-      { slug: 'clients', number: '06', title: 'Clients & Track Record', description: 'Clients, testimonials and contracts' },
-      { slug: 'trust', number: '07', title: 'Credentials & Transparency', description: 'Verifiable company registration details' },
-      { slug: 'resume', number: '08', title: 'Company Resume', description: 'Experience, capabilities and PDF' },
-      { slug: 'legal', number: '09', title: 'Legal Identity', description: 'Official records and registered activities' },
-      { slug: 'contact', number: '10', title: 'Contact & Partnership', description: 'Discuss your organization’s needs' },
+      { slug: 'about', icon: 'about', title: 'About Qazvin Tasvir' },
+      { slug: 'services', icon: 'services', title: 'Specialist Services' },
+      { slug: 'fleet', icon: 'fleet', title: 'Transport Fleet' },
+      { slug: 'brands', icon: 'brands', title: 'Fleet Brands' },
+      { slug: 'why-us', icon: 'consulting', title: 'Why Qazvin Tasvir?' },
+      { slug: 'clients', icon: 'clients', title: 'Clients & Track Record' },
+      { slug: 'trust', icon: 'customs', title: 'Credentials & Transparency' },
+      { slug: 'resume', icon: 'sourcing', title: 'Company Resume' },
+      { slug: 'legal', icon: 'customs', title: 'Legal Identity' },
+      { slug: 'contact', icon: 'contact', title: 'Contact & Partnership' },
     ];
 ---
 
 <section class="section home-directory" aria-labelledby="home-directory-title">
   <div class="container">
-    <header class="section-header reveal">
-      <span class="section-label">{fa ? 'صفحه‌های مستقل' : 'Dedicated pages'}</span>
-      <h2 class="section-title" id="home-directory-title">{fa ? 'هر بخش، در صفحهٔ خودش' : 'Explore each area on its own page'}</h2>
-      <p class="section-desc">
-        {fa
-          ? 'برای دسترسی سریع‌تر، هر بخش اصلی سایت را در صفحه‌ای جداگانه ببینید.'
-          : 'Find the information you need faster: each major area has its own dedicated page.'}
-      </p>
-    </header>
-    <nav class="home-directory__grid" aria-label={fa ? 'فهرست صفحه‌های سایت' : 'Site pages'}>
-      {pages.map((page) => (
-        <a class="home-directory__card reveal" href={`${base}/${lang}/${page.slug}/`}>
-          <span class="home-directory__number" aria-hidden="true">{page.number}</span>
-          <span class="home-directory__copy">
-            <strong>{page.title}</strong>
-            <span>{page.description}</span>
-          </span>
-          <span class="home-directory__arrow" aria-hidden="true">↗</span>
-        </a>
-      ))}
-    </nav>
+    <div class="home-directory__panel">
+      <header class="home-directory__header">
+        <h2 class="home-directory__title" id="home-directory-title">{fa ? 'منوی سریع' : 'Quick Menu'}</h2>
+      </header>
+      <nav class="home-directory__grid" aria-label={fa ? 'فهرست صفحه‌های سایت' : 'Site pages'}>
+        {pages.map((page) => (
+          <a class="home-directory__card" href={`${base}/${lang}/${page.slug}/`}>
+            <span class="home-directory__icon-wrap" aria-hidden="true">
+              {page.icon === 'clients' ? (
+                <svg class="home-directory__clients-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="10" cy="7" r="4" />
+                  <path d="M20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              ) : (
+                <span class="navigation-icon" data-icon={page.icon} style={`--nav-icon-sprite: url('${base}/assets/icons/navigation-sprite.svg')`}></span>
+              )}
+            </span>
+            <span class="home-directory__copy">{page.title}</span>
+            <span class="home-directory__arrow" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </nav>
+    </div>
   </div>
 </section>
