@@ -1,8 +1,11 @@
 ---
+import NavIcon from './NavIcon.astro';
+
+type NavigationIconName = 'home' | 'about' | 'services' | 'trade' | 'customs' | 'sourcing' | 'factory' | 'vip' | 'school' | 'food' | 'consulting' | 'fleet' | 'brands' | 'clients' | 'contact';
 interface Props {
   lang: 'fa' | 'en';
-  navLinks: Array<{ href: string; label: string; current?: boolean }>;
-  serviceLinks: Array<{ href: string; label: string; current?: boolean }>;
+  navLinks: Array<{ href: string; label: string; icon: string; current?: boolean }>;
+  serviceLinks: Array<{ href: string; label: string; icon: string; current?: boolean }>;
   baseUrl: string;
 }
 const { lang, navLinks, serviceLinks, baseUrl } = Astro.props;
@@ -32,15 +35,16 @@ const ctaHref = `${baseUrl}/${lang}/contact/`;
     <nav class="mobile-drawer__nav" aria-label={lang === 'fa' ? 'ناوبری موبایل' : 'Mobile navigation'}>
       {navLinks.map((link) => (
         <a href={link.href} class="mobile-drawer__link" aria-current={link.current ? 'page' : undefined}>
-          {link.label}
+          <span class="mobile-drawer__link-label"><NavIcon name={link.icon as NavigationIconName} baseUrl={baseUrl} />{link.label}</span>
+          <span class="mobile-drawer__link-arrow" aria-hidden="true">›</span>
         </a>
       ))}
       <details>
-        <summary>{labels.services}</summary>
+        <summary><span class="mobile-drawer__link-label"><NavIcon name="services" baseUrl={baseUrl} />{labels.services}</span></summary>
         <div class="mobile-drawer__sub">
-          <a href={`${baseUrl}/${lang}/services/`}>{labels.viewAll}</a>
+          <a href={`${baseUrl}/${lang}/services/`}><NavIcon name="services" baseUrl={baseUrl} />{labels.viewAll}</a>
           {serviceLinks.map((service) => (
-            <a href={service.href} aria-current={service.current ? 'page' : undefined}>{service.label}</a>
+            <a href={service.href} aria-current={service.current ? 'page' : undefined}><NavIcon name={service.icon as NavigationIconName} baseUrl={baseUrl} />{service.label}</a>
           ))}
         </div>
       </details>

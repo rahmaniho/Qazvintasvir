@@ -20,11 +20,14 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
         <div class="card" style="display:grid; gap:16px;">
           <div>
             <strong>{isFa ? 'آدرس' : 'Address'}</strong>
-            <p style="margin-top:4px;">{isFa ? 'قزوین، اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴' : 'Abadgaran Commercial Complex, 6th floor, room 604, Ferdowsi St, Qazvin, Iran'}</p>
+            <p style="margin-top:4px;">{isFa ? 'قزوین، بلوار آیت‌الله خامنه‌ای، مجتمع تجاری نیایش، طبقه ۲، واحد ۲۱۶' : 'Niayesh Commercial Complex, 2nd floor, Unit 216, Ayatollah Khamenei Blvd, Qazvin, Iran'}</p>
           </div>
           <div>
             <strong>{isFa ? 'تلفن و واتساپ' : 'Phone & WhatsApp'}</strong>
-            <p style="margin-top:4px;"><a href="tel:+989122815189" dir="ltr" style="color:var(--sky-blue); font-weight:700;">+98 912 281 5189</a></p>
+            <p class="contact-phone-list" style="margin-top:4px;">
+              <a href="tel:+989122815189" dir="ltr" style="color:var(--sky-blue); font-weight:700;">+98 912 281 5189</a>
+              <a href="tel:+989352815189" dir="ltr" style="color:var(--sky-blue); font-weight:700;">+98 935 281 5189</a>
+            </p>
             <div class="contact-actions">
               <button type="button" data-copy-phone class="btn btn--sm btn--ghost">{isFa ? 'کپی شماره' : 'Copy number'}</button>
               <a href="https://wa.me/989122815189" target="_blank" rel="noopener" class="btn btn--sm btn--whatsapp">{isFa ? 'واتساپ' : 'WhatsApp'}</a>

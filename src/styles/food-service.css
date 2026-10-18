@@ -1729,6 +1729,25 @@ body.food-service-page {
   }
 }
 
+@media (max-width: 640px) {
+  .food-service-page { --section-padding-block: 48px; }
+  .food-service-page .section-header { margin-block-end: 32px; }
+  .food-service-page .food-cta__panel { padding: 28px 20px; }
+  .food-service-page .food-request__contact-card { padding: 20px; }
+}
+
+@media (max-width: 480px) {
+  .food-service-page .food-cta__actions .btn {
+    width: 100%;
+    max-inline-size: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+  .food-service-page .food-cta__phone { justify-content: center; max-inline-size: 100%; gap: 10px; padding-inline: 14px; }
+  .food-service-page .food-cta__phone-number { font-size: 1rem; }
+  .food-service-page .food-request__phone { font-size: clamp(1.05rem, 5vw, 1.35rem); }
+}
+
 /* !important ensures reduced-motion preferences override legacy food animations and transitions. */
 @media (prefers-reduced-motion: reduce) {
   .food-service-page .food-hero__chip {

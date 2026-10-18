@@ -1,4 +1,6 @@
 ---
+import NavIcon from './NavIcon.astro';
+
 interface Props {
   lang: 'fa' | 'en';
   services: Array<{ slug: string; title: string; summary: string; href: string }>;
@@ -10,6 +12,16 @@ const labels = lang === 'fa'
   ? { viewAll: 'مشاهدهٔ همهٔ خدمات →', services: 'خدمات' }
   : { viewAll: 'View all services →', services: 'Services' };
 const isActive = services.some((service) => currentPath.includes(service.slug));
+const serviceIconMap: Record<string, 'trade' | 'customs' | 'sourcing' | 'factory' | 'vip' | 'school' | 'food' | 'consulting'> = {
+  'import-export': 'trade',
+  'customs-port': 'customs',
+  sourcing: 'sourcing',
+  'factory-transport': 'factory',
+  'urban-vip': 'vip',
+  'school-office': 'school',
+  'personnel-food': 'food',
+  'trade-consulting': 'consulting',
+};
 ---
 
 <div class="nav-menu__item" data-mega>
@@ -20,6 +32,7 @@ const isActive = services.some((service) => currentPath.includes(service.slug));
     aria-controls="services-menu"
     aria-haspopup="true"
   >
+    <NavIcon name="services" baseUrl={baseUrl} />
     {labels.services}
   </button>
   <div id="services-menu" class="mega-menu" hidden>
@@ -30,7 +43,7 @@ const isActive = services.some((service) => currentPath.includes(service.slug));
           class="mega-menu__link"
           aria-current={currentPath.includes(service.slug) ? 'page' : undefined}
         >
-          <span class="mega-menu__icon" aria-hidden="true">◆</span>
+          <span class="mega-menu__icon"><NavIcon name={serviceIconMap[service.slug]} baseUrl={baseUrl} /></span>
           <span class="mega-menu__text">
             <strong>{service.title}</strong>
             <span>{service.summary}</span>

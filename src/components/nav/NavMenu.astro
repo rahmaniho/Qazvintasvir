@@ -1,5 +1,6 @@
 ---
 import ServicesMegaMenu from './ServicesMegaMenu.astro';
+import NavIcon from './NavIcon.astro';
 
 interface Props {
   lang: 'fa' | 'en';
@@ -63,23 +64,23 @@ const contactHref = `${baseUrl}/${lang}/contact/`;
 <nav class="nav-menu" aria-label={lang === 'fa' ? 'ناوبری اصلی' : 'Main navigation'}>
   <ul class="nav-menu__list" role="list">
     <li class="nav-menu__item">
-      <a href={homeHref} class="nav-menu__link" aria-current={currentPath === homeHref || currentPath === `${baseUrl}/${lang}/` || currentPath === `${baseUrl}/${lang}/index.html` ? "page" : undefined}>{L.home}</a>
+      <a href={homeHref} class="nav-menu__link" aria-current={currentPath === homeHref || currentPath === `${baseUrl}/${lang}/` || currentPath === `${baseUrl}/${lang}/index.html` ? "page" : undefined}><NavIcon name="home" baseUrl={baseUrl} />{L.home}</a>
     </li>
     <li class="nav-menu__item">
-      <a href={aboutHref} class="nav-menu__link" aria-current={currentPath.includes('/about') ? "page" : undefined}>{L.about}</a>
+      <a href={aboutHref} class="nav-menu__link" aria-current={currentPath.includes('/about') ? "page" : undefined}><NavIcon name="about" baseUrl={baseUrl} />{L.about}</a>
     </li>
     <li class="nav-menu__item"><ServicesMegaMenu lang={lang} services={services} currentPath={currentPath} baseUrl={baseUrl} /></li>
     <li class="nav-menu__item">
-      <a href={fleetHref} class="nav-menu__link" aria-current={currentPath.includes('/fleet') ? "page" : undefined}>{L.fleet}</a>
+      <a href={fleetHref} class="nav-menu__link" aria-current={currentPath.includes('/fleet') ? "page" : undefined}><NavIcon name="fleet" baseUrl={baseUrl} />{L.fleet}</a>
     </li>
     <li class="nav-menu__item">
-      <a href={brandsHref} class="nav-menu__link" aria-current={currentPath.includes('/brands') ? "page" : undefined}>{L.brands}</a>
+      <a href={brandsHref} class="nav-menu__link" aria-current={currentPath.includes('/brands') ? "page" : undefined}><NavIcon name="brands" baseUrl={baseUrl} />{L.brands}</a>
     </li>
     <li class="nav-menu__item">
-      <a href={clientsHref} class="nav-menu__link" aria-current={currentPath.includes('/clients') ? "page" : undefined}>{L.clients}</a>
+      <a href={clientsHref} class="nav-menu__link" aria-current={currentPath.includes('/clients') ? "page" : undefined}><NavIcon name="clients" baseUrl={baseUrl} />{L.clients}</a>
     </li>
     <li class="nav-menu__item">
-      <a href={contactHref} class="nav-menu__link" aria-current={currentPath.includes('/contact') ? "page" : undefined}>{L.contact}</a>
+      <a href={contactHref} class="nav-menu__link" aria-current={currentPath.includes('/contact') ? "page" : undefined}><NavIcon name="contact" baseUrl={baseUrl} />{L.contact}</a>
     </li>
   </ul>
 </nav>

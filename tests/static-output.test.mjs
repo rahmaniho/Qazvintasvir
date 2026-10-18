@@ -169,6 +169,28 @@ test('Persian catering page retains source content, anchors, media, tabs, and fo
   }
 });
 
+test('updated office details, phone numbers and icon navigation render in both locales', () => {
+  for (const lang of ['fa', 'en']) {
+    const pages = [
+      '', 'about', 'contact', 'fleet', 'brands', 'clients', 'why-us', 'trust', 'resume', 'legal', 'services',
+      ...serviceSlugs.map((slug) => `services/${slug}`),
+    ];
+    for (const path of pages) {
+      const html = read(route(lang, path));
+      assert.match(html, /tel:\+989352815189/, `new phone link missing from ${lang}/${path || 'home'}`);
+      assert.match(html, /\+98 935 281 5189/, `new phone label missing from ${lang}/${path || 'home'}`);
+      assert.match(html, /Niayesh Commercial Complex|مجتمع تجاری نیایش/, `updated office address missing from ${lang}/${path || 'home'}`);
+      assert.match(html, /class="navigation-icon" data-icon="home"/, `navigation icon missing from ${lang}/${path || 'home'}`);
+    }
+  }
+
+  const faHome = read(route('fa'));
+  const structuredData = [...faHome.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+  const organization = structuredData.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
+  assert.deepEqual(organization?.telephone, ['+989122815189', '+989352815189']);
+  assert.match(organization?.address?.streetAddress ?? '', /بلوار آیت‌الله خامنه‌ای.*مجتمع تجاری نیایش/);
+});
+
 test('legacy URLs emit static redirects and preserve known hash destinations', () => {
   const index = readFileSync(resolve(dist, 'services/index.html'), 'utf8');
   assert.match(index, /\.\.\/fa\/services\//, 'legacy service index should redirect to the new Persian services index');

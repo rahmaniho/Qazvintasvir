@@ -54,11 +54,11 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
           { "@type": "Person", name: "Saeed Aminzadeh", jobTitle: "CEO and Board Member" },
           { "@type": "Person", name: "Asghar Taghilou", jobTitle: "Chairman of the Board" },
         ],
-    telephone: "+989122815189",
+    telephone: ["+989122815189", "+989352815189"],
     address: isFa
       ? {
           "@type": "PostalAddress",
-          streetAddress: "اول خیابان فردوسی، مجتمع تجاری آبادگران، طبقه ششم، اتاق ۶۰۴",
+          streetAddress: "بلوار آیت‌الله خامنه‌ای، مجتمع تجاری نیایش، طبقه ۲، واحد ۲۱۶",
           addressLocality: "قزوین",
           addressRegion: "استان قزوین",
           postalCode: "3413691589",
@@ -66,7 +66,7 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
         }
       : {
           "@type": "PostalAddress",
-          streetAddress: "Beginning of Ferdowsi Street, Abadgaran Commercial Complex, sixth floor, room 604",
+          streetAddress: "Ayatollah Khamenei Boulevard, Niayesh Commercial Complex, 2nd floor, Unit 216",
           addressLocality: "Qazvin",
           addressRegion: "Qazvin Province",
           postalCode: "3413691589",
