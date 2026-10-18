@@ -1,0 +1,138 @@
+---
+import NavMenu from './NavMenu.astro';
+import MobileDrawer from './MobileDrawer.astro';
+
+interface Props {
+  lang: 'fa' | 'en';
+  currentPath: string;
+}
+const { lang, currentPath } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, ''); // /Qazvintasvir or ""
+const homeHref = `${baseUrl}/${lang}/`;
+const ctaHref = `${baseUrl}/${lang}/contact/`;
+const contactLabel = lang === 'fa' ? 'درخواست مشاوره' : 'Get consultation';
+const openLabel = lang === 'fa' ? 'باز کردن منوی موبایل' : 'Open mobile menu';
+const brandTitle = lang === 'fa' ? 'قزوین تصویر' : 'Qazvin Tasvir';
+const brandSub = lang === 'fa' ? 'بازرگانی • ترابری • غذای سازمانی' : 'Trade • Transport • Catering';
+
+// navLinks for drawer
+const navLinksFa = [
+  { href: `${baseUrl}/fa/`, label: 'خانه', current: currentPath === `${baseUrl}/fa/` || currentPath === `${baseUrl}/fa` },
+  { href: `${baseUrl}/fa/about/`, label: 'درباره ما', current: currentPath.includes('/about') },
+  { href: `${baseUrl}/fa/#fleet`, label: 'ناوگان' },
+  { href: `${baseUrl}/fa/#brands`, label: 'برندها' },
+  { href: `${baseUrl}/fa/contact/`, label: 'تماس با ما', current: currentPath.includes('/contact') },
+];
+const navLinksEn = [
+  { href: `${baseUrl}/en/`, label: 'Home', current: currentPath === `${baseUrl}/en/` },
+  { href: `${baseUrl}/en/about/`, label: 'About', current: currentPath.includes('/about') },
+  { href: `${baseUrl}/en/#fleet`, label: 'Fleet' },
+  { href: `${baseUrl}/en/#brands`, label: 'Brands' },
+  { href: `${baseUrl}/en/contact/`, label: 'Contact', current: currentPath.includes('/contact') },
+];
+const navLinks = lang === 'fa' ? navLinksFa : navLinksEn;
+
+const serviceLinksFa = [
+  { slug: 'import-export', label: 'واردات و صادرات کالاهای مجاز', href: `${baseUrl}/fa/services/import-export/` },
+  { slug: 'customs-port', label: 'ترخیص گمرکی و امور بندری', href: `${baseUrl}/fa/services/customs-port/` },
+  { slug: 'sourcing', label: 'تأمین مواد اولیه و تجهیزات', href: `${baseUrl}/fa/services/sourcing/` },
+  { slug: 'factory-transport', label: 'ترابری پرسنل کارخانجات', href: `${baseUrl}/fa/services/factory-transport/` },
+  { slug: 'urban-vip', label: 'حمل‌ونقل درون‌شهری و VIP', href: `${baseUrl}/fa/services/urban-vip/` },
+  { slug: 'school-office', label: 'سرویس مدارس، ادارات و شرکت‌ها', href: `${baseUrl}/fa/services/school-office/` },
+  { slug: 'personnel-food', label: 'تأمین غذای پرسنل', href: `${baseUrl}/fa/services/personnel-food/` },
+  { slug: 'trade-consulting', label: 'مشاوره بازرگانی و گشایش', href: `${baseUrl}/fa/services/trade-consulting/` },
+].map(s => ({ ...s, current: currentPath.includes(s.slug) }));
+
+const serviceLinksEn = [
+  { slug: 'import-export', label: 'Import & Export', href: `${baseUrl}/en/services/import-export/` },
+  { slug: 'customs-port', label: 'Customs & Port Affairs', href: `${baseUrl}/en/services/customs-port/` },
+  { slug: 'sourcing', label: 'Industrial Sourcing', href: `${baseUrl}/en/services/sourcing/` },
+  { slug: 'factory-transport', label: 'Factory Transport', href: `${baseUrl}/en/services/factory-transport/` },
+  { slug: 'urban-vip', label: 'Urban & VIP', href: `${baseUrl}/en/services/urban-vip/` },
+  { slug: 'school-office', label: 'School & Office Shuttles', href: `${baseUrl}/en/services/school-office/` },
+  { slug: 'personnel-food', label: 'Staff Catering', href: `${baseUrl}/en/services/personnel-food/` },
+  { slug: 'trade-consulting', label: 'Trade Consulting', href: `${baseUrl}/en/services/trade-consulting/` },
+].map(s => ({ ...s, current: currentPath.includes(s.slug) }));
+
+const serviceLinks = lang === 'fa' ? serviceLinksFa : serviceLinksEn;
+
+const otherLang = lang === 'fa' ? 'en' : 'fa';
+// compute switch href
+let suffix = currentPath;
+if (suffix.includes('/fa/')) suffix = suffix.substring(suffix.indexOf('/fa/') + 3);
+else if (suffix.includes('/en/')) suffix = suffix.substring(suffix.indexOf('/en/') + 3);
+else suffix = '/';
+if (!suffix.startsWith('/')) suffix = '/' + suffix;
+const switchHref = `${baseUrl}/${otherLang}${suffix === '/' ? '/' : suffix}`;
+---
+
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href={homeHref} aria-label={brandTitle}>
+      <span class="brand-mark">
+        <img src={`${baseUrl}/assets/images/brand/qazvin-tasvir-mark.png`} alt="" width="44" height="44" loading="eager" decoding="async" />
+      </span>
+      <span class="brand-copy">
+        <strong>{brandTitle}</strong>
+        <small>{brandSub}</small>
+      </span>
+    </a>
+
+    <NavMenu lang={lang} currentPath={currentPath} baseUrl={baseUrl} />
+
+    <div class="header-actions">
+      <a href={switchHref} class="lang-switch" aria-label={lang === 'fa' ? 'Switch to English' : 'تغییر به فارسی'} hreflang={otherLang}>
+        <span style={lang==='fa' ? "color:var(--primary-navy); font-weight:800" : "opacity:0.6"}>FA</span>
+        <span aria-hidden="true">/</span>
+        <span style={lang==='en' ? "color:var(--primary-navy); font-weight:800" : "opacity:0.6"}>EN</span>
+      </a>
+
+      <a href={ctaHref} class="btn btn--accent" style="display:none; @media(min-width:1024px){display:inline-flex}" >
+        <span class="hide-mobile">{contactLabel}</span>
+        <span class="show-mobile" aria-hidden="true">✉</span>
+      </a>
+      <style>
+        @media (max-width: 1023px) { .header-actions .btn--accent { display: none !important; } }
+        @media (min-width: 1024px) { .header-actions .btn--accent { display: inline-flex !important; } }
+      </style>
+
+      <button id="menu-toggle" class="menu-toggle" type="button" aria-label={openLabel} aria-expanded="false" aria-controls="mobile-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<MobileDrawer lang={lang} navLinks={navLinks} serviceLinks={serviceLinks} baseUrl={baseUrl} />
+
+<script>
+  const header = document.querySelector('.site-header');
+  const progress = document.getElementById('scroll-progress');
+  const upd = () => {
+    const y = window.scrollY || window.pageYOffset;
+    if (header) header.classList.toggle('scrolled', y > 12);
+    if (progress) {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    }
+  };
+  window.addEventListener('scroll', upd, { passive: true });
+  upd();
+  // smooth scroll for internal anchors with header offset
+  document.querySelectorAll('a[href*="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href') || '';
+      if (href.includes('#') && href.startsWith('#') || href.includes('/#')) {
+        const hash = href.split('#')[1];
+        if (!hash) return;
+        const target = document.getElementById(hash);
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+          history.pushState(null,'', '#' + hash);
+        }
+      }
+    });
+  });
+</script>

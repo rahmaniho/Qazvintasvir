@@ -1,0 +1,22 @@
+{
+  "name": "qazvintasvir",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.0",
+    "@astrojs/sitemap": "^3.2.0",
+    "sharp": "^0.33.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

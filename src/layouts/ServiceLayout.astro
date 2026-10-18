@@ -1,0 +1,275 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { organizationSchema, serviceSchema, breadcrumbSchema, faqSchema } from '../lib/schema';
+
+interface Props {
+  lang: 'fa' | 'en';
+  title: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  kicker?: string;
+  highlight?: string;
+  excerpt?: string;
+  points?: string[];
+  metrics?: [string,string][];
+  benefits?: { title: string; text: string }[];
+  features?: [string,string,string][];
+  processTitle?: string;
+  processDesc?: string;
+  process?: [string,string,string][];
+  detailsTitle?: string;
+  detailsBody?: string;
+  detailsItems?: string[];
+  introTitle?: string;
+  intro?: string[];
+  asideTitle?: string;
+  asideText?: string;
+  asideItems?: string[];
+  storyKicker?: string;
+  storyTitle?: string;
+  storyBody?: string;
+  storyItems?: string[];
+  storyImage?: string;
+  storyAlt?: string;
+  slug: string;
+  canonical?: string;
+  faqs?: Array<{q:string, a:string}>;
+}
+
+const props = Astro.props;
+const lang = props.lang;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = Astro.site?.toString() || 'https://rahmaniho.github.io';
+const siteClean = site.endsWith('/') ? site.slice(0,-1) : site;
+const baseClean = baseUrl;
+
+const siteUrl = `${siteClean}${baseClean}`;
+const serviceUrl = props.canonical || `${siteUrl}/${lang}/services/${props.slug}/`;
+const homeUrl = `${siteUrl}/${lang}/`;
+const servicesUrl = `${siteUrl}/${lang}/services/`;
+
+// schema
+const org = organizationSchema(siteUrl);
+const svcSchema = serviceSchema({ title: props.title, description: props.description, image: props.image ? `${siteClean}${props.image}` : undefined, url: serviceUrl, providerUrl: siteUrl });
+const crumbs = breadcrumbSchema([
+  { name: lang==='fa' ? 'خانه' : 'Home', url: homeUrl },
+  { name: lang==='fa' ? 'خدمات' : 'Services', url: servicesUrl },
+  { name: props.title }
+]);
+const faqList = props.faqs && props.faqs.length ? faqSchema(props.faqs) : null;
+
+// hreflang
+const otherLang = lang === 'fa' ? 'en' : 'fa';
+const hreflang = [
+  { lang: 'fa', href: `${siteClean}${baseClean}/fa/services/${props.slug}/` },
+  { lang: 'en', href: `${siteClean}${baseClean}/en/services/${props.slug}/` },
+  { lang: 'x-default', href: `${siteClean}${baseClean}/fa/services/${props.slug}/` }
+];
+const canonical = serviceUrl;
+---
+
+<BaseLayout title={`${props.title} | ${lang==='fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}`} description={props.description} lang={lang} image={props.image ? `${siteClean}${props.image}` : undefined} canonical={canonical} hreflang={hreflang} schema={null}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(org)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(svcSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(crumbs)}></script>
+    {faqList && <script type="application/ld+json" set:html={JSON.stringify(faqList)}></script>}
+  </Fragment>
+
+  <!-- Service Hero -->
+  <section class="service-hero" aria-labelledby="service-title">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label={lang==='fa' ? 'مسیر صفحه' : 'Breadcrumb'}>
+        <a href={`${baseClean}/${lang}/`}>{lang==='fa' ? 'خانه' : 'Home'}</a>
+        <span class="breadcrumbs__sep">/</span>
+        <a href={`${baseClean}/${lang}/services/`}>{lang==='fa' ? 'خدمات' : 'Services'}</a>
+        <span class="breadcrumbs__sep">/</span>
+        <span aria-current="page">{props.title}</span>
+      </nav>
+
+      <div class="service-hero__grid">
+        <div>
+          {props.kicker && <span class="eyebrow">{props.kicker}</span>}
+          <h1 id="service-title">
+            {props.highlight ? (
+              <>
+                {props.title.replace(props.highlight, '').trim()} <span class="gradient-text" style="background:var(--grad-amber); -webkit-background-clip:text;">{props.highlight}</span>
+              </>
+            ) : props.title}
+          </h1>
+          <p class="hero__lead" style="color:#CBD5E1; margin-top:16px;">{props.excerpt || props.description}</p>
+
+          {props.points && props.points.length > 0 && (
+            <ul class="hero-points" aria-label={lang==='fa' ? 'نکات اصلی خدمت' : 'Key points'}>
+              {props.points.map(p => <li><span aria-hidden="true">✓</span><span>{p}</span></li>)}
+            </ul>
+          )}
+
+          <div class="hero__actions" style="margin-top:24px;">
+            <a href={`${baseClean}/${lang}/contact/`} class="btn btn--accent">{lang==='fa' ? 'درخواست بررسی نیاز' : 'Request consultation'} →</a>
+            <a href={`${baseClean}/${lang}/services/`} class="btn" style="background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.2);">{lang==='fa' ? 'مشاهده همه خدمات' : 'All services'}</a>
+          </div>
+
+          {props.metrics && (
+            <div class="hero-metrics">
+              {props.metrics.map(([val, label]) => (
+                <div class="hero-metric"><strong>{val}</strong><span>{label}</span></div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div class="reveal" style="border-radius: var(--r-lg); overflow:hidden; background:#0B1A30; border:1px solid rgba(255,255,255,0.1);">
+          {props.image ? (
+            <img src={`${baseClean}${props.image.replace('/Qazvintasvir','')}`} alt={props.imageAlt || props.title} loading="eager" decoding="async" style="width:100%; aspect-ratio:4/3; object-fit:cover;" />
+          ) : (
+            <div style="aspect-ratio:4/3; display:grid; place-items:center; color:#64748B;">{props.title}</div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro / Why -->
+  {(props.introTitle || props.intro || props.asideTitle) && (
+    <section class="content-section" aria-labelledby="intro-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">{lang==='fa' ? 'چرا این خدمت؟' : 'Why this service?'}</span>
+          <h2 id="intro-title">{props.introTitle || props.title}</h2>
+          <p>{lang==='fa' ? 'راهکار اجرایی باید با واقعیت مجموعه شما هماهنگ باشد.' : 'The solution must match your organization reality.'}</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 0.9fr 1.1fr; gap:32px;" class="intro-layout">
+          <aside class="card reveal" style="height:fit-content;">
+            {props.asideTitle && <span style="font-weight:700; color:var(--amber-accent); font-size:0.84rem;">{props.asideTitle}</span>}
+            {props.asideText && <p style="margin-top:8px;">{props.asideText}</p>}
+            {props.asideItems && (
+              <ul style="margin-top:16px; display:grid; gap:10px;">
+                {props.asideItems.map(it => <li style="display:flex; gap:8px; align-items:center; color:var(--text-primary); font-weight:600; font-size:0.9rem;"><span style="color:var(--success);">✓</span><span>{it}</span></li>)}
+              </ul>
+            )}
+          </aside>
+          <div class="reveal">
+            {props.intro?.map(p => <p style="margin-bottom:16px;">{p}</p>)}
+            {props.features && (
+              <div style="display:grid; gap:16px; margin-top:24px;">
+                {props.features.map(([num, title, text]) => (
+                  <div style="display:flex; gap:16px; align-items:flex-start; background:var(--surface-white); border:1px solid var(--line-soft); border-radius:var(--r-md); padding:16px;">
+                    <span style="flex:0 0 36px; height:36px; display:grid; place-items:center; background:var(--grad-amber); color:var(--navy-deep); font-weight:800; border-radius:8px;">{num}</span>
+                    <div>
+                      <strong style="display:block; color:var(--text-primary);">{title}</strong>
+                      <span style="color:var(--text-muted); font-size:0.92rem;">{text}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Process -->
+  {props.process && props.process.length > 0 && (
+    <section class="content-section content-section--alt" aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label section-label--sky">{lang==='fa' ? 'فرآیند همکاری' : 'Process'}</span>
+          <h2 id="process-title">{props.processTitle || (lang==='fa' ? 'فرآیند همکاری' : 'How it works')}</h2>
+          {props.processDesc && <p>{props.processDesc}</p>}
+        </div>
+        <div class="process-steps">
+          {props.process.map(([num, title, text]) => (
+            <div class="process-step reveal">
+              <span class="process-step__num">{num}</span>
+              <h3 style="font-size:1rem;">{title}</h3>
+              <p style="font-size:0.9rem;">{text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Details -->
+  {(props.detailsTitle || props.storyTitle) && (
+    <section class="content-section" aria-labelledby="details-title">
+      <div class="container">
+        <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:32px; align-items:center;">
+          <div class="reveal">
+            {props.detailsTitle && <h2 id="details-title">{props.detailsTitle}</h2>}
+            {props.detailsBody && <p style="margin-top:12px;">{props.detailsBody}</p>}
+            {props.detailsItems && (
+              <ul style="margin-top:16px; display:grid; gap:10px;">
+                {props.detailsItems.map(it => <li style="display:flex; gap:8px; align-items:center; font-weight:600;"><span style="color:var(--success);">✓</span><span>{it}</span></li>)}
+              </ul>
+            )}
+            {props.storyTitle && (
+              <div style="margin-top:32px; background:var(--surface-white); border:1px solid var(--line-soft); border-radius:var(--r-lg); padding:24px;">
+                <span style="font-size:0.78rem; font-weight:700; color:var(--sky-blue); text-transform:uppercase; letter-spacing:0.04em;">{props.storyKicker}</span>
+                <h3 style="margin-top:8px;">{props.storyTitle}</h3>
+                <p style="margin-top:8px;">{props.storyBody}</p>
+                {props.storyItems && <ul style="margin-top:12px; display:grid; gap:8px;">{props.storyItems.map(s => <li style="display:flex; gap:8px; align-items:center; font-size:0.9rem;"><span style="color:var(--sky-blue);">✓</span><span>{s}</span></li>)}</ul>}
+              </div>
+            )}
+          </div>
+          <div class="reveal" style="border-radius:var(--r-lg); overflow:hidden; border:1px solid var(--line-soft);">
+            {props.storyImage ? (
+              <img src={`${baseClean}${props.storyImage.replace('/Qazvintasvir','')}`} alt={props.storyAlt || props.storyTitle || props.title} loading="lazy" decoding="async" style="width:100%; aspect-ratio:4/3; object-fit:cover;" />
+            ) : props.image ? (
+              <img src={`${baseClean}${props.image.replace('/Qazvintasvir','')}`} alt={props.title} loading="lazy" decoding="async" style="width:100%; aspect-ratio:4/3; object-fit:cover;" />
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  {props.faqs && props.faqs.length > 0 && (
+    <section class="content-section content-section--alt" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 id="faq-title">{lang==='fa' ? 'پرسش‌های متداول' : 'FAQ'}</h2>
+        </div>
+        <div class="faq-list">
+          {props.faqs.map(f => (
+            <details class="faq-item reveal">
+              <summary>{f.q}</summary>
+              <div class="faq-item__answer">{f.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="content-section" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-block reveal">
+        <div>
+          <h2 id="cta-title">{lang==='fa' ? 'آمادهٔ شروع گفت‌وگو هستید؟' : 'Ready to start?'}</h2>
+          <p>{lang==='fa' ? 'شرح کوتاهی از نیازتان را ارسال کنید تا مسیر مناسب همکاری را مشخص کنیم.' : 'Send a short description of your needs and we will find the right path together.'}</p>
+        </div>
+        <a href={`${baseClean}/${lang}/contact/`} class="btn btn--accent btn--lg">{lang==='fa' ? 'درخواست مشاوره' : 'Request consultation'} →</a>
+      </div>
+    </div>
+  </section>
+
+  <slot />
+</BaseLayout>
+
+<style>
+  @media (max-width: 860px) {
+    .intro-layout { grid-template-columns: 1fr !important; }
+    .process-steps { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 560px) {
+    .process-steps { grid-template-columns: 1fr !important; }
+  }
+  .eyebrow { display:inline-flex; padding:6px 12px; border-radius:9999px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.16); font-size:0.78rem; font-weight:700; margin-bottom:16px; color:#fff; }
+</style>

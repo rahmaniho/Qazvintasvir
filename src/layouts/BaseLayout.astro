@@ -1,0 +1,190 @@
+---
+import Header from '../components/nav/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getLangFromUrl } from '../i18n/utils';
+import fa from '../i18n/fa';
+import en from '../i18n/en';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/layout.css';
+import '../styles/components.css';
+import '../styles/utilities.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: 'fa' | 'en';
+  image?: string;
+  canonical?: string;
+  noindex?: boolean;
+  schema?: any;
+  hreflang?: Array<{ lang: string; href: string }>;
+}
+
+const {
+  title: propTitle,
+  description: propDesc,
+  lang: propLang,
+  image: propImage,
+  canonical: propCanonical,
+  noindex,
+  schema,
+  hreflang
+} = Astro.props;
+
+const url = Astro.url;
+const site = Astro.site?.toString() || 'https://rahmaniho.github.io';
+const base = import.meta.env.BASE_URL; // /Qazvintasvir/
+const baseClean = base.endsWith('/') ? base.slice(0,-1) : base;
+const siteClean = site.endsWith('/') ? site.slice(0,-1) : site;
+
+// lang derived
+const lang = propLang ?? getLangFromUrl(url);
+const dir = lang === 'fa' ? 'rtl' : 'ltr';
+const t = lang === 'fa' ? fa : en;
+
+const title = propTitle ?? t.siteTitle;
+const description = propDesc ?? t.siteDescription;
+const canonical = propCanonical ?? url.href;
+const ogImage = propImage ?? `${siteClean}${baseClean}/assets/images/og-image.jpg`;
+
+// hreflang links
+let hreflangLinks: Array<{lang:string, href:string}> = hreflang ?? [];
+if (!hreflangLinks.length) {
+  // generate default hreflang based on current url
+  // Strip base + lang to get path without lang
+  let pathname = url.pathname;
+  let withoutBase = pathname;
+  if (baseClean && withoutBase.startsWith(baseClean)) withoutBase = withoutBase.slice(baseClean.length);
+  if (!withoutBase.startsWith('/')) withoutBase = '/' + withoutBase;
+  const pathWithoutLang = withoutBase.replace(/^\/(fa|en)(\/|$)/, '/');
+  const faUrl = `${siteClean}${baseClean}/fa${pathWithoutLang === '/' ? '/' : pathWithoutLang}`;
+  const enUrl = `${siteClean}${baseClean}/en${pathWithoutLang === '/' ? '/' : pathWithoutLang}`;
+  hreflangLinks = [
+    { lang: 'fa', href: faUrl },
+    { lang: 'en', href: enUrl },
+    { lang: 'x-default', href: faUrl },
+  ];
+}
+
+const currentPath = url.pathname;
+---
+
+<!doctype html>
+<html lang={lang} dir={dir}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="شرکت قزوین تصویر" />
+  <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+  <link rel="canonical" href={canonical} />
+  {hreflangLinks.map(l => <link rel="alternate" hreflang={l.lang} href={l.href} />)}
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:locale" content={lang === 'fa' ? 'fa_IR' : 'en_US'} />
+  <meta property="og:site_name" content={lang === 'fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <meta name="theme-color" content="#0A2540" />
+  <link rel="icon" type="image/png" sizes="32x32" href={`${baseClean}/assets/images/brand/qazvin-tasvir-icon-32.png`} />
+  <link rel="apple-touch-icon" sizes="180x180" href={`${baseClean}/assets/images/brand/qazvin-tasvir-apple-touch.png`} />
+
+  <link rel="preload" href={`${baseClean}/fonts/vazirmatn-arabic-wght-normal.woff2`} as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href={`${baseClean}/assets/img/sections/hero-port.webp`} as="image" type="image/webp" fetchpriority="high" />
+
+  <script is:inline>
+    (function(){
+      try {
+        var t = localStorage.getItem('qt-theme');
+        if(t === 'dark' || t === 'ocean') document.documentElement.setAttribute('data-theme', t);
+      } catch(e){}
+    })();
+  </script>
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  <slot name="head" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">{t.nav.skipToContent}</a>
+  <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
+  <Header lang={lang} currentPath={currentPath} />
+  <main id="main-content">
+    <slot />
+  </main>
+  <Footer lang={lang} />
+
+  <div id="toast-notice" class="toast" role="status" aria-live="polite">
+    <span id="toast-text"></span>
+  </div>
+
+  <script is:inline>
+    // Reveal with IntersectionObserver
+    (function(){
+      const els = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries, o) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-revealed');
+              o.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        els.forEach(el => obs.observe(el));
+      } else {
+        els.forEach(el => el.classList.add('is-revealed'));
+      }
+    })();
+    // Back to top
+    (function(){
+      const btn = document.getElementById('back-to-top');
+      if (!btn) return;
+      const onScroll = () => btn.classList.toggle('is-visible', window.scrollY > 500);
+      window.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
+      btn.addEventListener('click', () => {
+        const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: rm ? 'auto' : 'smooth' });
+      });
+    })();
+    // Toast helpers globally
+    window.showToast = function(msg){
+      const toast = document.getElementById('toast-notice');
+      const txt = document.getElementById('toast-text');
+      if(!toast) return;
+      if(txt) txt.textContent = msg;
+      toast.classList.add('is-active');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => toast.classList.remove('is-active'), 3500);
+    };
+    // Copy phone
+    document.querySelectorAll('[data-copy-phone]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const phone='09122815189';
+        if(navigator.clipboard?.writeText){
+          navigator.clipboard.writeText(phone).then(()=> window.showToast('شماره ۰۹۱۲۲۸۱۵۱۸۹ کپی شد!')).catch(()=> window.showToast('۰۹۱۲ ۲۸۱ ۵۱۸۹'));
+        } else window.showToast('۰۹۱۲ ۲۸۱ ۵۱۸۹');
+      });
+    });
+    // Theme switch (injected if exists)
+    document.querySelectorAll('.theme-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const theme = btn.getAttribute('data-theme-value');
+        if(theme === 'light') document.documentElement.removeAttribute('data-theme');
+        else document.documentElement.setAttribute('data-theme', theme);
+        try{ localStorage.setItem('qt-theme', theme); }catch(e){}
+        document.querySelectorAll('.theme-option').forEach(b=> b.setAttribute('aria-pressed', b.getAttribute('data-theme-value')===theme ? 'true':'false'));
+      });
+    });
+  </script>
+  <slot name="scripts" />
+</body>
+</html>

@@ -1,0 +1,112 @@
+---
+interface Props {
+  lang: 'fa' | 'en';
+  services: Array<{ slug: string; title: string; summary: string; href: string }>;
+  currentPath: string;
+  baseUrl: string;
+}
+const { lang, services, currentPath, baseUrl } = Astro.props;
+const labels = lang === 'fa' ? {
+  viewAll: 'مشاهدهٔ همهٔ خدمات →',
+  servicesLabel: 'خدمات'
+} : {
+  viewAll: 'View all services →',
+  servicesLabel: 'Services'
+};
+const isActive = services.some(s => currentPath.includes(s.slug));
+---
+
+<div class="nav-menu__item" data-mega>
+  <button
+    type="button"
+    class:list={["nav-menu__link", "nav-menu__link--has-dd", isActive ? "is-active" : ""]}
+    aria-expanded="false"
+    aria-controls="services-menu"
+    aria-haspopup="true"
+  >
+    {labels.servicesLabel}
+  </button>
+  <div id="services-menu" class="mega-menu" hidden>
+    <div class="mega-menu__grid">
+      {services.map(s => (
+        <a href={s.href} class="mega-menu__link" aria-current={currentPath.includes(s.slug) ? "page" : undefined}>
+          <span class="mega-menu__icon" aria-hidden="true">◆</span>
+          <span class="mega-menu__text">
+            <strong>{s.title}</strong>
+            <span>{s.summary}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+    <div class="mega-menu__footer">
+      <a href={`${baseUrl}/${lang}/services/`} class="mega-menu__cta">{labels.viewAll}</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const items = document.querySelectorAll('[data-mega]');
+  items.forEach(item => {
+    const btn = item.querySelector('button');
+    const panel = item.querySelector('.mega-menu');
+    if (!btn || !panel) return;
+    const toggle = (open) => {
+      const willOpen = open ?? panel.hasAttribute('hidden');
+      btn.setAttribute('aria-expanded', String(willOpen));
+      item.classList.toggle('is-open', willOpen);
+      if (willOpen) panel.removeAttribute('hidden');
+      else panel.setAttribute('hidden','');
+    };
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggle();
+    });
+    // Keyboard
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { toggle(false); btn.focus(); }
+      if (e.key === 'ArrowDown' && panel.hasAttribute('hidden')) { e.preventDefault(); toggle(true); const first = panel.querySelector('a'); if(first) first.focus(); }
+    });
+    panel.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { e.preventDefault(); toggle(false); btn.focus(); }
+      // Arrow navigation
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        const links = Array.from(panel.querySelectorAll('a'));
+        const idx = links.indexOf(document.activeElement);
+        if (idx !== -1) {
+          e.preventDefault();
+          const next = e.key === 'ArrowDown' ? (idx + 1) % links.length : (idx - 1 + links.length) % links.length;
+          links[next].focus();
+        }
+      }
+    });
+    item.addEventListener('mouseenter', () => { if (window.innerWidth > 1023) { btn.setAttribute('aria-expanded','true'); item.classList.add('is-open'); panel.removeAttribute('hidden'); } });
+    item.addEventListener('mouseleave', () => { if (window.innerWidth > 1023 && !item.contains(document.activeElement)) { btn.setAttribute('aria-expanded','false'); item.classList.remove('is-open'); panel.setAttribute('hidden',''); } });
+  });
+  document.addEventListener('click', (e) => {
+    items.forEach(item => {
+      if (!item.contains(e.target)) {
+        const btn = item.querySelector('button');
+        const panel = item.querySelector('.mega-menu');
+        if (btn && panel && !panel.hasAttribute('hidden')) {
+          btn.setAttribute('aria-expanded','false');
+          item.classList.remove('is-open');
+          panel.setAttribute('hidden','');
+        }
+      }
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      items.forEach(item => {
+        const btn = item.querySelector('button');
+        const panel = item.querySelector('.mega-menu');
+        if (btn && panel && !panel.hasAttribute('hidden')) {
+          btn.setAttribute('aria-expanded','false');
+          item.classList.remove('is-open');
+          panel.setAttribute('hidden','');
+          btn.focus();
+        }
+      });
+    }
+  });
+</script>

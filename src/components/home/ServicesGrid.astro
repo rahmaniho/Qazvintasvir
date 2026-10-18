@@ -1,0 +1,62 @@
+---
+interface Props {
+  lang: 'fa' | 'en';
+}
+const { lang } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const isFa = lang === 'fa';
+
+const servicesFa = [
+  { slug: 'import-export', title: 'واردات و صادرات کالاهای مجاز', desc: 'هماهنگی مسیر تأمین و جابه‌جایی کالاهای مجاز با پیگیری مرحله‌به‌مرحله.', tag: 'بازرگانی', img: '/assets/img/sections/hero-port.jpg' },
+  { slug: 'customs-port', title: 'ترخیص گمرکی و امور بندری', desc: 'کنترل مدارک و هماهنگی مراحل اجرایی پرونده‌های گمرکی و بندری.', tag: 'گمرک', img: '/assets/img/sections/trade-customs.jpg' },
+  { slug: 'sourcing', title: 'تأمین مواد اولیه و تجهیزات', desc: 'تبدیل نیاز کارخانه به مسیر تأمین، خرید و تحویل قابل پیگیری.', tag: 'تأمین', img: '/assets/img/sections/trade-customs.jpg' },
+  { slug: 'factory-transport', title: 'ترابری پرسنل کارخانجات', desc: 'طراحی و اجرای سرویس شیفتی کارخانه با ناوگان اتوبوس، مینی‌بوس و ون.', tag: 'ترابری', img: '/assets/images/bus-fleet.jpg' },
+  { slug: 'urban-vip', title: 'حمل‌ونقل درون‌شهری و VIP', desc: 'جابه‌جایی سازمانی و VIP با برنامه‌ریزی دقیق و پشتیبانی هماهنگ.', tag: 'VIP', img: '/assets/img/fleet-specs/vip-seats.jpg' },
+  { slug: 'school-office', title: 'سرویس مدارس، ادارات و شرکت‌ها', desc: 'راهکار رفت‌وآمد روزانه برای مدارس، ادارات و شرکت‌ها با زمان‌بندی منظم.', tag: 'سرویس', img: '/assets/images/minibus-fleet.jpg' },
+  { slug: 'personnel-food', title: 'تأمین غذای پرسنل و وعده‌های سازمانی', desc: 'کیترینگ قراردادی برای صبحانه، ناهار، شام و میان‌وعده پرسنل.', tag: 'کیترینگ', img: '/assets/img/personnel-food/hero-kitchen.jpg' },
+  { slug: 'trade-consulting', title: 'مشاوره بازرگانی و گشایش', desc: 'تصمیم‌سازی برای خرید، واردات، صادرات و بررسی مسیر گشایش اعتبار.', tag: 'مشاوره', img: '/assets/img/sections/about-office.jpg' },
+];
+const servicesEn = [
+  { slug: 'import-export', title: 'Import & Export of Permitted Goods', desc: 'Supply-route coordination for permitted goods.', tag: 'Trade', img: '/assets/img/sections/hero-port.jpg' },
+  { slug: 'customs-port', title: 'Customs Clearance & Port Affairs', desc: 'Document control for customs and port files.', tag: 'Customs', img: '/assets/img/sections/trade-customs.jpg' },
+  { slug: 'sourcing', title: 'Industrial Sourcing & Equipment', desc: 'From factory need to traceable supply route.', tag: 'Sourcing', img: '/assets/img/sections/trade-customs.jpg' },
+  { slug: 'factory-transport', title: 'Factory Personnel Transport', desc: 'Shift shuttles with bus, minibus and van fleet.', tag: 'Transport', img: '/assets/images/bus-fleet.jpg' },
+  { slug: 'urban-vip', title: 'Urban & VIP Transport', desc: 'Corporate and VIP mobility with precise scheduling.', tag: 'VIP', img: '/assets/img/fleet-specs/vip-seats.jpg' },
+  { slug: 'school-office', title: 'School, Office & Corporate Shuttles', desc: 'Daily commute solutions with regular scheduling.', tag: 'Shuttle', img: '/assets/images/minibus-fleet.jpg' },
+  { slug: 'personnel-food', title: 'Staff Catering & Corporate Meals', desc: 'Contract catering for staff meals and snacks.', tag: 'Catering', img: '/assets/img/personnel-food/hero-kitchen.jpg' },
+  { slug: 'trade-consulting', title: 'Trade Consulting & LC Opening', desc: 'Decision support for trade and LC opening.', tag: 'Consulting', img: '/assets/img/sections/about-office.jpg' },
+];
+const services = isFa ? servicesFa : servicesEn;
+---
+
+<section class="section section--alt" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">{isFa ? 'خدمات تخصصی' : 'Our Services'}</span>
+      <h2 class="section-title">{isFa ? 'خدمات تخصصی قزوین تصویر' : 'Specialist Services of Qazvin Tasvir'}</h2>
+      <p class="section-desc">{isFa ? 'هشت مسیر خدمت برای زنجیره کامل بازرگانی، ترابری و پشتیبانی سازمانی — از واردات تا غذای پرسنل.' : 'Eight service paths covering the full chain of trade, transport and corporate support.'}</p>
+    </div>
+
+    <div class="services-grid">
+      {services.map(s => (
+        <article class="service-card reveal">
+          <a href={`${baseUrl}/${lang}/services/${s.slug}/`} style="display:flex; flex-direction:column; height:100%;">
+            <div class="service-card__media">
+              <img src={`${baseUrl}${s.img}`} alt={s.title} loading="lazy" decoding="async" width="400" height="250" />
+            </div>
+            <div class="service-card__body">
+              <span class="service-card__tag">{s.tag}</span>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+              <span class="service-card__link">{isFa ? 'جزئیات خدمت' : 'View details'} <span aria-hidden="true">←</span></span>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <div style="text-align:center; margin-top:32px;" class="reveal">
+      <a href={`${baseUrl}/${lang}/services/`} class="btn btn--primary">{isFa ? 'مشاهده همه خدمات' : 'View all services'} →</a>
+    </div>
+  </div>
+</section>
