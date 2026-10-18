@@ -17,43 +17,43 @@ const brandSub = lang === 'fa' ? 'بازرگانی • ترابری • غذای
 
 // navLinks for drawer
 const navLinksFa = [
-  { href: `${baseUrl}/fa/`, label: 'خانه', current: currentPath === `${baseUrl}/fa/` || currentPath === `${baseUrl}/fa` },
-  { href: `${baseUrl}/fa/about/`, label: 'درباره ما', current: currentPath.includes('/about') },
-  { href: `${baseUrl}/fa/fleet/`, label: 'ناوگان', current: currentPath.includes('/fleet') },
-  { href: `${baseUrl}/fa/brands/`, label: 'برندها', current: currentPath.includes('/brands') },
-  { href: `${baseUrl}/fa/clients/`, label: 'مشتریان', current: currentPath.includes('/clients') },
-  { href: `${baseUrl}/fa/contact/`, label: 'تماس با ما', current: currentPath.includes('/contact') },
+  { href: `${baseUrl}/fa/`, label: 'خانه', icon: 'home', current: currentPath === `${baseUrl}/fa/` || currentPath === `${baseUrl}/fa` },
+  { href: `${baseUrl}/fa/about/`, label: 'درباره ما', icon: 'about', current: currentPath.includes('/about') },
+  { href: `${baseUrl}/fa/fleet/`, label: 'ناوگان', icon: 'fleet', current: currentPath.includes('/fleet') },
+  { href: `${baseUrl}/fa/brands/`, label: 'برندها', icon: 'brands', current: currentPath.includes('/brands') },
+  { href: `${baseUrl}/fa/clients/`, label: 'مشتریان', icon: 'clients', current: currentPath.includes('/clients') },
+  { href: `${baseUrl}/fa/contact/`, label: 'تماس با ما', icon: 'contact', current: currentPath.includes('/contact') },
 ];
 const navLinksEn = [
-  { href: `${baseUrl}/en/`, label: 'Home', current: currentPath === `${baseUrl}/en/` },
-  { href: `${baseUrl}/en/about/`, label: 'About', current: currentPath.includes('/about') },
-  { href: `${baseUrl}/en/fleet/`, label: 'Fleet', current: currentPath.includes('/fleet') },
-  { href: `${baseUrl}/en/brands/`, label: 'Brands', current: currentPath.includes('/brands') },
-  { href: `${baseUrl}/en/clients/`, label: 'Clients', current: currentPath.includes('/clients') },
-  { href: `${baseUrl}/en/contact/`, label: 'Contact', current: currentPath.includes('/contact') },
+  { href: `${baseUrl}/en/`, label: 'Home', icon: 'home', current: currentPath === `${baseUrl}/en/` },
+  { href: `${baseUrl}/en/about/`, label: 'About', icon: 'about', current: currentPath.includes('/about') },
+  { href: `${baseUrl}/en/fleet/`, label: 'Fleet', icon: 'fleet', current: currentPath.includes('/fleet') },
+  { href: `${baseUrl}/en/brands/`, label: 'Brands', icon: 'brands', current: currentPath.includes('/brands') },
+  { href: `${baseUrl}/en/clients/`, label: 'Clients', icon: 'clients', current: currentPath.includes('/clients') },
+  { href: `${baseUrl}/en/contact/`, label: 'Contact', icon: 'contact', current: currentPath.includes('/contact') },
 ];
 const navLinks = lang === 'fa' ? navLinksFa : navLinksEn;
 
 const serviceLinksFa = [
-  { slug: 'import-export', label: 'واردات و صادرات کالاهای مجاز', href: `${baseUrl}/fa/services/import-export/` },
-  { slug: 'customs-port', label: 'ترخیص گمرکی و امور بندری', href: `${baseUrl}/fa/services/customs-port/` },
-  { slug: 'sourcing', label: 'تأمین مواد اولیه و تجهیزات', href: `${baseUrl}/fa/services/sourcing/` },
-  { slug: 'factory-transport', label: 'ترابری پرسنل کارخانجات', href: `${baseUrl}/fa/services/factory-transport/` },
-  { slug: 'urban-vip', label: 'حمل‌ونقل درون‌شهری و VIP', href: `${baseUrl}/fa/services/urban-vip/` },
-  { slug: 'school-office', label: 'سرویس مدارس، ادارات و شرکت‌ها', href: `${baseUrl}/fa/services/school-office/` },
-  { slug: 'personnel-food', label: 'تأمین غذای پرسنل', href: `${baseUrl}/fa/services/personnel-food/` },
-  { slug: 'trade-consulting', label: 'مشاوره بازرگانی و گشایش', href: `${baseUrl}/fa/services/trade-consulting/` },
+  { slug: 'import-export', icon: 'trade', label: 'واردات و صادرات کالاهای مجاز', href: `${baseUrl}/fa/services/import-export/` },
+  { slug: 'customs-port', icon: 'customs', label: 'ترخیص گمرکی و امور بندری', href: `${baseUrl}/fa/services/customs-port/` },
+  { slug: 'sourcing', icon: 'sourcing', label: 'تأمین مواد اولیه و تجهیزات', href: `${baseUrl}/fa/services/sourcing/` },
+  { slug: 'factory-transport', icon: 'factory', label: 'ترابری پرسنل کارخانجات', href: `${baseUrl}/fa/services/factory-transport/` },
+  { slug: 'urban-vip', icon: 'vip', label: 'حمل‌ونقل درون‌شهری و VIP', href: `${baseUrl}/fa/services/urban-vip/` },
+  { slug: 'school-office', icon: 'school', label: 'سرویس مدارس، ادارات و شرکت‌ها', href: `${baseUrl}/fa/services/school-office/` },
+  { slug: 'personnel-food', icon: 'food', label: 'تأمین غذای پرسنل', href: `${baseUrl}/fa/services/personnel-food/` },
+  { slug: 'trade-consulting', icon: 'consulting', label: 'مشاوره بازرگانی و گشایش', href: `${baseUrl}/fa/services/trade-consulting/` },
 ].map(s => ({ ...s, current: currentPath.includes(s.slug) }));
 
 const serviceLinksEn = [
-  { slug: 'import-export', label: 'Import & Export', href: `${baseUrl}/en/services/import-export/` },
-  { slug: 'customs-port', label: 'Customs & Port Affairs', href: `${baseUrl}/en/services/customs-port/` },
-  { slug: 'sourcing', label: 'Industrial Sourcing', href: `${baseUrl}/en/services/sourcing/` },
-  { slug: 'factory-transport', label: 'Factory Transport', href: `${baseUrl}/en/services/factory-transport/` },
-  { slug: 'urban-vip', label: 'Urban & VIP', href: `${baseUrl}/en/services/urban-vip/` },
-  { slug: 'school-office', label: 'School & Office Shuttles', href: `${baseUrl}/en/services/school-office/` },
-  { slug: 'personnel-food', label: 'Staff Catering', href: `${baseUrl}/en/services/personnel-food/` },
-  { slug: 'trade-consulting', label: 'Trade Consulting', href: `${baseUrl}/en/services/trade-consulting/` },
+  { slug: 'import-export', icon: 'trade', label: 'Import & Export', href: `${baseUrl}/en/services/import-export/` },
+  { slug: 'customs-port', icon: 'customs', label: 'Customs & Port Affairs', href: `${baseUrl}/en/services/customs-port/` },
+  { slug: 'sourcing', icon: 'sourcing', label: 'Industrial Sourcing', href: `${baseUrl}/en/services/sourcing/` },
+  { slug: 'factory-transport', icon: 'factory', label: 'Factory Transport', href: `${baseUrl}/en/services/factory-transport/` },
+  { slug: 'urban-vip', icon: 'vip', label: 'Urban & VIP', href: `${baseUrl}/en/services/urban-vip/` },
+  { slug: 'school-office', icon: 'school', label: 'School & Office Shuttles', href: `${baseUrl}/en/services/school-office/` },
+  { slug: 'personnel-food', icon: 'food', label: 'Staff Catering', href: `${baseUrl}/en/services/personnel-food/` },
+  { slug: 'trade-consulting', icon: 'consulting', label: 'Trade Consulting', href: `${baseUrl}/en/services/trade-consulting/` },
 ].map(s => ({ ...s, current: currentPath.includes(s.slug) }));
 
 const serviceLinks = lang === 'fa' ? serviceLinksFa : serviceLinksEn;
