@@ -114,7 +114,7 @@ const currentPath = url.pathname;
   {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
   <slot name="head" />
 </head>
-<body class={bodyClass} data-copy-phone-message={lang === 'fa' ? 'شماره ۰۹۱۲۲۸۱۵۱۸۹ کپی شد!' : 'Phone number copied.'}>
+<body class={bodyClass} data-copy-phone-message={lang === 'fa' ? 'شمارهٔ تماس کپی شد.' : 'Phone number copied.'}>
   <a class="skip-link" href="#main-content">{t.nav.skipToContent}</a>
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
   <Header lang={lang} currentPath={currentPath} />

@@ -20,17 +20,17 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
         <div class="card" style="display:grid; gap:16px;">
           <div>
             <strong>{isFa ? 'آدرس' : 'Address'}</strong>
-            <p style="margin-top:4px;">{isFa ? 'قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ ۲، واحد ۲۱۸، شرکت قزوین تصویر' : 'Qazvin Tasvir Company, 2nd floor, Unit 218, Niayesh Commercial Complex, next to Pasteur Hospital, Qazvin, Iran'}</p>
+            <p style="margin-top:4px;">{isFa ? <>قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi>، شرکت قزوین تصویر</> : <>Qazvin Tasvir Company, 2nd floor, Unit <bdi class="bidi-ltr" dir="ltr">208</bdi>, Niayesh Commercial Complex, next to Pasteur Hospital, Qazvin, Iran</>}</p>
           </div>
           <div>
             <strong>{isFa ? 'دفتر مرکزی' : 'Head office'}</strong>
-            <p style="margin-top:4px;"><a href="tel:+982832573842" dir="ltr" style="color:var(--sky-blue); font-weight:700;">{isFa ? '۰۲۸ ۳۲۵۷ ۳۸۴۲' : '+98 28 3257 3842'}</a></p>
+            <p style="margin-top:4px;"><a href="tel:+982832573842" dir="ltr" class="bidi-ltr" style="color:var(--sky-blue); font-weight:700;">{isFa ? '۰۲۸ ۳۲۵۷ ۳۸۴۲' : '+98 28 3257 3842'}</a></p>
           </div>
           <div>
             <strong>{isFa ? 'موبایل و واتساپ' : 'Mobile & WhatsApp'}</strong>
             <p class="contact-phone-list" style="margin-top:4px;">
-              <a href="tel:+989122815189" dir="ltr" style="color:var(--sky-blue); font-weight:700;">+98 912 281 5189</a>
-              <a href="tel:+989352815189" dir="ltr" style="color:var(--sky-blue); font-weight:700;">+98 935 281 5189</a>
+              <a href="tel:+989122815189" dir="ltr" class="bidi-ltr" style="color:var(--sky-blue); font-weight:700;">{isFa ? '۰۹۱۲ ۲۸۱ ۵۱۸۹' : '+98 912 281 5189'}</a>
+              <a href="tel:+989352815189" dir="ltr" class="bidi-ltr" style="color:var(--sky-blue); font-weight:700;">{isFa ? '۰۹۳۵ ۲۸۱ ۵۱۸۹' : '+98 935 281 5189'}</a>
             </p>
             <div class="contact-actions">
               <button type="button" data-copy-phone class="btn btn--sm btn--ghost">{isFa ? 'کپی شماره' : 'Copy number'}</button>
@@ -39,7 +39,7 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
           </div>
           <div>
             <strong>{isFa ? 'ساعات کاری' : 'Working hours'}</strong>
-            <p style="margin-top:4px;">{isFa ? 'شنبه تا پنجشنبه — ۰۸:۰۰ تا ۲۰:۰۰' : 'Sat–Thu — 08:00 to 20:00'}</p>
+            <p style="margin-top:4px;">{isFa ? <>شنبه تا پنجشنبه — <bdi class="bidi-ltr" dir="ltr">۰۸:۰۰</bdi> تا <bdi class="bidi-ltr" dir="ltr">۲۰:۰۰</bdi></> : <>Sat–Thu — <bdi class="bidi-ltr" dir="ltr">08:00</bdi> to <bdi class="bidi-ltr" dir="ltr">20:00</bdi></>}</p>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
           </div>
           <div class="form-group">
             <label class="form-label" for="contact-phone">{isFa ? 'شماره موبایل' : 'Phone'} *</label>
-            <input id="contact-phone" name="phone" type="tel" class="form-control" placeholder="0912..." required autocomplete="tel" dir="ltr" />
+            <input id="contact-phone" name="phone" type="tel" class="form-control" placeholder={isFa ? '۰۹۱۲…' : '0912…'} required autocomplete="tel" dir="ltr" />
           </div>
         </div>
         <div class="form-group">
@@ -68,7 +68,7 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
         <button id="contact-submit-btn" type="submit" class="btn btn--accent btn--lg" style="width:100%;">
           {isFa ? 'ارسال درخواست از طریق واتساپ' : 'Send via WhatsApp'} →
         </button>
-        <p style="font-size:0.82rem; color:var(--text-light); text-align:center;">{isFa ? 'پس از ثبت، پیام شما در واتساپ آماده می‌شود. دکمه ارسال را بزنید.' : 'After submit, your message will be ready in WhatsApp.'}</p>
+        <p style="font-size:0.82rem; color:var(--text-light); text-align:center;">{isFa ? 'پس از ثبت، پیام در واتساپ برایتان آماده می‌شود؛ برای ارسال، دکمهٔ ارسال را بزنید.' : 'After you submit, your message will open in WhatsApp. Tap Send to send it.'}</p>
       </form>
     </div>
   </div>
@@ -99,7 +99,7 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
       const phoneVal = toLatinDigits(phoneInput.value.trim()).replace(/[\s\-()]/g,'');
       const phoneRegex = /^(\+98|0)?9\d{9}$/;
       if (!phoneRegex.test(phoneVal)) { phoneInput.classList.add('is-invalid'); isValid = false; } else phoneInput.classList.remove('is-invalid');
-      if (!isValid) { window.showToast(form.lang === 'en' ? 'Please fill required fields correctly.' : 'لطفاً فیلدهای الزامی را به درستی تکمیل فرمایید.'); return; }
+      if (!isValid) { window.showToast(document.documentElement.lang === 'en' ? 'Please complete the required fields correctly.' : 'لطفاً فیلدهای الزامی را به‌درستی تکمیل فرمایید.'); return; }
       const originalBtnText = submitBtn.innerHTML;
       const serviceText = serviceSelect.options[serviceSelect.selectedIndex].text.trim();
       const lines = [
@@ -112,7 +112,7 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
       const extra = messageInput.value.trim();
       if (extra) lines.push('توضیحات: ' + extra);
       openWhatsApp(lines.join('\n'));
-      submitBtn.innerHTML = '✓ ' + (document.documentElement.lang === 'en' ? 'Sent to WhatsApp' : 'درخواست شما به واتساپ ارسال شد');
+      submitBtn.innerHTML = '✓ ' + (document.documentElement.lang === 'en' ? 'Ready to send in WhatsApp' : 'آمادهٔ ارسال در واتساپ');
       submitBtn.style.background = '#10B981';
       submitBtn.style.color = '#fff';
       window.showToast(document.documentElement.lang === 'en' ? 'Your request is ready in WhatsApp. Please tap Send.' : 'درخواست شما در واتساپ آماده شد؛ لطفاً در صفحهٔ باز شده دکمهٔ ارسال را بزنید.');

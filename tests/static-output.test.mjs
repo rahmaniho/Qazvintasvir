@@ -30,14 +30,54 @@ test('build emits the bilingual public route set', () => {
   assert.ok(existsSync(resolve(dist, '404.html')), 'missing localized 404 output');
 });
 
-test('English standalone section pages have localized visible copy and language-aware canonicals', () => {
+test('footer credit uses the original bilingual KarenSoft artwork and a secure external link', () => {
+  const files = [
+    ['mark.png', 256, 256],
+    ['wordmark-fa.png', 383, 96],
+    ['wordmark-en.png', 410, 48],
+  ];
+  const assetPath = '/assets/images/karensoft/';
+  for (const [filename, width, height] of files) {
+    const path = resolve(root, 'public', assetPath.slice(1), filename);
+    assert.ok(existsSync(path), `missing KarenSoft crop ${filename}`);
+    const png = readFileSync(path);
+    assert.equal(png.toString('hex', 0, 8), '89504e470d0a1a0a', `${filename} must be a PNG`);
+    assert.equal(png.readUInt32BE(16), width, `${filename} width mismatch`);
+    assert.equal(png.readUInt32BE(20), height, `${filename} height mismatch`);
+    assert.equal(png.readUInt8(25), 6, `${filename} must retain RGBA transparency`);
+  }
+
+  for (const lang of ['fa', 'en']) {
+    const html = read(route(lang));
+    const credit = html.match(/<a\b(?=[^>]*class="karensoft-credit")[^>]*>([\s\S]*?)<\/a>/);
+    assert.ok(credit, `footer credit missing from ${lang} homepage`);
+    assert.match(credit[0], /href="https:\/\/www\.karen-soft\.ir"/);
+    assert.match(credit[0], /target="_blank"/);
+    assert.match(credit[0], /rel="noopener noreferrer"/);
+    for (const filename of files.map(([name]) => name)) {
+      assert.ok(credit[1].includes(`${assetPath}${filename}`), `${filename} missing from ${lang} footer credit`);
+    }
+  }
+
+  const css = readFileSync(resolve(root, 'src/styles/layout.css'), 'utf8');
+  assert.match(css, /karensoft-ring-spin/, 'logo ring animation missing');
+  assert.match(css, /karensoft-wordmark-glow/, 'wordmark animation missing');
+  assert.match(css, /prefers-reduced-motion:\s*reduce/, 'credit must respect reduced-motion preferences');
+});
+
+test('English routes have localized visible copy and language-aware document metadata', () => {
   const persianOrArabic = /[\u0600-\u06FF]/;
-  for (const slug of standaloneSectionSlugs) {
-    const html = read(route('en', slug));
+  const paths = ['', 'about', 'contact', 'services', ...standaloneSectionSlugs, ...serviceSlugs.map((slug) => `services/${slug}`)];
+  for (const path of paths) {
+    const html = read(route('en', path));
     const visibleHtml = html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
-    assert.doesNotMatch(visibleHtml, persianOrArabic, `English page ${slug} contains untranslated visible copy`);
-    assert.match(html, new RegExp(`rel="canonical" href="[^"]*/en/${slug}/"`), `missing English canonical for ${slug}`);
-    assert.match(html, new RegExp(`hreflang="fa" href="[^"]*/fa/${slug}/"`), `missing Persian alternate for ${slug}`);
+    const name = path || 'home';
+    assert.doesNotMatch(visibleHtml, persianOrArabic, `English page ${name} contains untranslated visible copy`);
+    assert.match(html, /<html[^>]*lang="en"[^>]*dir="ltr"|<html[^>]*dir="ltr"[^>]*lang="en"/, `incorrect document language or direction on ${name}`);
+    if (path) {
+      assert.match(html, new RegExp(`rel="canonical" href="[^"]*/en/${path}/"`), `missing English canonical for ${name}`);
+      assert.match(html, new RegExp(`hreflang="fa" href="[^"]*/fa/${path}/"`), `missing Persian alternate for ${name}`);
+    }
   }
 });
 
@@ -58,6 +98,27 @@ test('English service pages use translated visible copy and structured data', ()
     assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 8, 'all eight source offers should remain in schema');
     assert.equal(organization?.openingHoursSpecification?.closes, '20:00', 'source opening hours should remain in schema');
     assert.ok(organization?.sameAs?.some((url) => url.includes('rasmio.com/company/10861415215')), 'source Rasmio sameAs URL should remain in schema');
+  }
+});
+
+test('localized service-order numerals use the appropriate digit set', () => {
+  const faServices = read(route('fa', 'services'));
+  const enServices = read(route('en', 'services'));
+  assert.match(faServices, /<bdi class="bidi-ltr" dir="ltr">۰۱<\/bdi>/, 'Persian service order should use Persian digits');
+  assert.match(enServices, /<span[^>]*>01<\/span>/, 'English service order should use Western digits');
+  assert.doesNotMatch(faServices, /<bdi class="bidi-ltr" dir="ltr">01<\/bdi>/, 'Persian service order should not use Western digits');
+});
+
+test('telephone numbers and numeric form controls are explicitly isolated left to right', () => {
+  const css = readFileSync(resolve(root, 'src/styles/base.css'), 'utf8');
+  assert.match(css, /\.bidi-ltr\s*\{[\s\S]*?unicode-bidi:\s*isolate/, 'shared number style must isolate LTR runs');
+  assert.match(css, /input\[type="tel"\],[\s\S]*?text-align:\s*left/, 'telephone and numeric inputs must be LTR and left-aligned');
+
+  for (const [lang, path] of [['fa', 'contact'], ['en', 'contact'], ['fa', 'services/personnel-food'], ['en', 'services/personnel-food']]) {
+    const html = read(route(lang, path));
+    const inputs = [...html.matchAll(/<input\b[^>]*type="tel"[^>]*>/g)];
+    assert.ok(inputs.length, `telephone input missing from ${lang}/${path}`);
+    for (const [tag] of inputs) assert.match(tag, /\bdir="ltr"/, `telephone input must declare LTR direction on ${lang}/${path}`);
   }
 });
 
@@ -135,13 +196,15 @@ test('homepages act as concise directories while full source sections live on de
   const whyUs = read(route('fa', 'why-us'));
   assert.equal((whyUs.match(/class="why-card reveal"/g) ?? []).length, 6, 'all source company-strength cards should be on the why-us page');
   const clients = read(route('fa', 'clients'));
+  const clientsText = clients.replace(/<[^>]*>/g, '');
   assert.equal((clients.match(/class="client-card client-card--full reveal"/g) ?? []).length, 12, 'all 12 client brands should be listed');
   for (const updatedRecord of ['نستله ایران', '۱۵ دستگاه', 'گلدایران (ال‌جی)', '۱۹ دستگاه', 'هنکل', '۱۲ دستگاه', 'آسان پک', 'یاتاقان بوش ایران', '۱۴۳ دستگاه خودرو']) {
-    assert.ok(clients.includes(updatedRecord), `missing updated Persian client record: ${updatedRecord}`);
+    assert.ok(clientsText.includes(updatedRecord), `missing updated Persian client record: ${updatedRecord}`);
   }
   const enClients = read(route('en', 'clients'));
+  const enClientsText = enClients.replace(/<[^>]*>/g, '');
   for (const updatedRecord of ['Nestlé Iran', '15 vehicles', 'Goldiran (LG)', '19 vehicles', 'Henkel', '12 vehicles', 'Asan Pack', 'Yataqan Bosh Iran', '143 vehicles']) {
-    assert.ok(enClients.includes(updatedRecord), `missing updated English client record: ${updatedRecord}`);
+    assert.ok(enClientsText.includes(updatedRecord), `missing updated English client record: ${updatedRecord}`);
   }
   assert.equal((clients.match(/class="testimonial-card reveal"/g) ?? []).length, 3, 'all source testimonials should be present');
   assert.equal((clients.match(/class="history-table"/g) ?? []).length, 1, 'the contract history table should be present');
@@ -214,22 +277,39 @@ test('updated office details, phone numbers and icon navigation render in both l
     ];
     for (const path of pages) {
       const html = read(route(lang, path));
-      assert.match(html, /tel:\+989352815189/, `new phone link missing from ${lang}/${path || 'home'}`);
-      assert.match(html, /\+98 935 281 5189/, `new phone label missing from ${lang}/${path || 'home'}`);
+      assert.match(html, /tel:\+989122815189/, `first mobile phone link missing from ${lang}/${path || 'home'}`);
+      assert.match(html, /tel:\+989352815189/, `second mobile phone link missing from ${lang}/${path || 'home'}`);
+      assert.match(html, lang === 'fa' ? /۰۹۱۲ ۲۸۱ ۵۱۸۹/ : /\+98 912 281 5189/, `localized first phone label missing from ${lang}/${path || 'home'}`);
+      assert.match(html, lang === 'fa' ? /۰۹۳۵ ۲۸۱ ۵۱۸۹/ : /\+98 935 281 5189/, `localized second phone label missing from ${lang}/${path || 'home'}`);
       assert.match(html, /tel:\+982832573842/, `head-office number link missing from ${lang}/${path || 'home'}`);
       assert.match(html, lang === 'fa' ? /۰۲۸ ۳۲۵۷ ۳۸۴۲/ : /\+98 28 3257 3842/, `head-office number label missing from ${lang}/${path || 'home'}`);
       assert.match(html, /Pasteur Hospital|بیمارستان پاستور/, `updated office landmark missing from ${lang}/${path || 'home'}`);
-      assert.match(html, /Unit 218|واحد ۲۱۸/, `updated office unit missing from ${lang}/${path || 'home'}`);
-      assert.doesNotMatch(html, /Abadgaran|آبادگران|Ferdowsi Street|خیابان فردوسی|Unit 216|واحد ۲۱۶|Khamenei Blvd|آیت‌الله خامنه‌ای/, `old office address remains on ${lang}/${path || 'home'}`);
+      assert.match(html, /Unit 208|واحد.{0,100}۲۰۸/, `updated office unit missing from ${lang}/${path || 'home'}`);
+      assert.doesNotMatch(html, /Abadgaran|آبادگران|Ferdowsi Street|خیابان فردوسی|Unit 216|واحد ۲۱۶|Unit 218|واحد ۲۱۸|Khamenei Blvd|آیت‌الله خامنه‌ای/, `old office address remains on ${lang}/${path || 'home'}`);
+      const phoneLinks = [...html.matchAll(/<a\b([^>]*href="tel:[^"]*"[^>]*)>([\s\S]*?)<\/a>/g)];
+      assert.ok(phoneLinks.length, `no telephone links found on ${lang}/${path || 'home'}`);
+      for (const [, tag, content] of phoneLinks) {
+        const wholeLinkIsLtr = /\bdir="ltr"/.test(tag) && /\bclass="[^"]*\bbidi-ltr\b/.test(tag);
+        const numberIsIsolated = /<bdi\b[^>]*class="[^"]*\bbidi-ltr\b[^\"]*"[^>]*dir="ltr"[^>]*>/.test(content);
+        assert.ok(wholeLinkIsLtr || numberIsIsolated, `telephone number must be isolated LTR without changing surrounding copy on ${lang}/${path || 'home'}`);
+      }
       assert.match(html, /class="navigation-icon" data-icon="home"/, `navigation icon missing from ${lang}/${path || 'home'}`);
     }
+  }
+
+  const notFound = readFileSync(resolve(dist, '404.html'), 'utf8');
+  assert.match(notFound, /واحد.{0,100}۲۰۸/, 'localized 404 should use the updated office unit');
+  assert.doesNotMatch(notFound, /Unit 218|واحد ۲۱۸/, 'old office unit must not remain on the 404 page');
+  for (const [tag] of notFound.matchAll(/<a\b[^>]*href="tel:[^"]*"[^>]*>/g)) {
+    assert.match(tag, /\bdir="ltr"/, '404 phone links must explicitly declare LTR direction');
+    assert.match(tag, /\bclass="[^"]*\bbidi-ltr\b/, '404 phone links must use the bidi isolation class');
   }
 
   const faHome = read(route('fa'));
   const structuredData = [...faHome.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
   const organization = structuredData.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
   assert.deepEqual(organization?.telephone, ['+982832573842', '+989122815189', '+989352815189']);
-  assert.match(organization?.address?.streetAddress ?? '', /جنب بیمارستان پاستور.*مجتمع تجاری نیایش.*۲۱۸/);
+  assert.match(organization?.address?.streetAddress ?? '', /جنب بیمارستان پاستور.*مجتمع تجاری نیایش.*۲۰۸/);
 });
 
 test('legacy URLs emit static redirects and preserve known hash destinations', () => {

@@ -42,10 +42,31 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  html[dir="rtl"] { hyphens: none; }
+  html[dir="rtl"] {
+    hyphens: none;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
   html[dir="ltr"] {
     font-family: var(--font-numbers);
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  [dir="ltr"] { direction: ltr; unicode-bidi: isolate; }
+  .bidi-ltr {
+    display: inline-block;
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
+    font-family: var(--font-numbers);
+    font-variant-numeric: lining-nums tabular-nums;
+    white-space: nowrap;
+  }
+  input[type="tel"],
+  input[inputmode="numeric"],
+  input[inputmode="decimal"] {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
+    font-variant-numeric: lining-nums tabular-nums;
   }
 
   body {

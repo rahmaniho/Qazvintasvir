@@ -59,14 +59,16 @@ const pageLinks = lang === 'fa'
           <span>{lang==='fa' ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company'}</span>
         </a>
         <p>
-          {lang==='fa'
-            ? 'شرکت قزوین تصویر (با مسئولیت محدود — تأسیس ۱۳۷۴) ارائه‌دهنده خدمات بازرگانی، ترابری و تأمین غذای سازمانی برای صنایع استان قزوین.'
-            : 'Qazvin Tasvir Company (Ltd — est. 1995) provides trading, transport and corporate catering services for industries in Qazvin.'}
+          {lang === 'fa'
+            ? <>شرکت قزوین تصویر (با مسئولیت محدود — تأسیس <bdi class="bidi-ltr" dir="ltr">۱۳۷۴</bdi>) ارائه‌دهندهٔ خدمات بازرگانی، ترابری و تأمین غذای سازمانی برای صنایع استان قزوین است.</>
+            : 'Qazvin Tasvir Company (Ltd — established in 1995) provides trade, transportation and corporate catering services for industries in Qazvin.'}
         </p>
-        <p style="font-size:0.84rem; color:#64748B;">
-          {lang==='fa'
-            ? 'قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ ۲، واحد ۲۱۸، شرکت قزوین تصویر — ۰۹۱۲ ۲۸۱ ۵۱۸۹ — ۰۹۳۵ ۲۸۱ ۵۱۸۹'
-            : 'Qazvin Tasvir Company, 2nd floor, Unit 218, Niayesh Commercial Complex, next to Pasteur Hospital — +98 912 281 5189 — +98 935 281 5189'}
+        <p class="footer-brand__contact" style="font-size:0.84rem; color:#64748B;">
+          {lang === 'fa' ? (
+            <>قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi>، شرکت قزوین تصویر — <bdi class="bidi-ltr" dir="ltr">۰۹۱۲ ۲۸۱ ۵۱۸۹</bdi> — <bdi class="bidi-ltr" dir="ltr">۰۹۳۵ ۲۸۱ ۵۱۸۹</bdi></>
+          ) : (
+            <>Qazvin Tasvir Company, 2nd floor, Unit 208, Niayesh Commercial Complex, next to Pasteur Hospital — <bdi class="bidi-ltr" dir="ltr">+98 912 281 5189</bdi> — <bdi class="bidi-ltr" dir="ltr">+98 935 281 5189</bdi></>
+          )}
         </p>
       </div>
 
@@ -77,7 +79,7 @@ const pageLinks = lang === 'fa'
         </ul>
       </div>
       <div class="footer-col">
-        <h4>{lang==='fa' ? 'خدمات (۲)' : 'Services (2)'}</h4>
+        <h4>{lang === 'fa' ? 'سایر خدمات' : 'More services'}</h4>
         <ul>
           {services.slice(4).map(([label, href]) => <li><a href={href}>{label}</a></li>)}
         </ul>
@@ -93,20 +95,64 @@ const pageLinks = lang === 'fa'
         <ul>
           <li><a href={`${baseUrl}/${lang}/contact/`}>{lang === 'fa' ? 'تماس و درخواست همکاری' : 'Contact & consultation'}</a></li>
           <li><a href={`${baseUrl}/${lang}/services/`}>{lang === 'fa' ? 'همه خدمات' : 'All services'}</a></li>
-          <li>{lang === 'fa' ? 'دفتر مرکزی: ' : 'Head office: '}<a href="tel:+982832573842" dir="ltr">{lang === 'fa' ? '۰۲۸ ۳۲۵۷ ۳۸۴۲' : '+98 28 3257 3842'}</a></li>
-          <li><a href="tel:+989122815189" dir="ltr">+98 912 281 5189</a></li>
-          <li><a href="tel:+989352815189" dir="ltr">+98 935 281 5189</a></li>
+          <li>{lang === 'fa' ? 'دفتر مرکزی: ' : 'Head office: '}<a href="tel:+982832573842" dir="ltr" class="bidi-ltr">{lang === 'fa' ? '۰۲۸ ۳۲۵۷ ۳۸۴۲' : '+98 28 3257 3842'}</a></li>
+          <li><a href="tel:+989122815189" dir="ltr" class="bidi-ltr">{lang === 'fa' ? '۰۹۱۲ ۲۸۱ ۵۱۸۹' : '+98 912 281 5189'}</a></li>
+          <li><a href="tel:+989352815189" dir="ltr" class="bidi-ltr">{lang === 'fa' ? '۰۹۳۵ ۲۸۱ ۵۱۸۹' : '+98 935 281 5189'}</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© <span data-year>{yearDisplay}</span> {lang==='fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}</span>
+      <span>© <bdi class="bidi-ltr" dir="ltr" data-year>{yearDisplay}</bdi> {lang === 'fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}</span>
+      <a
+        class="karensoft-credit"
+        href="https://www.karen-soft.ir"
+        target="_blank"
+        rel="noopener noreferrer"
+        dir={lang === 'fa' ? 'rtl' : 'ltr'}
+        aria-label={lang === 'fa' ? 'بازدید از وب‌سایت کارن سافت' : 'Designed and developed by KarenSoft'}
+      >
+        <span class="karensoft-credit__label" lang={lang} dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+          {lang === 'fa' ? 'طراحی و توسعه توسط' : 'Designed & Developed by'}
+        </span>
+        <span class="karensoft-credit__mark-wrap" aria-hidden="true">
+          <img
+            class="karensoft-credit__mark"
+            src={`${baseUrl}/assets/images/karensoft/mark.png`}
+            alt=""
+            width="256"
+            height="256"
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
+        <span class="karensoft-credit__wordmarks" dir="ltr" aria-hidden="true">
+          <img
+            class="karensoft-credit__wordmark karensoft-credit__wordmark--en"
+            src={`${baseUrl}/assets/images/karensoft/wordmark-en.png`}
+            alt=""
+            width="410"
+            height="48"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="karensoft-credit__separator">|</span>
+          <img
+            class="karensoft-credit__wordmark karensoft-credit__wordmark--fa"
+            src={`${baseUrl}/assets/images/karensoft/wordmark-fa.png`}
+            alt=""
+            width="383"
+            height="96"
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
+      </a>
       <span style="display:flex; gap:12px; align-items:center;">
         <a href={`${baseUrl}/fa/`} hreflang="fa">FA</a>
         <span aria-hidden="true">/</span>
         <a href={`${baseUrl}/en/`} hreflang="en">EN</a>
-        <span style="margin-inline-start:8px; opacity:0.6;">{lang==='fa' ? 'شناسه ملی ۱۰۸۶۱۴۱۵۲۱۵' : 'ID 10861415215'}</span>
+        <span style="margin-inline-start:8px; opacity:0.6;">{lang === 'fa' ? 'شناسه ملی ' : 'ID '}<bdi class="bidi-ltr" dir="ltr">{lang === 'fa' ? '۱۰۸۶۱۴۱۵۲۱۵' : '10861415215'}</bdi></span>
       </span>
     </div>
   </div>

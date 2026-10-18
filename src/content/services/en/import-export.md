@@ -61,8 +61,8 @@ note_items:
   - "Record checkpoints and timing"
   - "Coordinate with finance and operations"
 cta_title: "Let’s discuss your organization’s needs"
-cta_body: "Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together."
-cta_label: "Call and request a consultation"
+cta_body: "Share a brief overview of your requirement, key details and preferred timing. A Qazvin Tasvir specialist will review your request and guide you on the next steps."
+cta_label: "Request a consultation"
 theme: "theme-trade"
 ---
 

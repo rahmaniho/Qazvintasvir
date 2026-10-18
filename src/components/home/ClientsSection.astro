@@ -3,6 +3,10 @@ interface Props { lang: 'fa' | 'en'; }
 const { lang } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const fa = lang === 'fa';
+const renderNumericText = (text: string) => {
+  const escaped = text.replace(/[&<>]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[char]!);
+  return escaped.replace(/[0-9۰-۹]+(?:[٬,./:–-][0-9۰-۹]+)*(?:[٪%+])?/g, '<bdi class="bidi-ltr" dir="ltr">$&</bdi>');
+};
 const clients = fa
   ? [
       ['یاتاقان بوش ایران', 'Yataqan Bosh Iran', 'صنایع یاتاقان و قطعات صنعتی', 'yataqan-bosh.png'],
@@ -81,11 +85,7 @@ const caseText = fa
     <header class="section-header reveal">
       <span class="section-label section-label--sky">{fa ? 'مشتریان و شرکای تجاری' : 'Clients and Business Partners'}</span>
       <h2 class="section-title" id="clients-title">{fa ? 'برندهای شاخصی که به قزوین تصویر اعتماد کرده‌اند' : 'Leading brands that have trusted Qazvin Tasvir'}</h2>
-      <p class="section-desc">
-        {fa
-          ? 'افتخار بیش از ۳ دهه همراهی با بزرگ‌ترین کارخانجات و صنایع بین‌المللی و ملی'
-          : 'Proud to have served the largest factories and international industries of the country for more than three decades'}
-      </p>
+      <p class="section-desc" set:html={renderNumericText(fa ? 'بیش از ۳ دهه است که افتخار همراهی با بزرگ‌ترین کارخانه‌ها و صنایع ملی و بین‌المللی را داریم.' : 'For more than three decades, we have been proud to serve some of the country’s largest manufacturers and international brands.')}></p>
     </header>
 
     <ul class="clients-grid clients-grid--full">
@@ -106,7 +106,7 @@ const caseText = fa
       <div class="testimonials__grid">
         {testimonials.map(([text, name, role]) => (
           <figure class="testimonial-card reveal">
-            <div class="testimonial-card__stars" role="img" aria-label={fa ? 'امتیاز ۵ از ۵ ستاره' : 'Rated 5 out of 5 stars'}>★★★★★</div>
+            <div class="testimonial-card__stars" role="img" aria-label={fa ? 'امتیاز پنج از پنج ستاره' : 'Rated five out of five stars'}>★★★★★</div>
             <blockquote>{text}</blockquote>
             <figcaption>
               <strong>{name}</strong>
@@ -120,16 +120,16 @@ const caseText = fa
     <article class="client-case-study reveal">
       <div>
         <span class="section-label section-label--sky">{fa ? 'نمونه‌کار' : 'Case Study'}</span>
-        <h3>{caseTitle}</h3>
-        <p>{caseText}</p>
+        <h3 set:html={renderNumericText(caseTitle)}></h3>
+        <p set:html={renderNumericText(caseText)}></p>
         <a href={`${base}/${lang}/contact/`} class="btn btn--primary">
           {fa ? 'درخواست مشاوره برای سرویس پرسنل' : 'Request a staff transport consultation'}
         </a>
       </div>
       <dl class="client-case-study__stats">
-        <div><dt>{fa ? 'پرسنل تحت پوشش' : 'Staff covered'}</dt><dd>{fa ? '۵۰۰+' : '500+'}</dd></div>
-        <div><dt>{fa ? 'شیفت کاری روزانه' : 'Daily work shifts'}</dt><dd>{fa ? '۲ شیفت' : '2 shifts'}</dd></div>
-        <div><dt>{fa ? 'پوشش خدمت' : 'Service coverage'}</dt><dd>{fa ? '۷ روز هفته' : '7 days a week'}</dd></div>
+        <div><dt>{fa ? 'پرسنل تحت پوشش' : 'Staff covered'}</dt><dd set:html={renderNumericText(fa ? '۵۰۰+' : '500+')}></dd></div>
+        <div><dt>{fa ? 'شیفت کاری روزانه' : 'Daily work shifts'}</dt><dd set:html={renderNumericText(fa ? '۲ شیفت' : '2 shifts')}></dd></div>
+        <div><dt>{fa ? 'پوشش خدمت' : 'Service coverage'}</dt><dd set:html={renderNumericText(fa ? '۷ روز هفته' : '7 days a week')}></dd></div>
       </dl>
     </article>
 
@@ -155,13 +155,13 @@ const caseText = fa
           </thead>
           <tbody>
             {history.map(([company, vehicles, period]) => (
-              <tr><th scope="row">{company}</th><td>{vehicles}</td><td>{period}</td></tr>
+              <tr><th scope="row">{company}</th><td set:html={renderNumericText(vehicles)}></td><td set:html={renderNumericText(period)}></td></tr>
             ))}
           </tbody>
         </table>
       </div>
       <p class="clients-history__note">
-        {fa ? <>جمعاً <strong>۱۴۳ دستگاه خودرو</strong> در قالب این قراردادها به شرکت‌های بالا واگذار شده است.</> : <>In total, <strong>143 vehicles</strong> have been leased to the companies above under these contracts.</>}
+        {fa ? <>جمعاً <strong><bdi class="bidi-ltr" dir="ltr">۱۴۳</bdi> دستگاه خودرو</strong> در قالب این قراردادها به شرکت‌های بالا واگذار شده است.</> : <>In total, <strong><bdi class="bidi-ltr" dir="ltr">143</bdi> vehicles</strong> have been leased to the companies above under these contracts.</>}
       </p>
     </section>
   </div>

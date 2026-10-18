@@ -27,9 +27,9 @@ const breadcrumbs = breadcrumbSchema([
   { name: title },
 ]);
 const defaultFaqs = [
-  { q: 'What is the usual minimum order size?', a: 'The usual starting point is around 50 meals per service. Smaller groups may also be considered depending on delivery distance and meal frequency. After reviewing the location, our team can provide a more precise estimate.' },
+  { q: 'What is the usual minimum order size?', a: 'The usual minimum is 50 meals per service. Smaller groups may also be considered depending on delivery distance and meal frequency. After reviewing the location, our team can provide a tailored estimate.' },
   { q: 'Can the menu be changed?', a: 'Yes. Weekly and seasonal menus can be reviewed around staff preferences, your budget and production schedules. Less popular items can be replaced, and dietary, vegetarian or lower-salt options can be discussed.' },
-  { q: 'Is employer-provided food treated as part of wages?', a: 'Under Iranian labor rules, food provided to staff may be treated as a non-cash benefit and can have insurance and tax implications. The contract should document how meals are calculated. We recommend checking the arrangement with your organization’s finance and insurance advisers before signing.' },
+  { q: 'Is employer-provided food treated as part of wages?', a: 'Under Iranian labour law, meals provided to staff are treated as a non-cash benefit and may have specific tax and social-insurance implications. The contract should document how meals are calculated and recorded. Before signing, consult your organisation’s finance and insurance advisers.' },
   { q: 'How are meal delivery times arranged?', a: 'Delivery is planned around your work shifts and recorded in the contract. Night shifts, holidays and production peaks can be considered; temporary schedule changes are coordinated in advance.' },
 ];
 const faqs = translatedFaqs?.length ? translatedFaqs : defaultFaqs;
@@ -136,13 +136,13 @@ const steps = [
             <h1 id="food-title" class="food-hero__title">Staff catering and <span class="gradient-text">corporate meals</span></h1>
             <p class="food-hero__lead">Qazvin Tasvir provides contract meal services for factory and company teams. We coordinate menu planning, hygienic preparation and delivery of hot meals at your workplace.</p>
             <ul class="food-hero__facts">
-              <li><span aria-hidden="true">✓</span><span>Usually from 50 meals per service</span></li>
+              <li><span aria-hidden="true">✓</span><span>Usual minimum: 50 meals per service</span></li>
               <li><span aria-hidden="true">✓</span><span>Breakfast, lunch, dinner and snacks</span></li>
               <li><span aria-hidden="true">✓</span><span>Delivery to your restaurant or designated location</span></li>
             </ul>
             <div class="food-hero__actions">
               <a href="#food-request" class="btn btn-primary btn-lg"><span>Request a catering proposal</span><span aria-hidden="true">→</span></a>
-              <a href="tel:+989122815189" class="btn btn-outline-glass btn-lg"><span>Call our team: +98 912 281 5189</span></a>
+              <a href="tel:+989122815189" class="btn btn-outline-glass btn-lg bidi-ltr" dir="ltr"><span>Call our team: +98 912 281 5189</span></a>
             </div>
           </div>
           <div class="food-hero__media reveal">
@@ -155,7 +155,7 @@ const steps = [
           </div>
         </div>
         <ul class="food-hero__metrics reveal">
-          <li class="food-metric"><span class="food-metric__value">50+</span><span class="food-metric__label">Typical minimum meals</span></li>
+          <li class="food-metric"><span class="food-metric__value">50+</span><span class="food-metric__label">Typical minimum meals per service</span></li>
           <li class="food-metric"><span class="food-metric__value">4</span><span class="food-metric__label">Meal periods</span></li>
           <li class="food-metric"><span class="food-metric__value">7 days</span><span class="food-metric__label">Rotating weekly menu</span></li>
           <li class="food-metric"><span class="food-metric__value">2 hours</span><span class="food-metric__label">Target response time</span></li>
@@ -214,7 +214,7 @@ const steps = [
 
     <div class="food-zone food-zone--cream" id="food-request">
       <div class="container">
-        <header class="section-header reveal"><span class="section-label section-label--food">Request a proposal</span><h2 class="section-title">Request a catering consultation and contract proposal</h2><p class="section-desc">Share your organization’s requirements. A catering specialist aims to contact you within two working hours to discuss the initial proposal.</p></header>
+        <header class="section-header reveal"><span class="section-label section-label--food">Request a proposal</span><h2 class="section-title">Request a catering consultation and contract proposal</h2><p class="section-desc">Share your organisation’s requirements. A catering specialist will contact you within two working hours with an initial proposal.</p></header>
         <div class="food-request">
           <div class="food-request__form-card reveal">
             <form id="personnel-food-form" novalidate>
@@ -230,7 +230,7 @@ const steps = [
               </div><span class="form-feedback" id="food-meals-feedback" data-feedback-for="food-meals" role="alert">Select at least one meal period.</span></fieldset>
               <div class="form-group"><input type="text" id="food-address" name="address" class="form-control" placeholder=" " required autocomplete="street-address" aria-describedby="food-address-feedback" /><label for="food-address" class="form-label">Delivery address (factory / company) *</label><span class="form-feedback" id="food-address-feedback" data-feedback-for="food-address" role="alert">Enter the meal delivery address.</span></div>
               <div class="form-group"><textarea id="food-notes" name="notes" class="form-control" rows="4" placeholder=" " style="resize: vertical;"></textarea><label for="food-notes" class="form-label">Notes, shifts or special requirements</label></div>
-              <div class="food-form-contact"><span class="food-form-contact__item"><a href="tel:+989122815189">+98 912 281 5189</a></span><span class="food-form-contact__item"><a href="https://wa.me/989122815189" target="_blank" rel="noopener noreferrer">Send a request on WhatsApp</a></span><span class="food-form-contact__item">Response hours: Saturday–Thursday, 08:00–20:00</span></div>
+              <div class="food-form-contact"><span class="food-form-contact__item"><a href="tel:+989122815189" dir="ltr" class="bidi-ltr">+98 912 281 5189</a></span><span class="food-form-contact__item"><a href="https://wa.me/989122815189" target="_blank" rel="noopener noreferrer">Send a request on WhatsApp</a></span><span class="food-form-contact__item">Response hours: Saturday–Thursday, 08:00–20:00</span></div>
               <button type="submit" id="food-submit-btn" class="btn btn-primary btn-lg btn-full" data-success-label="✓ Request ready in WhatsApp">Send catering request</button>
               <p class="form-whatsapp-hint">Submitting prepares your details in WhatsApp; you can review and send the message there.</p>
               <p class="food-form-note">Your information is used only to prepare a catering proposal.</p>
@@ -238,7 +238,7 @@ const steps = [
           </div>
           <aside class="food-request__aside reveal" aria-label="Service assurances and contact options">
             <div class="food-trust-card"><h3 class="food-trust-card__title">Working commitments</h3><ul class="food-trust-card__list"><li>Formal contract with clear responsibilities</li><li>Complimentary site review for the delivery location</li><li>Daily food quality checks and sampling</li><li>Dedicated support and ongoing responses</li></ul></div>
-            <div class="food-request__contact-card"><span class="food-request__contact-label">Request by phone or WhatsApp</span><a href="tel:+989122815189" class="food-request__phone">+98 912 281 5189</a><a href="https://wa.me/989122815189?text=I%27d%20like%20to%20ask%20about%20staff%20catering" target="_blank" rel="noopener noreferrer" class="btn btn-sky btn-full">Chat on WhatsApp</a></div>
+            <div class="food-request__contact-card"><span class="food-request__contact-label">Request by phone or WhatsApp</span><a href="tel:+989122815189" class="food-request__phone bidi-ltr" dir="ltr">+98 912 281 5189</a><a href="https://wa.me/989122815189?text=I%27d%20like%20to%20ask%20about%20staff%20catering" target="_blank" rel="noopener noreferrer" class="btn btn-sky btn-full">Chat on WhatsApp</a></div>
           </aside>
         </div>
       </div>
@@ -263,7 +263,7 @@ const steps = [
       </section>
     )}
 
-    <div class="food-cta"><div class="container"><div class="food-cta__panel reveal"><div class="food-cta__glow" aria-hidden="true"></div><div class="food-cta__body"><span class="food-cta__badge">Ready to discuss a contract?</span><h2 class="food-cta__title">Plan staff catering around your workplace</h2><p class="food-cta__text">Contact our team to arrange a site visit, review a sample menu and discuss a clear proposal for hot, hygienically prepared meals delivered to your location.</p><div class="food-cta__actions"><a href="tel:+989122815189" class="food-cta__phone"><span class="food-cta__phone-label">Call our catering team</span><span class="food-cta__phone-number">+98 912 281 5189</span></a><a href="#food-request" class="btn btn-primary btn-lg">Send a catering request →</a></div><p class="food-cta__note">Site visit and initial proposal are complimentary • Serving Qazvin Province and its industrial parks</p></div></div></div></div>
+    <div class="food-cta"><div class="container"><div class="food-cta__panel reveal"><div class="food-cta__glow" aria-hidden="true"></div><div class="food-cta__body"><span class="food-cta__badge">Ready to discuss a contract?</span><h2 class="food-cta__title">Plan staff catering around your workplace</h2><p class="food-cta__text">Contact our team to arrange a site visit, review a sample menu and discuss a clear proposal for hot, hygienically prepared meals delivered to your location.</p><div class="food-cta__actions"><a href="tel:+989122815189" class="food-cta__phone bidi-ltr" dir="ltr"><span class="food-cta__phone-label">Call our catering team</span><span class="food-cta__phone-number">+98 912 281 5189</span></a><a href="#food-request" class="btn btn-primary btn-lg">Send a catering request →</a></div><p class="food-cta__note">Site visit and initial proposal are complimentary • Serving Qazvin Province and its industrial parks</p></div></div></div></div>
   </section>
   <script>
     import '../../scripts/food-service.js';

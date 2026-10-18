@@ -10,30 +10,30 @@ export default {
     clients: "Clients",
     contact: "Contact",
     allServices: "View all services",
-    requestConsult: "Request consultation",
+    requestConsult: "Request a consultation",
     openMenu: "Open mobile menu",
     closeMenu: "Close mobile menu",
     skipToContent: "Skip to main content"
   },
   hero: {
     badge: "Est. 1995 — 31+ years of experience",
-    title: "Qazvin Tasvir — 31+ years of excellence in trading, transport and catering",
-    lead: "Qazvin Tasvir Company (ID 10861415215), led by Saeed Aminzadeh, provides eight specialist service paths from international trade to transport and corporate catering for industries in Qazvin.",
+    title: "Qazvin Tasvir — 31+ years of experience in trade, transport and catering",
+    lead: "Qazvin Tasvir Company (ID 10861415215), led by Saeed Aminzadeh, provides eight specialist services—from international trade to transportation and corporate catering—for organizations in Qazvin Province.",
     ctaPrimary: "Free consultation",
     ctaSecondary: "View services"
   },
   servicesHub: {
     kicker: "Our Services",
     title: "Specialist Services",
-    desc: "Eight service paths covering the full chain of trade, transport and corporate support — from import to staff meals."
+    desc: "Eight specialist services spanning trade, transportation and corporate support—from importing goods to staff catering."
   },
   footer: {
     about: "About Qazvin Tasvir",
-    aboutText: "Qazvin Tasvir Company (Ltd — est. 1995) provides trading, transport and corporate catering services for industries in Qazvin Province and the Caspian & Alborz industrial parks.",
+    aboutText: "Established in 1995, Qazvin Tasvir provides trade, transportation and corporate catering services to industrial organisations across Qazvin Province, including the Caspian and Alborz industrial parks.",
     services: "Services",
     contact: "Contact",
     social: "Follow us",
-    address: "Qazvin Tasvir Company, 2nd floor, Unit 218, Niayesh Commercial Complex, next to Pasteur Hospital, Qazvin, Iran",
+    address: "Qazvin Tasvir Company, 2nd floor, Unit 208, Niayesh Commercial Complex, next to Pasteur Hospital, Qazvin, Iran",
     phone: "+98 912 281 5189 — +98 935 281 5189",
     copyright: "© {year} Qazvin Tasvir — All rights reserved.",
     madeWith: "Designed & built"
@@ -41,7 +41,7 @@ export default {
   pages: {
     aboutTitle: "About Qazvin Tasvir",
     contactTitle: "Contact Us",
-    contactDesc: "Get in touch for consultation, quotations or contracts.",
+    contactDesc: "Get in touch to discuss a consultation, quotation or contract.",
     notFoundTitle: "Page not found",
     notFoundDesc: "The address you entered does not exist or has been moved.",
     notFoundEn: "The page you are looking for was not found or has moved.",

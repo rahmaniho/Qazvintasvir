@@ -114,14 +114,14 @@ const canonical = serviceUrl;
           )}
 
           <div class="hero__actions" style="margin-top:24px;">
-            <a href={`${baseClean}/${lang}/contact/`} class="btn btn--accent">{lang==='fa' ? 'درخواست بررسی نیاز' : 'Request consultation'} →</a>
+            <a href={`${baseClean}/${lang}/contact/`} class="btn btn--accent">{lang === 'fa' ? 'درخواست بررسی نیاز' : 'Request a consultation'} →</a>
             <a href={`${baseClean}/${lang}/services/`} class="btn" style="background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.2);">{lang==='fa' ? 'مشاهده همه خدمات' : 'All services'}</a>
           </div>
 
           {props.metrics && (
             <div class="hero-metrics">
               {props.metrics.map(([val, label]) => (
-                <div class="hero-metric"><strong>{val}</strong><span>{label}</span></div>
+                <div class="hero-metric"><strong><bdi class="bidi-ltr" dir="ltr">{val}</bdi></strong><span>{label}</span></div>
               ))}
             </div>
           )}
@@ -145,7 +145,7 @@ const canonical = serviceUrl;
         <div class="section-header reveal">
           <span class="section-label">{lang==='fa' ? 'چرا این خدمت؟' : 'Why this service?'}</span>
           <h2 id="intro-title">{props.introTitle || props.title}</h2>
-          <p>{lang==='fa' ? 'راهکار اجرایی باید با واقعیت مجموعه شما هماهنگ باشد.' : 'The solution must match your organization reality.'}</p>
+          <p>{lang === 'fa' ? 'راهکار اجرایی باید با شرایط واقعی مجموعهٔ شما هماهنگ باشد.' : 'A practical solution should reflect your organisation’s needs and operating conditions.'}</p>
         </div>
 
         <div style="display:grid; grid-template-columns: 0.9fr 1.1fr; gap:32px;" class="intro-layout">
@@ -164,7 +164,7 @@ const canonical = serviceUrl;
               <div style="display:grid; gap:16px; margin-top:24px;">
                 {props.features.map(([num, title, text]) => (
                   <div style="display:flex; gap:16px; align-items:flex-start; background:var(--surface-white); border:1px solid var(--line-soft); border-radius:var(--r-md); padding:16px;">
-                    <span style="flex:0 0 36px; height:36px; display:grid; place-items:center; background:var(--grad-amber); color:var(--navy-deep); font-weight:800; border-radius:8px;">{num}</span>
+                    <span style="flex:0 0 36px; height:36px; display:grid; place-items:center; background:var(--grad-amber); color:var(--navy-deep); font-weight:800; border-radius:8px;"><bdi class="bidi-ltr" dir="ltr">{num}</bdi></span>
                     <div>
                       <h3 class="service-feature__title">{title}</h3>
                       <span style="color:var(--text-muted); font-size:0.92rem;">{text}</span>
@@ -191,7 +191,7 @@ const canonical = serviceUrl;
         <div class="process-steps">
           {props.process.map(([num, title, text]) => (
             <div class="process-step reveal">
-              <span class="process-step__num">{num}</span>
+              <span class="process-step__num"><bdi class="bidi-ltr" dir="ltr">{num}</bdi></span>
               <h3 style="font-size:1rem;">{title}</h3>
               <p style="font-size:0.9rem;">{text}</p>
             </div>
@@ -306,9 +306,9 @@ const canonical = serviceUrl;
       <div class="cta-block reveal">
         <div>
           <h2 id="cta-title">{props.ctaTitle || (lang === 'fa' ? 'برای بررسی نیاز مجموعه‌تان گفت‌وگو کنیم' : 'Let’s discuss your organization’s needs')}</h2>
-          <p>{props.ctaBody || (lang === 'fa' ? 'مشخصات اولیه، تعداد، زمان‌بندی و مقصد را با ما در میان بگذارید؛ کارشناس قزوین تصویر مسیر مناسب همکاری را با شما بررسی می‌کند.' : 'Share the initial details, quantities, schedule and destination. A Qazvin Tasvir specialist will review the right path for working together.')}</p>
+          <p>{props.ctaBody || (lang === 'fa' ? 'شرح کوتاهی از نیاز مجموعه، زمان‌بندی موردنظر و جزئیات مرتبط را با ما در میان بگذارید تا کارشناس قزوین تصویر درخواست شما را بررسی و برای گام بعدی راهنمایی‌تان کند.' : 'Share a brief overview of your requirement, key details and preferred timing. A Qazvin Tasvir specialist will review your request and guide you on the next steps.')}</p>
         </div>
-        <a href={`${baseClean}/${lang}/contact/`} class="btn btn--accent btn--lg">{props.ctaLabel || (lang === 'fa' ? 'تماس و درخواست مشاوره' : 'Call and request a consultation')} →</a>
+        <a href={`${baseClean}/${lang}/contact/`} class="btn btn--accent btn--lg">{props.ctaLabel || (lang === 'fa' ? 'درخواست مشاوره' : 'Request a consultation')} →</a>
       </div>
     </div>
   </section>
