@@ -79,7 +79,7 @@ const currentPath = url.pathname;
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="author" content="شرکت قزوین تصویر" />
+  <meta name="author" content={lang === 'fa' ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company'} />
   <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
   <link rel="canonical" href={canonical} />
   {hreflangLinks.map(l => <link rel="alternate" hreflang={l.lang} href={l.href} />)}
@@ -114,7 +114,7 @@ const currentPath = url.pathname;
   {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
   <slot name="head" />
 </head>
-<body class={bodyClass}>
+<body class={bodyClass} data-copy-phone-message={lang === 'fa' ? 'شماره ۰۹۱۲۲۸۱۵۱۸۹ کپی شد!' : 'Phone number copied.'}>
   <a class="skip-link" href="#main-content">{t.nav.skipToContent}</a>
   <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
   <Header lang={lang} currentPath={currentPath} />
@@ -171,10 +171,11 @@ const currentPath = url.pathname;
     document.querySelectorAll('[data-copy-phone]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        const phone='09122815189';
+        const phone = '09122815189';
+        const phoneMessage = document.body?.getAttribute('data-copy-phone-message') || 'Phone number copied.';
         if(navigator.clipboard?.writeText){
-          navigator.clipboard.writeText(phone).then(()=> window.showToast('شماره ۰۹۱۲۲۸۱۵۱۸۹ کپی شد!')).catch(()=> window.showToast('۰۹۱۲ ۲۸۱ ۵۱۸۹'));
-        } else window.showToast('۰۹۱۲ ۲۸۱ ۵۱۸۹');
+          navigator.clipboard.writeText(phone).then(() => window.showToast(phoneMessage)).catch(() => window.showToast('+98 912 281 5189'));
+        } else window.showToast('+98 912 281 5189');
       });
     });
     // Theme switch (injected if exists)

@@ -1,52 +1,60 @@
 ---
-title: "Industrial Sourcing & Equipment Supply"
-kicker: "Industrial Procurement"
-tag: "تأمین صنعتی"
-description: "Needs assessment and coordination of industrial procurement and delivery."
-meta: "Needs assessment and coordination of industrial procurement and delivery."
-summary: "Turning factory needs into traceable sourcing routes."
-highlight: "مواد اولیه و تجهیزات"
-image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
-image_alt: "پالت‌های بسته‌بندی‌شده و کامیون بارگیری‌شده در محوطه صنعتی"
-story_image: "/Qazvintasvir/assets/img/sections/about-office.jpg"
-story_alt: "جلسه کاری برای بررسی نیازهای تأمین و تجهیزات سازمانی"
+title: "Raw Materials and Equipment Sourcing"
+kicker: "Industrial Sourcing"
+tag: "Sourcing"
+description: "Industrial sourcing coordination that turns operational requirements into comparable specifications and a considered supply plan."
+meta: "Qazvin Tasvir industrial sourcing for raw materials and equipment: requirements review, supplier options and purchasing coordination."
+summary: "A structured route from technical requirement to sourcing and purchasing coordination."
+highlight: "Equipment Sourcing"
+image: "/Qazvintasvir/assets/img/sections/factory.jpg"
+image_alt: "Industrial production line and equipment"
+story_image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
+story_alt: "Industrial shipment being prepared for transport"
 order: 3
 points:
-  - "تبدیل نیاز به مشخصات"
-  - "بررسی گزینه‌های تأمین"
+  - "Turn operational needs into specifications"
+  - "Review potential supply options"
+  - "Coordinate purchasing and freight steps"
 metrics:
-  - ["۰۱", "برگه نیازسنجی"]
-  - ["۳۱+", "سال تجربه تجاری"]
+  - ["01", "Requirements brief"]
+  - ["31+", "Years of trade experience"]
+  - ["Clear", "Supply-route comparisons"]
 features:
-  - ["۰۱", "نیازسنجی و مشخصات", "شرح نیاز، مشخصات فنی، مقدار و برنامه مصرف شما به زبان قابل مقایسه ثبت می‌شود."]
-  - ["۰۲", "بررسی تأمین‌کننده", "گزینه‌های خرید و تأمین با توجه به مشخصات و محدودیت‌های پروژه بررسی می‌شوند."]
+  - ["01", "Define the requirement", "Your need, technical specifications, quantity and expected use are recorded in a format that supports comparison."]
+  - ["02", "Review supplier options", "Potential purchasing and supply options are considered against the specifications and project constraints."]
+  - ["03", "Coordinate the purchasing route", "Purchasing stages, documents and freight are coordinated with the relevant teams."]
 process:
-  - ["۰۱", "ثبت نیاز", "مشخصات فنی، مقدار، زمان و محل مصرف دریافت می‌شود."]
-  - ["۰۲", "ارزیابی گزینه‌ها", "مسیرهای تأمین و اطلاعات مورد نیاز برای مقایسه بررسی می‌شوند."]
-  - ["۰۳", "برنامه‌ریزی خرید", "مراحل خرید، اسناد و حمل با واحدهای مرتبط هماهنگ می‌شود."]
-process_title: "از شرح نیاز تا تحویل، چهار مرحله روشن"
-process_desc: "با یک شرح نیاز دقیق، مسیر همکاری برای واحد خرید، فنی و مالی قابل استفاده‌تر می‌شود."
-details_title: "برای چه نیازهایی قابل تعریف است؟"
-details_body: "خدمت تأمین می‌تواند برای یک قلم مشخص یا یک برنامه چندمرحله‌ای خرید و واردات تعریف شود."
+  - ["01", "Record the need", "We collect technical specifications, quantity, timing and intended place of use."]
+  - ["02", "Compare options", "Supply routes and the information needed for comparison are reviewed."]
+  - ["03", "Plan purchasing", "Purchasing steps, documentation and freight coordination are aligned with relevant teams."]
+  - ["04", "Follow up", "We track the agreed coordination steps and share updates with your organization."]
+process_title: "From operational need to a sourcing plan"
+process_desc: "Clear specifications make it easier to compare options and coordinate the next purchasing steps."
+details_title: "For industrial purchasing needs"
+details_body: "The service supports organizations that need help coordinating supply options for production materials, components or factory equipment."
 details_items:
-  - "مواد اولیه خطوط تولید"
-  - "قطعات و تجهیزات کارخانه"
-intro_title: "تأمین دقیق برای توقف کمتر عملیات"
+  - "Raw materials for production lines"
+  - "Factory parts and equipment"
+  - "Technical items with defined specifications"
+  - "Purchasing cases requiring coordinated freight"
+intro_title: "Sourcing is more than finding a seller"
 intro:
-  - "تأمین مواد اولیه و تجهیزات صنعتی فقط پیدا کردن یک فروشنده نیست؛ تطبیق مشخصات، ظرفیت، زمان تحویل و هماهنگی حمل بخش مهمی از تصمیم است. قزوین تصویر در این مسیر نقش هماهنگ‌کننده و پیگیر را در کنار واحد خرید و تولید شما ایفا می‌کند."
-aside_title: "تأمین از نقطه نیاز شروع می‌شود"
-aside_text: "وقتی مشخصات فنی، مقدار، زمان و بودجه روشن باشد، بررسی تأمین‌کنندگان و مسیر حمل تصمیم‌پذیرتر می‌شود."
+  - "Industrial sourcing is not simply locating a supplier. Matching specifications, capacity, delivery timing and freight coordination all contribute to the decision. Qazvin Tasvir works alongside your purchasing and production teams to coordinate the process."
+  - "We start by documenting what is needed, how it will be used and when it is required. Potential options can then be reviewed against the information available, with the next steps agreed with your organization."
+aside_title: "A clear brief for better comparison"
+aside_text: "The more clearly the need is described, the easier it is to compare supply options and coordinate the purchasing route."
 aside_items:
-  - "مواد اولیه خطوط تولید"
-  - "تجهیزات و اقلام مورد نیاز کارخانه"
-story_kicker: "همراه واحد خرید"
-story_title: "تصمیم تأمین وقتی ساده‌تر می‌شود که اطلاعات کنار هم باشد"
-story_body: "ما کمک می‌کنیم تیم‌های خرید، فنی و مالی تصویر مشترکی از نیاز، مسیر تأمین و مرحله بعد داشته باشند."
+  - "Technical and quantity requirements"
+  - "Production timing and place of use"
+  - "Coordination among purchasing stakeholders"
+story_kicker: "Supply coordination"
+story_title: "Bring specifications and delivery planning together"
+story_body: "A sourcing decision depends on both the item and the path it takes to the workplace. We coordinate the technical information, purchasing discussions and freight steps agreed for the case."
 story_items:
-  - "جمع‌آوری اطلاعات فنی"
-  - "هماهنگی میان واحدهای تصمیم‌گیر"
+  - "Collect technical information"
+  - "Coordinate decision-making teams"
+  - "Follow up on agreed purchasing steps"
 theme: "theme-trade"
 ---
 
-This service provides needs assessment and coordination of industrial procurement and delivery. For full details in Persian, please contact us or view the Persian version.
-
+Industrial purchasing often requires coordination across technical specifications, supply options, timing and freight. We help organize these details with your purchasing and production teams before the sourcing route is agreed.

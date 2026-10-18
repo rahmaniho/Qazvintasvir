@@ -26,6 +26,23 @@ test('build emits the bilingual public route set', () => {
   assert.ok(existsSync(resolve(dist, '404.html')), 'missing localized 404 output');
 });
 
+test('English service pages use translated visible copy and structured data', () => {
+  const persianOrArabic = /[\u0600-\u06FF]/;
+  for (const slug of serviceSlugs) {
+    const html = read(route('en', `services/${slug}`));
+    const visibleHtml = html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
+    assert.doesNotMatch(visibleHtml, persianOrArabic, `English route ${slug} contains untranslated visible copy`);
+
+    const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+      .map((match) => JSON.parse(match[1]));
+    const organization = jsonLd.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
+    const service = jsonLd.find((item) => item['@type'] === 'Service');
+    assert.equal(organization?.name, 'Qazvin Tasvir Company', `English organization schema name missing for ${slug}`);
+    assert.doesNotMatch(organization?.description ?? '', persianOrArabic, `English organization description not localized for ${slug}`);
+    assert.doesNotMatch(service?.description ?? '', persianOrArabic, `English service schema not localized for ${slug}`);
+  }
+});
+
 test('homepage preserves the original section anchors and client history', () => {
   const html = read(route('fa'));
   for (const id of ['hero', 'about', 'services', 'fleet', 'brands', 'why-us', 'clients', 'trust', 'resume', 'legal', 'contact']) {
@@ -37,6 +54,32 @@ test('homepage preserves the original section anchors and client history', () =>
   assert.equal((html.match(/<tr><th scope="row">/g) ?? []).length, 11, 'all 11 source collaboration rows should be present');
   for (const brand of ['scania', 'volvo', 'mercedes', 'iveco', 'irankhodro']) {
     assert.ok(html.includes(`/assets/logos/${brand}.svg`), `missing vehicle brand logo ${brand}`);
+  }
+});
+
+test('English catering page preserves the complete localized menu, gallery, form and FAQ structure', () => {
+  const html = read(route('en', 'services/personnel-food'));
+  const visibleHtml = html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
+  assert.doesNotMatch(visibleHtml, /[\u0600-\u06FF]/, 'English catering page contains untranslated visible copy');
+  for (const id of ['personnel-food', 'food-menu', 'food-gallery', 'food-request', 'food-faq', 'personnel-food-form', 'food-meals-mirror']) {
+    assert.match(html, new RegExp(`\\bid="${id}"`), `missing English catering anchor or form hook #${id}`);
+  }
+  assert.equal((html.match(/class="food-tab(?:\s|"|$)/g) ?? []).length, 4, 'all four English meal tabs should be present');
+  assert.equal((html.match(/class="food-panel(?:\s|"|$)/g) ?? []).length, 4, 'all four English meal panels should be present');
+  assert.equal((html.match(/class="dish-card"/g) ?? []).length, 16, 'all sixteen English sample dishes should be present');
+  assert.equal((html.match(/class="food-gallery__item(?: food-gallery__item--wide)?"/g) ?? []).length, 6, 'all six English gallery entries should be present');
+  assert.equal((html.match(/class="food-faq__item reveal"/g) ?? []).length, 4, 'all four English FAQ entries should be present');
+  assert.match(html, /Request ready in WhatsApp/, 'the English form has a localized success label');
+  const structuredData = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+  const faqData = structuredData.find((item) => item['@type'] === 'FAQPage');
+  assert.equal(faqData?.mainEntity?.length, 4, 'all four English FAQ entries should be in structured data');
+  assert.doesNotMatch(JSON.stringify(faqData), /[\u0600-\u06FF]/, 'English FAQ schema should be localized');
+
+  const assetUrls = [...html.matchAll(/(?:src|srcset)="(\/Qazvintasvir\/assets\/img\/personnel-food\/[^" ]+)/g)].map((match) => match[1]);
+  assert.ok(assetUrls.length >= 30, 'expected local images for English meal cards and gallery');
+  for (const url of new Set(assetUrls)) {
+    const assetPath = url.replace('/Qazvintasvir/', '');
+    assert.ok(existsSync(resolve(dist, assetPath)), `missing built English catering asset ${url}`);
   }
 });
 

@@ -1,0 +1,254 @@
+---
+import '../../styles/food-service.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { organizationSchema, serviceSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://rahmaniho.github.io';
+interface Props {
+  title: string;
+  description: string;
+  faqs?: Array<{ q: string; a: string }>;
+}
+const { title, description, faqs: translatedFaqs } = Astro.props;
+const canonical = `${site}${base}/en/services/personnel-food/`;
+const image = `${site}${base}/assets/img/personnel-food/hero-kitchen.jpg`;
+const asset = (name: string) => `${base}/assets/img/personnel-food/${name}`;
+const organization = organizationSchema(`${site}${base}`, 'en');
+const service = serviceSchema({ title, description, image, url: canonical, providerUrl: `${site}${base}`, lang: 'en' });
+const breadcrumbs = breadcrumbSchema([
+  { name: 'Home', url: `${site}${base}/en/` },
+  { name: 'Services', url: `${site}${base}/en/services/` },
+  { name: title },
+]);
+const defaultFaqs = [
+  { q: 'What is the usual minimum order size?', a: 'The usual starting point is around 50 meals per service. Smaller groups may also be considered depending on delivery distance and meal frequency. After reviewing the location, our team can provide a more precise estimate.' },
+  { q: 'Can the menu be changed?', a: 'Yes. Weekly and seasonal menus can be reviewed around staff preferences, your budget and production schedules. Less popular items can be replaced, and dietary, vegetarian or lower-salt options can be discussed.' },
+  { q: 'Is employer-provided food treated as part of wages?', a: 'Under Iranian labor rules, food provided to staff may be treated as a non-cash benefit and can have insurance and tax implications. The contract should document how meals are calculated. We recommend checking the arrangement with your organization’s finance and insurance advisers before signing.' },
+  { q: 'How are meal delivery times arranged?', a: 'Delivery is planned around your work shifts and recorded in the contract. Night shifts, holidays and production peaks can be considered; temporary schedule changes are coordinated in advance.' },
+];
+const faqs = translatedFaqs?.length ? translatedFaqs : defaultFaqs;
+const faqStructuredData = faqSchema(faqs);
+const meals = [
+  {
+    id: 'breakfast', label: 'Breakfast', feature: 'menu-breakfast',
+    featureAlt: 'Corporate breakfast with fresh bread, cheese, walnuts, honey and tea',
+    caption: 'Featured breakfast: fresh sangak bread, Lighvan cheese, walnuts and tea',
+    dishes: [
+      { image: 'dishes/sangak-cheese', title: 'Sangak, Lighvan cheese and walnuts', text: 'Fresh sangak bread, Lighvan cheese, walnuts, fresh herbs and a glass of strong tea.', alt: 'Fresh sangak bread served with Lighvan cheese, walnuts and hot tea' },
+      { image: 'dishes/omelette-tomato', title: 'Tomato omelette with fresh eggs', text: 'A warm omelette with fresh eggs, tomatoes and mild seasoning, served with toast.', alt: 'Persian tomato omelette with fresh eggs and toast' },
+      { image: 'dishes/halim', title: 'Wheat haleem with cinnamon', text: 'Slow-cooked, thick wheat haleem from the central kitchen, served with cinnamon, sugar and fresh bread.', alt: 'Traditional wheat haleem with butter, cinnamon and sugar' },
+      { image: 'dishes/light-breakfast', title: 'Light staff breakfast', text: 'A light breakfast selection with fresh cake, packaged pastries, cheese and a hot or cold drink.', alt: 'Light employee breakfast with barbari bread, butter, honey and jam' },
+    ],
+  },
+  {
+    id: 'lunch', label: 'Lunch', feature: 'menu-lunch',
+    featureAlt: 'Corporate lunch with koobideh kebab, saffron rice, grilled tomato and salad',
+    caption: 'Featured lunch: koobideh kebab with Iranian rice and seasonal salad',
+    dishes: [
+      { image: 'dishes/chelokebab-koobideh', title: 'Koobideh kebab with rice', text: 'Two skewers of fresh minced-meat kebab, Iranian rice, grilled tomato, butter, seasonal salad and yogurt.', alt: 'Koobideh kebab with saffron rice, grilled tomato and sumac' },
+      { image: 'dishes/zereshk-polo-morgh', title: 'Barberry rice with chicken', text: 'Saffron chicken leg with Iranian rice, barberries and pistachio slivers, Shirazi salad and yogurt.', alt: 'Saffron chicken with barberry rice and pistachios' },
+      { image: 'dishes/gheymeh-bademjan', title: 'Gheymeh with eggplant and rice', text: 'Split-pea and meat stew with fried eggplant, Iranian rice, yogurt and homemade pickles.', alt: 'Gheymeh stew with eggplant and rice' },
+      { image: 'dishes/chelojoojeh-zaferani', title: 'Saffron chicken kebab — lighter portion', text: 'Marinated boneless chicken, saffron butter, grilled tomato and steamed vegetables.', alt: 'Saffron chicken kebab with rice, grilled tomato and fresh salad' },
+    ],
+  },
+  {
+    id: 'dinner', label: 'Dinner', feature: 'menu-dinner',
+    featureAlt: 'Corporate dinner with ghormeh sabzi, rice, warm bread and salad',
+    caption: 'Featured dinner: ghormeh sabzi with Iranian rice, suitable for night shifts',
+    dishes: [
+      { image: 'dishes/ghormeh-sabzi', title: 'Ghormeh sabzi with rice', text: 'Herb stew with meat and red beans, Iranian rice, pickles and yogurt.', alt: 'Ghormeh sabzi with red beans and meat served over Iranian rice' },
+      { image: 'dishes/kuku-sabzi', title: 'Kuku sabzi with sangak bread', text: 'Homemade herb kuku, fresh sangak bread, strained yogurt and fresh vegetables.', alt: 'Herb kuku with barberries and walnuts served with sangak bread' },
+      { image: 'dishes/soup-joo', title: 'Barley and vegetable soup', text: 'Warm homemade soup served with bread and cheese; a lighter option for a work-shift dinner.', alt: 'Barley and fresh vegetable soup in a ceramic bowl' },
+      { image: 'dishes/fish-ghazel-ala', title: 'Pan-fried rainbow trout', text: 'Fresh fish fillet with Iranian rice, steamed vegetables and salad, offered on selected days.', alt: 'Pan-fried rainbow trout with lemon and fresh herbs' },
+    ],
+  },
+  {
+    id: 'snack', label: 'Snacks', feature: 'menu-snack',
+    featureAlt: 'Corporate snack selection with fruit, sandwiches and drinks',
+    caption: 'Featured snack: seasonal fruit pack, sandwich and drink',
+    dishes: [
+      { image: 'dishes/fruit-pack', title: 'Seasonal fruit and juice pack', text: 'Washed fruit packed hygienically and served with natural juice or bottled water.', alt: 'Seasonal fruit pack with apple, orange and natural juice' },
+      { image: 'dishes/sandwich-chicken-grill', title: 'Warm grilled chicken sandwich', text: 'Fresh bread, grilled chicken fillet, fresh vegetables and house dressing, served warm.', alt: 'Warm grilled chicken sandwich with vegetables and toast' },
+      { image: 'dishes/dry-pack', title: 'Production-line snack pack', text: 'Chocolate, biscuits and a packaged drink; suitable for convenient use on the production line.', alt: 'Snack pack with nuts, dates and raisins for a production line' },
+      { image: 'dishes/dessert-fresh', title: 'Fresh dessert of the day', text: 'Jelly, halva or homemade cake, prepared daily and packed to hygienic standards.', alt: 'Fresh dessert of the day: saffron sholeh zard with pistachios and almonds' },
+    ],
+  },
+];
+const gallery = [
+  { image: 'hygienic-kitchen', title: 'Hygienic kitchen', text: 'HACCP-aligned practices, protective clothing and stainless-steel surfaces', alt: 'Commercial kitchen with stainless equipment and staff wearing gloves and masks', wide: true },
+  { image: 'personnel-meal', title: 'Staff meal portions', text: 'Meals packed for organized workplace distribution', alt: 'Hygienically packed staff meal with rice, kebab, salad and yogurt' },
+  { image: 'food-delivery', title: 'Catering vehicle delivery', text: 'Delivery planned around the agreed shift schedule', alt: 'Catering vehicle delivering meal packs to factory workers' },
+  { image: 'buffet-setup', title: 'Serving station setup', text: 'Organized workplace buffet and serving stations', alt: 'Corporate buffet setup with serving stations and Iranian dishes' },
+  { image: 'catering-menu', title: 'A menu for your organization', text: 'Weekly print or digital menu for the workplace restaurant', alt: 'Sample corporate catering menu featuring Iranian dishes' },
+  { image: 'menu-lunch', title: 'Hot lunch service', text: 'A sample Iranian lunch with kebab, saffron rice and fresh salad', alt: 'Iranian lunch with koobideh kebab, saffron rice and fresh salad' },
+];
+const benefits = [
+  ['Flexible long-term contract', 'An annual contract can allow meal quantities to change, a new meal period to be added or service to pause temporarily around production plans and shift schedules.'],
+  ['Varied weekly menus', 'Breakfast, lunch, dinner and snacks can be planned across weekly and seasonal menus, with vegetarian and other dietary options discussed for staff who need them.'],
+  ['Delivery at your workplace', 'Meals can be delivered to the factory restaurant or another designated location in catering vehicles, with packing and timing coordinated around shifts.'],
+  ['Hygiene and quality checks', 'Preparation in permitted, supervised kitchens, quality checks and sampling, hygienic packing and transport in suitable catering vehicles.'],
+];
+const steps = [
+  ['Initial request', 'Send a request by form, phone or WhatsApp and share the basic details: meal quantity, required meal periods and delivery location.'],
+  ['Site visit and assessment', 'A specialist reviews the delivery site, hot-holding facilities, shifts and estimated daily serving capacity.'],
+  ['Proposal and sample menu', 'Receive a clear price proposal, sample weekly menu and delivery plan, with menu items open to discussion around staff preferences.'],
+  ['Contract agreement', 'Document both parties’ responsibilities, settlement terms, daily meal allocation and service-quality commitments in a formal contract.'],
+  ['Service begins', 'Daily preparation and delivery start at the agreed time, with ongoing quality checks, periodic reporting and contract support.'],
+];
+---
+
+<BaseLayout
+  lang="en"
+  bodyClass="food-service-page theme-food"
+  title={`${title} | Qazvin Tasvir`}
+  description={description}
+  image={image}
+  canonical={canonical}
+  hreflang={[
+    { lang: 'fa', href: `${site}${base}/fa/services/personnel-food/` },
+    { lang: 'en', href: canonical },
+    { lang: 'x-default', href: `${site}${base}/fa/services/personnel-food/` },
+  ]}
+>
+  <Fragment slot="head">
+    <link rel="preload" href={asset('hero-kitchen.webp')} as="image" type="image/webp" fetchpriority="high" />
+    <script type="application/ld+json" set:html={JSON.stringify(organization)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(service)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)}></script>
+  </Fragment>
+
+  <section id="personnel-food" class="food-section" aria-labelledby="food-title">
+    <div class="food-hero">
+      <div class="food-hero__glow food-hero__glow--green" aria-hidden="true"></div>
+      <div class="food-hero__glow food-hero__glow--amber" aria-hidden="true"></div>
+      <div class="food-hero__pattern" aria-hidden="true"></div>
+      <div class="container">
+        <div class="food-hero__grid">
+          <div class="food-hero__content reveal">
+            <span class="food-hero__badge"><span aria-hidden="true">●</span> Corporate catering service</span>
+            <h1 id="food-title" class="food-hero__title">Staff catering and <span class="gradient-text">corporate meals</span></h1>
+            <p class="food-hero__lead">Qazvin Tasvir provides contract meal services for factory and company teams. We coordinate menu planning, hygienic preparation and delivery of hot meals at your workplace.</p>
+            <ul class="food-hero__facts">
+              <li><span aria-hidden="true">✓</span><span>Usually from 50 meals per service</span></li>
+              <li><span aria-hidden="true">✓</span><span>Breakfast, lunch, dinner and snacks</span></li>
+              <li><span aria-hidden="true">✓</span><span>Delivery to your restaurant or designated location</span></li>
+            </ul>
+            <div class="food-hero__actions">
+              <a href="#food-request" class="btn btn-primary btn-lg"><span>Request a catering proposal</span><span aria-hidden="true">→</span></a>
+              <a href="tel:+989122815189" class="btn btn-outline-glass btn-lg"><span>Call our team: +98 912 281 5189</span></a>
+            </div>
+          </div>
+          <div class="food-hero__media reveal">
+            <figure class="food-hero__frame">
+              <picture><source srcset={asset('hero-kitchen.webp')} type="image/webp" /><img class="food-hero__img" src={asset('hero-kitchen.jpg')} alt="Industrial kitchen with hygienic preparation areas and stainless-steel surfaces" width="1376" height="768" loading="eager" decoding="async" fetchpriority="high" /></picture>
+              <figcaption class="food-hero__caption"><span class="food-hero__caption-badge">Licensed kitchen; HACCP standards</span></figcaption>
+            </figure>
+            <span class="food-hero__chip food-hero__chip--a">Daily preparation with fresh ingredients</span>
+            <span class="food-hero__chip food-hero__chip--b">Delivery in equipped catering vehicles</span>
+          </div>
+        </div>
+        <ul class="food-hero__metrics reveal">
+          <li class="food-metric"><span class="food-metric__value">50+</span><span class="food-metric__label">Typical minimum meals</span></li>
+          <li class="food-metric"><span class="food-metric__value">4</span><span class="food-metric__label">Meal periods</span></li>
+          <li class="food-metric"><span class="food-metric__value">7 days</span><span class="food-metric__label">Rotating weekly menu</span></li>
+          <li class="food-metric"><span class="food-metric__value">2 hours</span><span class="food-metric__label">Target response time</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="food-zone food-zone--light">
+      <div class="container">
+        <header class="section-header reveal"><span class="section-label section-label--food">Corporate catering benefits</span><h2 class="section-title">Why organizations choose Qazvin Tasvir for staff meals</h2><p class="section-desc">Clear planning, varied menus and careful hygiene practices—from the first conversation to daily delivery around your shifts.</p></header>
+        <ul class="food-benefits">
+          {benefits.map(([title, text]) => <li class="food-benefit reveal"><div class="food-benefit__icon" aria-hidden="true">✓</div><h3 class="food-benefit__title">{title}</h3><p class="food-benefit__text">{text}</p></li>)}
+        </ul>
+      </div>
+    </div>
+
+    <div class="food-zone food-zone--cream">
+      <div class="container">
+        <header class="section-header reveal"><span class="section-label section-label--food">How we work</span><h2 class="section-title">Five steps from your first request to meal delivery</h2><p class="section-desc">A clear, scheduled process; the full arrangement is usually finalized in fewer than ten business days.</p></header>
+        <ol class="food-steps">
+          {steps.map(([title, text], index) => <li class="food-step reveal"><span class="food-step__num" aria-hidden="true">{index + 1}</span><span class="food-step__icon" aria-hidden="true">✓</span><h3 class="food-step__title">{title}</h3><p class="food-step__text">{text}</p></li>)}
+        </ol>
+      </div>
+    </div>
+
+    <div class="food-zone food-zone--white" id="food-menu">
+      <div class="container">
+        <header class="section-header reveal"><span class="section-label section-label--food">Sample menu</span><h2 class="section-title">Menu ideas for corporate meal programs</h2><p class="section-desc">A rotating menu of Iranian and international dishes can be adapted to budget, staff preferences and production schedules.</p></header>
+        <div class="food-menu__header reveal">
+          <figure class="food-menu__header-media"><picture><source srcset={asset('catering-menu.webp')} type="image/webp" /><img src={asset('catering-menu.jpg')} alt="Sample corporate catering menu featuring Iranian dishes" width="1408" height="768" loading="lazy" decoding="async" /></picture></figure>
+          <div class="food-menu__header-body"><span class="food-menu__header-tag">Rotating weekly menu</span><h3 class="food-menu__header-title">Seven days, 28 menu items across four meal periods</h3><p class="food-menu__header-text">A new menu can be planned each week around the season and staff preferences, with a varied selection across the week.</p><ul class="food-menu__header-list"><li>Less popular items can be removed or replaced</li><li>Dietary, vegetarian and lower-salt options can be discussed</li><li>Special menus can be arranged for seasonal occasions</li></ul></div>
+        </div>
+        <div class="food-menu__tabs-area reveal">
+          <div class="food-tabs" role="tablist" aria-label="Meal menu categories">
+            {meals.map((meal, index) => <button type="button" class:list={['food-tab', index === 0 && 'is-active']} id={`tab-${meal.id}`} role="tab" aria-selected={index === 0 ? 'true' : 'false'} aria-controls={`panel-${meal.id}`} tabindex={index === 0 ? 0 : -1}><span aria-hidden="true">{['☀', '◉', '◐', '●'][index]}</span><span>{meal.label}</span></button>)}
+          </div>
+          <div class="food-panels">
+            {meals.map((meal, index) => <div class:list={['food-panel', index === 0 && 'is-active']} id={`panel-${meal.id}`} role="tabpanel" aria-labelledby={`tab-${meal.id}`} tabindex="0" hidden={index !== 0}>
+              <div class="food-panel__grid">
+                <figure class="food-panel__feature"><picture><source srcset={asset(`${meal.feature}.webp`)} type="image/webp" /><img src={asset(`${meal.feature}.jpg`)} alt={meal.featureAlt} width="1408" height="768" loading="lazy" decoding="async" /></picture><figcaption>{meal.caption}</figcaption></figure>
+                <ul class="dish-list">{meal.dishes.map((dish) => <li class="dish-card"><picture class="dish-card__photo"><source srcset={asset(`${dish.image}.webp`)} type="image/webp" /><img src={asset(`${dish.image}.jpg`)} alt={dish.alt} width="512" height="512" loading="lazy" decoding="async" /></picture><div class="dish-card__body"><div class="dish-card__head"><h3 class="dish-card__name">{dish.title}</h3></div><p class="dish-card__desc">{dish.text}</p></div></li>)}</ul>
+              </div>
+            </div>)}
+          </div>
+        </div>
+        <p class="food-menu__note"><strong>Menu planning:</strong> Ingredients and dishes are confirmed with your organization. The sample items shown here can be adjusted to the agreed budget, dietary needs and production schedule.</p>
+      </div>
+    </div>
+
+    <div class="food-zone food-zone--light" id="food-gallery">
+      <div class="container">
+        <header class="section-header reveal"><span class="section-label section-label--food">Kitchen and delivery</span><h2 class="section-title">A look at preparation, meals and delivery</h2><p class="section-desc">Explore the food-service environment and examples of menu planning and distribution.</p></header>
+        <div class="food-gallery">{gallery.map((item) => <figure class:list={['food-gallery__item', item.wide && 'food-gallery__item--wide']}><picture><source srcset={asset(`${item.image}.webp`)} type="image/webp" /><img src={asset(`${item.image}.jpg`)} alt={item.alt} width="1200" height="900" loading="lazy" decoding="async" /></picture><figcaption class="food-gallery__caption"><span class="food-gallery__title">{item.title}</span><span class="food-gallery__text">{item.text}</span></figcaption></figure>)}</div>
+      </div>
+    </div>
+
+    <div class="food-zone food-zone--cream" id="food-request">
+      <div class="container">
+        <header class="section-header reveal"><span class="section-label section-label--food">Request a proposal</span><h2 class="section-title">Request a catering consultation and contract proposal</h2><p class="section-desc">Share your organization’s requirements. A catering specialist aims to contact you within two working hours to discuss the initial proposal.</p></header>
+        <div class="food-request">
+          <div class="food-request__form-card reveal">
+            <form id="personnel-food-form" novalidate>
+              <input type="hidden" name="service" id="food-meals-mirror" value="" />
+              <div class="food-form-grid">
+                <div class="form-group"><input type="text" id="food-company" name="company" class="form-control" placeholder=" " required autocomplete="organization" aria-describedby="food-company-feedback" /><label for="food-company" class="form-label">Company / factory name *</label><span class="form-feedback" id="food-company-feedback" data-feedback-for="food-company" role="alert">Enter your company name.</span></div>
+                <div class="form-group"><input type="text" id="food-person" name="contact_person" class="form-control" placeholder=" " required autocomplete="name" aria-describedby="food-person-feedback" /><label for="food-person" class="form-label">Contact person / welfare manager *</label><span class="form-feedback" id="food-person-feedback" data-feedback-for="food-person" role="alert">Enter a contact name.</span></div>
+                <div class="form-group"><input type="tel" id="food-phone" name="phone" class="form-control" placeholder=" " dir="ltr" required autocomplete="tel" inputmode="tel" aria-describedby="food-phone-feedback" /><label for="food-phone" class="form-label">Phone number *</label><span class="form-feedback" id="food-phone-feedback" data-feedback-for="food-phone" role="alert">Enter a valid Iranian mobile number, such as 09121234567.</span></div>
+                <div class="form-group"><input type="text" id="food-headcount" name="headcount" class="form-control" placeholder=" " inputmode="numeric" required dir="ltr" aria-describedby="food-headcount-feedback" /><label for="food-headcount" class="form-label">Number of staff *</label><span class="form-feedback" id="food-headcount-feedback" data-feedback-for="food-headcount" role="alert">Enter the number of staff (at least 10).</span></div>
+              </div>
+              <fieldset class="food-fieldset" aria-describedby="food-meals-feedback"><legend class="food-legend">Meals required *</legend><div class="food-meals">
+                {['Breakfast', 'Lunch', 'Dinner', 'Snack'].map((meal) => <label class="food-meal"><input type="checkbox" name="meals[]" value={meal} /><span class="food-meal__box" aria-hidden="true">✓</span><span class="food-meal__label">{meal}</span></label>)}
+              </div><span class="form-feedback" id="food-meals-feedback" data-feedback-for="food-meals" role="alert">Select at least one meal period.</span></fieldset>
+              <div class="form-group"><input type="text" id="food-address" name="address" class="form-control" placeholder=" " required autocomplete="street-address" aria-describedby="food-address-feedback" /><label for="food-address" class="form-label">Delivery address (factory / company) *</label><span class="form-feedback" id="food-address-feedback" data-feedback-for="food-address" role="alert">Enter the meal delivery address.</span></div>
+              <div class="form-group"><textarea id="food-notes" name="notes" class="form-control" rows="4" placeholder=" " style="resize: vertical;"></textarea><label for="food-notes" class="form-label">Notes, shifts or special requirements</label></div>
+              <div class="food-form-contact"><span class="food-form-contact__item"><a href="tel:+989122815189">+98 912 281 5189</a></span><span class="food-form-contact__item"><a href="https://wa.me/989122815189" target="_blank" rel="noopener noreferrer">Send a request on WhatsApp</a></span><span class="food-form-contact__item">Response hours: Saturday–Thursday, 08:00–20:00</span></div>
+              <button type="submit" id="food-submit-btn" class="btn btn-primary btn-lg btn-full" data-success-label="✓ Request ready in WhatsApp">Send catering request</button>
+              <p class="form-whatsapp-hint">Submitting prepares your details in WhatsApp; you can review and send the message there.</p>
+              <p class="food-form-note">Your information is used only to prepare a catering proposal.</p>
+            </form>
+          </div>
+          <aside class="food-request__aside reveal" aria-label="Service assurances and contact options">
+            <div class="food-trust-card"><h3 class="food-trust-card__title">Working commitments</h3><ul class="food-trust-card__list"><li>Formal contract with clear responsibilities</li><li>Complimentary site review for the delivery location</li><li>Daily food quality checks and sampling</li><li>Dedicated support and ongoing responses</li></ul></div>
+            <div class="food-request__contact-card"><span class="food-request__contact-label">Request by phone or WhatsApp</span><a href="tel:+989122815189" class="food-request__phone">+98 912 281 5189</a><a href="https://wa.me/989122815189?text=I%27d%20like%20to%20ask%20about%20staff%20catering" target="_blank" rel="noopener noreferrer" class="btn btn-sky btn-full">Chat on WhatsApp</a></div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-zone food-zone--white" id="food-faq">
+      <div class="container">
+        <header class="section-header reveal"><span class="section-label section-label--food">Frequently asked questions</span><h2 class="section-title">Questions from factory and workplace teams</h2><p class="section-desc">If you need more information, our team is available by phone and WhatsApp.</p></header>
+        <div class="food-faq">{faqs.map((item, index) => <details class="food-faq__item reveal" open={index === 0}><summary class="food-faq__question"><span>{item.q}</span><span class="food-faq__toggle" aria-hidden="true">+</span></summary><div class="food-faq__answer"><p>{item.a}</p></div></details>)}</div>
+      </div>
+    </div>
+
+    <div class="food-cta"><div class="container"><div class="food-cta__panel reveal"><div class="food-cta__glow" aria-hidden="true"></div><div class="food-cta__body"><span class="food-cta__badge">Ready to discuss a contract?</span><h2 class="food-cta__title">Plan staff catering around your workplace</h2><p class="food-cta__text">Contact our team to arrange a site visit, review a sample menu and discuss a clear proposal for hot, hygienically prepared meals delivered to your location.</p><div class="food-cta__actions"><a href="tel:+989122815189" class="food-cta__phone"><span class="food-cta__phone-label">Call our catering team</span><span class="food-cta__phone-number">+98 912 281 5189</span></a><a href="#food-request" class="btn btn-primary btn-lg">Send a catering request →</a></div><p class="food-cta__note">Site visit and initial proposal are complimentary • Serving Qazvin Province and its industrial parks</p></div></div></div></div>
+  </section>
+  <script>
+    import '../../scripts/food-service.js';
+  </script>
+</BaseLayout>

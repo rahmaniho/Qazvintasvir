@@ -1,52 +1,60 @@
 ---
-title: "Factory Personnel Transport"
-kicker: "Factory Transport"
-tag: "ترابری کارخانه"
-description: "Design and operation of factory shift services with bus, minibus and van fleet."
-meta: "Design and operation of factory shift services with bus, minibus and van fleet."
-summary: "Shift shuttle design for factories with bus and minibus fleet."
-highlight: "ترابری پرسنل"
-image: "/Qazvintasvir/assets/images/bus-fleet.jpg"
-image_alt: "اتوبوس سرویس پرسنل در محوطه یک مجتمع صنعتی"
-story_image: "/Qazvintasvir/assets/images/minibus-fleet.jpg"
-story_alt: "مینی‌بوس سرویس پرسنل برای مسیرهای صنعتی"
+title: "Factory Staff Transportation"
+kicker: "Industrial Transport"
+tag: "Factory shuttles"
+description: "Staff transportation planning for factories and industrial companies, coordinated around routes, vehicle capacity and work shifts."
+meta: "Factory staff transportation by Qazvin Tasvir: route and shift planning with bus, minibus and van options for industrial organizations."
+summary: "A coordinated staff shuttle plan built around your routes and shift schedule."
+highlight: "Staff Transportation"
+image: "/Qazvintasvir/assets/img/sections/fleet-minibus.jpg"
+image_alt: "Passenger minibus used for organized staff transportation"
+story_image: "/Qazvintasvir/assets/img/sections/fleet-bus.jpg"
+story_alt: "Bus prepared for a scheduled staff shuttle route"
 order: 4
 points:
-  - "پوشش شیفت‌های کاری"
-  - "ناوگان اتوبوس و مینی‌بوس"
+  - "Coverage planned around work shifts"
+  - "Bus, minibus and van options"
+  - "Documented routes and schedules"
 metrics:
-  - ["۳۱+", "سال سابقه مجموعه"]
-  - ["۲۴/۷", "پوشش هماهنگی شیفتی"]
+  - ["31+", "Years of company experience"]
+  - ["24/7", "Shift coordination availability"]
+  - ["3", "Vehicle types"]
 features:
-  - ["۰۱", "طراحی مسیر و شیفت", "نقاط سوار شدن، زمان حرکت، ساعت شیفت و ظرفیت هر مسیر بررسی و برای اجرا آماده می‌شود."]
-  - ["۰۲", "ناوگان متناسب", "برای مسیرهای پرتعداد یا گروه‌های کوچک، ترکیبی از اتوبوس، مینی‌بوس و ون قابل بررسی است."]
+  - ["01", "Plan routes and shifts", "Pickup points, departure times, shift hours and capacity on each route are reviewed before the service begins."]
+  - ["02", "Choose a suitable fleet", "A combination of buses, minibuses and vans can be considered for larger routes or smaller groups."]
+  - ["03", "Coordinate daily execution", "The route plan, vehicle assignments and schedule are prepared with the organization before launch."]
 process:
-  - ["۰۱", "دریافت اطلاعات", "تعداد پرسنل، شیفت‌ها، مبداها و مقاصد کارخانه دریافت می‌شود."]
-  - ["۰۲", "بازدید و مسیرسنجی", "مسیرهای پیشنهادی و ظرفیت وسیله نقلیه با شرایط واقعی بررسی می‌شوند."]
-  - ["۰۳", "تنظیم برنامه", "جدول سرویس، خودرو، راننده و زمان‌بندی برای شروع آماده می‌شود."]
-process_title: "راه‌اندازی سرویس کارخانه در چهار گام"
-process_desc: "قبل از شروع سرویس، اطلاعات مسیر و شیفت به برنامه‌ای تبدیل می‌شود که برای راننده و کارفرما قابل استفاده باشد."
-details_title: "برای کارخانه‌های چندشیفته"
-details_body: "این خدمت برای مجموعه‌هایی مناسب است که رفت‌وآمد روزانه پرسنل بخشی از عملیات مستمر آن‌هاست."
+  - ["01", "Share workforce details", "We collect staff numbers, shifts, pickup points and factory destinations."]
+  - ["02", "Review routes", "Suggested routes and vehicle capacity are checked against real operating conditions."]
+  - ["03", "Set the schedule", "A service timetable, vehicle plan and start-up arrangements are prepared."]
+  - ["04", "Follow up", "The agreed routes and schedule are reviewed with your team during service delivery."]
+process_title: "From shift information to a workable shuttle plan"
+process_desc: "A reliable staff shuttle starts with clear routes, realistic travel times and capacity matched to each shift."
+details_title: "For factories and industrial parks"
+details_body: "This service is designed for organizations that need recurring staff transportation aligned with operating hours and shift changes."
 details_items:
-  - "کارخانه‌ها و شهرک‌های صنعتی"
-  - "شیفت‌های صبح، عصر و شب"
-intro_title: "رفت‌وآمد منظم، بخشی از بهره‌وری کارخانه است"
+  - "Factories and industrial parks"
+  - "Morning, evening and night shifts"
+  - "Staff routes between pickup points and the workplace"
+  - "Organizations needing a documented daily schedule"
+intro_title: "Keep staff transportation aligned with the shift"
 intro:
-  - "تأخیر در سرویس پرسنل مستقیماً روی شروع شیفت و رضایت کارکنان اثر می‌گذارد. قزوین تصویر با شناخت شرایط کارخانجات، برنامه سرویس را بر اساس شیفت‌ها، مسیرها و ظرفیت مورد نیاز شما تنظیم می‌کند."
-aside_title: "هر شیفت، یک برنامه دقیق"
-aside_text: "سرویس کارخانه باید با ساعت ورود و خروج، پراکندگی محل سکونت پرسنل و ظرفیت ناوگان هماهنگ باشد."
+  - "A late shuttle can affect shift start times and employee experience. Qazvin Tasvir plans staff transportation around your shifts, routes and capacity requirements, with a schedule your organization can review."
+  - "We begin by understanding where staff travel from, when each shift starts and ends, and which vehicle sizes suit the routes. The operating plan is then coordinated with the organization before service begins."
+aside_title: "A fleet matched to the route"
+aside_text: "The right plan considers passenger numbers, pickup locations, shift times and vehicle capacity together."
 aside_items:
-  - "اتوبوس، مینی‌بوس و ون"
-  - "مسیرهای رفت و برگشت شیفتی"
-story_kicker: "ناوگان در خدمت شیفت"
-story_title: "مسیر کارخانه باید برای همه قابل پیش‌بینی باشد"
-story_body: "وقتی برنامه سرویس شفاف باشد، پرسنل، نگهبانی، منابع انسانی و راننده تصویر مشترکی از زمان و مسیر دارند."
+  - "Bus, minibus and van options"
+  - "Shift-based return routes"
+  - "A written, accessible schedule"
+story_kicker: "Daily operations"
+story_title: "A predictable start and end to every shift"
+story_body: "A clear transport plan helps employees and coordinators know where and when each route operates. Route execution and timing are followed against the agreed schedule."
 story_items:
-  - "برنامه مکتوب و قابل دسترس"
-  - "پایش کیفیت اجرای مسیر"
+  - "Defined pickup and drop-off points"
+  - "Routes planned for shift changes"
+  - "Operational follow-up with your team"
 theme: "theme-transport"
 ---
 
-This service provides design and operation of factory shift services with bus, minibus and van fleet. For full details in Persian, please contact us or view the Persian version.
-
+Factory staff transportation needs to fit the actual workday: shift start and end times, pickup locations, passenger numbers and the capacity of each vehicle. We coordinate these details with your organization before preparing a route and schedule.

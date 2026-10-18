@@ -29,8 +29,9 @@ tabs.forEach((tab, index) => {
   tab.addEventListener('click', () => activateTab(tab));
   tab.addEventListener('keydown', (event) => {
     let nextIndex = null;
-    if (event.key === 'ArrowLeft') nextIndex = (index + 1) % tabs.length;
-    else if (event.key === 'ArrowRight') nextIndex = (index - 1 + tabs.length) % tabs.length;
+    const rtl = document.documentElement.dir === 'rtl';
+    if (event.key === 'ArrowLeft') nextIndex = (index + (rtl ? 1 : -1) + tabs.length) % tabs.length;
+    else if (event.key === 'ArrowRight') nextIndex = (index + (rtl ? -1 : 1) + tabs.length) % tabs.length;
     else if (event.key === 'Home') nextIndex = 0;
     else if (event.key === 'End') nextIndex = tabs.length - 1;
     if (nextIndex === null) return;
@@ -50,7 +51,7 @@ function syncMealSelection() {
     input.closest('.food-meal')?.classList.toggle('is-checked', input.checked);
     if (input.checked) selectedMeals.push(input.value);
   });
-  if (mealsMirror) mealsMirror.value = selectedMeals.join('، ');
+  if (mealsMirror) mealsMirror.value = selectedMeals.join(document.documentElement.dir === 'rtl' ? '، ' : ', ');
   if (selectedMeals.length) mealsFeedback?.classList.remove('is-error');
 }
 
@@ -108,7 +109,9 @@ if (foodForm instanceof HTMLFormElement) {
     }
 
     if (!valid) {
-      window.showToast?.('لطفاً فیلدهای الزامی فرم تأمین غذا را به درستی تکمیل فرمایید.');
+      window.showToast?.(document.documentElement.lang === 'fa'
+        ? 'لطفاً فیلدهای الزامی فرم تأمین غذا را به درستی تکمیل فرمایید.'
+        : 'Please complete the required catering form fields correctly.');
       firstInvalid?.focus({ preventScroll: true });
       return;
     }
@@ -121,26 +124,41 @@ if (foodForm instanceof HTMLFormElement) {
     const headcount = foodForm.querySelector('#food-headcount')?.value.trim() ?? '';
     const address = foodForm.querySelector('#food-address')?.value.trim() ?? '';
     const notes = foodForm.querySelector('#food-notes')?.value.trim() ?? '';
-    const lines = [
-      'درخواست قرارداد تأمین غذای پرسنل — وب‌سایت قزوین تصویر',
-      '',
-      `نام شرکت / کارخانه: ${company}`,
-      `نام رابط: ${contact}`,
-      `شماره تماس: ${toLatinDigits(phone)}`,
-      `تعداد پرسنل: ${toLatinDigits(headcount)}`,
-      `وعده‌های مورد نیاز: ${selectedMeals.map((input) => input.value).join('، ')}`,
-      `آدرس محل توزیع: ${address}`,
-    ];
-    if (notes) lines.push(`توضیحات: ${notes}`);
+    const isFa = document.documentElement.lang === 'fa';
+    const mealSeparator = isFa ? '، ' : ', ';
+    const lines = isFa
+      ? [
+          'درخواست قرارداد تأمین غذای پرسنل — وب‌سایت قزوین تصویر',
+          '',
+          `نام شرکت / کارخانه: ${company}`,
+          `نام رابط: ${contact}`,
+          `شماره تماس: ${toLatinDigits(phone)}`,
+          `تعداد پرسنل: ${toLatinDigits(headcount)}`,
+          `وعده‌های مورد نیاز: ${selectedMeals.map((input) => input.value).join(mealSeparator)}`,
+          `آدرس محل توزیع: ${address}`,
+        ]
+      : [
+          'Staff catering contract request — Qazvin Tasvir website',
+          '',
+          `Company / factory: ${company}`,
+          `Contact person: ${contact}`,
+          `Phone: ${toLatinDigits(phone)}`,
+          `Number of staff: ${toLatinDigits(headcount)}`,
+          `Meals required: ${selectedMeals.map((input) => input.value).join(mealSeparator)}`,
+          `Delivery address: ${address}`,
+        ];
+    if (notes) lines.push(`${isFa ? 'توضیحات' : 'Notes'}: ${notes}`);
 
     window.open(`https://wa.me/989122815189?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener');
     if (submitButton instanceof HTMLButtonElement) {
       submitButton.disabled = false;
-      submitButton.innerHTML = '✓ درخواست شما به واتساپ ارسال شد';
+      submitButton.innerHTML = submitButton.getAttribute('data-success-label') || (isFa ? '✓ درخواست شما به واتساپ ارسال شد' : '✓ Request ready in WhatsApp');
       submitButton.style.background = '#10B981';
       submitButton.style.color = '#FFFFFF';
     }
-    window.showToast?.('درخواست شما در واتساپ آماده شد؛ لطفاً در صفحهٔ باز شده دکمهٔ ارسال را بزنید.');
+    window.showToast?.(isFa
+      ? 'درخواست شما در واتساپ آماده شد؛ لطفاً در صفحهٔ باز شده دکمهٔ ارسال را بزنید.'
+      : 'Your request is ready in WhatsApp. Review it there and press Send.');
 
     window.setTimeout(() => {
       foodForm.reset();

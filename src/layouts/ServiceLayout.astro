@@ -50,8 +50,8 @@ const homeUrl = `${siteUrl}/${lang}/`;
 const servicesUrl = `${siteUrl}/${lang}/services/`;
 
 // schema
-const org = organizationSchema(siteUrl);
-const svcSchema = serviceSchema({ title: props.title, description: props.description, image: props.image ? `${siteClean}${props.image}` : undefined, url: serviceUrl, providerUrl: siteUrl });
+const org = organizationSchema(siteUrl, lang);
+const svcSchema = serviceSchema({ title: props.title, description: props.description, image: props.image ? `${siteClean}${props.image}` : undefined, url: serviceUrl, providerUrl: siteUrl, lang });
 const crumbs = breadcrumbSchema([
   { name: lang==='fa' ? 'خانه' : 'Home', url: homeUrl },
   { name: lang==='fa' ? 'خدمات' : 'Services', url: servicesUrl },

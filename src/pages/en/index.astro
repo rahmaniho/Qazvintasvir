@@ -22,7 +22,7 @@ const hreflang = [
   { lang: 'en', href: canonical },
   { lang: 'x-default', href: `${siteUrl}/fa/` },
 ];
-const org = organizationSchema(siteUrl);
+const org = organizationSchema(siteUrl, 'en');
 const servicesList = itemListSchema("Services of Qazvin Tasvir Company", [
   { name: "Permitted goods import and export", url: `${siteUrl}/en/services/import-export/` },
   { name: "Customs clearance and port affairs", url: `${siteUrl}/en/services/customs-port/` },

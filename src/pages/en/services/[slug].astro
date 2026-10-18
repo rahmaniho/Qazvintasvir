@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import ServiceLayout from '../../../layouts/ServiceLayout.astro';
+import PersonnelFoodSectionEn from '../../../components/food/PersonnelFoodSectionEn.astro';
 
 export async function getStaticPaths() {
   const all = await getCollection('services');
@@ -20,6 +21,9 @@ const slug = Astro.params.slug!;
 const lang = 'en';
 ---
 
+{slug === 'personnel-food' ? (
+  <PersonnelFoodSectionEn title={data.title} description={data.description} faqs={data.faqs} />
+) : (
 <ServiceLayout
   lang={lang}
   slug={slug}
@@ -52,3 +56,4 @@ const lang = 'en';
   storyAlt={data.story_alt}
   faqs={data.faqs}
 />
+)}
