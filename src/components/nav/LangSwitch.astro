@@ -5,8 +5,8 @@ interface Props {
 }
 const { lang, currentPath } = Astro.props;
 
-// currentPath like /Qazvintasvir/fa/services/import-export/ or /Qazvintasvir/en/...
-// Switch to other lang while preserving path
+// currentPath is the locale-prefixed route on the custom-domain root, e.g. /fa/services/import-export/.
+// Switch to the other locale while preserving the route suffix.
 const otherLang = lang === 'fa' ? 'en' : 'fa';
 
 // Remove base and lang prefix to get suffix
@@ -19,7 +19,7 @@ else suffix = '/';
 if (!suffix.startsWith('/')) suffix = '/' + suffix;
 
 // For root cases
-const base = import.meta.env.BASE_URL; // e.g. /Qazvintasvir/
+const base = import.meta.env.BASE_URL; // / for the custom-domain root
 const baseClean = base.endsWith('/') ? base.slice(0,-1) : base;
 const href = `${baseClean}/${otherLang}${suffix === '/' ? '/' : suffix}`;
 const ariaLabel = lang === 'fa' ? 'Switch to English' : 'Switch to Persian';

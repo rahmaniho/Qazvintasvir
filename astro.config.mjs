@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://rahmaniho.github.io',
-  base: '/Qazvintasvir',
+  site: 'https://qazvintasvir.ir',
+  base: '/',
   i18n: {
     defaultLocale: 'fa',
     locales: ['fa', 'en'],
@@ -15,7 +15,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         const path = new URL(page).pathname;
-        return path !== '/Qazvintasvir/' && !path.startsWith('/Qazvintasvir/services/');
+        return path !== '/' && !path.startsWith('/services/');
       },
     }),
   ],

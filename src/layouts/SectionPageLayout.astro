@@ -10,7 +10,7 @@ interface Props {
 
 const { lang, slug, title, description } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const site = Astro.site?.toString().replace(/\/$/, '') || 'https://rahmaniho.github.io';
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://qazvintasvir.ir';
 const canonical = `${site}${base}/${lang}/${slug}/`;
 const hreflang = [
   { lang: 'fa', href: `${site}${base}/fa/${slug}/` },

@@ -6,9 +6,9 @@ description: "Practical trade case review covering transaction goals, available 
 meta: "Qazvin Tasvir trade consulting: review of commercial routes, documents, transaction considerations and letters of credit."
 summary: "Organize the case information and clarify the options before the next trade decision."
 highlight: "Trade Consulting"
-image: "/Qazvintasvir/assets/img/sections/hero-port.jpg"
+image: "/assets/img/sections/hero-port.jpg"
 image_alt: "Cargo vessel and container port for international trade operations"
-story_image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
+story_image: "/assets/img/sections/trade-customs.jpg"
 story_alt: "Commercial shipment and transport documents under review"
 order: 8
 points:

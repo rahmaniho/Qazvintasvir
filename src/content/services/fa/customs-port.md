@@ -6,9 +6,9 @@ description: "پرونده‌های واردات و صادرات را با تم�
 meta: "خدمات ترخیص گمرکی و امور بندری قزوین تصویر؛ کنترل مدارک، هماهنگی مراحل پرونده و پیگیری عملیات اجرایی."
 summary: "کنترل مدارک و هماهنگی مراحل اجرایی پرونده‌های گمرکی و بندری."
 highlight: "ترخیص گمرکی"
-image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
+image: "/assets/img/sections/trade-customs.jpg"
 image_alt: "تریلی و کانتینر در محوطه بارگیری برای خدمات ترخیص و امور بندری"
-story_image: "/Qazvintasvir/assets/img/sections/hero-port.jpg"
+story_image: "/assets/img/sections/hero-port.jpg"
 story_alt: "نمای هوایی بندر و ردیف کانتینرها در مسیر عملیات واردات"
 order: 2
 points:

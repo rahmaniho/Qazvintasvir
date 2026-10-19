@@ -6,9 +6,9 @@ description: "تأمین صبحانه، ناهار، شام و میان‌وعد
 meta: "خدمات تأمین غذای پرسنل و وعده‌های سازمانی قزوین تصویر؛ منوی چرخشی، آشپزخانه بهداشتی و توزیع در محل."
 summary: "کیترینگ قراردادی برای صبحانه، ناهار، شام و میان‌وعده پرسنل سازمان‌ها."
 highlight: "وعده‌های سازمانی"
-image: "/Qazvintasvir/assets/img/personnel-food/hero-kitchen.jpg"
+image: "/assets/img/personnel-food/hero-kitchen.jpg"
 image_alt: "آشپزخانه صنعتی بهداشتی در حال آماده‌سازی غذای سازمانی"
-story_image: "/Qazvintasvir/assets/img/personnel-food/food-delivery.jpg"
+story_image: "/assets/img/personnel-food/food-delivery.jpg"
 story_alt: "بسته‌بندی و تحویل غذای پرسنل برای یک مجموعه صنعتی"
 order: 7
 points:

@@ -6,9 +6,9 @@ description: "پیش از تصمیم‌گیری برای خرید، واردات
 meta: "خدمات مشاوره بازرگانی و گشایش قزوین تصویر؛ بررسی مسیر تجارت، اسناد، هماهنگی ارزی و اعتبارات بر اساس پرونده."
 summary: "تصمیم‌سازی برای خرید، واردات، صادرات و بررسی مسیر گشایش اعتبار بر اساس پرونده."
 highlight: "مشاوره بازرگانی"
-image: "/Qazvintasvir/assets/img/sections/about-office.jpg"
+image: "/assets/img/sections/about-office.jpg"
 image_alt: "دفتر کار و جلسه مدیریتی برای مشاوره بازرگانی"
-story_image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
+story_image: "/assets/img/sections/trade-customs.jpg"
 story_alt: "بررسی اسناد و محموله در یک عملیات بازرگانی"
 order: 8
 points:

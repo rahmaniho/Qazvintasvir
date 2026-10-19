@@ -6,9 +6,9 @@ description: "Industrial sourcing coordination that turns operational requiremen
 meta: "Qazvin Tasvir industrial sourcing for raw materials and equipment: requirements review, supplier options and purchasing coordination."
 summary: "A structured route from technical requirement to sourcing and purchasing coordination."
 highlight: "Equipment Sourcing"
-image: "/Qazvintasvir/assets/img/sections/factory.jpg"
+image: "/assets/img/sections/factory.jpg"
 image_alt: "Industrial production line and equipment"
-story_image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
+story_image: "/assets/img/sections/trade-customs.jpg"
 story_alt: "Industrial shipment being prepared for transport"
 order: 3
 points:

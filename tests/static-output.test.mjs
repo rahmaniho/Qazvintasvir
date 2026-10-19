@@ -55,7 +55,7 @@ test('fleet-brand pages render local graphic marks with a subtle neon orbit', ()
     const html = read(route(lang, 'brands'));
     assert.equal((html.match(/<li class="brand-partners__item[^\"]*"/g) ?? []).length, assets.length, `all fleet marks should render on ${lang}/brands/`);
     for (const asset of assets) {
-      assert.ok(html.includes(`/Qazvintasvir/assets/logos/${asset}`), `${asset} missing from ${lang}/brands/`);
+      assert.ok(html.includes(`/assets/logos/${asset}`), `${asset} missing from ${lang}/brands/`);
       const path = resolve(root, 'public/assets/logos', asset);
       assert.ok(existsSync(path), `missing local brand asset ${asset}`);
       const png = readFileSync(path);
@@ -120,6 +120,9 @@ test('English routes have localized visible copy and language-aware document met
     const name = path || 'home';
     assert.doesNotMatch(visibleHtml, persianOrArabic, `English page ${name} contains untranslated visible copy`);
     assert.match(html, /<html[^>]*lang="en"[^>]*dir="ltr"|<html[^>]*dir="ltr"[^>]*lang="en"/, `incorrect document language or direction on ${name}`);
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+    assert.ok(canonical?.startsWith('https://qazvintasvir.ir/'), `canonical must use the confirmed domain on ${name}`);
+    assert.doesNotMatch(html, /\/Qazvintasvir\//, `old project base should not appear on ${name}`);
     if (path) {
       assert.match(html, new RegExp(`rel="canonical" href="[^"]*/en/${path}/"`), `missing English canonical for ${name}`);
       assert.match(html, new RegExp(`hreflang="fa" href="[^"]*/fa/${path}/"`), `missing Persian alternate for ${name}`);
@@ -169,8 +172,8 @@ test('telephone numbers and numeric form controls are explicitly isolated left t
 });
 
 test('urban and VIP service pages use the generated local transport imagery', () => {
-  const cityImageUrl = '/Qazvintasvir/assets/img/fleet-specs/urban-vip-city-van.jpg';
-  const interiorImageUrl = '/Qazvintasvir/assets/img/fleet-specs/urban-vip-interior.jpg';
+  const cityImageUrl = '/assets/img/fleet-specs/urban-vip-city-van.jpg';
+  const interiorImageUrl = '/assets/img/fleet-specs/urban-vip-interior.jpg';
   for (const lang of ['fa', 'en']) {
     const index = read(route(lang, 'services'));
     const detail = read(route(lang, 'services/urban-vip'));
@@ -184,8 +187,8 @@ test('urban and VIP service pages use the generated local transport imagery', ()
 });
 
 test('fleet pages show the Hyundai minibus exterior and branded interior', () => {
-  const exteriorUrl = '/Qazvintasvir/assets/images/hyundai-minibus-exterior.jpg';
-  const interiorUrl = '/Qazvintasvir/assets/images/hyundai-minibus-interior.jpg';
+  const exteriorUrl = '/assets/images/hyundai-minibus-exterior.jpg';
+  const interiorUrl = '/assets/images/hyundai-minibus-interior.jpg';
   for (const lang of ['fa', 'en']) {
     const html = read(route(lang, 'fleet'));
     assert.ok(html.includes(exteriorUrl), `missing Hyundai minibus exterior on ${lang} fleet page`);
@@ -206,7 +209,7 @@ test('service detail pages render source notes, related services and localized C
         assert.equal((html.match(/class="related-service-card"/g) ?? []).length, 3, `expected three related service cards on ${lang}/${slug}`);
         assert.match(html, /cta-title/, `missing source CTA on ${lang}/${slug}`);
         assert.match(html, lang === 'fa' ? /برای بررسی نیاز مجموعه‌تان گفت‌وگو کنیم/ : /Let’s discuss your organization’s needs/);
-        assert.match(html, new RegExp(`/Qazvintasvir/${lang}/services/`), `related-service links should remain in the ${lang} locale`);
+        assert.match(html, new RegExp(`/${lang}/services/`), `related-service links should remain in the ${lang} locale`);
       }
     }
   }
@@ -227,12 +230,12 @@ test('homepages place an accessible bilingual client-logo ticker immediately aft
     assert.match(html, /aria-label="(?:نوار لوگوهای مشتریان|Client brand logo ticker)"/);
     assert.match(html, /class="client-marquee__viewport"[^>]*tabindex="0"/, 'the logo viewport should be keyboard-scrollable');
     for (const asset of assets) {
-      const url = `/Qazvintasvir/assets/images/clients/${asset}`;
+      const url = `/assets/images/clients/${asset}`;
       assert.equal(html.split(url).length - 1, 2, `${asset} should be included in both ticker cycles on ${lang}/`);
       assert.ok(existsSync(resolve(root, 'public/assets/images/clients', asset)), `missing local client logo ${asset}`);
     }
     const clientsPage = read(route(lang, 'clients'));
-    assert.ok(clientsPage.includes('/Qazvintasvir/assets/images/clients/lg.webp'), `the supplied LG logo should be used on ${lang}/clients/`);
+    assert.ok(clientsPage.includes('/assets/images/clients/lg.webp'), `the supplied LG logo should be used on ${lang}/clients/`);
   }
   const suppliedLg = readFileSync(resolve(root, 'public/assets/images/clients/lg.webp'));
   assert.equal(suppliedLg.subarray(0, 4).toString('ascii'), 'RIFF');
@@ -263,7 +266,7 @@ test('homepages act as concise directories while full source sections live on de
       assert.doesNotMatch(html, new RegExp(`\\bid="${oldSection}"`), `full #${oldSection} section should no longer be embedded on /${lang}/`);
     }
     for (const slug of ['about', 'services', ...standaloneSectionSlugs, 'contact']) {
-      assert.ok(html.includes(`/Qazvintasvir/${lang}/${slug}/`), `/${lang}/ directory should link to /${lang}/${slug}/`);
+      assert.ok(html.includes(`/${lang}/${slug}/`), `/${lang}/ directory should link to /${lang}/${slug}/`);
     }
   }
 
@@ -327,10 +330,10 @@ test('English catering page preserves the complete localized menu, gallery, form
   assert.equal(faqData?.mainEntity?.length, 4, 'all four English FAQ entries should be in structured data');
   assert.doesNotMatch(JSON.stringify(faqData), /[\u0600-\u06FF]/, 'English FAQ schema should be localized');
 
-  const assetUrls = [...html.matchAll(/(?:src|srcset)="(\/Qazvintasvir\/assets\/img\/personnel-food\/[^" ]+)/g)].map((match) => match[1]);
+  const assetUrls = [...html.matchAll(/(?:src|srcset)="(\/assets\/img\/personnel-food\/[^" ]+)/g)].map((match) => match[1]);
   assert.ok(assetUrls.length >= 30, 'expected local images for English meal cards and gallery');
   for (const url of new Set(assetUrls)) {
-    const assetPath = url.replace('/Qazvintasvir/', '');
+    const assetPath = url.slice(1);
     assert.ok(existsSync(resolve(dist, assetPath)), `missing built English catering asset ${url}`);
   }
 });
@@ -346,10 +349,10 @@ test('Persian catering page retains source content, anchors, media, tabs, and fo
   assert.equal((html.match(/class="food-faq__item reveal"/g) ?? []).length, 4, 'all four FAQ entries should be present');
   assert.match(html, /PersonnelFoodSection\.astro_astro_type_script_index_0_lang|food-service\.js/, 'catering interaction module should be emitted');
 
-  const assetUrls = [...html.matchAll(/(?:src|srcset)="(\/Qazvintasvir\/assets\/[^" ]+)/g)].map((match) => match[1]);
+  const assetUrls = [...html.matchAll(/(?:src|srcset)="(\/assets\/[^" ]+)/g)].map((match) => match[1]);
   assert.ok(assetUrls.length >= 20, 'expected local catering image assets');
   for (const url of new Set(assetUrls)) {
-    const assetPath = url.replace('/Qazvintasvir/', '');
+    const assetPath = url.slice(1);
     assert.ok(existsSync(resolve(dist, assetPath)), `missing built local asset ${url}`);
   }
 });
@@ -412,21 +415,23 @@ test('legacy URLs emit static redirects and preserve known hash destinations', (
   }
 });
 
-test('sitemap and robots.txt use the current GitHub Pages project URL', () => {
+test('sitemap and robots.txt use the confirmed custom domain', () => {
   const sitemap = read('sitemap-0.xml');
-  assert.match(sitemap, /\/Qazvintasvir\/fa\//);
-  assert.match(sitemap, /\/Qazvintasvir\/en\//);
+  assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/fa\//);
+  assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/en\//);
   assert.doesNotMatch(sitemap, /\/services\/personnel-food\.html/);
-  assert.doesNotMatch(sitemap, /\/Qazvintasvir\/(?!fa\/|en\/)/);
+  assert.doesNotMatch(sitemap, /\/Qazvintasvir\//);
   const robots = read('robots.txt');
-  assert.match(robots, /^Sitemap: https:\/\/rahmaniho\.github\.io\/Qazvintasvir\/sitemap-index\.xml$/m);
-  assert.doesNotMatch(robots, /qazvintasvir\.ir/);
+  assert.match(robots, /^Sitemap: https:\/\/qazvintasvir\.ir\/sitemap-index\.xml$/m);
+  assert.doesNotMatch(robots, /rahmaniho\.github\.io|\/Qazvintasvir\//);
+  assert.doesNotMatch(sitemap, /rahmaniho\.github\.io/);
+  assert.equal(readFileSync(resolve(dist, 'CNAME'), 'utf8').trim(), 'qazvintasvir.ir', 'Pages artifact should retain the custom domain');
 });
 
-test('root entry redirects to the localized Persian root with the configured base path', () => {
+test('root entry redirects to the localized Persian root at the custom-domain root', () => {
   const html = read('index.html');
-  assert.match(html, /url=\/Qazvintasvir\/fa\//);
-  assert.doesNotMatch(html, /Qazvintasvirfa/);
+  assert.match(html, /url=\/fa\//);
+  assert.doesNotMatch(html, /\/Qazvintasvir\//);
   assert.match(html, /pageByLegacyHash/);
   for (const slug of ['about', 'services', ...standaloneSectionSlugs, 'contact']) {
     assert.ok(html.includes(`${slug}: '${slug}'`) || html.includes(`'${slug}': '${slug}'`), `root redirect should resolve legacy #${slug} links`);

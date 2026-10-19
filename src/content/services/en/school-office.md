@@ -6,9 +6,9 @@ description: "Scheduled passenger services for schools, offices and companies, p
 meta: "Qazvin Tasvir school, office and company transport: route planning, schedules and bus, minibus or van options."
 summary: "Organized daily passenger routes for students, employees and visitors."
 highlight: "Shuttle Services"
-image: "/Qazvintasvir/assets/img/sections/fleet-van.jpg"
+image: "/assets/img/sections/fleet-van.jpg"
 image_alt: "Passenger van used for a scheduled organizational shuttle"
-story_image: "/Qazvintasvir/assets/img/sections/fleet-minibus.jpg"
+story_image: "/assets/img/sections/fleet-minibus.jpg"
 story_alt: "Minibus ready for a school or office shuttle route"
 order: 6
 points:

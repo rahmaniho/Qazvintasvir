@@ -6,9 +6,9 @@ description: "از بررسی نیاز و انتخاب مسیر تأمین تا 
 meta: "صفحه خدمات واردات و صادرات کالاهای مجاز شرکت قزوین تصویر؛ بررسی نیاز، هماهنگی خرید، اسناد و حمل بین‌المللی."
 summary: "هماهنگی مسیر تأمین و جابه‌جایی کالاهای مجاز با پیگیری مرحله‌به‌مرحله."
 highlight: "کالاهای مجاز"
-image: "/Qazvintasvir/assets/img/sections/hero-port.jpg"
+image: "/assets/img/sections/hero-port.jpg"
 image_alt: "بندر کانتینری و کشتی باری در زمان غروب برای خدمات واردات و صادرات"
-story_image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
+story_image: "/assets/img/sections/trade-customs.jpg"
 story_alt: "بارگیری محموله در انبار و هماهنگی اسناد حمل"
 order: 1
 points:
