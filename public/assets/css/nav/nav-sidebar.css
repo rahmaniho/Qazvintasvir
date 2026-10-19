@@ -13,7 +13,7 @@
     padding-inline-start: calc(var(--qt-sidebar-collapsed-width) + var(--qt-sidebar-gap));
   }
 
-  /* فاز ۱-۴: fixed حصری دسکتاپ (≥1024px) — نسخهٔ موبایل (sticky) فقط در
+  /* فاز ۱-۴: fixed حصری دسکتاپ (≥1024px) — نسخه‌ی موبایل (sticky) فقط در
      nav-base.css داخل @media (max-width: 1023px) است؛ هیچ‌کدام به ترتیب
      لود دو فایل وابسته نیستند. */
   .site-header {
@@ -142,7 +142,7 @@
     box-shadow: 0 8px 18px rgba(6, 45, 135, .24);
   }
 
-  /* فاز ۳-۳ (دسکتاپ) — آیتم فعال: نشانگر لبهٔ inline-start + حفظ هالهٔ بیرونی */
+  /* فاز ۳-۳ (دسکتاپ) — آیتم فعال: نشانگر لبه‌ی inline-start + حفظ هاله‌ی بیرونی */
   .site-header .site-nav > .site-nav__link.is-active,
   .site-header .site-nav > .site-nav__link.active,
   .site-header .site-nav > .site-nav__link[aria-current="page"] {

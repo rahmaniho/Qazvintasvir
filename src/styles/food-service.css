@@ -1,7 +1,7 @@
 /* Food-service CSS migrated from the archived source, scoped to the dedicated page and placed in the components layer. */
 @layer components {
-/* صفحهٔ کامل تأمین غذای پرسنل — استخراج‌شده از طراحی اصلی صفحهٔ خانه */
-/* متغیرهای لازم برای بازگرداندن صفحهٔ کامل غذای سازمانی در مسیر مستقل */
+/* صفحه‌ی کامل تأمین غذای پرسنل — استخراج‌شده از طراحی اصلی صفحه‌ی خانه */
+/* متغیرهای لازم برای بازگرداندن صفحه‌ی کامل غذای سازمانی در مسیر مستقل */
 body.food-service-page {
   --surface-bg: var(--surface, #f7f9fc);
   --surface-white: var(--surface-raised, #ffffff);
@@ -149,7 +149,7 @@ body.food-service-page {
   box-shadow: var(--shadow-glow-amber);
   color: var(--navy-deep);
 }
-/* ردّ نور گذرا روی دکمهٔ اصلی (micro-interaction) */
+/* ردّ نور گذرا روی دکمه‌ی اصلی (micro-interaction) */
 .food-service-page .btn-primary::after {
   content: "";
   position: absolute;

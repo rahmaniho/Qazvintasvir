@@ -1,12 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = process.cwd();
 const dist = resolve(root, 'dist');
 const read = (path) => readFileSync(resolve(dist, path), 'utf8');
 const route = (lang, path = '') => `${lang}/${path ? `${path}/` : ''}index.html`;
+const walkFiles = (directory) => readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+  const path = resolve(directory, entry.name);
+  return entry.isDirectory() ? walkFiles(path) : [path];
+});
 
 const serviceSlugs = [
   'customs-port', 'factory-transport', 'import-export', 'personnel-food',
@@ -47,6 +51,8 @@ test('Persian font assets and editorial typography are wired across all article 
   const articlesCss = readFileSync(resolve(root, 'src/styles/articles.css'), 'utf8');
   assert.match(baseCss, /font-family:\s*["']BNazanin["']/);
   assert.match(baseCss, /font-family:\s*["']BTitrBold["']/);
+  assert.match(baseCss, /size-adjust:\s*110%/);
+  assert.match(baseCss, /size-adjust:\s*88%/);
   assert.match(baseCss, /html\[lang="fa"\]\s+h1/);
   assert.match(tokensCss, /--font-persian:\s*'BNazanin'/);
   assert.match(tokensCss, /--font-heading-persian:\s*'BTitrBold'/);
@@ -71,6 +77,18 @@ test('Persian font assets and editorial typography are wired across all article 
   }
 });
 
+test('Persian ezafe after final heh uses the font-safe spelling throughout the site', () => {
+  const pages = walkFiles(resolve(dist, 'fa')).filter((path) => path.endsWith('.html'));
+  assert.ok(pages.length > 0, 'Persian static pages should be generated');
+  for (const path of pages) {
+    const html = readFileSync(path, 'utf8');
+    assert.doesNotMatch(html, /\u0647\u0654/u, `${path} should not contain the problematic combining hamza form`);
+  }
+  const articles = read(route('fa', 'articles'));
+  assert.ok(articles.includes('مطالعه‌ی راهنما'));
+  assert.ok(articles.includes('همه‌ی مقاله‌ها'));
+});
+
 test('the bilingual articles index is discoverable in desktop and mobile navigation', () => {
   for (const [lang, label] of [['fa', 'مقاله‌ها'], ['en', 'Articles']]) {
     const home = read(route(lang));
@@ -87,7 +105,7 @@ test('the bilingual articles index is discoverable in desktop and mobile navigat
 
 test('Persian about page uses refined copy and stable RTL typography hooks', () => {
   const html = read(route('fa', 'about'));
-  assert.match(html, /دربارهٔ قزوین تصویر \| همراه صنایع قزوین از ۱۳۷۴/);
+  assert.match(html, /درباره‌ی قزوین تصویر \| همراه صنایع قزوین از ۱۳۷۴/);
   assert.match(html, /بیش از <bdi class="bidi-ltr" dir="ltr">۳۱<\/bdi> سال، همراه صنایع قزوین/);
   assert.match(html, /class="about-facts"/);
   assert.match(html, /class="about-address-unit"/);
