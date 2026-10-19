@@ -54,8 +54,11 @@ test('Persian font assets and editorial typography are wired across all article 
   assert.match(baseCss, /size-adjust:\s*110%/);
   assert.match(baseCss, /size-adjust:\s*88%/);
   assert.match(baseCss, /html\[lang="fa"\]\s+h1/);
+  assert.match(baseCss, /html\[lang="fa"\]\s*\{[^}]*--font-numbers:\s*var\(--font-persian\)/);
   assert.match(tokensCss, /--font-persian:\s*'BNazanin'/);
   assert.match(tokensCss, /--font-heading-persian:\s*'BTitrBold'/);
+  assert.match(articlesCss, /\.guide-overview__number\s*\{[^}]*font-family:\s*var\(--font-numbers\)/);
+  assert.match(articlesCss, /\.guide-step__number\s*\{[^}]*font-family:\s*var\(--font-numbers\)/);
   assert.match(articlesCss, /\.guide-hero\s*\{[^}]*background:\s*var\(--surface-bg\)/);
 
   const persianHome = read(route('fa'));
