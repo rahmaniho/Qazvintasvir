@@ -691,7 +691,7 @@
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 82%), 0 5px 14px rgb(10 37 64 / 7%);
   }
   .client-marquee__logo-card img { display: block; inline-size: 55%; block-size: 55%; object-fit: contain; }
-  .client-marquee__logo-card--lg { border-color: rgb(255 255 255 / 22%); background: rgb(15 28 48 / 74%); box-shadow: inset 0 1px 0 rgb(255 255 255 / 17%), 0 5px 14px rgb(10 37 64 / 14%); }
+  .client-marquee__logo-card--lg { border-color: rgb(255 255 255 / 78%); background: rgb(255 255 255 / 62%); box-shadow: inset 0 1px 0 rgb(255 255 255 / 86%), 0 5px 14px rgb(10 37 64 / 8%); }
   .client-marquee__viewport:hover .client-marquee__track, .client-marquee__viewport:focus-within .client-marquee__track { animation-play-state: paused; }
   [dir="rtl"] .client-marquee__viewport { -webkit-mask-image: linear-gradient(to left, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(to left, transparent, #000 4%, #000 96%, transparent); }
   [dir="rtl"] .client-marquee__track { animation-name: client-marquee-scroll-rtl; }
@@ -701,7 +701,7 @@
   [data-theme="dark"] .client-marquee__intro h2 { color: #f7faff; }
   [data-theme="dark"] .client-marquee__link { color: #c6defd; }
   [data-theme="dark"] .client-marquee__logo-card { border-color: rgb(255 255 255 / 18%); background: rgb(255 255 255 / 68%); }
-  [data-theme="dark"] .client-marquee__logo-card--lg { background: rgb(15 28 48 / 80%); }
+  [data-theme="dark"] .client-marquee__logo-card--lg { background: rgb(255 255 255 / 72%); }
   @media (max-width: 900px) {
     .client-marquee__panel { grid-template-columns: minmax(160px, 0.32fr) minmax(0, 1fr); gap: 16px; padding: 16px; }
     .client-marquee__track { animation-duration: 54s; }
