@@ -6,9 +6,9 @@ description: "Document review, case coordination and port-operation follow-up fo
 meta: "Qazvin Tasvir customs clearance and port services: document review, shipment coordination and step-by-step case follow-up."
 summary: "A clearer, coordinated route through customs documentation and port operations."
 highlight: "Port Operations"
-image: "/Qazvintasvir/assets/img/sections/hero-port.jpg"
+image: "/assets/img/sections/hero-port.jpg"
 image_alt: "Container ship and cargo terminal at sunset"
-story_image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
+story_image: "/assets/img/sections/trade-customs.jpg"
 story_alt: "Cargo being loaded while shipping documents are coordinated"
 order: 2
 points:

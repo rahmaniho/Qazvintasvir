@@ -12,7 +12,7 @@ interface Props {
 const { noteTitle, noteBody, noteItems } = Astro.props;
 const escapeHtml = (value: string) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const site = Astro.site?.toString().replace(/\/$/, '') || 'https://rahmaniho.github.io';
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://qazvintasvir.ir';
 const canonical = `${site}${base}/fa/services/personnel-food/`;
 const description = 'خدمات تأمین غذای پرسنل و وعده‌های سازمانی قزوین تصویر؛ منوی چرخشی، آشپزخانه بهداشتی و توزیع در محل.';
 const image = `${site}${base}/assets/img/personnel-food/hero-kitchen.jpg`;

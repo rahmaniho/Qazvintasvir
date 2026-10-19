@@ -15,7 +15,7 @@ npm run legacy:redirects
 npm run dev
 ```
 
-Astro's dev server starts at `http://localhost:4321/Qazvintasvir/` using the current GitHub Pages project base.
+Astro's dev server starts at `http://localhost:4321/`; production URLs use the custom domain root.
 
 ## Quality checks and production build
 
@@ -31,13 +31,13 @@ npm test
 - `build` emits the static bilingual pages under `dist/` and creates the sitemap.
 - `test` checks routes, preserved homepage and catering content, local food assets, redirects, root routing, and sitemap exclusions.
 
-The build currently targets the repository's GitHub Pages project path (`/Qazvintasvir`). The `site` value in `astro.config.mjs` is provisional; update it only after the production domain is explicitly confirmed.
+The production build targets the confirmed custom domain <https://qazvintasvir.ir/> at the site root (`base: '/'`); `public/CNAME` preserves the custom domain in GitHub Pages deployments.
 
 ## GitHub Pages deployment
 
-The GitHub Pages URL for the current provisional project-path configuration is <https://rahmaniho.github.io/Qazvintasvir/>. `.github/workflows/deploy-pages.yml` builds and deploys the site to GitHub Pages after changes reach `main`; it also supports a manual run from `main`. The workflow runs the same checks, redirect generation, build, and static-output tests before publishing `dist/`.
+`.github/workflows/deploy-pages.yml` builds and deploys the site to GitHub Pages after changes reach `main`; it also supports a manual run from `main`. The workflow runs diagnostics, redirect generation, build, and static-output tests before publishing `dist/`.
 
-The workflow configures Pages for GitHub Actions deployment. Once this change is merged to `main`, confirm in **Settings → Pages** that the build and deployment source is **GitHub Actions**, then check the workflow's deployment URL. The site and sitemap use the provisional GitHub Pages host for now; do not configure a custom domain until the production domain is explicitly approved.
+In **Settings → Pages**, the deployment source should be **GitHub Actions** and the custom domain should be `qazvintasvir.ir`. GitHub must finish provisioning the TLS certificate before **Enforce HTTPS** can be enabled; verify that HTTPS enforcement is on once the certificate is ready.
 
 ## Routes
 

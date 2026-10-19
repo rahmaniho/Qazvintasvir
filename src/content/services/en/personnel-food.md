@@ -6,9 +6,9 @@ description: "Contract catering for factory and company teams, with rotating men
 meta: "Qazvin Tasvir staff catering: rotating menus, hygienic preparation and on-site delivery for organizational meal programs."
 summary: "A coordinated meal program for staff, from menu planning through delivery."
 highlight: "Corporate Meals"
-image: "/Qazvintasvir/assets/img/personnel-food/hero-kitchen.jpg"
+image: "/assets/img/personnel-food/hero-kitchen.jpg"
 image_alt: "Industrial kitchen prepared for hygienic corporate meal production"
-story_image: "/Qazvintasvir/assets/img/personnel-food/food-delivery.jpg"
+story_image: "/assets/img/personnel-food/food-delivery.jpg"
 story_alt: "Packed staff meals ready for delivery to an industrial workplace"
 order: 7
 points:

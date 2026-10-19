@@ -4,7 +4,7 @@ export function canonicalURL(url: URL): string {
 }
 
 export function getHreflangUrls(pathname: string, site: string, base: string, availableLangs: string[] = ['fa','en']): Array<{lang: string, href: string}> {
-  // pathname like /Qazvintasvir/fa/services/import-export/
+  // pathname like /fa/services/import-export/ on the configured custom-domain base
   // Produce alternate links for each lang
   const baseClean = base.replace(/\/$/, '');
   const siteClean = site.replace(/\/$/, '');

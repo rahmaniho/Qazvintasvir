@@ -6,9 +6,9 @@ description: "نیازهای تأمین کارخانه و شرکت را به م�
 meta: "خدمات تأمین مواد اولیه و تجهیزات صنعتی قزوین تصویر؛ نیازسنجی، بررسی تأمین‌کنندگان و هماهنگی خرید و حمل."
 summary: "تبدیل نیاز کارخانه به مسیر تأمین، خرید و تحویل قابل پیگیری."
 highlight: "مواد اولیه و تجهیزات"
-image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
+image: "/assets/img/sections/trade-customs.jpg"
 image_alt: "پالت‌های بسته‌بندی‌شده و کامیون بارگیری‌شده در محوطه صنعتی"
-story_image: "/Qazvintasvir/assets/img/sections/about-office.jpg"
+story_image: "/assets/img/sections/about-office.jpg"
 story_alt: "جلسه کاری برای بررسی نیازهای تأمین و تجهیزات سازمانی"
 order: 3
 points:

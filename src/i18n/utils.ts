@@ -8,11 +8,9 @@ export const languages: Lang[] = ['fa', 'en'];
 export const ui = { fa, en };
 
 export function getLangFromUrl(url: URL): Lang {
-  // url.pathname includes base? Astro.url.pathname includes base prefix.
-  // Check both segments for lang
+  // Find the locale segment, whether or not a deployment base path is present.
   const parts = url.pathname.split('/').filter(Boolean);
-  // e.g. /Qazvintasvir/fa/... => parts = ['Qazvintasvir','fa',...]
-  // or /fa/... when base not in pathname? Astro includes base in url.
+  // Routes are locale-prefixed, e.g. /fa/... or /en/...; a non-root base may add another path segment.
   for (const p of parts) {
     if (p === 'fa' || p === 'en') return p as Lang;
   }
@@ -40,7 +38,7 @@ export function localizePath(path: string, lang: Lang): string {
 
 export function getLocalizedUrl(url: URL, targetLang: Lang): string {
   const pathname = url.pathname;
-  // base handling: /Qazvintasvir/fa/xxx => replace
+  // Replace the locale segment while preserving the rest of the route.
   return pathname.replace(/\/(fa|en)(\/|$)/, `/${targetLang}$2`);
 }
 

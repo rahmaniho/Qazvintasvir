@@ -6,9 +6,9 @@ description: "سرویس رفت‌وآمد منظم برای شیفت‌های �
 meta: "خدمات ترابری پرسنل کارخانجات قزوین تصویر؛ طراحی مسیر، سرویس شیفتی، ناوگان اتوبوس، مینی‌بوس و ون."
 summary: "طراحی و اجرای سرویس شیفتی کارخانه با ناوگان اتوبوس، مینی‌بوس و ون."
 highlight: "ترابری پرسنل"
-image: "/Qazvintasvir/assets/images/bus-fleet.jpg"
+image: "/assets/images/bus-fleet.jpg"
 image_alt: "اتوبوس سرویس پرسنل در محوطه یک مجتمع صنعتی"
-story_image: "/Qazvintasvir/assets/images/minibus-fleet.jpg"
+story_image: "/assets/images/minibus-fleet.jpg"
 story_alt: "مینی‌بوس سرویس پرسنل برای مسیرهای صنعتی"
 order: 4
 points:

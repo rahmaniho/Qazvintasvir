@@ -6,9 +6,9 @@ description: "Coordination for permitted-goods trade, from reviewing supply need
 meta: "Qazvin Tasvir import and export services for permitted goods: needs review, purchasing coordination, documentation and international freight follow-up."
 summary: "Coordinated sourcing and movement of permitted goods with step-by-step follow-up."
 highlight: "Permitted Goods"
-image: "/Qazvintasvir/assets/img/sections/hero-port.jpg"
+image: "/assets/img/sections/hero-port.jpg"
 image_alt: "Container port and cargo vessel at sunset"
-story_image: "/Qazvintasvir/assets/img/sections/trade-customs.jpg"
+story_image: "/assets/img/sections/trade-customs.jpg"
 story_alt: "Shipment preparation and coordination of transport documents"
 order: 1
 points:

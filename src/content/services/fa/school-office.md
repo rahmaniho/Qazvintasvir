@@ -6,9 +6,9 @@ description: "سرویس رفت‌وآمد روزانه برای مدارس، ا
 meta: "خدمات سرویس مدارس، ادارات و شرکت‌ها توسط قزوین تصویر؛ برنامه‌ریزی مسیر، زمان‌بندی و ناوگان متناسب."
 summary: "راهکار رفت‌وآمد روزانه برای مدارس، ادارات و شرکت‌ها با مسیر و زمان‌بندی منظم."
 highlight: "مدارس، ادارات و شرکت‌ها"
-image: "/Qazvintasvir/assets/images/minibus-fleet.jpg"
+image: "/assets/images/minibus-fleet.jpg"
 image_alt: "مینی‌بوس سرویس برای جابه‌جایی گروهی در محیط شهری"
-story_image: "/Qazvintasvir/assets/images/van-fleet.jpg"
+story_image: "/assets/images/van-fleet.jpg"
 story_alt: "ون سرویس شهری برای جابه‌جایی گروه‌های کوچک"
 order: 6
 points:
