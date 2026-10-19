@@ -35,6 +35,20 @@ test('build emits the bilingual public route set', () => {
   assert.ok(existsSync(resolve(dist, '404.html')), 'missing localized 404 output');
 });
 
+test('the bilingual articles index is discoverable in desktop and mobile navigation', () => {
+  for (const [lang, label] of [['fa', 'مقاله‌ها'], ['en', 'Articles']]) {
+    const home = read(route(lang));
+    const href = `/${lang}/articles/`;
+    assert.ok(home.includes(`<a href="${href}" class="nav-menu__link"`), `desktop article link missing for ${lang}`);
+    assert.ok(home.includes(`<a href="${href}" class="mobile-drawer__link"`), `mobile article link missing for ${lang}`);
+    assert.ok(home.includes(label), `localized article label missing for ${lang}`);
+
+    const index = read(route(lang, 'articles'));
+    assert.ok(index.includes(`<a href="${href}" class="nav-menu__link" aria-current="page"`), `desktop article link should be marked current on ${lang} index`);
+    assert.ok(index.includes(`<a href="${href}" class="mobile-drawer__link" aria-current="page"`), `mobile article link should be marked current on ${lang} index`);
+  }
+});
+
 test('Persian about page uses refined copy and stable RTL typography hooks', () => {
   const html = read(route('fa', 'about'));
   assert.match(html, /دربارهٔ قزوین تصویر \| همراه صنایع قزوین از ۱۳۷۴/);
