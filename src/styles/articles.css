@@ -454,8 +454,10 @@
   [data-theme="dark"] .editorial-breadcrumbs a,
   [data-theme="dark"] .editorial-list__eyebrow,
   [data-theme="dark"] .editorial-category,
-  [data-theme="dark"] .editorial-focus li::before,
   [data-theme="dark"] .editorial-read-link { color: #7dd3fc; }
+  [data-theme="dark"] .editorial-focus li::before { background: #7dd3fc; }
+  [data-theme="dark"] .editorial-feature h2 a:hover,
+  [data-theme="dark"] .editorial-card h3 a:hover { color: #7dd3fc; }
   [data-theme="dark"] .editorial-read-link { border-color: #24506c; background: #142b40; }
   [data-theme="dark"] .editorial-read-link:hover { background: #155e75; color: #fff; }
 
