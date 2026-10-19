@@ -22,6 +22,11 @@ export default defineConfig({
   build: {
     format: 'directory'
   },
+  vite: {
+    preview: {
+      allowedHosts: ['.e2b.app']
+    }
+  },
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp'
