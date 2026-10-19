@@ -23,6 +23,9 @@ export default defineConfig({
     format: 'directory'
   },
   vite: {
+    server: {
+      allowedHosts: ['.e2b.app']
+    },
     preview: {
       allowedHosts: ['.e2b.app']
     }

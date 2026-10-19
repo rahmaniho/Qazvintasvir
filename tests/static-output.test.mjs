@@ -20,6 +20,11 @@ test('build emits the bilingual public route set', () => {
     assert.ok(existsSync(resolve(dist, route(lang, 'about'))), `missing /${lang}/about/`);
     assert.ok(existsSync(resolve(dist, route(lang, 'contact'))), `missing /${lang}/contact/`);
     assert.ok(existsSync(resolve(dist, route(lang, 'services'))), `missing /${lang}/services/`);
+    assert.ok(existsSync(resolve(dist, route(lang, 'articles'))), `missing /${lang}/articles/`);
+    assert.ok(existsSync(resolve(dist, route(lang, 'articles/services-guide'))), `missing /${lang}/articles/services-guide/`);
+    assert.ok(existsSync(resolve(dist, route(lang, 'articles/permitted-goods-trade'))), `missing /${lang}/articles/permitted-goods-trade/`);
+    assert.ok(existsSync(resolve(dist, route(lang, 'articles/factory-staff-transport-qazvin'))), `missing /${lang}/articles/factory-staff-transport-qazvin/`);
+    assert.ok(existsSync(resolve(dist, route(lang, 'articles/corporate-catering-qazvin'))), `missing /${lang}/articles/corporate-catering-qazvin/`);
     for (const slug of standaloneSectionSlugs) {
       assert.ok(existsSync(resolve(dist, route(lang, slug))), `missing /${lang}/${slug}/`);
     }
@@ -113,7 +118,7 @@ test('footer credit uses the original bilingual KarenSoft artwork and a secure e
 
 test('English routes have localized visible copy and language-aware document metadata', () => {
   const persianOrArabic = /[\u0600-\u06FF]/;
-  const paths = ['', 'about', 'contact', 'services', ...standaloneSectionSlugs, ...serviceSlugs.map((slug) => `services/${slug}`)];
+  const paths = ['', 'about', 'contact', 'services', 'articles', 'articles/services-guide', 'articles/permitted-goods-trade', 'articles/factory-staff-transport-qazvin', 'articles/corporate-catering-qazvin', ...standaloneSectionSlugs, ...serviceSlugs.map((slug) => `services/${slug}`)];
   for (const path of paths) {
     const html = read(route('en', path));
     const visibleHtml = html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
@@ -126,6 +131,85 @@ test('English routes have localized visible copy and language-aware document met
     if (path) {
       assert.match(html, new RegExp(`rel="canonical" href="[^"]*/en/${path}/"`), `missing English canonical for ${name}`);
       assert.match(html, new RegExp(`hreflang="fa" href="[^"]*/fa/${path}/"`), `missing Persian alternate for ${name}`);
+    }
+  }
+});
+
+test('bilingual service-guide articles publish localized Article, FAQ and service-list structured data', () => {
+  for (const lang of ['fa', 'en']) {
+    const html = read(route(lang, 'articles/services-guide'));
+    assert.match(html, /property="og:type" content="article"/);
+    assert.match(html, /class="guide-answer"/, `missing concise answer block on ${lang} article`);
+    assert.match(html, /class="guide-faq__list"/, `missing visible FAQ on ${lang} article`);
+    assert.match(html, /class="guide-service-card"/, `missing internal service cards on ${lang} article`);
+    for (const slug of serviceSlugs) assert.ok(html.includes(`/${lang}/services/${slug}/`), `${slug} missing from ${lang} article`);
+
+    const scripts = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+    const graph = scripts.find((schema) => Array.isArray(schema['@graph']))?.['@graph'] ?? [];
+    assert.ok(graph.some((schema) => schema['@type'] === 'Article' && schema.inLanguage === lang), `localized Article schema missing for ${lang}`);
+    const faq = graph.find((schema) => schema['@type'] === 'FAQPage');
+    const items = graph.find((schema) => schema['@type'] === 'ItemList');
+    assert.equal(faq?.mainEntity?.length, 5, `FAQ schema should match visible questions on ${lang} article`);
+    assert.equal(items?.itemListElement?.length, 8, `article should reference all eight source services in ${lang}`);
+  }
+
+  for (const asset of ['services-guide-hero.jpg', 'services-guide-trade.jpg', 'services-guide-mobility.jpg', 'services-guide-catering.jpg']) {
+    assert.ok(existsSync(resolve(dist, 'assets/img/articles', asset)), `missing service-guide image ${asset}`);
+  }
+});
+
+test('permitted-goods article explains classification, cites references and avoids an unverified whitelist', () => {
+  const persianOrArabic = /[\u0600-\u06FF]/;
+  for (const lang of ['fa', 'en']) {
+    const html = read(route(lang, 'articles/permitted-goods-trade'));
+    assert.match(html, /class="guide-status-table"/, `missing the three-status comparison table on ${lang}`);
+    assert.match(html, /class="guide-steps"/, `missing the practical review checklist on ${lang}`);
+    assert.match(html, /class="guide-risk-panel"/, `missing common-risk guidance on ${lang}`);
+    assert.match(html, /class="guide-sources[^\"]*"/, `missing source references on ${lang}`);
+    assert.match(html, /nezamat\.ir\/post-28025/);
+    assert.match(html, /tpo\.ir\//);
+    assert.match(html, /irica\.ir/);
+    assert.match(html, /guide-caution/, 'examples should be labeled as illustrative, not a permitted-goods list');
+
+    const visibleHtml = html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
+    if (lang === 'en') assert.doesNotMatch(visibleHtml, persianOrArabic, 'English trade article should be fully localized');
+    const scripts = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+    const graph = scripts.find((schema) => Array.isArray(schema['@graph']))?.['@graph'] ?? [];
+    assert.ok(graph.some((schema) => schema['@type'] === 'Article' && schema.inLanguage === lang), `Article schema missing for ${lang}`);
+    assert.equal(graph.find((schema) => schema['@type'] === 'FAQPage')?.mainEntity?.length, 5, `FAQ structured data should cover all visible questions in ${lang}`);
+  }
+
+  const index = read(route('fa', 'articles'));
+  assert.equal((index.match(/class="guide-index-card"/g) ?? []).length, 4, 'all four guides should appear in the articles index');
+  assert.ok(index.includes('/fa/articles/factory-staff-transport-qazvin/'));
+  assert.ok(index.includes('/fa/articles/corporate-catering-qazvin/'));
+  for (const asset of ['permitted-goods-hero.jpg', 'permitted-goods-industrial.jpg', 'permitted-goods-agri.jpg']) {
+    assert.ok(existsSync(resolve(dist, 'assets/img/articles', asset)), `missing permitted-goods illustration ${asset}`);
+  }
+});
+
+test('industrial transport and corporate catering articles render bilingual guidance, structured data and image sets', () => {
+  const entries = [
+    { slug: 'factory-staff-transport-qazvin', service: 'factory-transport', images: ['industrial-shuttle-hero.jpg', 'industrial-shuttle-minibus.jpg', 'industrial-shuttle-planning.jpg'] },
+    { slug: 'corporate-catering-qazvin', service: 'personnel-food', images: ['corporate-catering-hero.jpg', 'corporate-catering-meal-delivery.jpg', 'corporate-catering-hospitality.jpg'] },
+  ];
+  const persianOrArabic = /[\u0600-\u06FF]/;
+  for (const { slug, service, images } of entries) {
+    for (const lang of ['fa', 'en']) {
+      const html = read(route(lang, `articles/${slug}`));
+      assert.match(html, /class="guide-answer"/, `missing concise answer on ${lang}/${slug}`);
+      assert.match(html, /class="guide-example-grid guide-example-grid--three"/, `missing varied image gallery on ${lang}/${slug}`);
+      assert.ok(html.includes(`/${lang}/services/${service}/`), `missing service detail link on ${lang}/${slug}`);
+      const visibleHtml = html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
+      if (lang === 'en') assert.doesNotMatch(visibleHtml, persianOrArabic, `English article ${slug} contains untranslated copy`);
+      const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+      const graph = schemas.find((schema) => Array.isArray(schema['@graph']))?.['@graph'] ?? [];
+      assert.ok(graph.some((schema) => schema['@type'] === 'Article' && schema.inLanguage === lang), `Article schema missing for ${lang}/${slug}`);
+      assert.ok((graph.find((schema) => schema['@type'] === 'FAQPage')?.mainEntity?.length ?? 0) >= 5, `FAQ schema missing for ${lang}/${slug}`);
+      for (const image of images) {
+        assert.ok(html.includes(image), `${image} is not used by ${lang}/${slug}`);
+        assert.ok(existsSync(resolve(dist, 'assets/img/articles', image)), `missing article image ${image}`);
+      }
     }
   }
 });
@@ -449,6 +533,14 @@ test('sitemap and robots.txt use the confirmed custom domain', () => {
   const sitemap = read('sitemap-0.xml');
   assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/fa\//);
   assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/en\//);
+  assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/fa\/articles\/services-guide\//);
+  assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/en\/articles\/services-guide\//);
+  assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/fa\/articles\/permitted-goods-trade\//);
+  assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/en\/articles\/permitted-goods-trade\//);
+  assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/fa\/articles\/factory-staff-transport-qazvin\//);
+  assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/en\/articles\/factory-staff-transport-qazvin\//);
+  assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/fa\/articles\/corporate-catering-qazvin\//);
+  assert.match(sitemap, /https:\/\/qazvintasvir\.ir\/en\/articles\/corporate-catering-qazvin\//);
   assert.doesNotMatch(sitemap, /\/services\/personnel-food\.html/);
   assert.doesNotMatch(sitemap, /\/Qazvintasvir\//);
   const robots = read('robots.txt');
