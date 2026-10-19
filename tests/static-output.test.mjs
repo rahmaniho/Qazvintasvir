@@ -238,7 +238,7 @@ test('homepages place an accessible bilingual client-logo ticker immediately aft
   const css = readFileSync(resolve(root, 'src/styles/components.css'), 'utf8');
   assert.match(css, /\.client-marquee__panel[^{]*\{[^}]*backdrop-filter:\s*blur/);
   assert.match(css, /\.client-marquee__logo-card\s*\{[^}]*flex:\s*0 0 168px/, 'logo frames should be large enough to display the full marks');
-  assert.match(css, /\.client-marquee__logo-card img\s*\{[^}]*inline-size:\s*44%;[^}]*block-size:\s*44%/, 'logos should be half-sized within each frame');
+  assert.match(css, /\.client-marquee__logo-card img\s*\{[^}]*inline-size:\s*55%;[^}]*block-size:\s*55%/, 'logos should reflect the requested 25% size increase');
   assert.match(css, /\.client-marquee__logo-card\s*\{[^}]*backdrop-filter:\s*blur/, 'each logo should sit on a frosted-glass card');
   assert.match(css, /@keyframes client-marquee-scroll/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.client-marquee__track\s*\{\s*animation:\s*none/);
