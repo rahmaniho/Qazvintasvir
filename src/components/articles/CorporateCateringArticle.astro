@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/articles.css';
+
+interface Props { lang: 'fa' | 'en' }
+const { lang } = Astro.props;
+const isFa = lang === 'fa';
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = (Astro.site?.toString() || 'https://qazvintasvir.ir').replace(/\/$/, '');
+const slug = 'corporate-catering-qazvin';
+const canonical = `${site}${baseUrl}/${lang}/articles/${slug}/`;
+const heroPath = `${baseUrl}/assets/img/articles/corporate-catering-hero.jpg`;
+const heroUrl = `${site}${heroPath}`;
+const deliveryPath = `${baseUrl}/assets/img/articles/corporate-catering-meal-delivery.jpg`;
+const hospitalityPath = `${baseUrl}/assets/img/articles/corporate-catering-hospitality.jpg`;
+const articleTitle = isFa
+  ? 'غذای پرسنلی، کترینگ شرکتی و پذیرایی سازمانی در قزوین؛ راهنمای خدمات و قیمت'
+  : 'Corporate Catering and Staff Meals in Qazvin: Services, Event Hospitality and Pricing';
+const description = isFa
+  ? 'راهنمای تأمین غذای پرسنل و کترینگ شرکتی در قزوین؛ منوی چرخشی، وعده‌های شیفتی، پذیرایی سازمانی و عوامل مؤثر بر قیمت و انتخاب خدمت.'
+  : 'A practical guide to staff meals and corporate catering in Qazvin: rotating menus, shift meals, organisational hospitality and the factors that affect price and service choice.';
+const hreflang = [
+  { lang: 'fa', href: `${site}${baseUrl}/fa/articles/${slug}/` },
+  { lang: 'en', href: `${site}${baseUrl}/en/articles/${slug}/` },
+  { lang: 'x-default', href: `${site}${baseUrl}/fa/articles/${slug}/` },
+];
+const copy = isFa ? {
+  home: 'خانه', articles: 'مقاله‌ها', current: 'کترینگ شرکتی و غذای پرسنلی در قزوین',
+  eyebrow: 'راهنمای غذای سازمانی و پذیرایی',
+  lead: 'وعدهٔ غذایی کارخانه باید با شیفت و زمان تحویل هماهنگ باشد؛ پذیرایی جلسه یا مناسبت سازمانی هم به برنامه‌ای متفاوت نیاز دارد. در هر دو، کیفیت تجربه از جزئیات قابل سنجش می‌آید: منو، تعداد، بسته‌بندی، محل و زمان تحویل و مسئولیت‌های اجرایی. این راهنما خدمات غذای پرسنلی و پذیرایی قزوین تصویر را با همین نگاه مرور می‌کند.',
+  heroAlt: 'آشپزهای حرفه‌ای در حال آماده‌سازی وعده‌های غذایی برای پذیرایی و غذای سازمانی',
+  heroCaption: 'تصویر مفهومی؛ تصویر، نمایی از آشپزخانه یا سفارش مشخص قزوین تصویر نیست.',
+  answerTitle: 'خلاصهٔ پاسخ: غذای سازمانی از برنامهٔ کار مجموعه آغاز می‌شود',
+  answer: 'قزوین تصویر در صفحهٔ تأمین غذای پرسنل، صبحانه، ناهار، شام و میان‌وعده را با منوی چرخشی، طبخ، بسته‌بندی و توزیع در محل معرفی می‌کند. صفحهٔ خدمت همچنین از برنامه‌های مناسبتی و پذیرایی سازمانی نام می‌برد. تعداد، منو، زمان و محل تحویل و دامنهٔ پذیرایی باید برای هر مجموعه مشخص شود؛ قیمت ثابت یا تشریفات کامل رویداد بدون توافق جزئیات قابل فرض نیست.',
+  tocTitle: 'در این راهنما',
+  toc: [['services', 'چه نوع خدمات غذایی؟'], ['planning', 'منوی مناسب کارکنان و شیفت‌ها'], ['hospitality', 'پذیرایی شرکتی و سازمانی'], ['price', 'قیمت کترینگ در قزوین'], ['quality', 'کیفیت و هماهنگی اجرا'], ['faq', 'پرسش‌های پرتکرار']],
+  servicesTitle: 'خدمات غذای پرسنلی و شرکتی را به سه نیاز تقسیم کنید',
+  servicesIntro: 'پیش از استعلام، مشخص کنید درخواست شما برای وعدهٔ روزانهٔ کارکنان است، پذیرایی یک برنامهٔ سازمانی یا ترکیبی از هر دو. این تفکیک، انتخاب منو و برآورد قیمت را شفاف‌تر می‌کند.',
+  services: [
+    ['غذای پرسنل و شیفت کارخانه', 'صبحانه، ناهار، شام یا میان‌وعده با تعداد، زمان تحویل و محل توزیع هماهنگ با برنامهٔ کاری مجموعه.'],
+    ['کترینگ شرکتی و وعده‌های قراردادی', 'منوی چرخشی و برنامهٔ منظم برای شرکت‌ها و سازمان‌هایی که وعدهٔ کارکنان را به‌صورت روزانه یا مستمر دنبال می‌کنند.'],
+    ['پذیرایی سازمانی و برنامه‌های مناسبتی', 'برای جلسه، گردهمایی یا مناسبت سازمانی، نوع پذیرایی، تعداد مهمان، زمان و محدودهٔ خدمات را از ابتدا روشن کنید.'],
+  ],
+  mealTitle: 'منوی کارکنان باید با ریتم محل کار هماهنگ باشد',
+  mealText: 'در برنامهٔ غذای پرسنلی، تنها تنوع غذا مطرح نیست. تعداد پرس، شیفت روز یا شب، زمان آماده‌سازی، نوع بسته‌بندی، محل تحویل و امکانات توزیع باید کنار هم دیده شوند. اطلاعات صفحهٔ خدمت قزوین تصویر به منوی چرخشی هفتگی و امکان هماهنگی منو با بودجه و شرایط مجموعه اشاره دارد. درخواست نمونهٔ منو و مشخص‌کردن حساسیت‌های غذایی کارکنان، گفت‌وگو را کاربردی‌تر می‌کند.',
+  mealNote: 'صفحهٔ فعلی خدمت، حداقل سفارش ۵۰ پرس برای هر وعده را درج کرده است؛ این شرط را پیش از ثبت سفارش یا قرارداد دوباره از شرکت تأیید کنید.',
+  hospitalityTitle: 'پذیرایی شرکت و مراسم سازمانی؛ دامنهٔ خدمت را دقیق بنویسید',
+  hospitalityText: 'پذیرایی جلسه و برنامهٔ مناسبتی با وعدهٔ روزانهٔ پرسنل یکسان نیست. برای برآورد روشن، تعداد مدعوین، زمان‌بندی، سبک پذیرایی، محل تحویل، نیاز به بسته‌بندی فردی یا میز پذیرایی و مسئولیت جمع‌آوری یا توزیع را مشخص کنید. خدمت منتشرشده به پذیرایی سازمانی اشاره می‌کند؛ محل برگزاری، دکور، تجهیزات رویداد یا مدیریت کامل مراسم را فقط در صورت تأیید مکتوب جزو تعهدات بدانید.',
+  hospitalityNote: 'اگر منظور از «تشریفات» اجرای کامل رویداد است، اقلام مورد انتظار—مانند محل، چیدمان، نیروی پذیرایی یا تجهیزات—را جداگانه بپرسید؛ این مقاله دربارهٔ خدمات غذای سازمانی و پذیرایی است، نه تضمین همهٔ خدمات رویدادی.',
+  galleryTitle: 'از آشپزخانه تا محل پذیرایی',
+  gallery: [
+    [heroPath, 'آماده‌سازی غذا در آشپزخانهٔ حرفه‌ای برای سفارش سازمانی', 'تصویرسازی مفهومی از مرحلهٔ طبخ و آماده‌سازی.'],
+    [deliveryPath, 'ظرف‌های غذای بسته‌بندی‌شده در محل تحویل یک مجموعهٔ صنعتی', 'تصویرسازی مفهومی از بسته‌بندی و توزیع وعده‌های پرسنلی.'],
+    [hospitalityPath, 'میز پذیرایی برای جلسه یا برنامهٔ شرکتی در فضای کنفرانس', 'تصویر مفهومی پذیرایی؛ محدودهٔ هر سفارش باید توافق شود.'],
+  ],
+  priceTitle: 'قیمت غذای پرسنلی و کترینگ شرکتی در قزوین به چه چیزهایی بستگی دارد؟',
+  priceIntro: 'نرخ هر وعده به مشخصات سفارش وابسته است و یک عدد واحد برای همهٔ شرکت‌ها معنای دقیقی ندارد. برای دریافت قیمت قابل مقایسه، این موارد را در درخواست خود بنویسید:',
+  priceFactors: [
+    ['تعداد پرس و دفعات سفارش', 'تعداد هر وعده، تعداد روزهای هفته و مدت قرارداد یا سفارش مناسبتی.'],
+    ['نوع وعده و ترکیب منو', 'صبحانه، ناهار، شام یا میان‌وعده؛ نوع غذا، مواد اولیه و سطح تنوع مورد انتظار.'],
+    ['شیفت و ساعت تحویل', 'زمان آماده‌سازی و تحویل، چند نوبت توزیع و نیاز احتمالی به برنامهٔ شبانه یا تعطیل.'],
+    ['بسته‌بندی و محل توزیع', 'تحویل فردی یا گروهی، نشانی و دسترسی محل، امکانات دریافت و نحوهٔ تحویل.'],
+    ['پذیرایی و خدمات جانبی', 'اگر برای جلسه یا مراسم است، تعداد مهمان، شیوهٔ سرو و هر نیروی اجرایی یا تجهیز مورد نیاز را جداگانه مشخص کنید.'],
+  ],
+  compareTitle: 'چطور قیمت را بدون افت کیفیت مقایسه کنیم؟',
+  compareText: 'از هر تأمین‌کننده پیشنهاد مکتوب بخواهید که منو، وزن یا ترکیب وعده در صورت توافق، تعداد، زمان و محل تحویل، نوع بسته‌بندی، هزینه‌های جانبی، شرایط تغییر تعداد و شیوهٔ رسیدگی به بازخورد را روشن کند. دو پیشنهاد را فقط وقتی مقایسه کنید که دامنهٔ خدمت یکسان باشد. بهترین قیمت، کمترین رقم روی کاغذ نیست؛ قیمت مناسب باید با کیفیت توافق‌شده، تحویل به‌موقع و مسئولیت‌های شفاف تناسب داشته باشد. قزوین تصویر نیز شرایط نهایی را پس از بررسی نیاز مجموعه اعلام می‌کند.',
+  qualityTitle: 'پنج نکته برای اجرای منظم و تجربهٔ بهتر کارکنان',
+  quality: [
+    ['منو و ذائقه', 'نمونهٔ منو، چرخهٔ تغییر غذا و روش جمع‌آوری نظر کارکنان را روشن کنید.'],
+    ['اطلاعات غذایی', 'حساسیت‌ها، محدودیت‌های غذایی و گزینه‌های ویژه را پیش از نهایی‌کردن منو اعلام کنید.'],
+    ['زمان و دما', 'زمان طبخ، بسته‌بندی و تحویل را با شیفت هماهنگ کنید و روش نگهداری و توزیع را بپرسید.'],
+    ['بهداشت و مستندات', 'فرآیندهای بهداشتی و مدارک مورد نیاز مجموعه را پیش از قرارداد بررسی کنید؛ گواهی یا مجوزی را بدون مشاهده فرض نکنید.'],
+    ['مسئولیت و بازخورد', 'مسئول تحویل، تعداد مورد توافق، روش گزارش کسری یا تأخیر و مسیر رسیدگی به بازخورد را بنویسید.'],
+  ],
+  faqTitle: 'پرسش‌های پرتکرار دربارهٔ غذای سازمانی در قزوین',
+  faqs: [
+    ['قزوین تصویر چه وعده‌هایی برای غذای پرسنل ارائه می‌کند؟', 'صفحهٔ خدمت، صبحانه، ناهار، شام و میان‌وعده، منوی چرخشی، طبخ، بسته‌بندی و توزیع در محل را معرفی می‌کند. برنامهٔ نهایی با نیاز و شیفت مجموعه هماهنگ می‌شود.'],
+    ['حداقل تعداد سفارش غذای پرسنلی چقدر است؟', 'در صفحهٔ فعلی خدمت، حداقل سفارش ۵۰ پرس برای هر وعده درج شده است. چون شرایط ممکن است تغییر کند، این حداقل را هنگام استعلام دوباره تأیید کنید.'],
+    ['آیا برای جلسه و مناسبت‌های شرکت هم پذیرایی انجام می‌شود؟', 'صفحهٔ خدمت به برنامه‌های مناسبتی و پذیرایی سازمانی اشاره می‌کند. نوع منو، تعداد، محل و محدودهٔ اجرایی هر سفارش باید پیش از توافق مشخص شود؛ اجرای کامل تشریفات یا مدیریت رویداد را بدون تأیید جداگانه فرض نکنید.'],
+    ['قیمت کترینگ شرکتی چگونه محاسبه می‌شود؟', 'تعداد پرس، نوع وعده و منو، شیفت و ساعت تحویل، محل توزیع، بسته‌بندی و خدمات جانبی در پیشنهاد قیمت اثر دارند. برای نرخ دقیق، شرح سفارش را ارسال کنید.'],
+    ['آیا خدمات به همهٔ شهرک‌ها و حومهٔ قزوین می‌رسد؟', 'نشانی و شرایط دسترسی محل توزیع باید برای هر درخواست بررسی شود. نام شهرک، تعداد وعده و ساعت تحویل را اعلام کنید تا امکان اجرا مشخص شود.'],
+  ],
+  disclaimer: 'تصاویر این مقاله مفهومی‌اند و نمای یک سفارش یا محل واقعی شرکت نیستند. قیمت، حداقل سفارش، امکان پوشش مسیر و دامنهٔ پذیرایی باید پیش از قرارداد مستقیماً تأیید شود.',
+  ctaTitle: 'برای منو و برآورد متناسب با مجموعه‌تان گفت‌وگو کنید',
+  ctaText: 'تعداد پرس، نوع وعده، شیفت‌ها، محل توزیع و اگر برنامهٔ مناسبتی دارید جزئیات آن را آماده کنید تا درخواست شما دقیق‌تر بررسی شود.',
+  ctaContact: 'درخواست مشاوره و قیمت', ctaService: 'جزئیات تأمین غذای پرسنل',
+} : {
+  home: 'Home', articles: 'Articles', current: 'Corporate catering and staff meals in Qazvin',
+  eyebrow: 'Workplace meals and hospitality guide',
+  lead: 'Factory meals have to fit shift and delivery times; a company meeting or organisational event has a different hospitality plan. In both cases, the experience depends on measurable details: menu, portions, packaging, delivery point and time, and operational responsibilities. This guide reviews Qazvin Tasvir’s staff catering and corporate hospitality information through that lens.',
+  heroAlt: 'Professional kitchen team preparing meals for workplace catering',
+  heroCaption: 'Illustrative image; it does not show Qazvin Tasvir’s kitchen or a specific order.',
+  answerTitle: 'In short: workplace catering starts with the organisation’s schedule',
+  answer: 'Qazvin Tasvir’s staff catering page lists breakfast, lunch, dinner and snacks, with a rotating menu, cooking, packaging and on-site distribution. The service page also mentions occasion-based programmes and organisational hospitality. Portions, menu, timing, delivery location and the scope of event service need to be agreed for each organisation; a fixed price or full event-production package should not be assumed without written confirmation.',
+  tocTitle: 'In this guide',
+  toc: [['services', 'Types of catering service'], ['planning', 'Menus for staff and shifts'], ['hospitality', 'Company and organisational hospitality'], ['price', 'Catering prices in Qazvin'], ['quality', 'Quality and delivery coordination'], ['faq', 'Frequently asked questions']],
+  servicesTitle: 'Group staff meals and corporate catering by need',
+  servicesIntro: 'Before requesting a quote, identify whether you need daily employee meals, catering for an organisational event, or both. This makes menu planning and pricing clearer.',
+  services: [
+    ['Staff meals for factory shifts', 'Breakfast, lunch, dinner or snacks, with portions, delivery times and serving locations aligned to the organisation’s schedule.'],
+    ['Contracted company catering', 'Rotating menus and a regular plan for organisations arranging daily or ongoing staff meals.'],
+    ['Organisational hospitality and occasions', 'For a meeting or company event, clarify the hospitality style, guest count, schedule and service scope from the outset.'],
+  ],
+  mealTitle: 'Staff menus should match the rhythm of the workplace',
+  mealText: 'Staff catering is not only about variety. Portions, day or night shifts, preparation time, packaging, delivery location and serving facilities all need to be considered together. Qazvin Tasvir’s published page refers to a rotating weekly menu and menu coordination around an organisation’s budget and needs. Asking for a sample menu and sharing dietary requirements helps make the discussion more useful.',
+  mealNote: 'The current service page lists a minimum order of 50 portions per meal. Confirm this requirement with the company before placing an order or signing a contract.',
+  hospitalityTitle: 'Company and event hospitality: define the scope precisely',
+  hospitalityText: 'Meeting catering is different from a daily staff meal. For a clear quote, specify guest numbers, schedule, hospitality style, delivery point, individual packaging or buffet needs, and responsibility for serving or clearing. The published service page mentions organisational hospitality; venue, décor, event equipment or full event management should only be treated as included if confirmed in writing.',
+  hospitalityNote: 'If “event services” means full event production, ask separately about venue, layout, service staff and equipment. This guide covers workplace food and hospitality, not a guarantee of every event service.',
+  galleryTitle: 'From the kitchen to the serving point',
+  gallery: [
+    [heroPath, 'Meals being prepared in a professional kitchen for a corporate order', 'Illustrative scene of cooking and preparation.'],
+    [deliveryPath, 'Packaged meals at a workplace delivery point', 'Illustrative scene of staff meal packing and distribution.'],
+    [hospitalityPath, 'Corporate hospitality table set for a meeting or company event', 'Illustrative event catering; each order’s scope must be agreed.'],
+  ],
+  priceTitle: 'What affects staff meal and corporate catering prices in Qazvin?',
+  priceIntro: 'A meal price depends on the order details; one figure does not describe every organisation’s needs. To receive a comparable quote, include these items in your request:',
+  priceFactors: [
+    ['Portions and order frequency', 'Portions per meal, service days per week and contract length or one-off event.'],
+    ['Meal type and menu composition', 'Breakfast, lunch, dinner or snacks; dish selection, ingredients and expected variety.'],
+    ['Shift and delivery schedule', 'Preparation and delivery times, number of serving windows and any night or holiday schedule.'],
+    ['Packaging and distribution site', 'Individual or group packing, address and site access, receiving facilities and handover method.'],
+    ['Hospitality and add-on service', 'For meetings or events, state guest numbers, serving style and any staff or equipment requested.'],
+  ],
+  compareTitle: 'How to compare prices without compromising quality',
+  compareText: 'Ask each provider for a written proposal covering the menu, agreed portion size or meal composition, quantity, delivery time and location, packaging, additional costs, quantity-change terms and feedback process. Compare proposals only when their scope is alike. The best price is not simply the lowest number on paper; it should match the agreed quality, timely delivery and clearly assigned responsibilities. Qazvin Tasvir confirms final terms after reviewing the organisation’s needs.',
+  qualityTitle: 'Five details for dependable service and a better staff experience',
+  quality: [
+    ['Menu and preferences', 'Clarify sample menus, menu rotation and how employee feedback will be collected.'],
+    ['Dietary information', 'Share allergies, dietary restrictions and special options before finalising the menu.'],
+    ['Timing and temperature', 'Coordinate cooking, packing and delivery with shifts; ask about holding and distribution procedures.'],
+    ['Hygiene and documentation', 'Review hygiene procedures and any documents your organisation requires; do not assume a certificate or licence without seeing it.'],
+    ['Responsibilities and feedback', 'Record the delivery contact, agreed quantity, process for shortages or delays and how feedback is handled.'],
+  ],
+  faqTitle: 'Frequently asked questions about corporate catering in Qazvin',
+  faqs: [
+    ['Which meals does Qazvin Tasvir list for staff catering?', 'The service page lists breakfast, lunch, dinner and snacks, with a rotating menu, cooking, packaging and on-site distribution. The final plan is coordinated with each organisation’s needs and shifts.'],
+    ['What is the minimum order for staff meals?', 'The current service page lists a minimum of 50 portions per meal. Since terms can change, confirm the minimum when requesting a quote.'],
+    ['Is catering available for company meetings and occasions?', 'The service page mentions occasion-based programmes and organisational hospitality. Menu, quantity, location and operating scope must be agreed for each request; do not assume full event production without separate confirmation.'],
+    ['How are corporate catering prices calculated?', 'Portions, meal type and menu, shifts and delivery time, distribution location, packaging and add-on services affect the quote. Send the order details for a specific estimate.'],
+    ['Does delivery cover every industrial estate and suburb of Qazvin?', 'The address and site access need to be reviewed for each request. Share the industrial estate, portion count and delivery time so feasibility can be confirmed.'],
+  ],
+  disclaimer: 'Images are illustrative and do not depict a real order or company site. Price, minimum order, route coverage and hospitality scope should be confirmed directly before contracting.',
+  ctaTitle: 'Discuss a menu and estimate for your organisation',
+  ctaText: 'Prepare portion counts, meal types, shifts and delivery location; if this is an event, include its details so the request can be reviewed clearly.',
+  ctaContact: 'Request a quote', ctaService: 'Staff catering service details',
+};
+
+const serviceUrl = `${site}${baseUrl}/${lang}/services/personnel-food/`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article', headline: articleTitle, description, inLanguage: lang,
+      image: [heroUrl, `${site}${deliveryPath}`, `${site}${hospitalityPath}`],
+      mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+      author: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
+      publisher: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: site, logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png` } },
+      articleSection: isFa ? 'کترینگ شرکتی و غذای پرسنلی' : 'Corporate catering and staff meals',
+      keywords: isFa ? ['غذای پرسنلی قزوین', 'کترینگ شرکتی قزوین', 'غذای سازمانی', 'قیمت غذای پرسنل', 'پذیرایی سازمانی'] : ['staff catering Qazvin', 'corporate catering Qazvin', 'workplace meals', 'employee meal prices', 'organisational hospitality'],
+      about: { '@type': 'Service', name: isFa ? 'تأمین غذای پرسنل و وعده‌های سازمانی' : 'Staff meals and corporate catering', url: serviceUrl, provider: { '@type': 'Organization', name: isFa ? 'قزوین تصویر' : 'Qazvin Tasvir Company' } },
+      isAccessibleForFree: true,
+    },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: copy.home, item: `${site}${baseUrl}/${lang}/` },
+      { '@type': 'ListItem', position: 2, name: copy.articles, item: `${site}${baseUrl}/${lang}/articles/` },
+      { '@type': 'ListItem', position: 3, name: articleTitle, item: canonical },
+    ] },
+    { '@type': 'FAQPage', mainEntity: copy.faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
+  ],
+};
+---
+
+<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" bodyClass="article-page" preloadImage={heroPath} preloadImageType="image/jpeg">
+  <article class="service-guide">
+    <section class="guide-hero"><div class="container">
+      <nav class="breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}><a href={`${baseUrl}/${lang}/`}>{copy.home}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><a href={`${baseUrl}/${lang}/articles/`}>{copy.articles}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><span aria-current="page">{copy.current}</span></nav>
+      <div class="guide-hero__grid"><div class="guide-hero__copy"><span class="guide-eyebrow">{copy.eyebrow}</span><h1>{articleTitle}</h1><p class="guide-hero__lead">{copy.lead}</p></div>
+        <figure class="guide-cover"><img src={heroPath} alt={copy.heroAlt} width="1360" height="768" fetchpriority="high" decoding="async"/><figcaption>{copy.heroCaption}</figcaption></figure>
+      </div>
+    </div></section>
+    <div class="container guide-content">
+      <section class="guide-answer"><div class="guide-answer__mark" aria-hidden="true">i</div><div><h2>{copy.answerTitle}</h2><p>{copy.answer}</p></div></section>
+      <nav class="guide-toc" aria-label={copy.tocTitle}><strong>{copy.tocTitle}</strong><ul>{copy.toc.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ul></nav>
+
+      <section id="services" class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'مدل‌های سفارش' : 'Service types'}</span><h2>{copy.servicesTitle}</h2></div><p class="guide-article-intro">{copy.servicesIntro}</p><div class="guide-overview__grid">{copy.services.map(([title, text], index) => <article class="guide-overview__item"><span class="guide-overview__number">{isFa ? ['۰۱','۰۲','۰۳'][index] : `0${index + 1}`}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+
+      <section id="planning" class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'برنامهٔ وعده‌ها' : 'Meal planning'}</span><h2>{copy.mealTitle}</h2></div><p class="guide-article-intro">{copy.mealText}</p><aside class="guide-note guide-note--wide"><strong>{isFa ? 'حداقل سفارش درج‌شده در سایت' : 'Minimum shown on the service page'}</strong><p>{copy.mealNote}</p></aside></section>
+
+      <section id="hospitality" class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'پذیرایی سازمانی' : 'Corporate hospitality'}</span><h2>{copy.hospitalityTitle}</h2></div><p class="guide-article-intro">{copy.hospitalityText}</p><aside class="guide-caution">{copy.hospitalityNote}</aside></section>
+
+      <section class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'تصاویر خدمات' : 'Service imagery'}</span><h2>{copy.galleryTitle}</h2></div><div class="guide-example-grid guide-example-grid--three">{copy.gallery.map(([image, alt, caption]) => <figure class="guide-example-card guide-gallery-card"><img src={image} alt={alt} width="1200" height="800" loading="lazy" decoding="async"/><figcaption>{caption}</figcaption></figure>)}</div></section>
+
+      <section id="price" class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'قیمت و برآورد' : 'Pricing and estimates'}</span><h2>{copy.priceTitle}</h2></div><p class="guide-article-intro">{copy.priceIntro}</p><div class="guide-overview__grid guide-overview__grid--four">{copy.priceFactors.map(([title, text], index) => <article class="guide-overview__item"><span class="guide-overview__number">{isFa ? ['۰۱','۰۲','۰۳','۰۴','۰۵'][index] : `0${index + 1}`}</span><h3>{title}</h3><p>{text}</p></article>)}</div><aside class="guide-assurance"><div class="guide-assurance__icon" aria-hidden="true">✓</div><div><h2>{copy.compareTitle}</h2><p>{copy.compareText}</p></div></aside></section>
+
+      <section id="quality" class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'کیفیت و هماهنگی' : 'Quality and coordination'}</span><h2>{copy.qualityTitle}</h2></div><ol class="guide-steps">{copy.quality.map(([title, text], index) => <li><span class="guide-step__number">{isFa ? ['۰۱','۰۲','۰۳','۰۴','۰۵'][index] : `0${index + 1}`}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol></section>
+
+      <section id="faq" class="guide-faq guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'پاسخ‌های روشن' : 'Clear answers'}</span><h2>{copy.faqTitle}</h2></div><div class="guide-faq__list">{copy.faqs.map(([question, answer]) => <details class="guide-faq__item"><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
+      <p class="guide-disclaimer">{copy.disclaimer}</p>
+      <section class="guide-cta"><div><span class="guide-kicker">{isFa ? 'کترینگ قزوین تصویر' : 'Qazvin Tasvir catering'}</span><h2>{copy.ctaTitle}</h2><p>{copy.ctaText}</p></div><div class="guide-cta__actions"><a class="btn btn--accent" href={`${baseUrl}/${lang}/contact/`}>{copy.ctaContact}<span aria-hidden="true">{isFa ? ' ←' : ' →'}</span></a><a class="guide-cta__secondary" href={`${baseUrl}/${lang}/services/personnel-food/`}>{copy.ctaService}</a></div></section>
+    </div>
+  </article>
+</BaseLayout>

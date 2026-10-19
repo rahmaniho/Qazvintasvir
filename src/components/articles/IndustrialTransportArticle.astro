@@ -1,0 +1,222 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/articles.css';
+
+interface Props { lang: 'fa' | 'en' }
+const { lang } = Astro.props;
+const isFa = lang === 'fa';
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = (Astro.site?.toString() || 'https://qazvintasvir.ir').replace(/\/$/, '');
+const slug = 'factory-staff-transport-qazvin';
+const canonical = `${site}${baseUrl}/${lang}/articles/${slug}/`;
+const heroPath = `${baseUrl}/assets/img/articles/industrial-shuttle-hero.jpg`;
+const heroUrl = `${site}${heroPath}`;
+const minibusPath = `${baseUrl}/assets/img/articles/industrial-shuttle-minibus.jpg`;
+const planningPath = `${baseUrl}/assets/img/articles/industrial-shuttle-planning.jpg`;
+const articleTitle = isFa
+  ? 'بهترین سرویس ایاب‌وذهاب صنعتی در قزوین و حومه؟ راهنمای انتخاب و قیمت'
+  : 'Best Industrial Staff Transport in Qazvin? A Guide to Shuttle Services and Prices';
+const description = isFa
+  ? 'راهنمای انتخاب سرویس ایاب‌وذهاب کارخانه در قزوین و حومه؛ مسیر شیفت، اتوبوس و مینی‌بوس، ایمنی، پشتیبانی و عوامل مؤثر بر قیمت قرارداد.'
+  : 'A practical guide to factory staff shuttles in Qazvin: shift routes, buses and minibuses, safety, operations support and the factors that shape contract pricing.';
+const hrefs = {
+  fa: [
+    { lang: 'fa', href: `${site}${baseUrl}/fa/articles/${slug}/` },
+    { lang: 'en', href: `${site}${baseUrl}/en/articles/${slug}/` },
+    { lang: 'x-default', href: `${site}${baseUrl}/fa/articles/${slug}/` },
+  ],
+  en: [
+    { lang: 'fa', href: `${site}${baseUrl}/fa/articles/${slug}/` },
+    { lang: 'en', href: `${site}${baseUrl}/en/articles/${slug}/` },
+    { lang: 'x-default', href: `${site}${baseUrl}/fa/articles/${slug}/` },
+  ],
+};
+const copy = isFa ? {
+  home: 'خانه', articles: 'مقاله‌ها', current: 'سرویس ایاب‌وذهاب صنعتی در قزوین',
+  eyebrow: 'راهنمای ترابری پرسنل کارخانه',
+  lead: 'وقتی چند شیفت، چند مبدأ و ساعت شروع تولید در میان است، سرویس ایاب‌وذهاب فقط جابه‌جایی مسافر نیست؛ بخشی از نظم روزانهٔ کارخانه است. برای انتخاب سرویس مناسب در قزوین و حومه باید ظرفیت، مسیر، زمان‌بندی و پشتیبانی را کنار هم سنجید—و قیمت را با همین مشخصات مقایسه کرد.',
+  heroAlt: 'اتوبوس سرویس پرسنل در ورودی یک مجموعهٔ صنعتی در آغاز شیفت کاری',
+  heroCaption: 'تصویرسازی مفهومی؛ ناوگان و مسیر هر قرارداد باید جداگانه بررسی شود.',
+  answerTitle: 'خلاصهٔ پاسخ: بهترین سرویس، متناسب با شیفت و مسیر شماست',
+  answer: 'قزوین تصویر در صفحهٔ خدمات خود، ترابری پرسنل کارخانه را با طراحی مسیر، برنامهٔ شیفت، اتوبوس، مینی‌بوس و ون و پیگیری اجرای روزانه معرفی می‌کند. پوشش مسیر در قزوین و شهرها یا شهرک‌های اطراف، نوع خودرو و قیمت نهایی پس از دریافت مبدأها، مقصد، تعداد نفرات، زمان و تعداد سرویس‌های روزانه مشخص می‌شود؛ قیمت ثابت یا ادعای «ارزان‌ترین» بدون این اطلاعات قابل اتکا نیست.',
+  tocTitle: 'در این راهنما',
+  toc: [['fit', 'سرویس مناسب کارخانه چه ویژگی‌هایی دارد؟'], ['coverage', 'قزوین و حومه: ابتدا مسیر را بسنجید'], ['fleet', 'انتخاب وسیلهٔ نقلیه'], ['price', 'قیمت سرویس ایاب‌وذهاب'], ['workflow', 'فرآیند شروع همکاری'], ['faq', 'پرسش‌های پرتکرار']],
+  fitTitle: 'سرویس مناسب کارخانه را با چهار معیار بسنجید',
+  fitLead: 'برای انتخاب بهترین سرویس ایاب‌وذهاب کارخانه، نام خودرو یا رقم پیشنهادی را به‌تنهایی معیار نگذارید. برنامه باید در عمل با ساعت شیفت و الگوی رفت‌وآمد کارکنان هماهنگ شود.',
+  criteria: [
+    ['پوشش شیفت‌ها', 'زمان ورود و خروج شیفت‌های صبح، عصر و شب، زمان تعویض شیفت و نیاز احتمالی به سرویس رفت‌وبرگشت جداگانه را مشخص کنید.'],
+    ['مسیر و زمان سفر', 'مبدأهای تجمع کارکنان، نقاط سوارشدن، مقصد کارخانه، زمان مجاز رسیدن و نقاط توقف باید روی نقشه و در شرایط واقعی بررسی شوند.'],
+    ['ظرفیت و نوع وسیله', 'تعداد مسافر در هر نوبت، پراکندگی مسیر و محدودیت دسترسی محل تعیین می‌کند اتوبوس، مینی‌بوس یا ون مناسب‌تر است؛ گاهی ترکیب ناوگان قابل بررسی است.'],
+    ['پشتیبانی و پایش', 'مسئول هماهنگی، شیوهٔ اعلام تأخیر یا تغییر مسیر، ثبت بازخورد و پیگیری وضعیت خودرو را پیش از شروع قرارداد روشن کنید.'],
+  ],
+  coverageTitle: 'سرویس ایاب‌وذهاب در قزوین و حومه؛ مسیر مهم‌تر از نام منطقه است',
+  coverageText: 'کارخانه ممکن است در محدودهٔ شهر، شهرک صنعتی یا بیرون از بافت شهری باشد و کارکنان از چند جهت رفت‌وآمد کنند. بنابراین «پوشش قزوین و حومه» را باید برای مسیرهای مشخص معنا کرد: نشانی مبداها، فاصله، وضعیت راه، ساعت شیفت و دسترسی اتوبوس یا مینی‌بوس. در درخواست از قزوین تصویر، مبدأ و مقصدهای دقیق را اعلام کنید تا امکان سرویس‌دهی و برآورد هر مسیر جداگانه بررسی شود؛ پوشش همهٔ نقاط یا قیمت یکسان را نباید پیش از ارزیابی فرض کرد.',
+  coverageNote: 'اگر محل کارخانه در شهرک صنعتی یا خارج از شهر است، نام دقیق محل، ورودی مورد استفاده، مسیرهای مجاز و ساعت‌های تحویل شیفت را از ابتدا بفرستید.',
+  fleetTitle: 'اتوبوس، مینی‌بوس یا ون؛ انتخاب را از تعداد و مسیر آغاز کنید',
+  fleetIntro: 'ناوگان معرفی‌شده در صفحهٔ ترابری کارخانه شامل اتوبوس، مینی‌بوس و ون است. انتخاب نهایی باید ظرفیت واقعی و شرایط مسیر را منعکس کند؛ بزرگ‌تر بودن خودرو همیشه به معنای هزینهٔ بهتر یا سفر کوتاه‌تر نیست.',
+  fleetCards: [
+    ['اتوبوس', 'برای مسیرهایی با تعداد مسافر بیشتر یا جابه‌جایی گروهی؛ ظرفیت و امکان توقف در محل سوارشدن باید بررسی شود.'],
+    ['مینی‌بوس', 'برای گروه‌های متوسط یا مسیرهایی که دسترسی و انعطاف‌پذیری بیشتری می‌خواهند؛ برنامه و ظرفیت هر مسیر جداگانه سنجیده شود.'],
+    ['ون', 'برای گروه‌های کوچک‌تر یا مسیرهای پراکنده؛ تعداد خودروها و هماهنگی زمان حرکت در برآورد نهایی اثر دارد.'],
+  ],
+  fleetNote: 'این موارد راهنمای انتخاب‌اند، نه تضمین ظرفیت یا عرضهٔ وسیلهٔ خاص؛ نوع خودرو و تعداد آن در پیشنهاد هر پرونده تأیید می‌شود.',
+  priceTitle: 'قیمت سرویس ایاب‌وذهاب کارخانه در قزوین چگونه محاسبه می‌شود؟',
+  priceIntro: 'قیمت سرویس پرسنل کارخانه معمولاً به مجموعه‌ای از عوامل وابسته است و بدون اطلاعات مسیر نمی‌توان رقم دقیق و قابل دفاعی اعلام کرد. برای دریافت پیشنهاد منصفانه و قابل مقایسه، این متغیرها را یک‌جا ارائه دهید:',
+  priceFactors: [
+    ['مسافت و تعداد مسیرها', 'مبدأها، مقصدها، طول مسیر، تعداد توقف‌ها و نیاز به مسیر رفت و برگشت.'],
+    ['تعداد شیفت و نوبت سرویس', 'تعداد سرویس‌های روزانه، ساعت‌های حرکت و تغییرات آخر هفته یا شیفت شب.'],
+    ['تعداد مسافران و ناوگان', 'ظرفیت لازم، تعداد اتوبوس یا مینی‌بوس و اینکه مسیر به چند خودرو نیاز دارد.'],
+    ['مدت و شرایط قرارداد', 'سرویس مقطعی یا مستمر، دورهٔ قرارداد، ساعات انتظار و شرایط تغییر برنامه.'],
+    ['الزامات اجرایی محل', 'دسترسی محل کارخانه، محدودیت ورود خودرو، نقاط توقف و نیازهای عملیاتی که باید در بازدید یا بررسی مسیر روشن شوند.'],
+  ],
+  priceValueTitle: 'چطور «بهترین قیمت» را با کیفیت قابل اتکا مقایسه کنیم؟',
+  priceValue: 'به‌جای انتخاب کمترین رقمِ بدون شرح، از هر ارائه‌دهنده پیشنهاد مکتوب با مسیرها، ساعت‌ها، تعداد خودرو، ظرفیت، مدت خدمت، مسئولیت‌ها و هزینه‌های مشمول یا خارج از قرارداد بخواهید. سپس مطمئن شوید دو پیشنهاد برای خدمت یکسان صادر شده‌اند. بهترین قیمت برای کارخانه، رقمی است که در کنار هزینه، اجرای قابل پیش‌بینی، ایمنی و مسیر ارتباطی روشن داشته باشد؛ قزوین تصویر نیز قیمت نهایی را پس از بررسی نیاز مجموعه اعلام می‌کند.',
+  galleryTitle: 'از طراحی مسیر تا اجرای روزانه',
+  gallery: [
+    [heroPath, 'اتوبوس سرویس در کنار ورودی یک کارخانه در ابتدای روز', 'تصویر مفهومی اتوبوس صنعتی؛ نه ناوگان یک قرارداد مشخص.'],
+    [minibusPath, 'مینی‌بوس و ون برای سوارکردن گروه کارکنان در محوطهٔ کارخانه', 'تصویرسازی مفهومی از انتخاب چند نوع وسیله برای مسیرهای متفاوت.'],
+    [planningPath, 'کارشناس ترابری در حال برنامه‌ریزی مسیرهای رفت‌وآمد کارکنان', 'برنامهٔ مسیر و شیفت باید پیش از شروع اجرا هماهنگ شود.'],
+  ],
+  workflowTitle: 'چهار گام برای درخواست سرویس کارخانه',
+  steps: [
+    ['اطلاعات پایه را بفرستید', 'تعداد پرسنل، شیفت‌ها، مبدأها، مقصد کارخانه، روزهای فعالیت و ساعت‌های حرکت را اعلام کنید.'],
+    ['مسیر و دسترسی بررسی شود', 'نقاط سوارشدن، زمان سفر و ظرفیت خودرو بر اساس شرایط واقعی مسیر سنجیده شود.'],
+    ['برنامه و پیشنهاد را مقایسه کنید', 'جدول سرویس، نوع و تعداد خودرو، زمان‌بندی، مسئولیت‌ها و مبنای قیمت را مکتوب دریافت کنید.'],
+    ['اجرا را پایش کنید', 'پس از شروع، تأخیرها، تغییر شیفت‌ها و بازخورد کارکنان از مسیر ارتباطی مشخص پیگیری شود.'],
+  ],
+  faqTitle: 'پرسش‌های پرتکرار دربارهٔ سرویس کارخانه در قزوین',
+  faqs: [
+    ['قزوین تصویر برای سرویس کارخانه از چه خودروهایی استفاده می‌کند؟', 'صفحهٔ خدمات ترابری پرسنل، اتوبوس، مینی‌بوس و ون را معرفی می‌کند. نوع و تعداد وسیله برای هر مسیر پس از بررسی تعداد مسافران و دسترسی محل تعیین می‌شود.'],
+    ['آیا سرویس به همهٔ شهرک‌های صنعتی و حومهٔ قزوین می‌رسد؟', 'پوشش هر درخواست باید با نشانی دقیق کارخانه و مبدأ کارکنان بررسی شود. برای اعلام امکان اجرا، نام شهرک یا منطقه، ورودی مسیر و ساعت شیفت را ارائه کنید؛ پوشش یکسان برای همهٔ نقاط فرض نمی‌شود.'],
+    ['قیمت سرویس ایاب‌وذهاب پرسنل چقدر است؟', 'قیمت به مسیر و مسافت، تعداد توقف‌ها، شیفت‌ها، تعداد خودرو و مدت قرارداد وابسته است. برای دریافت برآورد، نقشهٔ مسیرها و جدول شیفت را ارسال کنید؛ نرخ ثابت و عمومی در این راهنما اعلام نمی‌شود.'],
+    ['برای گرفتن قیمت دقیق چه اطلاعاتی لازم است؟', 'تعداد کارکنان در هر شیفت، مبدا و مقصدها، روزهای کاری، ساعت حرکت و بازگشت، مدت قرارداد و محدودیت‌های دسترسی کارخانه را آماده کنید.'],
+    ['چطور دو پیشنهاد را منصفانه مقایسه کنیم؟', 'مطمئن شوید هر دو پیشنهاد مسیر، ساعت، تعداد و نوع خودرو، مدت سرویس، هزینه‌های مشمول، مسئولیت‌ها و روش رسیدگی به تغییرات را به یک شکل پوشش می‌دهند.'],
+  ],
+  disclaimer: 'تصاویر این مقاله مفهومی‌اند. دامنهٔ مسیر، تعداد خودرو، زمان‌بندی و قیمت هر سرویس پس از بررسی اطلاعات واقعی مجموعه مشخص می‌شود؛ این متن وعدهٔ پوشش همهٔ نقاط یا ارزان‌ترین نرخ بازار نیست.',
+  ctaTitle: 'برای مسیرهای کارخانه‌تان پیشنهاد دقیق بگیرید',
+  ctaText: 'جدول شیفت‌ها و فهرست مبدأ و مقصدها را آماده کنید تا درخواست شما برای بررسی اولیهٔ سرویس ایاب‌وذهاب به قزوین تصویر ارسال شود.',
+  ctaContact: 'درخواست بررسی مسیر', ctaService: 'جزئیات ترابری پرسنل کارخانه',
+} : {
+  home: 'Home', articles: 'Articles', current: 'Industrial staff transport in Qazvin',
+  eyebrow: 'Factory staff transport guide',
+  lead: 'When a factory has multiple shifts, several pick-up points and a fixed production start, staff transport is more than moving passengers—it is part of daily operations. To choose a suitable service in Qazvin and nearby areas, assess capacity, routes, timing and support together, then compare prices against the same scope.',
+  heroAlt: 'Staff shuttle bus at the entrance of an industrial workplace at shift change',
+  heroCaption: 'Illustrative image; each contract’s fleet and route must be assessed separately.',
+  answerTitle: 'In short: the best service fits your shifts and routes',
+  answer: 'Qazvin Tasvir describes factory staff transport as route and shift planning, with buses, minibuses and vans, plus day-to-day execution follow-up. Service coverage in Qazvin and surrounding industrial areas, vehicle type and final price depend on the origins, destinations, passenger numbers, schedules and daily trips provided. Without those details, a fixed rate or “cheapest” claim would not be reliable.',
+  tocTitle: 'In this guide',
+  toc: [['fit', 'What makes a suitable factory shuttle?'], ['coverage', 'Qazvin and nearby areas: map the route first'], ['fleet', 'Choosing the vehicle'], ['price', 'Staff shuttle pricing'], ['workflow', 'How to get started'], ['faq', 'Frequently asked questions']],
+  fitTitle: 'Assess a factory shuttle against four criteria',
+  fitLead: 'When choosing the best factory staff transport, do not use the vehicle name or quoted figure as the only measure. The operating plan must work with actual shift times and employee travel patterns.',
+  criteria: [
+    ['Shift coverage', 'Set out morning, evening and night shift start and end times, shift changes and whether separate inbound and return trips are needed.'],
+    ['Route and travel time', 'Map employee gathering points, pick-ups, the factory destination, arrival windows and stops, then assess them against real road conditions.'],
+    ['Capacity and vehicle type', 'Passenger numbers, route dispersion and site access help determine whether a bus, minibus or van is suitable; a mixed fleet may be considered.'],
+    ['Support and monitoring', 'Agree who coordinates the service, how delays or route changes are reported, how feedback is recorded and how vehicle status is followed up.'],
+  ],
+  coverageTitle: 'Factory shuttles in Qazvin and nearby areas: the route matters more than the area name',
+  coverageText: 'A factory may be inside the city, in an industrial estate or beyond the urban area, with employees travelling from different directions. “Qazvin and nearby areas” therefore needs to be defined by actual routes: pick-up addresses, distance, road conditions, shift times and bus or minibus access. When contacting Qazvin Tasvir, provide exact origins and destinations so feasibility and cost can be reviewed route by route; do not assume universal coverage or one price for every location.',
+  coverageNote: 'For an industrial estate or an out-of-town site, share the exact location, gate, permitted approach route and shift handover times at the outset.',
+  fleetTitle: 'Bus, minibus or van? Start with numbers and routes',
+  fleetIntro: 'Qazvin Tasvir’s factory transport page lists buses, minibuses and vans. The final selection should reflect real capacity and route conditions; a larger vehicle does not automatically mean a better cost or shorter journey.',
+  fleetCards: [
+    ['Bus', 'For routes with larger passenger groups; confirm capacity and whether the vehicle can reach the pick-up points.'],
+    ['Minibus', 'For medium-sized groups or routes needing greater access and flexibility; assess the schedule and capacity of each route.'],
+    ['Van', 'For smaller groups or dispersed routes; the number of vehicles and departure coordination affect the estimate.'],
+  ],
+  fleetNote: 'These are selection pointers, not a guarantee of capacity or a specific vehicle. The proposed type and fleet size are confirmed for each request.',
+  priceTitle: 'How is factory shuttle pricing in Qazvin calculated?',
+  priceIntro: 'Factory staff transport pricing depends on several inputs, so an exact, defensible figure cannot be set without route information. To receive a fair and comparable proposal, provide these details together:',
+  priceFactors: [
+    ['Distance and number of routes', 'Pick-up points, destinations, route length, stops and return-trip requirements.'],
+    ['Shifts and daily trips', 'Number of daily runs, departure times and any night or weekend changes.'],
+    ['Passenger volume and fleet', 'Required capacity, number of buses or minibuses and whether a route needs more than one vehicle.'],
+    ['Contract term and conditions', 'One-off or recurring service, contract period, waiting time and schedule-change terms.'],
+    ['Site operations', 'Factory access, vehicle-entry limits, pick-up locations and operating requirements to clarify during route review.'],
+  ],
+  priceValueTitle: 'How to compare the “best price” with dependable service',
+  priceValue: 'Instead of choosing the lowest figure without a scope, request a written proposal listing routes, times, fleet size, capacity, service period, responsibilities and included or excluded charges. Then confirm that both proposals cover the same service. The best price for a factory is one that balances cost with predictable execution, safety and a clear communication path; Qazvin Tasvir confirms its final price after reviewing the organisation’s needs.',
+  galleryTitle: 'From route planning to daily operations',
+  gallery: [
+    [heroPath, 'Staff shuttle bus arriving at a factory gate at the start of a shift', 'Illustrative industrial-bus scene; not a specific contracted fleet.'],
+    [minibusPath, 'Minibus and van at a factory pick-up point for employee transport', 'Illustrative mix of vehicles for different routes.'],
+    [planningPath, 'Transport coordinator planning staff commute routes and shifts', 'Route and shift schedules need to be agreed before service begins.'],
+  ],
+  workflowTitle: 'Four steps to request factory transport',
+  steps: [
+    ['Share the basics', 'Provide employee numbers, shifts, pick-up points, factory destination, working days and departure times.'],
+    ['Review routes and access', 'Assess pick-ups, travel time and vehicle capacity against actual route conditions.'],
+    ['Compare the plan and quote', 'Request a written schedule, vehicle types and counts, timings, responsibilities and pricing basis.'],
+    ['Monitor delivery', 'After start-up, follow up on delays, shift changes and employee feedback through an agreed contact channel.'],
+  ],
+  faqTitle: 'Frequently asked questions about factory shuttles in Qazvin',
+  faqs: [
+    ['Which vehicles does Qazvin Tasvir list for factory transport?', 'The factory staff transport page lists buses, minibuses and vans. Vehicle type and quantity are determined for each route after passenger numbers and site access are reviewed.'],
+    ['Does the service reach every industrial estate and suburb of Qazvin?', 'Coverage needs to be checked against the factory address and employee origins. Share the estate or area, access gate and shift times; coverage should not be assumed to be identical for every location.'],
+    ['How much does employee shuttle service cost?', 'Price depends on routes and distance, stops, shifts, fleet size and contract duration. Provide a route map and shift schedule for an estimate; this guide does not publish a flat public rate.'],
+    ['What information is needed for an accurate quote?', 'Prepare employee numbers per shift, origins and destinations, working days, departure and return times, contract length and any site-access limits.'],
+    ['How can I compare two quotes fairly?', 'Check that each proposal states the same routes, times, vehicle type and number, service term, included costs, responsibilities and process for handling changes.'],
+  ],
+  disclaimer: 'Images are illustrative. Route coverage, fleet size, schedules and price are determined after reviewing the organisation’s actual requirements; this article does not promise service to every location or the lowest market rate.',
+  ctaTitle: 'Request a route-specific proposal for your factory',
+  ctaText: 'Prepare the shift schedule and list of pick-up points and destinations so Qazvin Tasvir can review your staff shuttle request.',
+  ctaContact: 'Request a route review', ctaService: 'Factory staff transport details',
+};
+
+const serviceUrl = `${site}${baseUrl}/${lang}/services/factory-transport/`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article', headline: articleTitle, description, inLanguage: lang,
+      image: [heroUrl, `${site}${minibusPath}`, `${site}${planningPath}`],
+      mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+      author: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
+      publisher: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: site, logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png` } },
+      articleSection: isFa ? 'ترابری صنعتی و سرویس ایاب‌وذهاب' : 'Industrial transport and staff shuttles',
+      keywords: isFa ? ['سرویس ایاب و ذهاب کارخانه قزوین', 'قیمت سرویس پرسنل قزوین', 'ترابری شهرک صنعتی قزوین', 'سرویس شیفتی کارکنان'] : ['factory staff transport Qazvin', 'employee shuttle price Qazvin', 'industrial estate shuttle', 'shift transport service'],
+      about: { '@type': 'Service', name: isFa ? 'ترابری پرسنل کارخانجات' : 'Factory staff transportation', url: serviceUrl, provider: { '@type': 'Organization', name: isFa ? 'قزوین تصویر' : 'Qazvin Tasvir Company' } },
+      isAccessibleForFree: true,
+    },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: copy.home, item: `${site}${baseUrl}/${lang}/` },
+      { '@type': 'ListItem', position: 2, name: copy.articles, item: `${site}${baseUrl}/${lang}/articles/` },
+      { '@type': 'ListItem', position: 3, name: articleTitle, item: canonical },
+    ] },
+    { '@type': 'FAQPage', mainEntity: copy.faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
+  ],
+};
+---
+
+<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} canonical={canonical} hreflang={hrefs[lang]} schema={schema} ogType="article" bodyClass="article-page" preloadImage={heroPath} preloadImageType="image/jpeg">
+  <article class="service-guide">
+    <section class="guide-hero"><div class="container">
+      <nav class="breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}><a href={`${baseUrl}/${lang}/`}>{copy.home}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><a href={`${baseUrl}/${lang}/articles/`}>{copy.articles}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><span aria-current="page">{copy.current}</span></nav>
+      <div class="guide-hero__grid"><div class="guide-hero__copy"><span class="guide-eyebrow">{copy.eyebrow}</span><h1>{articleTitle}</h1><p class="guide-hero__lead">{copy.lead}</p></div>
+        <figure class="guide-cover"><img src={heroPath} alt={copy.heroAlt} width="1360" height="768" fetchpriority="high" decoding="async"/><figcaption>{copy.heroCaption}</figcaption></figure>
+      </div>
+    </div></section>
+    <div class="container guide-content">
+      <section class="guide-answer"><div class="guide-answer__mark" aria-hidden="true">i</div><div><h2>{copy.answerTitle}</h2><p>{copy.answer}</p></div></section>
+      <nav class="guide-toc" aria-label={copy.tocTitle}><strong>{copy.tocTitle}</strong><ul>{copy.toc.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ul></nav>
+
+      <section id="fit" class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'معیارهای انتخاب' : 'Selection criteria'}</span><h2>{copy.fitTitle}</h2></div><p class="guide-article-intro">{copy.fitLead}</p>
+        <div class="guide-overview__grid guide-overview__grid--four">{copy.criteria.map(([title, text], index) => <article class="guide-overview__item"><span class="guide-overview__number">{isFa ? ['۰۱','۰۲','۰۳','۰۴'][index] : `0${index + 1}`}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+      </section>
+
+      <section id="coverage" class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'قزوین و پیرامون' : 'Qazvin and nearby areas'}</span><h2>{copy.coverageTitle}</h2></div><p class="guide-article-intro">{copy.coverageText}</p><aside class="guide-note guide-note--wide"><strong>{isFa ? 'برای بررسی سریع‌تر' : 'For a faster review'}</strong><p>{copy.coverageNote}</p></aside></section>
+
+      <section id="fleet" class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'ناوگان متناسب' : 'A suitable fleet'}</span><h2>{copy.fleetTitle}</h2></div><p class="guide-article-intro">{copy.fleetIntro}</p><div class="guide-overview__grid">{copy.fleetCards.map(([title, text], index) => <article class="guide-overview__item"><span class="guide-overview__number">{isFa ? ['۰۱','۰۲','۰۳'][index] : `0${index + 1}`}</span><h3>{title}</h3><p>{text}</p></article>)}</div><p class="guide-caution">{copy.fleetNote}</p></section>
+
+      <section class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'تصویرهایی از خدمت' : 'Service in context'}</span><h2>{copy.galleryTitle}</h2></div><div class="guide-example-grid guide-example-grid--three">{copy.gallery.map(([image, alt, caption]) => <figure class="guide-example-card guide-gallery-card"><img src={image} alt={alt} width="1200" height="800" loading="lazy" decoding="async"/><figcaption>{caption}</figcaption></figure>)}</div></section>
+
+      <section id="price" class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'برآورد منصفانه' : 'A fair estimate'}</span><h2>{copy.priceTitle}</h2></div><p class="guide-article-intro">{copy.priceIntro}</p><div class="guide-overview__grid guide-overview__grid--four">{copy.priceFactors.map(([title, text], index) => <article class="guide-overview__item"><span class="guide-overview__number">{isFa ? ['۰۱','۰۲','۰۳','۰۴','۰۵'][index] : `0${index + 1}`}</span><h3>{title}</h3><p>{text}</p></article>)}</div><aside class="guide-assurance"><div class="guide-assurance__icon" aria-hidden="true">✓</div><div><h2>{copy.priceValueTitle}</h2><p>{copy.priceValue}</p></div></aside></section>
+
+      <section id="workflow" class="guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'از درخواست تا اجرا' : 'From request to operation'}</span><h2>{copy.workflowTitle}</h2></div><ol class="guide-steps">{copy.steps.map(([title, text], index) => <li><span class="guide-step__number">{isFa ? ['۰۱','۰۲','۰۳','۰۴'][index] : `0${index + 1}`}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol></section>
+
+      <section id="faq" class="guide-faq guide-goods-section"><div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'پاسخ‌های روشن' : 'Clear answers'}</span><h2>{copy.faqTitle}</h2></div><div class="guide-faq__list">{copy.faqs.map(([question, answer]) => <details class="guide-faq__item"><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
+      <p class="guide-disclaimer">{copy.disclaimer}</p>
+      <section class="guide-cta"><div><span class="guide-kicker">{isFa ? 'ترابری صنعتی قزوین تصویر' : 'Qazvin Tasvir industrial transport'}</span><h2>{copy.ctaTitle}</h2><p>{copy.ctaText}</p></div><div class="guide-cta__actions"><a class="btn btn--accent" href={`${baseUrl}/${lang}/contact/`}>{copy.ctaContact}<span aria-hidden="true">{isFa ? ' ←' : ' →'}</span></a><a class="guide-cta__secondary" href={`${baseUrl}/${lang}/services/factory-transport/`}>{copy.ctaService}</a></div></section>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import '../../styles/articles.css';
+
+interface Props { lang: 'fa' | 'en' }
+const { lang } = Astro.props;
+const isFa = lang === 'fa';
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = (Astro.site?.toString() || 'https://qazvintasvir.ir').replace(/\/$/, '');
+const path = `${baseUrl}/${lang}/articles/services-guide/`;
+const canonical = `${site}${path}`;
+const coverPath = `${baseUrl}/assets/img/articles/services-guide-hero.jpg`;
+const coverUrl = `${site}${coverPath}`;
+const tradeImage = `${baseUrl}/assets/img/articles/services-guide-trade.jpg`;
+const mobilityImage = `${baseUrl}/assets/img/articles/services-guide-mobility.jpg`;
+const cateringImage = `${baseUrl}/assets/img/articles/services-guide-catering.jpg`;
+const articleTitle = isFa
+  ? 'خدمات قزوین تصویر چیست؟ راهنمای جامع بازرگانی، ترابری و پشتیبانی سازمانی'
+  : 'What Does Qazvin Tasvir Do? A Guide to Trade, Transport and Corporate Services';
+const articleDescription = isFa
+  ? 'راهنمای دقیق خدمات قزوین تصویر؛ از واردات و تأمین کالاهای مجاز و هماهنگی گمرکی تا سرویس پرسنل، حمل‌ونقل سازمانی و غذای کارکنان.'
+  : 'A practical guide to Qazvin Tasvir’s services: permitted-goods trade, sourcing and customs coordination, staff transport, organisational shuttles and workplace catering.';
+const hreflang = [
+  { lang: 'fa', href: `${site}${baseUrl}/fa/articles/services-guide/` },
+  { lang: 'en', href: `${site}${baseUrl}/en/articles/services-guide/` },
+  { lang: 'x-default', href: `${site}${baseUrl}/fa/articles/services-guide/` },
+];
+
+const copy = isFa ? {
+  breadcrumbHome: 'خانه', breadcrumbArticles: 'مقاله‌ها', breadcrumbCurrent: 'راهنمای خدمات',
+  eyebrow: 'راهنمای خدمات قزوین تصویر',
+  title: articleTitle,
+  lead: 'برای شناخت خدمات یک مجموعه، فهرست نام‌ها کافی نیست؛ باید دانست هر خدمت چه مسئله‌ای را پاسخ می‌دهد، چه اطلاعاتی برای شروع لازم دارد و دامنهٔ همکاری چگونه روشن می‌شود. این راهنما، هشت مسیر خدمت قزوین تصویر را بر پایهٔ اطلاعات منتشرشده در وب‌سایت شرکت، یک‌جا و بی‌اغراق مرور می‌کند.',
+  coverAlt: 'کارشناس عملیات در حال مرور نقشهٔ مسیرها و اسناد حمل در فضای کاری صنعتی',
+  coverCaption: 'تصویرسازی مفهومی برای این راهنما؛ نه تصویری از اجرای یک قرارداد مشخص.',
+  quickTitle: 'در یک نگاه: قزوین تصویر چه خدماتی ارائه می‌کند؟',
+  quickAnswer: 'قزوین تصویر هشت خدمت در سه حوزهٔ به‌هم‌پیوسته ارائه می‌کند: بازرگانی و تأمین، ترابری و جابه‌جایی سازمانی، و پشتیبانی محل کار. دامنهٔ هر پرونده پس از شناخت کالا یا نیاز، مسیر، زمان‌بندی و مدارک مربوط بررسی و تعریف می‌شود.',
+  overviewTitle: 'سه حوزه، هشت مسیر همکاری',
+  overview: [
+    ['بازرگانی و تأمین', 'واردات و صادرات کالاهای مجاز، امور گمرکی و بندری، تأمین مواد اولیه و تجهیزات، و مشاورهٔ بازرگانی.'],
+    ['ترابری و جابه‌جایی', 'سرویس پرسنل کارخانه، حمل‌ونقل درون‌شهری و VIP، و سرویس مدارس، ادارات و شرکت‌ها.'],
+    ['پشتیبانی محل کار', 'تأمین غذا و وعده‌های سازمانی برای کارخانه‌ها و شرکت‌ها.'],
+  ],
+  tocTitle: 'در این راهنما', toc: [['trade', 'بازرگانی و تأمین'], ['transport', 'ترابری سازمانی'], ['workplace', 'پشتیبانی محل کار'], ['start', 'چطور درخواست را دقیق مطرح کنیم؟'], ['faq', 'پرسش‌های پرتکرار']],
+  groups: [
+    {
+      id: 'trade', title: '۱. بازرگانی و تأمین؛ از نیاز تا پیگیری پرونده',
+      intro: 'در پرونده‌های تجاری، خرید کالا تنها یکی از حلقه‌هاست. مشخصات و مجازبودن کالا، اسناد، مبدأ و مقصد، روش حمل و مسئولیت هر طرف باید در کنار هم دیده شوند. خدمات این حوزه می‌توانند مستقل یا متناسب با نیاز پرونده، در کنار یکدیگر بررسی شوند؛ شروع و حدود همکاری به اطلاعات واقعی همان پرونده وابسته است.',
+      image: tradeImage, imageAlt: 'کشتی باری و کانتینرهای تجاری در بندر، تصویری مفهومی از زنجیرهٔ بازرگانی', imageCaption: 'تصویرسازی مفهومی؛ جزئیات هر پرونده باید جداگانه بررسی شود.',
+      slugs: ['import-export', 'customs-port', 'sourcing', 'trade-consulting'],
+      label: 'چه زمانی این حوزه مطرح است؟', note: 'هنگامی که مجموعه برای خرید یا فروش کالای مجاز، تأمین مواد اولیه و تجهیزات، هماهنگی اسناد و حمل، یا روشن‌کردن گام بعدی یک پروندهٔ بازرگانی به همراهی نیاز دارد.'
+    },
+    {
+      id: 'transport', title: '۲. ترابری سازمانی؛ برنامه‌ای هماهنگ با مسیر و زمان',
+      intro: 'سرویس رفت‌وآمد، از شیفت کارخانه تا مسیر روزانهٔ مدرسه یا جابه‌جایی مهمانان سازمانی، با شناخت تعداد مسافران، مبدأ و مقصد، زمان حرکت و ظرفیت وسیله معنا پیدا می‌کند. ناوگان معرفی‌شده در خدمات شامل اتوبوس، مینی‌بوس و ون است؛ پیشنهاد نهایی به الگوی مسیر و درخواست مجموعه بستگی دارد.',
+      image: mobilityImage, imageAlt: 'اتوبوس سرویس در ورودی یک مجموعهٔ صنعتی در آغاز روز کاری', imageCaption: 'تصویرسازی مفهومی از سرویس سازمانی؛ ناوگان هر درخواست جداگانه بررسی می‌شود.',
+      slugs: ['factory-transport', 'urban-vip', 'school-office'],
+      label: 'چه اطلاعاتی به برنامه‌ریزی کمک می‌کند؟', note: 'تعداد و گروه مسافران، نشانی‌های سوارشدن و مقصد، ساعت‌های رفت‌وبرگشت، شیفت‌ها و هر الزام ویژهٔ مجموعه.'
+    },
+    {
+      id: 'workplace', title: '۳. پشتیبانی محل کار؛ وعدهٔ غذایی با برنامهٔ روشن',
+      intro: 'تأمین غذای پرسنل، هماهنگی میان منو، تعداد پرس، زمان آماده‌سازی و محل توزیع است؛ نه صرفاً انتخاب یک وعده. اطلاعات منتشرشدهٔ شرکت به صبحانه، ناهار، شام و میان‌وعده، منوی چرخشی و تحویل در محل اشاره می‌کند. شرایط و امکان اجرا باید با توجه به تعداد و برنامهٔ هر مجموعه سنجیده شود.',
+      image: cateringImage, imageAlt: 'وعده‌های سازمانی آمادهٔ بسته‌بندی در آشپزخانهٔ حرفه‌ای', imageCaption: 'تصویرسازی مفهومی؛ منو و شیوهٔ تحویل با نیاز مجموعه هماهنگ می‌شود.',
+      slugs: ['personnel-food'],
+      label: 'پیش از گفت‌وگو چه چیزهایی را مشخص کنیم؟', note: 'تعداد تقریبی پرس، نوع وعده‌ها، شیفت و زمان تحویل، محل توزیع و ترجیحات یا محدودیت‌های غذایی مجموعه.'
+    },
+  ],
+  startTitle: 'چطور درخواست را دقیق و قابل بررسی مطرح کنیم؟',
+  startIntro: 'شرح روشن مسئله، بررسی اولیه را مفیدتر می‌کند. پیش از تماس، این موارد را تا حد امکان آماده کنید:',
+  startSteps: [
+    ['نیاز را مشخص کنید', 'دقیقاً چه کالا، مسیر حمل، برنامهٔ رفت‌وآمد یا خدمت سازمانی مدنظر است؟'],
+    ['اطلاعات پایه را گردآوری کنید', 'برای پروندهٔ بازرگانی: نوع کالا، مقدار، مبدأ و مقصد و اسناد موجود؛ برای ترابری: مسیر، ساعت و تعداد مسافر؛ برای غذا: وعده، تعداد پرس و محل تحویل.'],
+    ['محدودیت‌ها را بیان کنید', 'زمان مورد انتظار، شرایط محل، الزامات قانونی یا عملیاتی و مواردی که هنوز نامشخص‌اند را شفاف بگویید.'],
+    ['دامنه و گام بعدی را مکتوب کنید', 'پس از بررسی، شرح خدمت، مسئولیت طرفین، موارد نیازمند تکمیل و اقدام بعدی را روشن کنید؛ از وعدهٔ قطعی پیش از ارزیابی پرونده پرهیز کنید.'],
+  ],
+  assuranceTitle: 'شفافیت، بخشی از تعریف خدمت است',
+  assurance: 'زمان، قیمت، امکان تأمین یا اجرای هر درخواست به جزئیات واقعی آن وابسته است. این مقاله جای ارزیابی پرونده یا مشاورهٔ تخصصی حقوقی، مالیاتی و بانکی را نمی‌گیرد. دربارهٔ گشایش اعتبار یا موضوعات تنظیم‌گری نیز باید نقش و حدود مسئولیت هر طرف پیش از اقدام مشخص شود.',
+  faqTitle: 'پرسش‌های پرتکرار دربارهٔ خدمات قزوین تصویر',
+  faqs: [
+    ['قزوین تصویر چه خدماتی دارد؟', 'هشت حوزهٔ منتشرشده در سایت شامل واردات و صادرات کالاهای مجاز، ترخیص گمرکی و امور بندری، تأمین مواد اولیه و تجهیزات، ترابری پرسنل کارخانه‌ها، حمل‌ونقل درون‌شهری و VIP، سرویس مدارس و سازمان‌ها، تأمین غذای پرسنل، و مشاورهٔ بازرگانی و گشایش است.'],
+    ['آیا همهٔ خدمات باید به‌صورت یک بسته درخواست شوند؟', 'خیر؛ صفحه‌های خدمات، مسیرهای مستقلی را معرفی می‌کنند. امکان و شکل هماهنگی چند خدمت در یک پرونده، به نیاز و اطلاعات همان درخواست بستگی دارد و پس از بررسی روشن می‌شود.'],
+    ['آیا خدمات واردات و ترخیص برای هر نوع کالا ارائه می‌شود؟', 'خیر. شرح خدمات بر کالاهای مجاز و قانونی تأکید دارد و هر درخواست باید با توجه به نوع کالا، مدارک و الزامات جاری بررسی شود. نتیجه یا زمان قطعی بدون بررسی پرونده قابل تضمین نیست.'],
+    ['برای استعلام قیمت یا شروع همکاری چه اطلاعاتی لازم است؟', 'اطلاعات لازم به خدمت بستگی دارد؛ معمولاً شرح نیاز، تعداد یا مقدار، مبدأ و مقصد یا محل اجرا، زمان‌بندی و مدارک مرتبط برای بررسی اولیه مفید است.'],
+    ['آیا مشاورهٔ بازرگانی جایگزین مشاورهٔ حقوقی یا بانکی است؟', 'خیر. مطابق توضیح صفحهٔ مشاوره، مسائل حقوقی، مالیاتی و بانکی باید در صورت نیاز با متخصص رسمی همان حوزه نیز بررسی شوند.'],
+  ],
+  disclaimer: 'این راهنما بر اساس شرح خدمات منتشرشده در وب‌سایت قزوین تصویر تنظیم شده است. جزئیات، دامنه و شرایط هر همکاری در زمان بررسی درخواست تعیین می‌شود.',
+  ctaTitle: 'برای انتخاب مسیر مناسب، از نیاز واقعی شروع کنید',
+  ctaText: 'یک شرح کوتاه از موضوع، زمان‌بندی و اطلاعات موجود بفرستید تا درخواست شما برای بررسی اولیه به تیم قزوین تصویر برسد.',
+  ctaContact: 'درخواست مشاوره', ctaServices: 'مشاهدهٔ همهٔ خدمات',
+  serviceLabel: 'جزئیات خدمت',
+} : {
+  breadcrumbHome: 'Home', breadcrumbArticles: 'Articles', breadcrumbCurrent: 'Services guide',
+  eyebrow: 'Qazvin Tasvir service guide',
+  title: articleTitle,
+  lead: 'A list of service names is not enough to understand what an organisation can do. It also helps to know which need each service addresses, what information is useful at the outset, and how scope is clarified. This guide brings together Qazvin Tasvir’s eight published service areas, using the company’s website as its source and avoiding claims beyond it.',
+  coverAlt: 'Operations planner reviewing route maps and shipping documents in an industrial office',
+  coverCaption: 'Illustrative image for this guide; it does not depict a specific contracted project.',
+  quickTitle: 'At a glance: what does Qazvin Tasvir do?',
+  quickAnswer: 'Qazvin Tasvir describes eight services across three connected areas: trade and sourcing, transport and organisational mobility, and workplace support. The scope of each request is defined after reviewing the goods or need, route, schedule and relevant documents.',
+  overviewTitle: 'Three areas, eight service paths',
+  overview: [
+    ['Trade and sourcing', 'Permitted-goods import and export, customs and port coordination, raw-material and equipment sourcing, and trade consulting.'],
+    ['Transport and mobility', 'Factory staff shuttles, urban and VIP transport, and school, office and company shuttles.'],
+    ['Workplace support', 'Staff meals and corporate catering for factories and companies.'],
+  ],
+  tocTitle: 'In this guide', toc: [['trade', 'Trade and sourcing'], ['transport', 'Organisational transport'], ['workplace', 'Workplace support'], ['start', 'How to make a request easier to assess'], ['faq', 'Frequently asked questions']],
+  groups: [
+    {
+      id: 'trade', title: '1. Trade and sourcing: from requirements to file follow-up',
+      intro: 'In a trade file, purchasing is only one link in the chain. Permitted-goods status, specifications, documents, origin and destination, freight and the responsibilities of each party need to be considered together. These services may be reviewed individually or alongside one another, depending on the file; the scope of work depends on its actual information.',
+      image: tradeImage, imageAlt: 'Cargo ship and commercial containers at a port, illustrating trade logistics', imageCaption: 'Illustrative image; each file requires its own review.',
+      slugs: ['import-export', 'customs-port', 'sourcing', 'trade-consulting'],
+      label: 'When might this area be relevant?', note: 'When an organisation needs support with permitted-goods trade, industrial sourcing, document and freight coordination, or identifying the next step in a trade file.'
+    },
+    {
+      id: 'transport', title: '2. Organisational transport: a plan shaped around routes and time',
+      intro: 'A transport service—whether a factory shift shuttle, a school or office commute, or mobility for organisational guests—starts with passenger numbers, origins and destinations, schedules and vehicle capacity. The published service pages refer to buses, minibuses and vans; a suitable option depends on the organisation’s routes and request.',
+      image: mobilityImage, imageAlt: 'Shuttle bus at an industrial workplace at the start of the working day', imageCaption: 'Illustrative image of organisational transport; the fleet is assessed for each request.',
+      slugs: ['factory-transport', 'urban-vip', 'school-office'],
+      label: 'What information helps with planning?', note: 'Passenger numbers and groups, pick-up and destination points, return times, shift patterns and any organisation-specific requirements.'
+    },
+    {
+      id: 'workplace', title: '3. Workplace support: meals with a clear delivery plan',
+      intro: 'Staff catering coordinates menus, meal counts, preparation times and the delivery point; it is more than selecting a dish. The company’s published information refers to breakfast, lunch, dinner and snacks, rotating menus and on-site distribution. Feasibility and terms should be assessed against each organisation’s numbers and schedule.',
+      image: cateringImage, imageAlt: 'Corporate meals ready for packing in a professional kitchen', imageCaption: 'Illustrative image; menus and delivery arrangements are coordinated around the organisation’s needs.',
+      slugs: ['personnel-food'],
+      label: 'What should be clear before an enquiry?', note: 'Approximate meal counts, meal types, shifts and delivery times, serving location, and any dietary preferences or requirements.'
+    },
+  ],
+  startTitle: 'How to make a request easier to assess',
+  startIntro: 'A clear description makes an initial review more useful. If possible, prepare the following before contacting the team:',
+  startSteps: [
+    ['Describe the need', 'What goods, freight route, employee transport plan or workplace service are you looking for?'],
+    ['Gather the basic facts', 'For trade: goods, quantity, origin, destination and available documents; for transport: routes, times and passenger numbers; for catering: meals, portions and delivery location.'],
+    ['State constraints', 'Share the desired timeline, site conditions, legal or operational requirements and any points that remain uncertain.'],
+    ['Confirm scope and next steps', 'After review, clarify the service, each party’s responsibilities, missing information and the next action. Avoid treating an unassessed file as a guaranteed outcome.'],
+  ],
+  assuranceTitle: 'Clarity is part of defining the service',
+  assurance: 'Timing, price and the feasibility of sourcing or delivery depend on the details of each request. This guide is not a file assessment or a substitute for specialist legal, tax or banking advice. For letters of credit or regulated matters, the role and limits of each party should be clarified before proceeding.',
+  faqTitle: 'Frequently asked questions about Qazvin Tasvir services',
+  faqs: [
+    ['What services does Qazvin Tasvir offer?', 'The eight service areas published on the site are permitted-goods import and export; customs clearance and port affairs; raw-material and equipment sourcing; factory staff transport; urban and VIP transport; school and organisational shuttles; staff catering; and trade consulting and opening support.'],
+    ['Do all services have to be requested as one package?', 'No. The service pages describe distinct paths. Whether several services can be coordinated for one file depends on the request and its details, and is clarified after review.'],
+    ['Does the company handle imports and customs for every type of goods?', 'No. The published service descriptions refer to permitted and legal goods. Each request must be checked against its product details, documents and applicable requirements. A result or timeline cannot be guaranteed without reviewing the file.'],
+    ['What information is useful for a price enquiry or initial discussion?', 'It depends on the service. A brief description of the need, quantity, origin and destination or service location, schedule and relevant documents is generally useful for an initial review.'],
+    ['Does trade consulting replace legal or banking advice?', 'No. The consulting page notes that legal, tax and banking matters should also be reviewed by an appropriately qualified specialist when needed.'],
+  ],
+  disclaimer: 'This guide is based on service descriptions published on Qazvin Tasvir’s website. The scope and terms of any engagement are determined when the request is reviewed.',
+  ctaTitle: 'Start with the actual need to choose a service path',
+  ctaText: 'Send a brief description of the subject, timeline and information available so the Qazvin Tasvir team can make an initial review.',
+  ctaContact: 'Request a consultation', ctaServices: 'Explore all services',
+  serviceLabel: 'Service details',
+};
+
+const allServices = await getCollection('services');
+const services = allServices
+  .filter((entry) => entry.id.startsWith(`${lang}/`))
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+const serviceBySlug = new Map(services.map((entry) => [entry.id.slice(lang.length + 1), entry]));
+const groups = copy.groups.map((group) => ({
+  ...group,
+  services: group.slugs.flatMap((slug) => {
+    const service = serviceBySlug.get(slug);
+    return service ? [service] : [];
+  }),
+}));
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: articleTitle,
+      description: articleDescription,
+      inLanguage: lang,
+      image: [coverUrl],
+      mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+      author: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
+      publisher: {
+        '@type': 'Organization',
+        name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company',
+        url: site,
+        logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png` },
+      },
+      articleSection: isFa ? 'راهنمای خدمات' : 'Service guide',
+      keywords: isFa
+        ? ['خدمات قزوین تصویر', 'خدمات بازرگانی قزوین', 'ترابری سازمانی', 'غذای پرسنل', 'واردات و صادرات کالاهای مجاز']
+        : ['Qazvin Tasvir services', 'trade services in Qazvin', 'organisational transport', 'staff catering', 'permitted goods import and export'],
+      isAccessibleForFree: true,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: copy.breadcrumbHome, item: `${site}${baseUrl}/${lang}/` },
+        { '@type': 'ListItem', position: 2, name: copy.breadcrumbArticles, item: `${site}${baseUrl}/${lang}/articles/` },
+        { '@type': 'ListItem', position: 3, name: articleTitle, item: canonical },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: copy.faqs.map(([question, answer]) => ({
+        '@type': 'Question', name: question,
+        acceptedAnswer: { '@type': 'Answer', text: answer },
+      })),
+    },
+    {
+      '@type': 'ItemList',
+      name: isFa ? 'خدمات قزوین تصویر در این راهنما' : 'Qazvin Tasvir services covered in this guide',
+      itemListElement: services.map((entry, index) => ({
+        '@type': 'ListItem', position: index + 1,
+        name: entry.data.title,
+        url: `${site}${baseUrl}/${lang}/services/${entry.id.slice(lang.length + 1)}/`,
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout lang={lang} title={articleTitle} description={articleDescription} image={coverUrl} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" bodyClass="article-page" preloadImage={coverPath} preloadImageType="image/jpeg">
+  <article class="service-guide">
+    <section class="guide-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}>
+          <a href={`${baseUrl}/${lang}/`}>{copy.breadcrumbHome}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span>
+          <a href={`${baseUrl}/${lang}/articles/`}>{copy.breadcrumbArticles}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span>
+          <span aria-current="page">{copy.breadcrumbCurrent}</span>
+        </nav>
+        <div class="guide-hero__grid">
+          <div class="guide-hero__copy">
+            <span class="guide-eyebrow">{copy.eyebrow}</span>
+            <h1>{copy.title}</h1>
+            <p class="guide-hero__lead">{copy.lead}</p>
+          </div>
+          <figure class="guide-cover">
+            <img src={coverPath} alt={copy.coverAlt} width="1200" height="800" fetchpriority="high" decoding="async" />
+            <figcaption>{copy.coverCaption}</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <div class="container guide-content">
+      <section class="guide-answer" aria-labelledby="quick-answer-title">
+        <div class="guide-answer__mark" aria-hidden="true">i</div>
+        <div><h2 id="quick-answer-title">{copy.quickTitle}</h2><p>{copy.quickAnswer}</p></div>
+      </section>
+
+      <section class="guide-overview" aria-labelledby="overview-title">
+        <div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'نقشهٔ خدمات' : 'Service map'}</span><h2 id="overview-title">{copy.overviewTitle}</h2></div>
+        <div class="guide-overview__grid">
+          {copy.overview.map(([title, text], index) => <div class="guide-overview__item"><span class="guide-overview__number">{isFa ? ['۰۱','۰۲','۰۳'][index] : `0${index + 1}`}</span><h3>{title}</h3><p>{text}</p></div>)}
+        </div>
+      </section>
+
+      <nav class="guide-toc" aria-label={copy.tocTitle}>
+        <strong>{copy.tocTitle}</strong>
+        <ul>{copy.toc.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ul>
+      </nav>
+
+      <div class="guide-groups">
+        {groups.map((group, index) => <section id={group.id} class:list={['guide-group', index % 2 ? 'guide-group--reverse' : '']} aria-labelledby={`${group.id}-title`}>
+          <div class="guide-group__intro">
+            <div class="guide-section-heading"><span class="guide-kicker">{isFa ? ['حوزهٔ یک', 'حوزهٔ دو', 'حوزهٔ سه'][index] : `Area ${index + 1}`}</span><h2 id={`${group.id}-title`}>{group.title}</h2></div>
+            <p>{group.intro}</p>
+            <div class="guide-note"><strong>{group.label}</strong><p>{group.note}</p></div>
+          </div>
+          <figure class="guide-group__image"><img src={group.image} alt={group.imageAlt} width="800" height="600" loading="lazy" decoding="async" /><figcaption>{group.imageCaption}</figcaption></figure>
+          <div class="guide-service-grid">
+            {group.services.map((service) => {
+              const slug = service.id.slice(lang.length + 1);
+              return <a class="guide-service-card" href={`${baseUrl}/${lang}/services/${slug}/`}>
+                <span class="guide-service-card__tag">{service.data.tag}</span>
+                <h3>{service.data.title}</h3>
+                <p>{service.data.summary || service.data.description}</p>
+                <span class="guide-service-card__link">{copy.serviceLabel}<span aria-hidden="true">{isFa ? ' ←' : ' →'}</span></span>
+              </a>;
+            })}
+          </div>
+          {group.id === 'trade' && <a class="guide-related-article" href={`${baseUrl}/${lang}/articles/permitted-goods-trade/`}><span class="guide-related-article__label">{isFa ? 'مقالهٔ مرتبط' : 'Related reading'}</span><strong>{isFa ? 'چه کالاهایی برای بازرگانی مجازند؟' : 'Which goods are permitted for trade?'}</strong><span aria-hidden="true">{isFa ? ' ←' : ' →'}</span></a>}
+        </section>)}
+      </div>
+
+      <section id="start" class="guide-start" aria-labelledby="start-title">
+        <div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'گام بعد' : 'Next step'}</span><h2 id="start-title">{copy.startTitle}</h2></div>
+        <p class="guide-start__intro">{copy.startIntro}</p>
+        <ol class="guide-steps">{copy.startSteps.map(([title, text], index) => <li><span class="guide-step__number">{isFa ? ['۰۱','۰۲','۰۳','۰۴'][index] : `0${index + 1}`}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
+      </section>
+
+      <aside class="guide-assurance"><div class="guide-assurance__icon" aria-hidden="true">✓</div><div><h2>{copy.assuranceTitle}</h2><p>{copy.assurance}</p></div></aside>
+
+      <section id="faq" class="guide-faq" aria-labelledby="faq-title">
+        <div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'پاسخ‌های روشن' : 'Clear answers'}</span><h2 id="faq-title">{copy.faqTitle}</h2></div>
+        <div class="guide-faq__list">{copy.faqs.map(([question, answer]) => <details class="guide-faq__item"><summary>{question}</summary><p>{answer}</p></details>)}</div>
+      </section>
+
+      <p class="guide-disclaimer">{copy.disclaimer}</p>
+      <section class="guide-cta">
+        <div><span class="guide-kicker">{isFa ? 'ارتباط با قزوین تصویر' : 'Talk to Qazvin Tasvir'}</span><h2>{copy.ctaTitle}</h2><p>{copy.ctaText}</p></div>
+        <div class="guide-cta__actions"><a class="btn btn--accent" href={`${baseUrl}/${lang}/contact/`}>{copy.ctaContact}<span aria-hidden="true">{isFa ? ' ←' : ' →'}</span></a><a class="guide-cta__secondary" href={`${baseUrl}/${lang}/services/`}>{copy.ctaServices}</a></div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

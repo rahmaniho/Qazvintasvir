@@ -1,0 +1,314 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/articles.css';
+
+interface Props { lang: 'fa' | 'en' }
+const { lang } = Astro.props;
+const isFa = lang === 'fa';
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = (Astro.site?.toString() || 'https://qazvintasvir.ir').replace(/\/$/, '');
+const canonical = `${site}${baseUrl}/${lang}/articles/permitted-goods-trade/`;
+const coverPath = `${baseUrl}/assets/img/articles/permitted-goods-hero.jpg`;
+const coverUrl = `${site}${coverPath}`;
+const industrialImage = `${baseUrl}/assets/img/articles/permitted-goods-industrial.jpg`;
+const foodImage = `${baseUrl}/assets/img/articles/permitted-goods-agri.jpg`;
+const articleTitle = isFa
+  ? 'چه کالاهایی برای بازرگانی مجازند؟ راهنمای تشخیص واردات و صادرات'
+  : 'Which Goods Are Permitted for Trade? A Guide to Import and Export Checks';
+const articleDescription = isFa
+  ? 'کالای مجاز، مشروط و ممنوع چه تفاوتی دارند؟ راهنمایی روشن برای بررسی کد تعرفه، ضوابط روز، مجوزها و ریسک پیش از واردات یا صادرات.'
+  : 'Understand permitted, conditional and prohibited goods, and how to check tariff classification, current rules and required approvals before importing or exporting.';
+const lawUrl = 'https://nezamat.ir/post-28025/';
+const tradeRulesUrl = 'https://tpo.ir/%DA%A9%D8%AA%D8%A7%D8%A8-%D9%85%D9%82%D8%B1%D8%B1%D8%A7%D8%AA-%D8%B5%D8%A7%D8%AF%D8%B1%D8%A7%D8%AA-%D9%88%D8%A7%D8%B1%D8%AF%D8%A7%D8%AA-';
+const customsUrl = 'https://www.irica.ir/';
+const hreflang = [
+  { lang: 'fa', href: `${site}${baseUrl}/fa/articles/permitted-goods-trade/` },
+  { lang: 'en', href: `${site}${baseUrl}/en/articles/permitted-goods-trade/` },
+  { lang: 'x-default', href: `${site}${baseUrl}/fa/articles/permitted-goods-trade/` },
+];
+
+const copy = isFa ? {
+  home: 'خانه', articles: 'مقاله‌ها', current: 'کالاهای مجاز برای بازرگانی',
+  eyebrow: 'راهنمای مقررات واردات و صادرات',
+  lead: 'پاسخ دقیق به این پرسش، معمولاً نام یک کالا نیست؛ بلکه تعیین وضعیت همان کالا در یک مسیر تجاری مشخص است. در مقررات ایران، کالاها در سه گروه «مجاز»، «مشروط» و «ممنوع» قرار می‌گیرند؛ اما کد تعرفه، مشخصات فنی، جهت معامله و ضوابط جاری است که نتیجهٔ هر پرونده را روشن می‌کند.',
+  coverAlt: 'کارشناس بازرگانی در حال بررسی نمونهٔ کالا و اسناد پیش از حمل بین‌المللی',
+  coverCaption: 'تصویر مفهومی برای توضیح فرایند بررسی؛ نه تأیید مجازبودن کالای خاص.',
+  answerTitle: 'پاسخ کوتاه: فهرست ثابت و همیشگی وجود ندارد',
+  answer: 'یک عنوان عمومی مانند «قطعهٔ صنعتی»، «محصول کشاورزی» یا «تجهیزات» برای اعلام مجازبودن کافی نیست. باید ردیف تعرفهٔ دقیق، مشخصات و کاربرد کالا، وارداتی یا صادراتی بودن عملیات، کشور مبدأ و مقصد و آخرین ضوابط بررسی شود. ممکن است کالا برای یک جهت یا شرایط، مجاز و برای حالت دیگر مشروط یا ممنوع باشد.',
+  tocTitle: 'در این راهنما',
+  toc: [['groups', 'سه وضعیت قانونی کالا'], ['classification', 'چه چیزهایی را باید بررسی کرد؟'], ['examples', 'گروه‌های نیازمند بررسی دقیق'], ['workflow', 'چک‌لیست پیش از معامله'], ['faqs', 'پرسش‌های پرتکرار'], ['sources', 'منابع و مراجع']],
+  classificationTitle: 'سه وضعیت قانونی کالا در صادرات و واردات',
+  classificationLead: 'مادهٔ ۲ قانون مقررات صادرات و واردات، کالاهای صادراتی و وارداتی را در سه گروه تعریف می‌کند. این دسته‌بندی را برای همان ردیف تعرفه و همان عملیات بخوانید؛ نه صرفاً برای نام بازاری محصول.',
+  tableHeaders: ['وضعیت', 'معنای قانونی کلی', 'برداشت عملی برای بازرگان'],
+  rows: [
+    ['مجاز', 'ورود یا صدور با رعایت ضوابط، به مجوز اختصاصی نیاز ندارد.', 'به معنای بی‌نیازی از اظهار گمرکی، ثبت‌های لازم، پرداخت حقوق و عوارض یا رعایت استانداردها نیست.'],
+    ['مشروط', 'ورود یا صدور با اخذ مجوز امکان‌پذیر است.', 'مرجع صادرکنندهٔ مجوز، نوع مدرک و زمان دریافت آن را پیش از خرید یا حمل مشخص کنید.'],
+    ['ممنوع', 'ورود یا صدور به موجب قانون یا به اعتبار خریدوفروش یا مصرف شرعاً ممنوع است.', 'تا وقتی وضعیت رسمی تغییر نکرده، برای خرید، حمل یا اظهار تجاری آن اقدام نکنید.'],
+  ],
+  lawNote: 'قانون همچنین امکان ممنوع‌شدن موقت برخی کالاها را با رعایت قوانین و مقتضیات زمان پیش‌بینی می‌کند؛ بنابراین سابقهٔ ترخیص یا صادرات، به‌تنهایی مجوز معاملهٔ امروز نیست.',
+  classificationTitle2: 'چرا نام کالا به‌تنهایی کافی نیست؟',
+  classificationIntro: 'در تجارت، یک نام عرفی ممکن است چند کالای متفاوت را در بر بگیرد. طبقه‌بندی گمرکی بر ویژگی واقعی کالا تکیه دارد و جزئیاتی که باید کنار هم بررسی شوند، معمولاً این‌ها هستند:',
+  classificationPoints: [
+    ['ماهیت و ترکیب', 'جنس، ترکیب، درصد مواد، شکل عرضه، مدل و مشخصات فنی کالا را دقیق ثبت کنید.'],
+    ['کاربرد و مصرف‌کننده', 'کاربرد صنعتی، مصرف نهایی، نوع کاربر و حساسیت یا دوکاربردی‌بودن احتمالی را روشن کنید.'],
+    ['ردیف تعرفه و جهت معامله', 'کد تعرفهٔ HS را با شرح رسمی تطبیق دهید و وضعیت واردات را جدا از صادرات بسنجید.'],
+    ['زمان، مبدأ و مقصد', 'ضوابط و مجوزهای لازم می‌توانند با کشورها، مسیر، تاریخ اقدام و رویهٔ گمرکی تفاوت داشته باشند.'],
+  ],
+  examplesTitle: 'چه گروه‌هایی بررسی دقیق‌تری می‌خواهند؟',
+  examplesLead: 'نمونه‌های زیر «فهرست کالاهای مجاز» نیستند؛ فقط نشان می‌دهند چرا برای بعضی کالاها باید اطلاعات فنی و مجوزهای مرتبط را با دقت بیشتری کنترل کرد.',
+  industrialTitle: 'مواد اولیه، قطعات و ماشین‌آلات',
+  industrialText: 'برای خرید صنعتی، نامی مانند «پمپ» یا «قطعهٔ خط تولید» ممکن است برای تعیین تعرفه کافی نباشد. سازنده، مدل، ظرفیت، جنس، کاربرد، نو یا مستعمل‌بودن و استانداردهای لازم را کنار شرح دقیق ردیف تعرفه قرار دهید؛ سپس ضوابط ورود یا صدور همان کالا را در زمان معامله استعلام کنید.',
+  industrialAlt: 'قطعات و تجهیزات صنعتی در حال بررسی در انبار لجستیکی',
+  foodTitle: 'محصولات کشاورزی و خوراکی',
+  foodText: 'در کالاهای کشاورزی و غذایی، گونه یا ترکیب محصول، خام یا فرآوری‌شده‌بودن، نوع بسته‌بندی، مبدأ و مقصد و مدارک بهداشتی یا قرنطینه‌ای احتمالی می‌تواند بر امکان و شرایط معامله اثر بگذارد. نام محصول به‌تنهایی وضعیت حقوقی آن را تعیین نمی‌کند.',
+  foodAlt: 'محصولات کشاورزی در محیط انبار برای کنترل کیفیت و اسناد حمل',
+  caution: 'این مثال‌ها فقط موضوعات قابل بررسی را نشان می‌دهند؛ هیچ‌یک از این گروه‌ها بدون تطبیق کد تعرفه و ضوابط جاری، مجاز یا ممنوع اعلام نمی‌شود.',
+  workflowTitle: 'چک‌لیست هفت‌گانه پیش از سفارش یا حمل',
+  workflowIntro: 'پیش از پرداخت، عقد قرارداد یا صدور بارنامه، پرونده را با این ترتیب کنترل کنید:',
+  steps: [
+    ['کالا را بی‌ابهام توصیف کنید', 'نام تجاری کافی نیست؛ مشخصات فنی، ترکیب، کاربرد، مدل، سازنده و وضعیت نو یا مستعمل را ثبت کنید.'],
+    ['کد تعرفه را بررسی کنید', 'ردیف HS را بر مبنای ماهیت و کارکرد واقعی کالا تعیین و شرح تعرفه را با اسناد تطبیق دهید. در موارد اختلاف، نظر کارشناس رسمی یا گمرک را بگیرید.'],
+    ['واردات و صادرات را جداگانه بسنجید', 'وضعیت یک کالا در ورود به ایران لزوماً با صدور از ایران یا ورود آن به کشور مقصد یکسان نیست.'],
+    ['آخرین مقررات و بخشنامه‌ها را ببینید', 'نسخهٔ جاری کتاب مقررات، اصلاحات تعرفه‌ای و ضوابط رسمی را در مراجع ذی‌ربط بررسی کنید؛ به فهرست‌های قدیمی یا نقل‌قول شبکه‌های اجتماعی اتکا نکنید.'],
+    ['مجوزها و استانداردها را مشخص کنید', 'اگر کالا مشروط یا مشمول کنترل تخصصی است، مرجع، مدارک و زمان اخذ مجوز را پیش از تعهد مالی روشن کنید.'],
+    ['طرف معامله و مسیر را ارزیابی کنید', 'مبدأ، مقصد، مسیر حمل، کاربری نهایی و محدودیت‌های احتمالی طرفین را پیش از سفارش بررسی کنید.'],
+    ['نتیجه را مستند کنید', 'کد تعرفه، نسخهٔ مقررات، مجوزها، فرض‌ها و مسئولیت‌ها را در پرونده ثبت کنید؛ وضعیت را نزدیک زمان حمل دوباره کنترل کنید.'],
+  ],
+  warningTitle: 'سه برداشت پرریسک که باید کنار گذاشت',
+  warnings: [
+    ['«این کالا قبلاً ترخیص شده؛ پس همیشه مجاز است.»', 'شرط ورود و صادرات ممکن است تغییر کند؛ پروندهٔ تازه باید با مقررات روز سنجیده شود.'],
+    ['«کد تعرفه را پیدا کردیم؛ کار تمام است.»', 'کد تعرفه فقط نقطهٔ شروع است؛ مجوزها، استانداردها، ثبت‌ها و محدودیت‌های مسیر نیز باید بررسی شوند.'],
+    ['«کالا در یک کشور مجاز است؛ پس همه‌جا مجاز است.»', 'قواعد کشور مبدأ، کشور مقصد و مسیر ترانزیت می‌توانند با هم تفاوت داشته باشند.'],
+  ],
+  faqTitle: 'پرسش‌های پرتکرار دربارهٔ کالاهای مجاز',
+  faqs: [
+    ['کالای مجاز برای واردات یا صادرات دقیقاً یعنی چه؟', 'طبق مادهٔ ۲ قانون مقررات صادرات و واردات، کالای مجاز کالایی است که ورود یا صدور آن با رعایت ضوابط، نیازمند کسب مجوز نیست. این تعریف، الزامات عمومی گمرک، مالیات، ثبت و استاندارد را خودبه‌خود حذف نمی‌کند.'],
+    ['آیا مواد اولیه و ماشین‌آلات صنعتی همیشه مجازند؟', 'خیر. عنوان کلی گروه کالا پاسخ قطعی نمی‌دهد. کد تعرفه، مشخصات فنی، نو یا مستعمل‌بودن، کاربرد و مقررات روز باید برای همان پرونده بررسی شود.'],
+    ['آیا وضعیت واردات و صادرات یک کالا یکسان است؟', 'نه لزوماً. مقررات می‌توانند برای ورود، صدور، مقصد یا رویهٔ تجاری متفاوت باشند؛ هر جهت معامله را جداگانه بررسی کنید.'],
+    ['چطور وضعیت یک کالا را استعلام کنم؟', 'ابتدا شرح فنی و ردیف تعرفهٔ دقیق را آماده کنید؛ سپس کتاب مقررات و اصلاحیه‌های جاری، سامانه‌ها و اطلاعیه‌های سازمان توسعه تجارت و گمرک را بررسی کنید و در صورت نیاز از مرجع تخصصی مرتبط استعلام بگیرید.'],
+    ['قزوین تصویر چه کالاهایی را برای بازرگانی می‌پذیرد؟', 'خدمت واردات و صادرات شرکت بر کالاهای مجاز متمرکز است. امکان بررسی هر درخواست پس از دریافت مشخصات کالا، کد تعرفه، مبدأ و مقصد، اسناد و الزامات قانونی روشن می‌شود؛ بدون بررسی پرونده، فهرست یا تضمین قطعی ارائه نمی‌شود.'],
+  ],
+  sourceTitle: 'منابع برای بررسی بیشتر',
+  sources: [
+    ['قانون مقررات صادرات و واردات، به‌ویژه مادهٔ ۲ و مادهٔ ۴', 'متن قانون و تعریف سه گروه کالا؛ مادهٔ ۴ به انتشار تغییرات مقررات و جداول اشاره دارد.', lawUrl],
+    ['سازمان توسعهٔ تجارت ایران', 'درگاه رسمی قوانین، مقررات، کتاب مقررات و بخشنامه‌های صادرات و واردات.', tradeRulesUrl],
+    ['گمرک جمهوری اسلامی ایران', 'برای مقررات گمرکی و اطلاعیه‌های اجرایی مرتبط با تشریفات ورود و صدور.', customsUrl],
+  ],
+  disclaimer: 'این مطلب راهنمای عمومی است، نه فهرست قطعی کالاهای مجاز و نه مشاورهٔ حقوقی یا گمرکی. مقررات ممکن است تغییر کند؛ برای تصمیم تجاری، وضعیت ردیف تعرفه و مجوزهای همان پرونده را از مراجع رسمی و متخصصان ذی‌صلاح بررسی کنید.',
+  ctaTitle: 'پیش از معامله، وضعیت کالا را مستند بررسی کنید',
+  ctaText: 'برای ارزیابی اولیهٔ مسیر واردات یا صادرات، شرح فنی کالا، کد تعرفهٔ احتمالی، مبدأ و مقصد و مدارک موجود را آماده کنید.',
+  ctaContact: 'درخواست بررسی اولیه', ctaService: 'خدمات واردات و صادرات',
+} : {
+  home: 'Home', articles: 'Articles', current: 'Permitted goods for trade',
+  eyebrow: 'Import and export regulations guide',
+  lead: 'The precise answer is rarely just a product name; it is the status of that product in a specific trade route. Iranian regulations classify goods as permitted, conditional or prohibited. The tariff code, product specifications, direction of trade and current rules determine how a particular transaction should be assessed.',
+  coverAlt: 'Trade specialist reviewing a product sample and documents before an international shipment',
+  coverCaption: 'Illustrative image of a review process; it does not confirm that any specific product is permitted.',
+  answerTitle: 'The short answer: there is no single, permanent list',
+  answer: 'A broad label such as “industrial part,” “agricultural product” or “equipment” is not enough to establish permission. Check the exact tariff line, product specifications and use, whether the transaction is an import or export, origin and destination, and the rules in force at the time. A product may be treated differently depending on the direction or circumstances of trade.',
+  tocTitle: 'In this guide',
+  toc: [['groups', 'Three legal statuses'], ['classification', 'What needs to be checked?'], ['examples', 'Product groups needing careful review'], ['workflow', 'Pre-trade checklist'], ['faqs', 'Frequently asked questions'], ['sources', 'Sources and references']],
+  classificationTitle: 'Three legal statuses for traded goods',
+  classificationLead: 'Article 2 of Iran’s Export and Import Regulations Act defines three categories for exported and imported goods. Apply the classification to the exact tariff line and transaction—not just the product’s market name.',
+  tableHeaders: ['Status', 'General legal meaning', 'Practical implication'],
+  rows: [
+    ['Permitted', 'Import or export does not require a specific permit when applicable rules are observed.', 'This does not remove customs declarations, required registrations, duties, taxes or standards obligations.'],
+    ['Conditional', 'Import or export may proceed after the required permission is obtained.', 'Identify the issuing authority, documents and timing before purchase or shipment.'],
+    ['Prohibited', 'Import or export is prohibited by law or, under the statute, on religious grounds relating to purchase, sale or use.', 'Do not purchase, ship or declare the goods commercially unless the official status changes.'],
+  ],
+  lawNote: 'The Act also allows certain goods to be temporarily prohibited in line with applicable laws and changing circumstances. A past clearance or export is therefore not, by itself, proof that a new transaction is currently permitted.',
+  classificationTitle2: 'Why a product name is not enough',
+  classificationIntro: 'A market name can cover several materially different products. Customs classification relies on what the goods actually are; the following details commonly need to be reviewed together:',
+  classificationPoints: [
+    ['Nature and composition', 'Record material, ingredients, percentages, presentation, model and technical specifications.'],
+    ['Use and end user', 'Clarify industrial or final use, intended user, and any possible sensitivity or dual-use concerns.'],
+    ['Tariff line and direction', 'Match the HS code to its official description and assess import status separately from export status.'],
+    ['Time, origin and destination', 'Rules and permissions may vary by country, route, date and customs procedure.'],
+  ],
+  examplesTitle: 'Which product groups need closer review?',
+  examplesLead: 'The examples below are not a list of permitted goods. They simply illustrate why product specifications and relevant approvals may need careful checking.',
+  industrialTitle: 'Raw materials, parts and machinery',
+  industrialText: 'For industrial procurement, a label such as “pump” or “production-line part” may not be enough for tariff classification. Record the manufacturer, model, capacity, material, intended use, new or used condition and applicable standards alongside the exact tariff description; then check the rules for that specific product at the time of trade.',
+  industrialAlt: 'Industrial components and equipment being reviewed in a logistics warehouse',
+  foodTitle: 'Agricultural and food products',
+  foodText: 'For agricultural and food goods, the species or composition, raw or processed state, packaging, origin and destination, and any applicable health or plant-health documentation may affect the transaction’s conditions. A product name alone does not determine its legal status.',
+  foodAlt: 'Agricultural products in a warehouse setting for quality and shipment-document review',
+  caution: 'These examples only identify issues to examine. None of these groups is declared permitted or prohibited without checking the exact tariff line and current rules.',
+  workflowTitle: 'A seven-point checklist before ordering or shipping',
+  workflowIntro: 'Before payment, contract signature or issuance of a bill of lading, review the file in this order:',
+  steps: [
+    ['Describe the goods precisely', 'A trade name is not enough. Record specifications, composition, use, model, manufacturer and whether the goods are new or used.'],
+    ['Check the tariff classification', 'Determine the HS line from the goods’ actual nature and function and match it to supporting documents. Seek a competent customs opinion if classification is uncertain.'],
+    ['Assess import and export separately', 'A product’s status for import into Iran is not necessarily the same as its status for export from Iran or entry into the destination country.'],
+    ['Review the latest rules and circulars', 'Check the current regulations book, tariff amendments and official requirements. Do not rely on old lists or social-media summaries.'],
+    ['Identify permits and standards', 'If the goods are conditional or subject to specialist controls, confirm the authority, documents and lead time before making a financial commitment.'],
+    ['Assess counterparties and route', 'Review origin, destination, transport route, end use and any relevant restrictions on parties before placing the order.'],
+    ['Document the result', 'Keep the tariff line, version of the rules, permits, assumptions and responsibilities on file; recheck the status close to shipment.'],
+  ],
+  warningTitle: 'Three risky assumptions to avoid',
+  warnings: [
+    ['“It cleared customs before, so it is always permitted.”', 'Import and export conditions can change. Review each new file against the rules in force.'],
+    ['“We found the tariff code; the work is done.”', 'Classification is only the starting point. Check permits, standards, registrations and route restrictions too.'],
+    ['“It is permitted in one country, so it is permitted everywhere.”', 'The rules of origin, destination and transit countries may differ.'],
+  ],
+  faqTitle: 'Frequently asked questions about permitted goods',
+  faqs: [
+    ['What does “permitted goods” mean for import or export?', 'Under Article 2 of Iran’s Export and Import Regulations Act, permitted goods do not require a specific permit for import or export when applicable rules are observed. This does not automatically remove general customs, tax, registration or standards obligations.'],
+    ['Are industrial raw materials and machinery always permitted?', 'No. A broad product group does not provide a definitive answer. The tariff line, technical specifications, new or used condition, use and current rules must be checked for the specific file.'],
+    ['Is a product’s import status always the same as its export status?', 'Not necessarily. Rules may differ for imports, exports, destinations or customs procedures. Review each direction of trade separately.'],
+    ['How can I check the status of a product?', 'Prepare a precise technical description and tariff line, then check the current regulations book, amendments, and official Trade Promotion Organization and Customs notices. Consult the relevant specialist authority where needed.'],
+    ['Which goods does Qazvin Tasvir handle for trade?', 'The company’s import and export service is described as covering permitted goods. Whether a specific request can be assessed depends on its product details, tariff line, origin, destination, documents and applicable rules. No definitive list or guarantee is offered before review.'],
+  ],
+  sourceTitle: 'Sources for further checking',
+  sources: [
+    ['Export and Import Regulations Act, especially Articles 2 and 4', 'The Act’s text and the three legal categories; Article 4 addresses publication of changes to the regulations and schedules.', lawUrl],
+    ['Trade Promotion Organization of Iran', 'Official portal for laws, regulations, the import-export regulations book and circulars.', tradeRulesUrl],
+    ['Islamic Republic of Iran Customs Administration', 'For customs regulations and operational notices relevant to import and export procedures.', customsUrl],
+  ],
+  disclaimer: 'This is a general guide, not a definitive list of permitted goods or legal or customs advice. Rules can change. For a commercial decision, confirm the tariff line and required permissions for the specific file with official sources and qualified specialists.',
+  ctaTitle: 'Check and document a product’s status before trading',
+  ctaText: 'For an initial review of an import or export route, prepare the product’s technical description, likely tariff line, origin, destination and available documents.',
+  ctaContact: 'Request an initial review', ctaService: 'Import and export services',
+};
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: articleTitle,
+      description: articleDescription,
+      inLanguage: lang,
+      image: [coverUrl, `${site}${industrialImage}`, `${site}${foodImage}`],
+      mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+      author: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
+      publisher: {
+        '@type': 'Organization',
+        name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company',
+        url: site,
+        logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png` },
+      },
+      articleSection: isFa ? 'مقررات صادرات و واردات' : 'Import and export regulations',
+      keywords: isFa
+        ? ['کالاهای مجاز برای واردات', 'کالاهای مجاز برای صادرات', 'کالای مشروط', 'کد تعرفه HS', 'قوانین صادرات و واردات ایران']
+        : ['permitted goods for import', 'permitted goods for export', 'conditional goods', 'HS tariff code', 'Iran import export regulations'],
+      citation: [lawUrl, tradeRulesUrl, customsUrl],
+      isAccessibleForFree: true,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: copy.home, item: `${site}${baseUrl}/${lang}/` },
+        { '@type': 'ListItem', position: 2, name: copy.articles, item: `${site}${baseUrl}/${lang}/articles/` },
+        { '@type': 'ListItem', position: 3, name: articleTitle, item: canonical },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: copy.faqs.map(([question, answer]) => ({
+        '@type': 'Question', name: question,
+        acceptedAnswer: { '@type': 'Answer', text: answer },
+      })),
+    },
+  ],
+};
+---
+
+<BaseLayout lang={lang} title={articleTitle} description={articleDescription} image={coverUrl} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" bodyClass="article-page" preloadImage={coverPath} preloadImageType="image/jpeg">
+  <article class="service-guide">
+    <section class="guide-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}>
+          <a href={`${baseUrl}/${lang}/`}>{copy.home}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span>
+          <a href={`${baseUrl}/${lang}/articles/`}>{copy.articles}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span>
+          <span aria-current="page">{copy.current}</span>
+        </nav>
+        <div class="guide-hero__grid">
+          <div class="guide-hero__copy">
+            <span class="guide-eyebrow">{copy.eyebrow}</span>
+            <h1>{articleTitle}</h1>
+            <p class="guide-hero__lead">{copy.lead}</p>
+          </div>
+          <figure class="guide-cover">
+            <img src={coverPath} alt={copy.coverAlt} width="1200" height="800" fetchpriority="high" decoding="async" />
+            <figcaption>{copy.coverCaption}</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <div class="container guide-content">
+      <section class="guide-answer" aria-labelledby="permitted-answer-title">
+        <div class="guide-answer__mark" aria-hidden="true">i</div>
+        <div><h2 id="permitted-answer-title">{copy.answerTitle}</h2><p>{copy.answer}</p></div>
+      </section>
+
+      <nav class="guide-toc" aria-label={copy.tocTitle}>
+        <strong>{copy.tocTitle}</strong><ul>{copy.toc.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ul>
+      </nav>
+
+      <section id="groups" class="guide-goods-section" aria-labelledby="groups-title">
+        <div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'چارچوب قانونی' : 'Legal framework'}</span><h2 id="groups-title">{copy.classificationTitle}</h2></div>
+        <p class="guide-article-intro">{copy.classificationLead}</p>
+        <div class="guide-table-wrap" role="region" aria-label={copy.classificationTitle} tabindex="0">
+          <table class="guide-status-table">
+            <thead><tr>{copy.tableHeaders.map((heading) => <th scope="col">{heading}</th>)}</tr></thead>
+            <tbody>{copy.rows.map((row) => <tr>{row.map((cell, index) => index === 0 ? <th scope="row">{cell}</th> : <td>{cell}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+        <aside class="guide-note guide-note--wide"><strong>{isFa ? 'نکته دربارهٔ تغییر مقررات' : 'Rules can change'}</strong><p>{copy.lawNote}</p></aside>
+      </section>
+
+      <section id="classification" class="guide-goods-section" aria-labelledby="classification-title">
+        <div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'طبقه‌بندی دقیق' : 'Accurate classification'}</span><h2 id="classification-title">{copy.classificationTitle2}</h2></div>
+        <p class="guide-article-intro">{copy.classificationIntro}</p>
+        <div class="guide-overview__grid guide-overview__grid--four">
+          {copy.classificationPoints.map(([title, text], index) => <article class="guide-overview__item"><span class="guide-overview__number">{isFa ? ['۰۱','۰۲','۰۳','۰۴'][index] : `0${index + 1}`}</span><h3>{title}</h3><p>{text}</p></article>)}
+        </div>
+      </section>
+
+      <section id="examples" class="guide-goods-section" aria-labelledby="examples-title">
+        <div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'نمونه‌های نیازمند تطبیق' : 'Examples to assess carefully'}</span><h2 id="examples-title">{copy.examplesTitle}</h2></div>
+        <p class="guide-article-intro">{copy.examplesLead}</p>
+        <div class="guide-example-grid">
+          <article class="guide-example-card">
+            <figure><img src={industrialImage} alt={copy.industrialAlt} width="1200" height="800" loading="lazy" decoding="async" /><figcaption>{isFa ? 'تصویر مفهومی؛ طبقه‌بندی فقط با بررسی ردیف دقیق ممکن است.' : 'Illustrative image; the exact tariff line still needs to be checked.'}</figcaption></figure>
+            <div><h3>{copy.industrialTitle}</h3><p>{copy.industrialText}</p></div>
+          </article>
+          <article class="guide-example-card">
+            <figure><img src={foodImage} alt={copy.foodAlt} width="1200" height="800" loading="lazy" decoding="async" /><figcaption>{isFa ? 'تصویر مفهومی؛ تصویر، تأیید مجازبودن نیست.' : 'Illustrative image; the image is not an approval.'}</figcaption></figure>
+            <div><h3>{copy.foodTitle}</h3><p>{copy.foodText}</p></div>
+          </article>
+        </div>
+        <p class="guide-caution">{copy.caution}</p>
+      </section>
+
+      <section id="workflow" class="guide-goods-section" aria-labelledby="workflow-title">
+        <div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'پیش از هر تعهد' : 'Before committing'}</span><h2 id="workflow-title">{copy.workflowTitle}</h2></div>
+        <p class="guide-article-intro">{copy.workflowIntro}</p>
+        <ol class="guide-steps">{copy.steps.map(([title, text], index) => <li><span class="guide-step__number">{isFa ? ['۰۱','۰۲','۰۳','۰۴','۰۵','۰۶','۰۷'][index] : `0${index + 1}`}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
+      </section>
+
+      <aside class="guide-risk-panel">
+        <div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'کنترل ریسک' : 'Risk check'}</span><h2>{copy.warningTitle}</h2></div>
+        <div class="guide-risk-panel__grid">{copy.warnings.map(([title, text]) => <article><h3>{title}</h3><p>{text}</p></article>)}</div>
+      </aside>
+
+      <section id="faqs" class="guide-faq guide-goods-section" aria-labelledby="goods-faq-title">
+        <div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'پاسخ‌های روشن' : 'Clear answers'}</span><h2 id="goods-faq-title">{copy.faqTitle}</h2></div>
+        <div class="guide-faq__list">{copy.faqs.map(([question, answer]) => <details class="guide-faq__item"><summary>{question}</summary><p>{answer}</p></details>)}</div>
+      </section>
+
+      <section id="sources" class="guide-sources guide-goods-section" aria-labelledby="sources-title">
+        <div class="guide-section-heading"><span class="guide-kicker">{isFa ? 'برای راستی‌آزمایی' : 'For verification'}</span><h2 id="sources-title">{copy.sourceTitle}</h2></div>
+        <ul>{copy.sources.map(([title, text, url]) => <li><div><a href={url} target="_blank" rel="noopener noreferrer">{title}<span class="sr-only">{isFa ? ' (در زبانهٔ تازه باز می‌شود)' : ' (opens in a new tab)'}</span></a><p>{text}</p></div><span aria-hidden="true">↗</span></li>)}</ul>
+      </section>
+
+      <p class="guide-disclaimer">{copy.disclaimer}</p>
+      <section class="guide-cta">
+        <div><span class="guide-kicker">{isFa ? 'خدمات بازرگانی قزوین تصویر' : 'Qazvin Tasvir trade services'}</span><h2>{copy.ctaTitle}</h2><p>{copy.ctaText}</p></div>
+        <div class="guide-cta__actions"><a class="btn btn--accent" href={`${baseUrl}/${lang}/contact/`}>{copy.ctaContact}<span aria-hidden="true">{isFa ? ' ←' : ' →'}</span></a><a class="guide-cta__secondary" href={`${baseUrl}/${lang}/services/import-export/`}>{copy.ctaService}</a></div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

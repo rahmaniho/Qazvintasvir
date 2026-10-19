@@ -20,6 +20,9 @@ interface Props {
   schema?: any;
   hreflang?: Array<{ lang: string; href: string }>;
   bodyClass?: string;
+  ogType?: 'website' | 'article';
+  preloadImage?: string;
+  preloadImageType?: string;
 }
 
 const {
@@ -31,7 +34,10 @@ const {
   noindex,
   bodyClass,
   schema,
-  hreflang
+  hreflang,
+  ogType,
+  preloadImage: propPreloadImage,
+  preloadImageType
 } = Astro.props;
 
 const url = Astro.url;
@@ -49,6 +55,8 @@ const title = propTitle ?? t.siteTitle;
 const description = propDesc ?? t.siteDescription;
 const canonical = propCanonical ?? url.href;
 const ogImage = propImage ?? `${siteClean}${baseClean}/assets/images/og-image.jpg`;
+const preloadImage = propPreloadImage ?? `${baseClean}/assets/img/sections/hero-port.webp`;
+const preloadImageMime = preloadImageType ?? 'image/webp';
 
 // hreflang links
 let hreflangLinks: Array<{lang:string, href:string}> = hreflang ?? [];
@@ -84,7 +92,7 @@ const currentPath = url.pathname;
   <link rel="canonical" href={canonical} />
   {hreflangLinks.map(l => <link rel="alternate" hreflang={l.lang} href={l.href} />)}
 
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType ?? 'website'} />
   <meta property="og:url" content={canonical} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
@@ -100,7 +108,7 @@ const currentPath = url.pathname;
   <link rel="apple-touch-icon" sizes="180x180" href={`${baseClean}/assets/images/brand/qazvin-tasvir-apple-touch.png`} />
 
   <link rel="preload" href={`${baseClean}/assets/fonts/vazirmatn-arabic-wght-normal.woff2`} as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href={`${baseClean}/assets/img/sections/hero-port.webp`} as="image" type="image/webp" fetchpriority="high" />
+  <link rel="preload" href={preloadImage} as="image" type={preloadImageMime} fetchpriority="high" />
 
   <script is:inline>
     (function(){

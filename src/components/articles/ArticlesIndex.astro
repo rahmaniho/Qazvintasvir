@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/articles.css';
+
+interface Props { lang: 'fa' | 'en' }
+const { lang } = Astro.props;
+const isFa = lang === 'fa';
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = (Astro.site?.toString() || 'https://qazvintasvir.ir').replace(/\/$/, '');
+const canonical = `${site}${baseUrl}/${lang}/articles/`;
+const guideImage = `${baseUrl}/assets/img/articles/services-guide-hero.jpg`;
+const goodsImage = `${baseUrl}/assets/img/articles/permitted-goods-hero.jpg`;
+const guideHref = `${baseUrl}/${lang}/articles/services-guide/`;
+const goodsHref = `${baseUrl}/${lang}/articles/permitted-goods-trade/`;
+const transportHref = `${baseUrl}/${lang}/articles/factory-staff-transport-qazvin/`;
+const cateringHref = `${baseUrl}/${lang}/articles/corporate-catering-qazvin/`;
+const fa = {
+  title: 'مقاله‌ها و راهنماهای قزوین تصویر',
+  description: 'راهنماهای کاربردی دربارهٔ خدمات بازرگانی، سرویس ایاب‌وذهاب صنعتی، غذای پرسنلی و پشتیبانی سازمانی در قزوین.',
+  breadcrumbHome: 'خانه', breadcrumbCurrent: 'مقاله‌ها',
+  eyebrow: 'دانش و راهنمای خدمات',
+  heading: 'مقاله‌ها و راهنماها',
+  intro: 'مطالب این بخش برای روشن‌کردن دامنهٔ خدمات، پرسش‌های آغازین و اطلاعات لازم برای بررسی هر درخواست نوشته می‌شوند؛ با تکیه بر اطلاعات منتشرشده و منابع قانونی، بدون وعده‌های فراتر از آن‌ها.',
+  read: 'مطالعهٔ مقاله',
+  noteTitle: 'اطلاعات، پیش از تصمیم',
+  note: 'هر درخواست با توجه به مشخصات کالا یا خدمت، مسیر، زمان و مدارک بررسی می‌شود. شرایط نهایی پس از شناخت نیاز مجموعه روشن خواهد شد.',
+};
+const en = {
+  title: 'Articles & Guides | Qazvin Tasvir',
+  description: 'Practical guides to Qazvin Tasvir’s trade, factory transport, staff catering and corporate services in Qazvin.',
+  breadcrumbHome: 'Home', breadcrumbCurrent: 'Articles',
+  eyebrow: 'Service knowledge and guides',
+  heading: 'Articles & Guides',
+  intro: 'These guides explain service scope, useful first questions and the information needed to review a request—using published company information and legal references without claims beyond them.',
+  read: 'Read article',
+  noteTitle: 'Information before a decision',
+  note: 'Each request is reviewed against the goods or service, route, timing and available documents. Terms are clarified after the organisation’s needs are understood.',
+};
+const copy = isFa ? fa : en;
+const cards = isFa ? [
+  {
+    href: goodsHref, image: goodsImage,
+    alt: 'کارشناس بازرگانی در حال بررسی نمونهٔ کالا و اسناد پیش از حمل بین‌المللی',
+    tag: 'راهنمای مقررات واردات و صادرات',
+    title: 'چه کالاهایی برای بازرگانی مجازند؟ راهنمای تشخیص واردات و صادرات',
+    description: 'تفاوت کالای مجاز، مشروط و ممنوع را بشناسید و پیش از معامله، کد تعرفه، ضوابط روز و مجوزهای احتمالی را چگونه بررسی کنید.',
+  },
+  {
+    href: guideHref, image: guideImage,
+    alt: 'تصویر مفهومی هماهنگی عملیات بازرگانی و خدمات سازمانی',
+    tag: 'راهنمای جامع خدمات',
+    title: 'خدمات قزوین تصویر چیست؟ راهنمای جامع بازرگانی، ترابری و پشتیبانی سازمانی',
+    description: 'هشت مسیر خدمت قزوین تصویر را در سه حوزهٔ بازرگانی و تأمین، ترابری سازمانی و پشتیبانی محل کار بشناسید؛ همراه با نکات کاربردی برای شروع گفت‌وگو.',
+  },
+  {
+    href: transportHref, image: `${baseUrl}/assets/img/articles/industrial-shuttle-hero.jpg`,
+    alt: 'اتوبوس سرویس پرسنل در ورودی یک مجموعهٔ صنعتی در آغاز شیفت کاری',
+    tag: 'راهنمای سرویس ایاب‌وذهاب صنعتی',
+    title: 'بهترین سرویس ایاب‌وذهاب صنعتی در قزوین و حومه؟ راهنمای انتخاب و قیمت',
+    description: 'معیارهای انتخاب سرویس شیفتی، مسیرسنجی کارخانه، ناوگان اتوبوس و مینی‌بوس و عوامل مؤثر بر قیمت قرارداد را بخوانید.',
+  },
+  {
+    href: cateringHref, image: `${baseUrl}/assets/img/articles/corporate-catering-hero.jpg`,
+    alt: 'آشپزهای حرفه‌ای در حال آماده‌سازی وعده‌های غذایی برای پذیرایی و غذای سازمانی',
+    tag: 'راهنمای غذای سازمانی و پذیرایی',
+    title: 'غذای پرسنلی، کترینگ شرکتی و پذیرایی سازمانی در قزوین؛ راهنمای خدمات و قیمت',
+    description: 'از منوی چرخشی و وعده‌های شیفتی تا پذیرایی سازمانی و معیارهای مقایسهٔ قیمت کترینگ در قزوین.',
+  },
+] : [
+  {
+    href: goodsHref, image: goodsImage,
+    alt: 'Trade specialist reviewing a product sample and documents before an international shipment',
+    tag: 'Import and export regulations guide',
+    title: 'Which Goods Are Permitted for Trade? A Guide to Import and Export Checks',
+    description: 'Understand permitted, conditional and prohibited goods, and how to check tariff classification, current rules and required approvals before trading.',
+  },
+  {
+    href: guideHref, image: guideImage,
+    alt: 'Illustrative image of trade operations and corporate services coordination',
+    tag: 'Complete service guide',
+    title: 'What Does Qazvin Tasvir Do? A Guide to Trade, Transport and Corporate Services',
+    description: 'Explore Qazvin Tasvir’s eight service paths across trade and sourcing, organisational transport and workplace support—with practical notes for starting a discussion.',
+  },
+  {
+    href: transportHref, image: `${baseUrl}/assets/img/articles/industrial-shuttle-hero.jpg`,
+    alt: 'Staff shuttle bus at the entrance of an industrial workplace at shift change',
+    tag: 'Industrial staff transport guide',
+    title: 'Best Industrial Staff Transport in Qazvin? A Guide to Shuttle Services and Prices',
+    description: 'Compare shift shuttle options, route planning, bus and minibus fleets, and the factors that shape factory transport contracts.',
+  },
+  {
+    href: cateringHref, image: `${baseUrl}/assets/img/articles/corporate-catering-hero.jpg`,
+    alt: 'Professional kitchen team preparing meals for workplace catering',
+    tag: 'Workplace meals and hospitality guide',
+    title: 'Corporate Catering and Staff Meals in Qazvin: Services, Event Hospitality and Pricing',
+    description: 'Explore rotating menus, shift meals, organisational hospitality and practical ways to compare catering prices in Qazvin.',
+  },
+];
+const hreflang = [
+  { lang: 'fa', href: `${site}${baseUrl}/fa/articles/` },
+  { lang: 'en', href: `${site}${baseUrl}/en/articles/` },
+  { lang: 'x-default', href: `${site}${baseUrl}/fa/articles/` },
+];
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: copy.title,
+  description: copy.description,
+  inLanguage: lang,
+  url: canonical,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: cards.map((card, index) => ({
+      '@type': 'ListItem', position: index + 1, name: card.title,
+      url: `${site}${card.href}`,
+    })),
+  },
+};
+---
+
+<BaseLayout lang={lang} title={copy.title} description={copy.description} image={`${site}${goodsImage}`} canonical={canonical} hreflang={hreflang} schema={schema} bodyClass="articles-index" preloadImage={goodsImage} preloadImageType="image/jpeg">
+  <section class="guide-hero guide-hero--index">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}>
+        <a href={`${baseUrl}/${lang}/`}>{copy.breadcrumbHome}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><span aria-current="page">{copy.breadcrumbCurrent}</span>
+      </nav>
+      <div class="guide-index-intro"><span class="guide-eyebrow">{copy.eyebrow}</span><h1>{copy.heading}</h1><p>{copy.intro}</p></div>
+    </div>
+  </section>
+  <section class="container guide-index-content">
+    <div class="guide-index-grid">
+      {cards.map((card) => <article class="guide-index-card">
+        <a class="guide-index-card__image" href={card.href} aria-label={`${copy.read}: ${card.title}`}>
+          <img src={card.image} alt={card.alt} width="1200" height="800" loading="lazy" decoding="async" />
+        </a>
+        <div class="guide-index-card__body"><span class="guide-kicker">{card.tag}</span><h2><a href={card.href}>{card.title}</a></h2><p>{card.description}</p><a class="guide-service-card__link" href={card.href}>{copy.read}<span aria-hidden="true">{isFa ? ' ←' : ' →'}</span></a></div>
+      </article>)}
+    </div>
+    <aside class="guide-index-note"><strong>{copy.noteTitle}</strong><p>{copy.note}</p></aside>
+  </section>
+</BaseLayout>

@@ -718,6 +718,25 @@
     .client-marquee__logo-card { flex-basis: 128px; inline-size: 128px; block-size: 76px; padding: 7px 8px; }
     .client-marquee__group { gap: 9px; }
   }
+  .service-article-promo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-block-start: 32px;
+    padding: clamp(20px, 3vw, 30px);
+    border: 1px solid var(--line-soft);
+    border-inline-start: 4px solid var(--amber-accent);
+    border-radius: var(--r-md);
+    background: linear-gradient(120deg, rgb(245 158 11 / 8%), transparent 65%), var(--surface-white);
+  }
+  .service-article-promo h2 { margin: 4px 0 0; font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.55; }
+  .service-article-promo p { max-width: 68ch; margin: 5px 0 0; color: var(--text-muted); line-height: 1.85; }
+  .service-article-promo .section-label { color: var(--teal-industrial); }
+  @media (max-width: 640px) {
+    .service-article-promo { align-items: flex-start; flex-direction: column; gap: 16px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .home-directory__card, .home-directory__arrow { transition: none; }
     .client-marquee__track { animation: none; }
