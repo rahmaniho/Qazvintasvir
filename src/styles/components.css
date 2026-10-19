@@ -688,7 +688,7 @@
     background: rgb(255 255 255 / 67%);
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 92%), 0 5px 14px rgb(10 37 64 / 6%);
   }
-  .client-marquee__logo-card img { display: block; inline-size: 100%; block-size: 100%; object-fit: contain; }
+  .client-marquee__logo-card img { display: block; inline-size: 88%; block-size: 88%; object-fit: contain; }
   .client-marquee__logo-card--lg { border-color: rgb(255 255 255 / 16%); background: rgb(15 28 48 / 94%); box-shadow: inset 0 1px 0 rgb(255 255 255 / 12%), 0 5px 14px rgb(10 37 64 / 14%); }
   .client-marquee__viewport:hover .client-marquee__track, .client-marquee__viewport:focus-within .client-marquee__track { animation-play-state: paused; }
   [dir="rtl"] .client-marquee__viewport { -webkit-mask-image: linear-gradient(to left, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(to left, transparent, #000 4%, #000 96%, transparent); }
