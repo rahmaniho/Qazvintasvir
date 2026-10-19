@@ -16,6 +16,7 @@ const labelsFa = {
   fleet: 'ناوگان',
   brands: 'برندها',
   clients: 'مشتریان',
+  articles: 'مقاله‌ها',
   contact: 'تماس با ما'
 };
 const labelsEn = {
@@ -25,6 +26,7 @@ const labelsEn = {
   fleet: 'Fleet',
   brands: 'Brands',
   clients: 'Clients',
+  articles: 'Articles',
   contact: 'Contact'
 };
 const L = lang === 'fa' ? labelsFa : labelsEn;
@@ -58,6 +60,7 @@ const aboutHref = `${baseUrl}/${lang}/about/`;
 const fleetHref = `${baseUrl}/${lang}/fleet/`;
 const brandsHref = `${baseUrl}/${lang}/brands/`;
 const clientsHref = `${baseUrl}/${lang}/clients/`;
+const articlesHref = `${baseUrl}/${lang}/articles/`;
 const contactHref = `${baseUrl}/${lang}/contact/`;
 ---
 
@@ -78,6 +81,9 @@ const contactHref = `${baseUrl}/${lang}/contact/`;
     </li>
     <li class="nav-menu__item">
       <a href={clientsHref} class="nav-menu__link" aria-current={currentPath.includes('/clients') ? "page" : undefined}><NavIcon name="clients" baseUrl={baseUrl} />{L.clients}</a>
+    </li>
+    <li class="nav-menu__item">
+      <a href={articlesHref} class="nav-menu__link" aria-current={currentPath.includes('/articles') ? "page" : undefined}><NavIcon name="articles" baseUrl={baseUrl} />{L.articles}</a>
     </li>
     <li class="nav-menu__item">
       <a href={contactHref} class="nav-menu__link" aria-current={currentPath.includes('/contact') ? "page" : undefined}><NavIcon name="contact" baseUrl={baseUrl} />{L.contact}</a>
