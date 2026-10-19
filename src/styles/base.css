@@ -129,6 +129,7 @@
   html[dir="rtl"] h6 { letter-spacing: var(--tracking-heading-rtl); }
   [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 { color: #fff; }
   html[lang="fa"] {
+    --font-numbers: var(--font-persian);
     font-size: 17px;
     font-synthesis: weight;
   }

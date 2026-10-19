@@ -146,7 +146,7 @@
     border-radius: 10px;
     background: rgb(14 75 110 / 8%);
     color: var(--teal-industrial);
-    font-family: var(--font-latin);
+    font-family: var(--font-numbers);
     font-size: 0.82rem;
     font-weight: 800;
   }
@@ -242,7 +242,7 @@
   .guide-steps { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
   .guide-steps li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; padding: 19px 0; border-block-end: 1px solid var(--line-soft); }
   .guide-steps li:last-child { border-block-end: 0; }
-  .guide-step__number { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line-soft); border-radius: 50%; color: var(--teal-industrial); font-family: var(--font-latin); font-size: 0.78rem; font-weight: 800; }
+  .guide-step__number { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--line-soft); border-radius: 50%; color: var(--teal-industrial); font-family: var(--font-numbers); font-size: 0.78rem; font-weight: 800; }
   .guide-steps h3 { margin: 0; font-size: 1rem; line-height: 1.65; }
   .guide-steps p { margin: 4px 0 0; color: var(--text-muted); line-height: 1.9; }
   .guide-assurance { display: grid; grid-template-columns: 42px minmax(0, 1fr); align-items: start; gap: 17px; margin-block: 48px 68px; padding: 22px; border: 1px solid var(--line-soft); border-radius: var(--r-md); background: var(--surface-bg); }
