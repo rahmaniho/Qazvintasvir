@@ -43,7 +43,7 @@ const meals = [
       { image: 'dishes/sangak-cheese', title: 'Sangak, Lighvan cheese and walnuts', text: 'Fresh sangak bread, Lighvan cheese, walnuts, fresh herbs and a glass of strong tea.', alt: 'Fresh sangak bread served with Lighvan cheese, walnuts and hot tea' },
       { image: 'dishes/omelette-tomato', title: 'Tomato omelette with fresh eggs', text: 'A warm omelette with fresh eggs, tomatoes and mild seasoning, served with toast.', alt: 'Persian tomato omelette with fresh eggs and toast' },
       { image: 'dishes/halim', title: 'Wheat haleem with cinnamon', text: 'Slow-cooked, thick wheat haleem from the central kitchen, served with cinnamon, sugar and fresh bread.', alt: 'Traditional wheat haleem with butter, cinnamon and sugar' },
-      { image: 'dishes/light-breakfast', title: 'Light staff breakfast', text: 'A light breakfast selection with fresh cake, packaged pastries, cheese and a hot or cold drink.', alt: 'Light employee breakfast with barbari bread, butter, honey and jam' },
+      { image: 'dishes/light-breakfast', title: 'Fresh bread with butter, honey and jam', text: 'Fresh bread with butter, honey, jam and tea; the breakfast combination can be adjusted with your organization.', alt: 'Light breakfast with fresh bread, butter, honey, jam and tea' },
     ],
   },
   {
@@ -54,7 +54,7 @@ const meals = [
       { image: 'dishes/chelokebab-koobideh', title: 'Koobideh kebab with rice', text: 'Two skewers of fresh minced-meat kebab, Iranian rice, grilled tomato, butter, seasonal salad and yogurt.', alt: 'Koobideh kebab with saffron rice, grilled tomato and sumac' },
       { image: 'dishes/zereshk-polo-morgh', title: 'Barberry rice with chicken', text: 'Saffron chicken leg with Iranian rice, barberries and pistachio slivers, Shirazi salad and yogurt.', alt: 'Saffron chicken with barberry rice and pistachios' },
       { image: 'dishes/gheymeh-bademjan', title: 'Gheymeh with eggplant and rice', text: 'Split-pea and meat stew with fried eggplant, Iranian rice, yogurt and homemade pickles.', alt: 'Gheymeh stew with eggplant and rice' },
-      { image: 'dishes/chelojoojeh-zaferani', title: 'Saffron chicken kebab — lighter portion', text: 'Marinated boneless chicken, saffron butter, grilled tomato and steamed vegetables.', alt: 'Saffron chicken kebab with rice, grilled tomato and fresh salad' },
+      { image: 'dishes/chelojoojeh-zaferani', title: 'Saffron chicken kebab with vegetables', text: 'Marinated boneless chicken, saffron butter, grilled tomato and steamed vegetables.', alt: 'Saffron chicken kebab with rice, grilled tomato and fresh salad' },
     ],
   },
   {
@@ -75,13 +75,13 @@ const meals = [
     dishes: [
       { image: 'dishes/fruit-pack', title: 'Seasonal fruit and juice pack', text: 'Washed fruit packed hygienically and served with natural juice or bottled water.', alt: 'Seasonal fruit pack with apple, orange and natural juice' },
       { image: 'dishes/sandwich-chicken-grill', title: 'Warm grilled chicken sandwich', text: 'Fresh bread, grilled chicken fillet, fresh vegetables and house dressing, served warm.', alt: 'Warm grilled chicken sandwich with vegetables and toast' },
-      { image: 'dishes/dry-pack', title: 'Production-line snack pack', text: 'Chocolate, biscuits and a packaged drink; suitable for convenient use on the production line.', alt: 'Snack pack with nuts, dates and raisins for a production line' },
-      { image: 'dishes/dessert-fresh', title: 'Fresh dessert of the day', text: 'Jelly, halva or homemade cake, prepared daily and packed to hygienic standards.', alt: 'Fresh dessert of the day: saffron sholeh zard with pistachios and almonds' },
+      { image: 'dishes/dry-pack', title: 'Dried snack selection', text: 'A sample selection of dates, nuts and dried fruit for convenient workplace snacks; final items are agreed with your team.', alt: 'Snack pack with nuts, dates and raisins for a production line' },
+      { image: 'dishes/dessert-fresh', title: 'Fresh dessert of the day', text: 'The photo shows saffron sholeh zard with pistachios and almonds; the dessert for each day is confirmed in the menu.', alt: 'Fresh dessert of the day: saffron sholeh zard with pistachios and almonds' },
     ],
   },
 ];
 const gallery = [
-  { image: 'hygienic-kitchen', title: 'Hygienic kitchen', text: 'HACCP-aligned practices, protective clothing and stainless-steel surfaces', alt: 'Commercial kitchen with stainless equipment and staff wearing gloves and masks', wide: true },
+  { image: 'hygienic-kitchen', title: 'Food preparation kitchen', text: 'A view of kitchen equipment and staff protective clothing', alt: 'Commercial kitchen with stainless equipment and staff wearing gloves and masks', wide: true },
   { image: 'personnel-meal', title: 'Staff meal portions', text: 'Meals packed for organized workplace distribution', alt: 'Hygienically packed staff meal with rice, kebab, salad and yogurt' },
   { image: 'food-delivery', title: 'Catering vehicle delivery', text: 'Delivery planned around the agreed shift schedule', alt: 'Catering vehicle delivering meal packs to factory workers' },
   { image: 'buffet-setup', title: 'Serving station setup', text: 'Organized workplace buffet and serving stations', alt: 'Corporate buffet setup with serving stations and Iranian dishes' },
@@ -92,7 +92,7 @@ const benefits = [
   ['Flexible long-term contract', 'An annual contract can allow meal quantities to change, a new meal period to be added or service to pause temporarily around production plans and shift schedules.'],
   ['Varied weekly menus', 'Breakfast, lunch, dinner and snacks can be planned across weekly and seasonal menus, with vegetarian and other dietary options discussed for staff who need them.'],
   ['Delivery at your workplace', 'Meals can be delivered to the factory restaurant or another designated location in catering vehicles, with packing and timing coordinated around shifts.'],
-  ['Hygiene and quality checks', 'Preparation in permitted, supervised kitchens, quality checks and sampling, hygienic packing and transport in suitable catering vehicles.'],
+  ['Hygiene and quality checks', 'Hygiene practices during preparation, food quality checks, hygienic packing and suitable transport for workplace delivery.'],
 ];
 const steps = [
   ['Initial request', 'Send a request by form, phone or WhatsApp and share the basic details: meal quantity, required meal periods and delivery location.'],
@@ -148,7 +148,7 @@ const steps = [
           <div class="food-hero__media reveal">
             <figure class="food-hero__frame">
               <picture><source srcset={asset('hero-kitchen.webp')} type="image/webp" /><img class="food-hero__img" src={asset('hero-kitchen.jpg')} alt="Industrial kitchen with hygienic preparation areas and stainless-steel surfaces" width="1376" height="768" loading="eager" decoding="async" fetchpriority="high" /></picture>
-              <figcaption class="food-hero__caption"><span class="food-hero__caption-badge">Licensed kitchen; HACCP standards</span></figcaption>
+              <figcaption class="food-hero__caption"><span class="food-hero__caption-badge">Hygiene practices during food preparation</span></figcaption>
             </figure>
             <span class="food-hero__chip food-hero__chip--a">Daily preparation with fresh ingredients</span>
             <span class="food-hero__chip food-hero__chip--b">Delivery in equipped catering vehicles</span>
@@ -186,7 +186,7 @@ const steps = [
         <header class="section-header reveal"><span class="section-label section-label--food">Sample menu</span><h2 class="section-title">Menu ideas for corporate meal programs</h2><p class="section-desc">A rotating menu of Iranian and international dishes can be adapted to budget, staff preferences and production schedules.</p></header>
         <div class="food-menu__header reveal">
           <figure class="food-menu__header-media"><picture><source srcset={asset('catering-menu.webp')} type="image/webp" /><img src={asset('catering-menu.jpg')} alt="Sample corporate catering menu featuring Iranian dishes" width="1408" height="768" loading="lazy" decoding="async" /></picture></figure>
-          <div class="food-menu__header-body"><span class="food-menu__header-tag">Rotating weekly menu</span><h3 class="food-menu__header-title">Seven days, 28 menu items across four meal periods</h3><p class="food-menu__header-text">A new menu can be planned each week around the season and staff preferences, with a varied selection across the week.</p><ul class="food-menu__header-list"><li>Less popular items can be removed or replaced</li><li>Dietary, vegetarian and lower-salt options can be discussed</li><li>Special menus can be arranged for seasonal occasions</li></ul></div>
+          <div class="food-menu__header-body"><span class="food-menu__header-tag">Rotating weekly menu</span><h3 class="food-menu__header-title">Sample options for four meal periods</h3><p class="food-menu__header-text">The items shown here are examples. The menu, service days and variety are agreed with your organization.</p><ul class="food-menu__header-list"><li>Less popular items can be removed or replaced</li><li>Dietary, vegetarian and lower-salt options can be discussed</li><li>Special menus can be arranged for seasonal occasions</li></ul></div>
         </div>
         <div class="food-menu__tabs-area reveal">
           <div class="food-tabs" role="tablist" aria-label="Meal menu categories">
@@ -201,7 +201,7 @@ const steps = [
             </div>)}
           </div>
         </div>
-        <p class="food-menu__note"><strong>Menu planning:</strong> Ingredients and dishes are confirmed with your organization. The sample items shown here can be adjusted to the agreed budget, dietary needs and production schedule.</p>
+        <p class="food-menu__note"><strong>Menu planning:</strong> The items shown are examples, not a fixed weekly schedule. The final menu and cost estimate are discussed based on meal quantities, meal periods and delivery location.</p>
       </div>
     </div>
 
@@ -223,7 +223,7 @@ const steps = [
                 <div class="form-group"><input type="text" id="food-company" name="company" class="form-control" placeholder=" " required autocomplete="organization" aria-describedby="food-company-feedback" /><label for="food-company" class="form-label">Company / factory name *</label><span class="form-feedback" id="food-company-feedback" data-feedback-for="food-company" role="alert">Enter your company name.</span></div>
                 <div class="form-group"><input type="text" id="food-person" name="contact_person" class="form-control" placeholder=" " required autocomplete="name" aria-describedby="food-person-feedback" /><label for="food-person" class="form-label">Contact person / welfare manager *</label><span class="form-feedback" id="food-person-feedback" data-feedback-for="food-person" role="alert">Enter a contact name.</span></div>
                 <div class="form-group"><input type="tel" id="food-phone" name="phone" class="form-control" placeholder=" " dir="ltr" required autocomplete="tel" inputmode="tel" aria-describedby="food-phone-feedback" /><label for="food-phone" class="form-label">Phone number *</label><span class="form-feedback" id="food-phone-feedback" data-feedback-for="food-phone" role="alert">Enter a valid Iranian mobile number, such as 09121234567.</span></div>
-                <div class="form-group"><input type="text" id="food-headcount" name="headcount" class="form-control" placeholder=" " inputmode="numeric" required dir="ltr" aria-describedby="food-headcount-feedback" /><label for="food-headcount" class="form-label">Number of staff *</label><span class="form-feedback" id="food-headcount-feedback" data-feedback-for="food-headcount" role="alert">Enter the number of staff (at least 10).</span></div>
+                <div class="form-group"><input type="text" id="food-headcount" name="headcount" class="form-control" placeholder=" " inputmode="numeric" required dir="ltr" aria-describedby="food-headcount-hint food-headcount-feedback" /><label for="food-headcount" class="form-label">Approximate number of staff *</label><span class="form-hint" id="food-headcount-hint">This is for an initial estimate. The usual minimum is 50 meals per service; smaller requests can also be discussed.</span><span class="form-feedback" id="food-headcount-feedback" data-feedback-for="food-headcount" role="alert">Enter the number of staff (at least 10) to submit a request.</span></div>
               </div>
               <fieldset class="food-fieldset" aria-describedby="food-meals-feedback"><legend class="food-legend">Meals required *</legend><div class="food-meals">
                 {['Breakfast', 'Lunch', 'Dinner', 'Snack'].map((meal) => <label class="food-meal"><input type="checkbox" name="meals[]" value={meal} /><span class="food-meal__box" aria-hidden="true">✓</span><span class="food-meal__label">{meal}</span></label>)}
