@@ -13,8 +13,8 @@ body.food-service-page {
   --navy-deep: var(--navy-950, #061829);
   --sky-blue: var(--sky, #0ea5e9);
   --whatsapp: #25d366;
-  --font-numbers: Inter, Vazirmatn, sans-serif;
-  --font-main: Vazirmatn, system-ui, sans-serif;
+  --font-numbers: var(--font-latin);
+  --font-main: var(--font-persian);
   --fs-display: clamp(2.4rem, 5vw, 3.6rem);
   --fs-small: 0.875rem;
   --section-padding-block: clamp(64px, 8vw, 120px);

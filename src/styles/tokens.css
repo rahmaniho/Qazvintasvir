@@ -31,8 +31,9 @@
     --grad-text: linear-gradient(135deg, #FCD34D 10%, #F59E0B 90%);
     --grad-text-sky: linear-gradient(135deg, #BAE6FD 10%, #38BDF8 90%);
 
-    /* تایپوگرافی دوزبانه: Vazirmatn برای فارسی و Inter برای متن لاتین/اعداد */
-    --font-persian: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* تایپوگرافی دوزبانه: B Nazanin برای متن فارسی، B Titr Bold برای تیترها، Inter برای لاتین و اعداد */
+    --font-persian: 'BNazanin', 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-heading-persian: 'BTitrBold', 'BNazanin', 'Vazirmatn', serif;
     --font-latin: 'Inter', 'Vazirmatn', sans-serif;
     --font-main: var(--font-persian);
     --font-numbers: var(--font-latin);

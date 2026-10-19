@@ -107,7 +107,8 @@ const currentPath = url.pathname;
   <link rel="icon" type="image/png" sizes="32x32" href={`${baseClean}/assets/images/brand/qazvin-tasvir-icon-32.png`} />
   <link rel="apple-touch-icon" sizes="180x180" href={`${baseClean}/assets/images/brand/qazvin-tasvir-apple-touch.png`} />
 
-  <link rel="preload" href={`${baseClean}/assets/fonts/vazirmatn-arabic-wght-normal.woff2`} as="font" type="font/woff2" crossorigin />
+  {lang === 'fa' && <link rel="preload" href={`${baseClean}/fonts/fonts/BNazanin.woff`} as="font" type="font/woff" crossorigin />}
+  {lang === 'fa' && <link rel="preload" href={`${baseClean}/fonts/fonts/BTitrBold.woff`} as="font" type="font/woff" crossorigin />}
   <link rel="preload" href={preloadImage} as="image" type={preloadImageMime} fetchpriority="high" />
 
   <script is:inline>

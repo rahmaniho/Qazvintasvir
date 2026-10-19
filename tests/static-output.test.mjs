@@ -35,6 +35,42 @@ test('build emits the bilingual public route set', () => {
   assert.ok(existsSync(resolve(dist, '404.html')), 'missing localized 404 output');
 });
 
+test('Persian font assets and editorial typography are wired across all article detail pages', () => {
+  for (const font of ['BNazanin.woff', 'BTitrBold.woff']) {
+    const path = resolve(dist, 'fonts/fonts', font);
+    assert.ok(existsSync(path), `missing generated font asset ${font}`);
+    assert.equal(readFileSync(path).toString('ascii', 0, 4), 'wOFF', `${font} must be a valid WOFF file`);
+  }
+
+  const baseCss = readFileSync(resolve(root, 'src/styles/base.css'), 'utf8');
+  const tokensCss = readFileSync(resolve(root, 'src/styles/tokens.css'), 'utf8');
+  const articlesCss = readFileSync(resolve(root, 'src/styles/articles.css'), 'utf8');
+  assert.match(baseCss, /font-family:\s*["']BNazanin["']/);
+  assert.match(baseCss, /font-family:\s*["']BTitrBold["']/);
+  assert.match(baseCss, /html\[lang="fa"\]\s+h1/);
+  assert.match(tokensCss, /--font-persian:\s*'BNazanin'/);
+  assert.match(tokensCss, /--font-heading-persian:\s*'BTitrBold'/);
+  assert.match(articlesCss, /\.guide-hero\s*\{[^}]*background:\s*var\(--surface-bg\)/);
+
+  const persianHome = read(route('fa'));
+  const englishHome = read(route('en'));
+  assert.match(persianHome, /rel="preload" href="\/fonts\/fonts\/BNazanin\.woff"/);
+  assert.match(persianHome, /rel="preload" href="\/fonts\/fonts\/BTitrBold\.woff"/);
+  assert.doesNotMatch(englishHome, /rel="preload" href="\/fonts\/fonts\/(?:BNazanin|BTitrBold)\.woff"/);
+
+  const articlePaths = [
+    'services-guide', 'permitted-goods-trade',
+    'factory-staff-transport-qazvin', 'corporate-catering-qazvin',
+  ];
+  for (const lang of ['fa', 'en']) {
+    for (const slug of articlePaths) {
+      const html = read(route(lang, `articles/${slug}`));
+      assert.match(html, /class="editorial-eyebrow editorial-eyebrow--article"/);
+      assert.match(html, /class="guide-hero"/);
+    }
+  }
+});
+
 test('the bilingual articles index is discoverable in desktop and mobile navigation', () => {
   for (const [lang, label] of [['fa', 'مقاله‌ها'], ['en', 'Articles']]) {
     const home = read(route(lang));

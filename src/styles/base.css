@@ -3,6 +3,20 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   @font-face {
+    font-family: "BNazanin";
+    src: url("/fonts/fonts/BNazanin.woff") format("woff");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "BTitrBold";
+    src: url("/fonts/fonts/BTitrBold.woff") format("woff");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+  }
+  @font-face {
     font-family: "Vazirmatn";
     src: url("../assets/fonts/vazirmatn-arabic-wght-normal.woff2") format("woff2");
     font-style: normal;
@@ -112,6 +126,19 @@
   html[dir="rtl"] h5,
   html[dir="rtl"] h6 { letter-spacing: var(--tracking-heading-rtl); }
   [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 { color: #fff; }
+  html[lang="fa"] {
+    font-size: 17px;
+    font-synthesis: weight;
+  }
+  html[lang="fa"] h1,
+  html[lang="fa"] h2,
+  html[lang="fa"] h3,
+  html[lang="fa"] h4,
+  html[lang="fa"] h5,
+  html[lang="fa"] h6 {
+    font-family: var(--font-heading-persian);
+    font-weight: 700;
+  }
   h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); }
   h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); }
   h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); }
