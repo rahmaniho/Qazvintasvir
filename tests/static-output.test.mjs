@@ -171,6 +171,20 @@ test('telephone numbers and numeric form controls are explicitly isolated left t
   }
 });
 
+test('company email is reachable from contact and catering pages in both locales', () => {
+  const email = 'qazvin.tasvir@gmail.com';
+  for (const lang of ['fa', 'en']) {
+    const contact = read(route(lang, 'contact'));
+    const food = read(route(lang, 'services/personnel-food'));
+    assert.ok(contact.includes(`href="mailto:${email}"`), `missing company email link on ${lang} contact page`);
+    assert.ok(food.includes(`href="mailto:${email}"`), `missing company email link on ${lang} catering page`);
+    assert.ok(contact.includes(`>${email}</a>`), `email address should be visible on ${lang} contact page`);
+    const schemas = [...food.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+    const organization = schemas.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
+    assert.equal(organization?.email, email, `organization schema should include the email on ${lang} catering page`);
+  }
+});
+
 test('urban and VIP service pages use the generated local transport imagery', () => {
   const cityImageUrl = '/assets/img/fleet-specs/urban-vip-city-van.jpg';
   const interiorImageUrl = '/assets/img/fleet-specs/urban-vip-interior.jpg';
