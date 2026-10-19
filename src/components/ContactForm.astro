@@ -20,7 +20,7 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
         <div class="card" style="display:grid; gap:16px;">
           <div>
             <strong>{isFa ? 'آدرس' : 'Address'}</strong>
-            <p style="margin-top:4px;">{isFa ? <>قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi>، شرکت قزوین تصویر</> : <>Qazvin Tasvir Company, 2nd floor, Unit <bdi class="bidi-ltr" dir="ltr">208</bdi>, Niayesh Commercial Complex, next to Pasteur Hospital, Qazvin, Iran</>}</p>
+            <p style="margin-top:4px;">{isFa ? <>قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقه‌ی <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi>، شرکت قزوین تصویر</> : <>Qazvin Tasvir Company, 2nd floor, Unit <bdi class="bidi-ltr" dir="ltr">208</bdi>, Niayesh Commercial Complex, next to Pasteur Hospital, Qazvin, Iran</>}</p>
           </div>
           <div>
             <strong>{isFa ? 'دفتر مرکزی' : 'Head office'}</strong>
@@ -72,7 +72,7 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
         <button id="contact-submit-btn" type="submit" class="btn btn--accent btn--lg" style="width:100%;">
           {isFa ? 'ارسال درخواست از طریق واتساپ' : 'Send via WhatsApp'} →
         </button>
-        <p style="font-size:0.82rem; color:var(--text-light); text-align:center;">{isFa ? 'پس از ثبت، پیام در واتساپ برایتان آماده می‌شود؛ برای ارسال، دکمهٔ ارسال را بزنید.' : 'After you submit, your message will open in WhatsApp. Tap Send to send it.'}</p>
+        <p style="font-size:0.82rem; color:var(--text-light); text-align:center;">{isFa ? 'پس از ثبت، پیام در واتساپ برایتان آماده می‌شود؛ برای ارسال، دکمه‌ی ارسال را بزنید.' : 'After you submit, your message will open in WhatsApp. Tap Send to send it.'}</p>
       </form>
     </div>
   </div>
@@ -116,10 +116,10 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
       const extra = messageInput.value.trim();
       if (extra) lines.push('توضیحات: ' + extra);
       openWhatsApp(lines.join('\n'));
-      submitBtn.innerHTML = '✓ ' + (document.documentElement.lang === 'en' ? 'Ready to send in WhatsApp' : 'آمادهٔ ارسال در واتساپ');
+      submitBtn.innerHTML = '✓ ' + (document.documentElement.lang === 'en' ? 'Ready to send in WhatsApp' : 'آماده‌ی ارسال در واتساپ');
       submitBtn.style.background = '#10B981';
       submitBtn.style.color = '#fff';
-      window.showToast(document.documentElement.lang === 'en' ? 'Your request is ready in WhatsApp. Please tap Send.' : 'درخواست شما در واتساپ آماده شد؛ لطفاً در صفحهٔ باز شده دکمهٔ ارسال را بزنید.');
+      window.showToast(document.documentElement.lang === 'en' ? 'Your request is ready in WhatsApp. Please tap Send.' : 'درخواست شما در واتساپ آماده شد؛ لطفاً در صفحه‌ی باز شده دکمه‌ی ارسال را بزنید.');
       setTimeout(() => {
         form.reset();
         submitBtn.innerHTML = originalBtnText;

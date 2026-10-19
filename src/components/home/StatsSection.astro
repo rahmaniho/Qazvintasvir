@@ -5,10 +5,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const fa = lang === 'fa';
 const reasons = fa
   ? [
-      ['۳۱+ سال سابقه صنعتی (تأسیس ۱۳۷۴)', 'تداوم فعالیت از سال ۱۳۷۴ نشان‌دهندهٔ تعهد بلندمدت و ثبات اجرایی در شرایط متغیر اقتصادی است.'],
+      ['۳۱+ سال سابقه صنعتی (تأسیس ۱۳۷۴)', 'تداوم فعالیت از سال ۱۳۷۴ نشان‌دهنده‌ی تعهد بلندمدت و ثبات اجرایی در شرایط متغیر اقتصادی است.'],
       ['مدیریت سعید امین‌زاده', 'مدیرعامل بر قراردادها نظارت مستقیم دارد و پاسخ‌گوی مشتریان سازمانی و بازرگانان است.'],
       ['ناوگان ملکی و مجهز', 'اتوبوس، مینی‌بوس و ون‌های مجهز، همراه با خودروهای پشتیبان در صورت نیاز.'],
-      ['شبکهٔ تأمین داخلی و خارجی', 'ارتباط با بازارهای مبدأ و زنجیرهٔ تأمین مواد اولیه و تجهیزات تولیدی، با امکان تأمین مستقیم.'],
+      ['شبکه‌ی تأمین داخلی و خارجی', 'ارتباط با بازارهای مبدأ و زنجیره‌ی تأمین مواد اولیه و تجهیزات تولیدی، با امکان تأمین مستقیم.'],
       ['پشتیبانی ۲۴/۷ و قراردادهای منعطف', 'شرایط پرداخت و قراردادهای ماهانه یا سالانه منعطف است و تیم ما برای تغییرات شیفتی پاسخ‌گو می‌ماند.'],
       ['رضایت بالا و تمدید مداوم قراردادها', 'بیش از ۹۰٪ کارخانه‌های طرف قرارداد، همکاری خود را برای بیش از ۵ سال متوالی با قزوین تصویر تمدید کرده‌اند.'],
 
@@ -22,7 +22,7 @@ const reasons = fa
       ['High satisfaction and contract renewals', 'More than 90% of contracted factories have renewed their cooperation with Qazvin Tasvir for over five consecutive years.'],
     ];
 const quote = fa
-  ? '«تعهد ما، آرامش خاطر شماست. در قزوین تصویر، هر محموله را سرمایهٔ شما و هر مسافر را امانتی ارزشمند می‌دانیم.»'
+  ? '«تعهد ما، آرامش خاطر شماست. در قزوین تصویر، هر محموله را سرمایه‌ی شما و هر مسافر را امانتی ارزشمند می‌دانیم.»'
   : 'Our commitment is your peace of mind. At Qazvin Tasvir, we treat every shipment as a valuable asset and every passenger as someone entrusted to our care.';
 const renderLocalizedText = (text: string, isolateFa = false) => {
   const escaped = text.replace(/[&<>]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[char]!);
@@ -45,7 +45,7 @@ const renderLocalizedText = (text: string, isolateFa = false) => {
       <h2 class="section-title" id="why-us-title">{fa ? 'چرا شرکت‌ها قزوین تصویر را انتخاب می‌کنند؟' : 'Why do companies choose Qazvin Tasvir?'}</h2>
       <p class="section-desc">
         {fa
-          ? <>ترکیب بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال سابقهٔ عملیاتی با استانداردهای نوین مدیریت لجستیک و بازرگانی</>
+          ? <>ترکیب بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال سابقه‌ی عملیاتی با استانداردهای نوین مدیریت لجستیک و بازرگانی</>
           : <>More than <bdi class="bidi-ltr" dir="ltr">31</bdi> years of operating experience, combined with modern standards of logistics and trade management</>}
       </p>
     </header>

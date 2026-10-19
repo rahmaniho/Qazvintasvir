@@ -10,7 +10,7 @@ interface Props {
 }
 const { lang, navLinks, serviceLinks, baseUrl } = Astro.props;
 const labels = lang === 'fa'
-  ? { close: 'بستن منو', services: 'خدمات', viewAll: 'فهرست همهٔ خدمات', contact: 'درخواست مشاوره' }
+  ? { close: 'بستن منو', services: 'خدمات', viewAll: 'فهرست همه‌ی خدمات', contact: 'درخواست مشاوره' }
   : { close: 'Close menu', services: 'Services', viewAll: 'All services', contact: 'Request consultation' };
 const ctaHref = `${baseUrl}/${lang}/contact/`;
 ---

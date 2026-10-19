@@ -157,7 +157,7 @@ if (foodForm instanceof HTMLFormElement) {
       submitButton.style.color = '#FFFFFF';
     }
     window.showToast?.(isFa
-      ? 'درخواست شما در واتساپ آماده شد؛ لطفاً در صفحهٔ باز شده دکمهٔ ارسال را بزنید.'
+      ? 'درخواست شما در واتساپ آماده شد؛ لطفاً در صفحه‌ی باز شده دکمه‌ی ارسال را بزنید.'
       : 'Your request is ready in WhatsApp. Review it there and press Send.');
 
     window.setTimeout(() => {

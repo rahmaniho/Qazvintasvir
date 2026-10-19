@@ -9,7 +9,7 @@ interface Props {
 }
 const { lang, services, currentPath, baseUrl } = Astro.props;
 const labels = lang === 'fa'
-  ? { viewAll: 'مشاهدهٔ همهٔ خدمات →', services: 'خدمات' }
+  ? { viewAll: 'مشاهده‌ی همه‌ی خدمات →', services: 'خدمات' }
   : { viewAll: 'View all services →', services: 'Services' };
 const isActive = services.some((service) => currentPath.includes(service.slug));
 const serviceIconMap: Record<string, 'trade' | 'customs' | 'sourcing' | 'factory' | 'vip' | 'school' | 'food' | 'consulting'> = {

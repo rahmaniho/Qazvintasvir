@@ -45,9 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ۲. (حذف شد) اسکرول‌اسپای — با مسیریابی هشی، هر بخش صفحهٔ مستقل خودش را دارد و
-  // لینک فعال منو توسط روتر (بخش ۱۴) بر اساس صفحهٔ جاری تعیین می‌شود. این کار یک
-  // شنوندهٔ scroll سراسری را هم حذف می‌کند.
+  // ۲. (حذف شد) اسکرول‌اسپای — با مسیریابی هشی، هر بخش صفحه‌ی مستقل خودش را دارد و
+  // لینک فعال منو توسط روتر (بخش ۱۴) بر اساس صفحه‌ی جاری تعیین می‌شود. این کار یک
+  // شنونده‌ی scroll سراسری را هم حذف می‌کند.
 
   // ۳. انیمیشن ورود بخش‌ها با Intersection Observer
   const revealElements = document.querySelectorAll('.reveal');
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const WHATSAPP_NUMBER = '989122815189';
 
   function openWhatsApp(message) {
-    // باید مستقیم در ژست کاربر صدا زده شود تا مسدودکنندهٔ پاپ‌آپ جلوی آن را نگیرد
+    // باید مستقیم در ژست کاربر صدا زده شود تا مسدودکننده‌ی پاپ‌آپ جلوی آن را نگیرد
     window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message), '_blank', 'noopener');
   }
 
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.style.background = '#10B981';
       submitBtn.style.color = '#FFFFFF';
 
-      showToast('درخواست شما در واتساپ آماده شد؛ لطفاً در صفحهٔ باز شده دکمهٔ ارسال را بزنید.');
+      showToast('درخواست شما در واتساپ آماده شد؛ لطفاً در صفحه‌ی باز شده دکمه‌ی ارسال را بزنید.');
 
       setTimeout(() => {
         contactForm.reset();
@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
           submitBtn.style.color = '#FFFFFF';
         }
 
-        showToast('درخواست شما در واتساپ آماده شد؛ لطفاً در صفحهٔ باز شده دکمهٔ ارسال را بزنید.');
+        showToast('درخواست شما در واتساپ آماده شد؛ لطفاً در صفحه‌ی باز شده دکمه‌ی ارسال را بزنید.');
 
         setTimeout(() => {
           foodForm.reset();
@@ -509,14 +509,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // ۱۴. مسیریابی صفحه‌ها با هش (Hash Router)
   // ---------------------------------------------------------------------------
   // هر بخش اصلی سایت یک «صفحه»ی مستقل است و با هش آدرس (#services و…) نمایش
-  // داده می‌شود. بدون جاوااسکریپت کلاس js-pages اضافه نمی‌شود و همهٔ بخش‌ها مثل
-  // قبل به‌صورت یک صفحهٔ بلند دیده می‌شوند؛ پس این تغییر کاملاً تدریجی است.
+  // داده می‌شود. بدون جاوااسکریپت کلاس js-pages اضافه نمی‌شود و همه‌ی بخش‌ها مثل
+  // قبل به‌صورت یک صفحه‌ی بلند دیده می‌شوند؛ پس این تغییر کاملاً تدریجی است.
   //
   // بهینه‌سازی‌هایی که همین ساختار به همراه دارد:
-  //   • فقط صفحهٔ جاری در چیدمان شرکت می‌کند؛ بخش‌های پنهان (display:none) نه
+  //   • فقط صفحه‌ی جاری در چیدمان شرکت می‌کند؛ بخش‌های پنهان (display:none) نه
   //     نقاشی می‌شوند و نه انیمیشن‌هایشان اجرا می‌شود.
-  //   • تصاویر بخش‌های دیده‌نشده (loading="lazy") تا لحظهٔ ورود به آن صفحه دانلود
-  //     نمی‌شوند؛ صفحهٔ غذا با ۱۰ تصویر سنگین‌ترین بخش سایت است.
+  //   • تصاویر بخش‌های دیده‌نشده (loading="lazy") تا لحظه‌ی ورود به آن صفحه دانلود
+  //     نمی‌شوند؛ صفحه‌ی غذا با ۱۰ تصویر سنگین‌ترین بخش سایت است.
   //   • عنوان و توضیحات متای صفحه با هر مسیر به‌روز می‌شود.
   const pageEls = Array.from(document.querySelectorAll('.site-page'));
   if (pageEls.length) {
@@ -525,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const BASE_DESCRIPTION = (document.querySelector('meta[name="description"]') || {}).content || '';
 
     // عنوان و توضیح هر مسیر.
-    // صفحه‌های غیرفارسی یک شیء QT_ROUTE_META تزریق‌شده دارند (ساختهٔ
+    // صفحه‌های غیرفارسی یک شیء QT_ROUTE_META تزریق‌شده دارند (ساخته‌ی
     // tools/build-i18n-site.py) که همین‌جا جای مقادیر فارسی را می‌گیرد.
     const ROUTE_META = window.QT_ROUTE_META || {
       hero: {
@@ -575,9 +575,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const metaDescription = document.querySelector('meta[name="description"]');
-    // لینک‌های منو (دسکتاپ، موبایل و فوتر) صفحهٔ جاری را نشان می‌دهند؛ لینک‌های
+    // لینک‌های منو (دسکتاپ، موبایل و فوتر) صفحه‌ی جاری را نشان می‌دهند؛ لینک‌های
     // لنگرهای داخلی هر صفحه در این فهرست قرار ندارند؛ لینک‌های جزئیات خدمات
-    // اکنون به صفحهٔ مستقل همان خدمت می‌روند، پس وضعیت منو اشتباه نمی‌گیرد.
+    // اکنون به صفحه‌ی مستقل همان خدمت می‌روند، پس وضعیت منو اشتباه نمی‌گیرد.
     const menuLinks = Array.from(
       document.querySelectorAll('.nav-menu__link, .site-nav__link, .mobile-drawer__link, .footer__link')
     );
@@ -603,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return decodeURIComponent(window.location.hash.replace(/^#/, ''));
     }
 
-    // هدف هش را به صفحهٔ مربوطه تبدیل می‌کند (لنگرهای داخلی به صفحهٔ والد می‌رسند)
+    // هدف هش را به صفحه‌ی مربوطه تبدیل می‌کند (لنگرهای داخلی به صفحه‌ی والد می‌رسند)
     function resolveRoute(hash) {
       if (!hash) return { page: HOME_PAGE, target: null };
       const el = document.getElementById(hash);
@@ -671,7 +671,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.classList.remove('is-page-switching');
       });
 
-      // انتقال فوکوس به صفحهٔ جدید + اعلام برای صفحه‌خوان
+      // انتقال فوکوس به صفحه‌ی جدید + اعلام برای صفحه‌خوان
       if (page && opts.moveFocus) {
         page.focus({ preventScroll: true });
         const heading = page.querySelector('h1, h2');
@@ -679,8 +679,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // مسیرهای قدیمی که پس از چندصفحه‌ای شدن خدمات، صفحهٔ مستقل دارند.
-    // به‌جای نمایش دوبارهٔ صفحهٔ خانه، لینک‌های قدیمی را به مقصد canonical می‌فرستیم.
+    // مسیرهای قدیمی که پس از چندصفحه‌ای شدن خدمات، صفحه‌ی مستقل دارند.
+    // به‌جای نمایش دوباره‌ی صفحه‌ی خانه، لینک‌های قدیمی را به مقصد canonical می‌فرستیم.
     const servicePathPrefix = window.location.pathname.includes('/en/') ? '../services/' : 'services/';
     const LEGACY_SERVICE_ROUTES = {
       'fleet-specs': `${servicePathPrefix}urban-vip.html`,
@@ -732,7 +732,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // فعال‌سازی مسیر جاری؛ اگر کاربر روی لینک عمیق آمده باشد، پیش از این لحظه
-    // همهٔ صفحه‌ها پنهان بودند (کلاس qt-deeplink در <head>)
+    // همه‌ی صفحه‌ها پنهان بودند (کلاس qt-deeplink در <head>)
     routeFromHash({ moveFocus: false });
     document.documentElement.classList.remove('qt-deeplink');
   }

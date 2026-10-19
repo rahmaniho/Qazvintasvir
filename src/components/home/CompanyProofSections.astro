@@ -19,7 +19,7 @@ const fields: Array<[string, string[]]> = fa
 const vehicleHistory = fa
   ? [
       ['نستله ایران', 'گلدایران', 'ال‌جی', 'یونیلیور', 'هنکل', 'BAT', 'آلکاپلاستیک', 'کابل البرز', 'شیر سحر', 'AGT', 'آسان پک', 'یاتاقان بوش ایران'],
-      ['شرکت با مسئولیت محدود', 'QAZVIN TASVIR CO. LTD', '۲۷۴۹', '۱۰۸۶۱۴۱۵۲۱۵', '۴۱۱۳۸۶۸۳۷۶۶۵', '۱۳۷۴/۰۲/۱۴', 'سعید امین‌زاده', 'اصغر تقی‌لو', 'قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ ۲، واحد ۲۰۸', '۳۴۱۳۶۹۱۵۸۹', '۰۹۱۲ ۲۸۱ ۵۱۸۹', 'فعال'],
+      ['شرکت با مسئولیت محدود', 'QAZVIN TASVIR CO. LTD', '۲۷۴۹', '۱۰۸۶۱۴۱۵۲۱۵', '۴۱۱۳۸۶۸۳۷۶۶۵', '۱۳۷۴/۰۲/۱۴', 'سعید امین‌زاده', 'اصغر تقی‌لو', 'قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقه‌ی ۲، واحد ۲۰۸', '۳۴۱۳۶۹۱۵۸۹', '۰۹۱۲ ۲۸۱ ۵۱۸۹', 'فعال'],
     ]
   : [
       ['Nestlé Iran', 'Goldiran', 'LG', 'Unilever', 'Henkel', 'BAT', 'Alkaplastik', 'Alborz Cable', 'Shir Sahar', 'AGT', 'Asan Pack', 'Yataqan Bosh Iran'],
@@ -75,7 +75,7 @@ const regLabels = fa
     </header>
     <p class="resume-intro">
       {fa
-        ? <>شرکت قزوین تصویر (با مسئولیت محدود) با بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال سابقه در زمینهٔ بازرگانی، ترابری و خدمات پشتیبانی، به‌عنوان شریک مورد اعتماد صنایع بزرگ استان قزوین شناخته می‌شود. زمینه‌های فعالیت ثبت‌شده شامل حمل‌ونقل، امور مالی و حسابداری، خدمات اداری و رفاهی، بازرگانی و بازاریابی است.</>
+        ? <>شرکت قزوین تصویر (با مسئولیت محدود) با بیش از <bdi class="bidi-ltr" dir="ltr">۳۱</bdi> سال سابقه در زمینه‌ی بازرگانی، ترابری و خدمات پشتیبانی، به‌عنوان شریک مورد اعتماد صنایع بزرگ استان قزوین شناخته می‌شود. زمینه‌های فعالیت ثبت‌شده شامل حمل‌ونقل، امور مالی و حسابداری، خدمات اداری و رفاهی، بازرگانی و بازاریابی است.</>
         : <>Qazvin Tasvir Company (Ltd, established in <bdi class="bidi-ltr" dir="ltr">1995</bdi>) with National ID <bdi class="bidi-ltr" dir="ltr">10861415215</bdi>, managed by Saeed Aminzadeh, provides trade, transportation and catering services for industries in Qazvin Province.</>}
     </p>
     {!fa && (
@@ -89,10 +89,10 @@ const regLabels = fa
       </div>
     )}
     <dl class="resume-metrics">
-      <div><dt>{fa ? <>سال سابقهٔ فعالیت (از <bdi class="bidi-ltr" dir="ltr">۱۳۷۴</bdi>)</> : <>Years of operation (since <bdi class="bidi-ltr" dir="ltr">1995</bdi>)</>}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '+۳۱' : '+31'}</bdi></dd></div>
+      <div><dt>{fa ? <>سال سابقه‌ی فعالیت (از <bdi class="bidi-ltr" dir="ltr">۱۳۷۴</bdi>)</> : <>Years of operation (since <bdi class="bidi-ltr" dir="ltr">1995</bdi>)</>}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '+۳۱' : '+31'}</bdi></dd></div>
       <div><dt>{fa ? 'دستگاه خودرو واگذارشده در قراردادها' : 'Vehicles leased under contracts'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۰۱' : '101'}</bdi></dd></div>
       <div><dt>{fa ? 'قرارداد همکاری سازمانی' : 'Organizational cooperation contracts'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۱' : '11'}</bdi></dd></div>
-      <div><dt>{fa ? 'حوزهٔ فعالیت تخصصی' : 'Specialized fields of activity'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۳' : '3'}</bdi></dd></div>
+      <div><dt>{fa ? 'حوزه‌ی فعالیت تخصصی' : 'Specialized fields of activity'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۳' : '3'}</bdi></dd></div>
     </dl>
 
     <div class="resume-details">
@@ -100,7 +100,7 @@ const regLabels = fa
         <h3 id="company-identity-title">{fa ? 'شناسنامه شرکت' : 'Company Registration Details'}</h3>
         <dl class="resume-data">
           {regLabels.map((label, index) => (
-            <div><dt>{label}</dt><dd>{index === 8 ? (fa ? <>قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi></> : <>Qazvin, next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit <bdi class="bidi-ltr" dir="ltr">208</bdi></>) : [2, 3, 4, 5, 9, 10].includes(index) ? <bdi class="bidi-ltr" dir="ltr">{vehicleHistory[1][index]}</bdi> : vehicleHistory[1][index]}</dd></div>
+            <div><dt>{label}</dt><dd>{index === 8 ? (fa ? <>قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقه‌ی <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi></> : <>Qazvin, next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit <bdi class="bidi-ltr" dir="ltr">208</bdi></>) : [2, 3, 4, 5, 9, 10].includes(index) ? <bdi class="bidi-ltr" dir="ltr">{vehicleHistory[1][index]}</bdi> : vehicleHistory[1][index]}</dd></div>
           ))}
         </dl>
       </section>
@@ -152,7 +152,7 @@ const regLabels = fa
       <h2 class="section-title" id="legal-title">{fa ? 'اعتبارنامه و شناسنامه حقوقی شرکت' : 'Company Legal Credentials & Registration Identity'}</h2>
       <p class="section-desc">
         {fa
-          ? 'اطلاعات ثبتی شرکت قزوین تصویر بر پایهٔ اسناد رسمی است؛ نشانی دفتر و شماره‌های تماس در این صفحه مطابق اطلاعات به‌روز شرکت درج شده‌اند.'
+          ? 'اطلاعات ثبتی شرکت قزوین تصویر بر پایه‌ی اسناد رسمی است؛ نشانی دفتر و شماره‌های تماس در این صفحه مطابق اطلاعات به‌روز شرکت درج شده‌اند.'
           : 'Company registration details are based on official records; the office address and phone numbers shown here reflect the company’s latest supplied contact information.'}
       </p>
     </header>
@@ -164,7 +164,7 @@ const regLabels = fa
         <div><dt>{fa ? 'شناسه ملی' : 'National ID'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۰۸۶۱۴۱۵۲۱۵' : '10861415215'}</bdi></dd></div>
         <div><dt>{fa ? 'سرمایه ثبتی' : 'Registered capital'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۳٬۰۰۰٬۰۰۰' : '13,000,000'}</bdi> {fa ? 'ریال' : 'rials'}</dd></div>
         <div><dt>{fa ? 'تاریخ ثبت' : 'Registration date'}</dt><dd><bdi class="bidi-ltr" dir="ltr">{fa ? '۱۴۰۵/۰۲/۰۷' : '1405/02/07'}</bdi></dd></div>
-        <div><dt>{fa ? 'مرکز اصلی' : 'Head office'}</dt><dd>{fa ? <>قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقهٔ <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi>، شرکت قزوین تصویر</> : <>Qazvin Tasvir Company, next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit <bdi class="bidi-ltr" dir="ltr">208</bdi></>}</dd></div>
+        <div><dt>{fa ? 'مرکز اصلی' : 'Head office'}</dt><dd>{fa ? <>قزوین، جنب بیمارستان پاستور، مجتمع تجاری نیایش، طبقه‌ی <bdi class="bidi-ltr" dir="ltr">۲</bdi>، واحد <bdi class="bidi-ltr" dir="ltr">۲۰۸</bdi>، شرکت قزوین تصویر</> : <>Qazvin Tasvir Company, next to Pasteur Hospital, Niayesh Commercial Complex, 2nd floor, Unit <bdi class="bidi-ltr" dir="ltr">208</bdi></>}</dd></div>
       </dl>
     </section>
     <section class="resume-card legal-management">
@@ -177,7 +177,7 @@ const regLabels = fa
     <div class="legal-fields">
       <header class="section-header">
         <h3>{fa ? 'زمینه‌های فعالیت (موضوعات ثبت‌شده)' : 'Fields of Activity (Registered Subjects)'}</h3>
-        <p class="section-desc">{fa ? 'فهرست کامل موضوعات فعالیت شرکت طبق اسناد ثبتی؛ برای مشاهدهٔ جزئیات، روی هر عنوان کلیک کنید.' : 'The complete list of the company’s registered subjects of activity; click each heading to see the details.'}</p>
+        <p class="section-desc">{fa ? 'فهرست کامل موضوعات فعالیت شرکت طبق اسناد ثبتی؛ برای مشاهده‌ی جزئیات، روی هر عنوان کلیک کنید.' : 'The complete list of the company’s registered subjects of activity; click each heading to see the details.'}</p>
       </header>
       {fields.map(([title, items]) => (
         <details class="legal-field">
