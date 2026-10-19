@@ -327,6 +327,11 @@ test('English catering page preserves the complete localized menu, gallery, form
   assert.match(html, /Request ready in WhatsApp/, 'the English form has a localized success label');
   assert.match(html, /Sample options for four meal periods/, 'the English page presents the dishes as menu examples');
   assert.match(html, /food-headcount-hint/, 'the English form clarifies the difference between staff count and meal minimum');
+  for (const id of ['food-company', 'food-person', 'food-phone', 'food-headcount', 'food-address', 'food-notes']) {
+    const inputAt = html.indexOf(`id="${id}"`);
+    const labelAt = html.lastIndexOf(`for="${id}"`, inputAt);
+    assert.ok(labelAt >= 0 && labelAt < inputAt, `English form label for #${id} should precede its control`);
+  }
   assert.doesNotMatch(html, /Seven days, 28 menu items|HACCP standards/, 'the English page avoids unsupported menu-count and certification claims');
   const structuredData = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
   const faqData = structuredData.find((item) => item['@type'] === 'FAQPage');
@@ -352,6 +357,11 @@ test('Persian catering page retains source content, anchors, media, tabs, and fo
   assert.equal((html.match(/class="food-faq__item reveal"/g) ?? []).length, 4, 'all four FAQ entries should be present');
   assert.match(html, /PersonnelFoodSection\.astro_astro_type_script_index_0_lang|food-service\.js/, 'catering interaction module should be emitted');
   assert.match(html, /food-headcount-hint/, 'the Persian form explains the initial staff-count estimate and usual per-meal minimum');
+  for (const id of ['food-company', 'food-person', 'food-phone', 'food-headcount', 'food-address', 'food-notes']) {
+    const inputAt = html.indexOf(`id="${id}"`);
+    const labelAt = html.lastIndexOf(`for="${id}"`, inputAt);
+    assert.ok(labelAt >= 0 && labelAt < inputAt, `Persian form label for #${id} should precede its control`);
+  }
   assert.match(html, /نمونه‌هایی برای برنامه‌ریزی چهار وعده/, 'the menu is presented as a sample rather than a fixed 28-item plan');
   assert.doesNotMatch(html, /قیمت‌های پایه فوق|استاندارد HACCP|۷<\/bdi> روز، <bdi[^>]*>۲۸/, 'the Persian page does not refer to absent prices or unsupported certification/menu-count claims');
 

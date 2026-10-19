@@ -40,6 +40,25 @@ body.food-service-page {
   --error: #dc2626;
 }
 
+/* Keep the global glass navigation legible over both the dark hero and image. */
+.food-service-page .site-header {
+  background: rgba(7, 25, 54, 0.96);
+  color: #F8FAFC;
+}
+.food-service-page .site-header .brand-copy {
+  gap: 3px;
+  line-height: 1.35;
+}
+.food-service-page .site-header .brand-copy strong {
+  line-height: 1.5;
+}
+.food-service-page .site-header .brand-copy small,
+.food-service-page .site-header .nav-menu__link {
+  color: #EAF2FF;
+}
+.food-service-page .site-header .brand-copy small {
+  line-height: 1.5;
+}
 
 .food-service-page .reveal.is-revealed,
 .food-service-page .reveal.is-visible {
@@ -74,11 +93,16 @@ body.food-service-page {
 }
 
 .food-service-page .section-title {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  line-height: 1.7;
+  text-wrap: balance;
 }
 
 .food-service-page .section-desc {
-  font-size: 1.1rem;
+  max-width: 68ch;
+  margin-inline: auto;
+  font-size: 1.05rem;
+  line-height: 2.15;
 }
 
 /* گرادیان متن */
@@ -225,25 +249,17 @@ body.food-service-page {
 }
 
 .food-service-page .form-label {
-  position: absolute;
-  top: 16px;
-  inset-inline-start: 18px;
+  position: static;
+  display: block;
+  margin: 0;
+  padding: 0;
   font-size: 0.95rem;
-  color: var(--text-muted);
-  pointer-events: none;
-  transition: all var(--dur-fast) ease;
-  background: transparent;
-  padding-inline: 4px;
-}
-
-.food-service-page .form-control:focus ~ .form-label,
-.food-service-page .form-control:not(:placeholder-shown) ~ .form-label {
-  top: -10px;
-  inset-inline-start: 14px;
-  font-size: 0.775rem;
   font-weight: 700;
-  color: var(--sky-blue);
-  background: #FFFFFF;
+  line-height: 1.8;
+  color: var(--text-primary);
+  pointer-events: auto;
+  transition: color var(--dur-fast) ease;
+  background: none;
 }
 
 .food-service-page .form-select {
@@ -289,6 +305,7 @@ body.food-service-page {
    ========================================================================== */
 
 .food-service-page .food-section {
+  line-height: 2;
   /* توکن‌های رنگی اختصاصی بخش غذا */
   --food-forest: #0B3B2E;
   --food-forest-deep: #06251C;
@@ -398,17 +415,26 @@ body.food-service-page {
 }
 
 .food-service-page .food-hero__title {
+  max-width: 18ch;
   font-size: var(--fs-display);
-  line-height: 1.35;
+  line-height: 1.55;
   color: #FFFFFF;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
+}
+
+.food-service-page .food-hero__title .gradient-text {
+  color: #FDE68A;
+  background: none;
+  -webkit-background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
 }
 
 .food-service-page .food-hero__lead {
   font-size: 1.075rem;
-  line-height: 2;
-  color: #CFE3DA;
-  margin-bottom: 26px;
+  line-height: 2.15;
+  color: #E2EEE8;
+  margin-bottom: 30px;
   max-width: 62ch;
 }
 
@@ -692,12 +718,12 @@ body.food-service-page {
   font-size: 1.1rem;
   font-weight: 800;
   color: var(--food-forest);
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
 .food-service-page .food-benefit__text {
   font-size: 0.9375rem;
-  line-height: 1.95;
+  line-height: 2.1;
   color: var(--text-muted);
 }
 
@@ -785,11 +811,12 @@ body.food-service-page {
   font-size: 1.02rem;
   font-weight: 800;
   color: var(--food-forest);
+  line-height: 1.8;
 }
 
 .food-service-page .food-step__text {
-  font-size: 0.875rem;
-  line-height: 1.9;
+  font-size: 0.9rem;
+  line-height: 2.05;
   color: var(--text-muted);
 }
 
@@ -872,13 +899,13 @@ html[dir="rtl"] .food-service-page .food-menu__header-tag { letter-spacing: norm
   font-size: 1.28rem;
   font-weight: 800;
   color: #FFFFFF;
-  line-height: 1.7;
+  line-height: 1.9;
 }
 
 .food-service-page .food-menu__header-text {
   font-size: 0.9375rem;
-  line-height: 1.95;
-  color: #C7DED4;
+  line-height: 2.1;
+  color: #E2EEE8;
 }
 
 .food-service-page .food-menu__header-list {
@@ -1077,7 +1104,7 @@ html[dir="rtl"] .food-service-page .food-menu__header-tag { letter-spacing: norm
   font-size: 0.98rem;
   font-weight: 800;
   color: var(--food-forest);
-  line-height: 1.7;
+  line-height: 1.85;
 }
 
 .food-service-page .dish-card__photo {
@@ -1097,8 +1124,8 @@ html[dir="rtl"] .food-service-page .food-menu__header-tag { letter-spacing: norm
 }
 
 .food-service-page .dish-card__desc {
-  font-size: 0.8375rem;
-  line-height: 1.85;
+  font-size: 0.875rem;
+  line-height: 2.05;
   color: var(--text-muted);
 }
 
@@ -1244,10 +1271,16 @@ html[dir="rtl"] .food-service-page .food-menu__header-tag { letter-spacing: norm
   box-shadow: var(--food-shadow-md);
 }
 
+.food-service-page .food-request__form-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .food-service-page .food-form-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0 20px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px 24px;
 }
 @media (min-width: 700px) {
   .food-service-page .food-form-grid {
@@ -1255,20 +1288,31 @@ html[dir="rtl"] .food-service-page .food-menu__header-tag { letter-spacing: norm
   }
 }
 
-/* رنگ فوکوس فیلدهای بخش غذا با هویت سبز */
-.food-service-page .food-request__form-card .form-control:focus {
-  border-color: var(--food-green);
-  box-shadow: 0 0 0 4px rgba(30, 122, 90, 0.13);
+.food-service-page .food-request__form-card .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
 }
-.food-service-page .food-request__form-card .form-control:focus ~ .form-label,
-.food-service-page .food-request__form-card .form-control:not(:placeholder-shown) ~ .form-label {
+
+.food-service-page .food-request__form-card .form-group:focus-within .form-label {
   color: var(--food-green);
 }
-.food-service-page .food-request__form-card .food-form-grid .form-group {
-  margin-bottom: 22px;
+
+.food-service-page .food-request__form-card .form-control {
+  min-height: 56px;
 }
-.food-service-page .food-request__form-card > form > .form-group {
-  margin-bottom: 22px;
+
+.food-service-page .food-request__form-card .form-control:focus {
+  border-color: var(--food-green);
+  box-shadow: 0 0 0 4px rgba(30, 122, 90, 0.16);
+}
+
+.food-service-page .food-request__form-card textarea.form-control {
+  min-height: 144px;
+  resize: vertical;
 }
 
 /* فیلد پنهان ضد اسپم */
@@ -1280,7 +1324,7 @@ html[dir="rtl"] .food-service-page .food-menu__header-tag { letter-spacing: norm
 .food-service-page .food-fieldset {
   border: 0;
   padding: 0;
-  margin: 0 0 22px;
+  margin: 0;
 }
 .food-service-page .food-legend {
   display: block;
@@ -1368,39 +1412,47 @@ html[dir="rtl"] .food-service-page .food-menu__header-tag { letter-spacing: norm
 .food-service-page .food-form-contact {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 22px;
-  margin: 6px 0 20px;
-  padding: 14px 16px;
+  align-items: flex-start;
+  gap: 14px 22px;
+  min-width: 0;
+  margin: 0;
+  padding: 18px 20px;
   background: var(--surface-bg);
   border: 1px dashed var(--line-soft);
   border-radius: var(--r-md);
 }
 .food-service-page .food-form-contact__item {
   display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.8375rem;
+  align-items: flex-start;
+  flex: 1 1 190px;
+  min-width: 0;
+  gap: 9px;
+  font-size: 0.875rem;
   font-weight: 600;
+  line-height: 1.9;
   color: var(--text-muted);
+  overflow-wrap: anywhere;
 }
 .food-service-page .food-form-contact__item svg {
   color: var(--food-green);
   flex-shrink: 0;
 }
 .food-service-page .food-form-contact__item a {
+  min-width: 0;
   color: var(--primary-navy);
   font-weight: 700;
+  overflow-wrap: anywhere;
 }
 
 .food-service-page .form-whatsapp-hint {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  margin-top: 12px;
-  font-size: 0.8rem;
-  line-height: 1.8;
-  color: var(--whatsapp);
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 9px;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 2;
+  color: #166534;
 }
 
 .food-service-page .form-whatsapp-hint svg {
@@ -1409,10 +1461,10 @@ html[dir="rtl"] .food-service-page .food-menu__header-tag { letter-spacing: norm
 }
 
 .food-service-page .food-form-note {
-  margin-top: 14px;
-  font-size: 0.8125rem;
-  line-height: 1.85;
-  color: var(--text-light);
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 2;
+  color: var(--text-muted);
   text-align: center;
 }
 
@@ -1532,7 +1584,7 @@ html[dir="rtl"] .food-service-page .food-menu__header-tag { letter-spacing: norm
   font-size: 1rem;
   font-weight: 800;
   color: var(--food-forest);
-  line-height: 1.8;
+  line-height: 1.95;
   list-style: none;
   transition: background var(--dur-fast) ease;
 }
@@ -1638,7 +1690,7 @@ html[dir="rtl"] .food-service-page .food-menu__header-tag { letter-spacing: norm
   font-size: clamp(1.4rem, 2.6vw, 2.1rem);
   font-weight: 900;
   color: #FFFFFF;
-  line-height: 1.55;
+  line-height: 1.75;
   max-width: 30ch;
 }
 

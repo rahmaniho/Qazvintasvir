@@ -745,29 +745,29 @@
                 <div class="food-form-grid">
                   <!-- نام شرکت -->
                   <div class="form-group">
-                    <input type="text" id="food-company" name="company" class="form-control" placeholder=" " required autocomplete="organization" aria-describedby="food-company-feedback">
                     <label for="food-company" class="form-label">نام شرکت / کارخانه *</label>
+                    <input type="text" id="food-company" name="company" class="form-control" required autocomplete="organization" aria-describedby="food-company-feedback">
                     <span class="form-feedback" id="food-company-feedback" data-feedback-for="food-company" role="alert">نام شرکت را وارد کنید.</span>
                   </div>
 
                   <!-- نام رابط -->
                   <div class="form-group">
-                    <input type="text" id="food-person" name="contact_person" class="form-control" placeholder=" " required autocomplete="name" aria-describedby="food-person-feedback">
                     <label for="food-person" class="form-label">نام رابط / مسئول رفاه *</label>
+                    <input type="text" id="food-person" name="contact_person" class="form-control" required autocomplete="name" aria-describedby="food-person-feedback">
                     <span class="form-feedback" id="food-person-feedback" data-feedback-for="food-person" role="alert">نام رابط را وارد کنید.</span>
                   </div>
 
                   <!-- شماره تماس -->
                   <div class="form-group">
-                    <input type="tel" id="food-phone" name="phone" class="form-control" placeholder=" " dir="ltr" required autocomplete="tel" inputmode="tel" aria-describedby="food-phone-feedback">
                     <label for="food-phone" class="form-label">شماره تماس (<bdi class="bidi-ltr" dir="ltr">۰۹</bdi>...) *</label>
+                    <input type="tel" id="food-phone" name="phone" class="form-control" dir="ltr" required autocomplete="tel" inputmode="tel" aria-describedby="food-phone-feedback">
                     <span class="form-feedback" id="food-phone-feedback" data-feedback-for="food-phone" role="alert">شماره همراه معتبر وارد کنید (مانند <bdi class="bidi-ltr" dir="ltr">۰۹۱۲۱۲۳۴۵۶۷</bdi>).</span>
                   </div>
 
                   <!-- تعداد پرسنل -->
                   <div class="form-group">
-                    <input type="text" id="food-headcount" name="headcount" class="form-control" placeholder=" " inputmode="numeric" required dir="ltr" aria-describedby="food-headcount-hint food-headcount-feedback">
                     <label for="food-headcount" class="form-label">تعداد تقریبی پرسنل *</label>
+                    <input type="text" id="food-headcount" name="headcount" class="form-control" inputmode="numeric" required dir="ltr" aria-describedby="food-headcount-hint food-headcount-feedback">
                     <span class="form-hint" id="food-headcount-hint">این عدد برای برآورد اولیه است؛ سفارش معمول هر وعده از <bdi class="bidi-ltr" dir="ltr">۵۰</bdi> پرس شروع می‌شود و درخواست‌های کمتر هم قابل بررسی‌اند.</span>
                     <span class="form-feedback" id="food-headcount-feedback" data-feedback-for="food-headcount" role="alert">برای ثبت درخواست، تعداد پرسنل را وارد کنید (حداقل <bdi class="bidi-ltr" dir="ltr">۱۰</bdi> نفر).</span>
                   </div>
@@ -811,15 +811,15 @@
 
                 <!-- آدرس محل توزیع -->
                 <div class="form-group">
-                  <input type="text" id="food-address" name="address" class="form-control" placeholder=" " required autocomplete="street-address" aria-describedby="food-address-feedback">
                   <label for="food-address" class="form-label">آدرس محل توزیع (کارخانه / شرکت) *</label>
+                  <input type="text" id="food-address" name="address" class="form-control" required autocomplete="street-address" aria-describedby="food-address-feedback">
                   <span class="form-feedback" id="food-address-feedback" data-feedback-for="food-address" role="alert">آدرس محل توزیع غذا را وارد کنید.</span>
                 </div>
 
                 <!-- توضیحات -->
                 <div class="form-group">
-                  <textarea id="food-notes" name="notes" class="form-control" rows="4" placeholder=" " style="resize: vertical;"></textarea>
                   <label for="food-notes" class="form-label">توضیحات، شیفت‌ها و درخواست‌های خاص</label>
+                  <textarea id="food-notes" name="notes" class="form-control" rows="4"></textarea>
                 </div>
 
                 <div class="food-form-contact">
