@@ -193,10 +193,21 @@ test('permitted-goods article explains classification, cites references and avoi
     assert.equal(graph.find((schema) => schema['@type'] === 'FAQPage')?.mainEntity?.length, 5, `FAQ structured data should cover all visible questions in ${lang}`);
   }
 
-  const index = read(route('fa', 'articles'));
-  assert.equal((index.match(/class="guide-index-card"/g) ?? []).length, 4, 'all four guides should appear in the articles index');
-  assert.ok(index.includes('/fa/articles/factory-staff-transport-qazvin/'));
-  assert.ok(index.includes('/fa/articles/corporate-catering-qazvin/'));
+  for (const lang of ['fa', 'en']) {
+    const index = read(route(lang, 'articles'));
+    assert.equal((index.match(/class="editorial-feature"/g) ?? []).length, 1, `exactly one featured article should render for ${lang}`);
+    assert.equal((index.match(/class="editorial-card"/g) ?? []).length, 3, `the remaining three articles should render as cards for ${lang}`);
+    assert.match(index, /INSIGHTS &amp; GUIDES/, `editorial eyebrow missing for ${lang}`);
+    assert.match(index, /<h1 id="articles-heading">/, `page should retain one prominent H1 for ${lang}`);
+    assert.match(index, /rel="canonical" href="https:\/\/qazvintasvir\.ir\//, `canonical missing for ${lang}`);
+    const collectionSchema = [...index.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+      .map((match) => JSON.parse(match[1]))
+      .find((schema) => schema['@type'] === 'CollectionPage');
+    assert.equal(collectionSchema?.mainEntity?.itemListElement?.length, 4, `collection schema should retain all four guides for ${lang}`);
+    for (const slug of ['services-guide', 'permitted-goods-trade', 'factory-staff-transport-qazvin', 'corporate-catering-qazvin']) {
+      assert.ok(index.includes(`/${lang}/articles/${slug}/`), `${slug} missing from ${lang} article index`);
+    }
+  }
   for (const asset of ['permitted-goods-hero.jpg', 'permitted-goods-industrial.jpg', 'permitted-goods-agri.jpg']) {
     assert.ok(existsSync(resolve(dist, 'assets/img/articles', asset)), `missing permitted-goods illustration ${asset}`);
   }
