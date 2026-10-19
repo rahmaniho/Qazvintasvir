@@ -215,7 +215,7 @@ test('service detail pages render source notes, related services and localized C
 test('homepages place an accessible bilingual client-logo ticker immediately after the hero', () => {
   const assets = [
     'yataqan-bosh.png', 'sahar.png', 'agt.png', 'asanpack.png', 'henkel.png', 'unilever.png',
-    'bat.png', 'goldiran.png', 'lg.png', 'alborz-cable.png', 'alkaplastik.png', 'nestle.png',
+    'bat.png', 'goldiran.png', 'lg.webp', 'alborz-cable.png', 'alkaplastik.png', 'nestle.png',
   ];
   for (const lang of ['fa', 'en']) {
     const html = read(route(lang));
@@ -231,7 +231,13 @@ test('homepages place an accessible bilingual client-logo ticker immediately aft
       assert.equal(html.split(url).length - 1, 2, `${asset} should be included in both ticker cycles on ${lang}/`);
       assert.ok(existsSync(resolve(root, 'public/assets/images/clients', asset)), `missing local client logo ${asset}`);
     }
+    const clientsPage = read(route(lang, 'clients'));
+    assert.ok(clientsPage.includes('/Qazvintasvir/assets/images/clients/lg.webp'), `the supplied LG logo should be used on ${lang}/clients/`);
   }
+  const suppliedLg = readFileSync(resolve(root, 'public/assets/images/clients/lg.webp'));
+  assert.equal(suppliedLg.subarray(0, 4).toString('ascii'), 'RIFF');
+  assert.equal(suppliedLg.subarray(8, 12).toString('ascii'), 'WEBP');
+
   const faBrands = read(route('fa', 'brands'));
   assert.doesNotMatch(faBrands, /نشان‌های گرافیکی سازندگان خودروهای به‌کاررفته در ناوگان قزوین تصویر را ببینید/);
 
@@ -240,6 +246,7 @@ test('homepages place an accessible bilingual client-logo ticker immediately aft
   assert.match(css, /\.client-marquee__logo-card\s*\{[^}]*flex:\s*0 0 168px/, 'logo frames should be large enough to display the full marks');
   assert.match(css, /\.client-marquee__logo-card img\s*\{[^}]*inline-size:\s*55%;[^}]*block-size:\s*55%/, 'logos should reflect the requested 25% size increase');
   assert.match(css, /\.client-marquee__logo-card\s*\{[^}]*backdrop-filter:\s*blur/, 'each logo should sit on a frosted-glass card');
+  assert.match(css, /\.client-marquee__logo-card--lg\s*\{[^}]*background:\s*rgb\(255 255 255 \/ 62%\)/, 'the supplied dark LG wordmark should sit on a light glass card');
   assert.match(css, /@keyframes client-marquee-scroll/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.client-marquee__track\s*\{\s*animation:\s*none/);
 });

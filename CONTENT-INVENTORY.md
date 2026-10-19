@@ -331,6 +331,7 @@ Schema.org JSON-LD موجود و تعهدات حفظ:
 - `assets/images/clients/goldiran.png`
 - `assets/images/clients/henkel.png`
 - `assets/images/clients/lg.png`
+- `assets/images/clients/lg.webp`
 - `assets/images/clients/nestle.png`
 - `assets/images/clients/sahar.png`
 - `assets/images/clients/unilever.png`
