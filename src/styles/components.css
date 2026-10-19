@@ -659,7 +659,7 @@
     align-items: center;
     gap: 22px;
     overflow: hidden;
-    padding: 20px 22px;
+    padding: 22px 24px;
     border: 1px solid rgb(255 255 255 / 74%);
     border-radius: 24px;
     background: rgb(255 255 255 / 76%);
@@ -674,15 +674,15 @@
   .client-marquee__link:hover { color: var(--amber-accent); }
   .client-marquee__link:focus-visible { outline: 2px solid var(--sky-blue); outline-offset: 3px; border-radius: 3px; }
   .client-marquee__viewport { min-inline-size: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); }
-  .client-marquee__track { display: flex; inline-size: max-content; animation: client-marquee-scroll 50s linear infinite; }
+  .client-marquee__track { display: flex; inline-size: max-content; animation: client-marquee-scroll 58s linear infinite; }
   .client-marquee__group { display: flex; flex: 0 0 auto; align-items: center; gap: 12px; margin: 0; padding: 0 6px; list-style: none; }
   .client-marquee__logo-card {
     display: grid;
-    flex: 0 0 146px;
-    inline-size: 146px;
-    block-size: 80px;
+    flex: 0 0 168px;
+    inline-size: 168px;
+    block-size: 90px;
     place-items: center;
-    padding: 10px 14px;
+    padding: 8px 12px;
     border: 1px solid rgb(255 255 255 / 88%);
     border-radius: 15px;
     background: rgb(255 255 255 / 67%);
@@ -702,8 +702,8 @@
   [data-theme="dark"] .client-marquee__logo-card--lg { background: rgb(15 28 48 / 96%); }
   @media (max-width: 900px) {
     .client-marquee__panel { grid-template-columns: minmax(160px, 0.32fr) minmax(0, 1fr); gap: 16px; padding: 16px; }
-    .client-marquee__track { animation-duration: 48s; }
-    .client-marquee__logo-card { flex-basis: 126px; inline-size: 126px; block-size: 74px; }
+    .client-marquee__track { animation-duration: 54s; }
+    .client-marquee__logo-card { flex-basis: 144px; inline-size: 144px; block-size: 82px; }
   }
   @media (max-width: 640px) {
     .client-marquee { margin-block-start: -20px; padding-block-end: 10px; }
@@ -712,8 +712,8 @@
     .client-marquee__eyebrow, .client-marquee__intro h2 { grid-column: 1; }
     .client-marquee__link { grid-column: 2; grid-row: 1 / span 2; white-space: nowrap; }
     .client-marquee__viewport { margin-inline: -14px; }
-    .client-marquee__track { animation-duration: 46s; }
-    .client-marquee__logo-card { flex-basis: 114px; inline-size: 114px; block-size: 70px; padding: 9px 10px; }
+    .client-marquee__track { animation-duration: 50s; }
+    .client-marquee__logo-card { flex-basis: 128px; inline-size: 128px; block-size: 76px; padding: 7px 8px; }
     .client-marquee__group { gap: 9px; }
   }
   @media (prefers-reduced-motion: reduce) {
