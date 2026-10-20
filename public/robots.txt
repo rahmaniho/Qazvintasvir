@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
+# Sitemap index that points to /sitemap-0.xml with all 48 localized URLs.
+Sitemap: https://qazvintasvir.ir/sitemap.xml
 Sitemap: https://qazvintasvir.ir/sitemap-index.xml

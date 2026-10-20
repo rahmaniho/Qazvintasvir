@@ -34,7 +34,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         const path = new URL(page).pathname;
-        return path !== '/' && !path.startsWith('/services/');
+        return path !== '/' && !path.startsWith('/services/') && !/^\/sitemap(-\d+)?\.xml$/.test(path);
       },
       serialize: (item) => {
         const links = localizedAlternates(item.url);

@@ -848,3 +848,33 @@ test('sitemap marks article URLs with the content update date', () => {
   }
   assert.equal((sitemap.match(/<lastmod>/g) ?? []).length, 10, 'only the article index and article detail URLs should declare lastmod');
 });
+
+test('root sitemap.xml exposes the generated URL set for search engines', () => {
+  const index = read('sitemap.xml');
+  assert.match(index, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
+  assert.match(index, /<sitemapindex xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
+  assert.match(index, /<loc>https:\/\/qazvintasvir\.ir\/sitemap-0\.xml<\/loc>/);
+  assert.match(index, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/);
+
+  const chunk = read('sitemap-0.xml');
+  assert.equal((chunk.match(/<url>/g) ?? []).length, 48, 'URL set should keep all 48 indexable pages');
+  assert.doesNotMatch(chunk, /<loc>https:\/\/qazvintasvir\.ir\/sitemap[^<]*<\/loc>/, 'sitemaps must not list themselves');
+
+  const robots = read('robots.txt');
+  assert.match(robots, /^Sitemap: https:\/\/qazvintasvir\.ir\/sitemap\.xml$/m, 'robots.txt should advertise /sitemap.xml');
+  assert.match(robots, /^Sitemap: https:\/\/qazvintasvir\.ir\/sitemap-index\.xml$/m, 'robots.txt should keep the generated index');
+});
+
+test('every sitemap URL is built, self-canonical and indexable', () => {
+  const chunk = read('sitemap-0.xml');
+  const locs = [...chunk.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  assert.equal(locs.length, 48, 'sitemap URL set size');
+  for (const loc of locs) {
+    const htmlPath = resolve(dist, new URL(loc).pathname.replace(/^\//, ''), 'index.html');
+    assert.ok(existsSync(htmlPath), `sitemap URL is not built: ${loc}`);
+    const html = readFileSync(htmlPath, 'utf8');
+    assert.ok(html.includes(`<link rel="canonical" href="${loc}"`), `canonical mismatch for ${loc}`);
+    assert.doesNotMatch(html, /<meta name="robots" content="noindex/, `sitemap URL is noindex: ${loc}`);
+    assert.match(html, /<h1[\s>]/, `sitemap URL has no H1: ${loc}`);
+  }
+});
