@@ -3,7 +3,7 @@ import HomeLayout from '../../layouts/HomeLayout.astro';
 import Hero from '../../components/home/Hero.astro';
 import ClientLogoMarquee from '../../components/home/ClientLogoMarquee.astro';
 import HomeDirectory from '../../components/home/HomeDirectory.astro';
-import { organizationSchema, websiteSchema, itemListSchema } from '../../lib/schema';
+import { itemListSchema } from '../../lib/schema';
 
 const lang = 'en';
 const site = Astro.site?.toString() || 'https://qazvintasvir.ir';
@@ -16,8 +16,6 @@ const hreflang = [
   { lang: 'en', href: canonical },
   { lang: 'x-default', href: `${siteUrl}/fa/` },
 ];
-const org = organizationSchema(siteUrl, 'en');
-const website = websiteSchema(siteUrl, 'en');
 const servicesList = itemListSchema("Services of Qazvin Tasvir Company", [
   { name: "Permitted goods import and export", url: `${siteUrl}/en/services/import-export/` },
   { name: "Customs clearance and port affairs", url: `${siteUrl}/en/services/customs-port/` },
@@ -38,8 +36,6 @@ const servicesList = itemListSchema("Services of Qazvin Tasvir Company", [
   hreflang={hreflang}
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(org)}></script>
-    <script type="application/ld+json" set:html={JSON.stringify(website)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(servicesList)}></script>
   </Fragment>
 

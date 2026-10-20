@@ -16,11 +16,11 @@ const heroUrl = `${site}${heroPath}`;
 const deliveryPath = `${baseUrl}/assets/img/articles/corporate-catering-meal-delivery.jpg`;
 const hospitalityPath = `${baseUrl}/assets/img/articles/corporate-catering-hospitality.jpg`;
 const articleTitle = isFa
-  ? 'غذای پرسنلی، کترینگ شرکتی و پذیرایی سازمانی در قزوین؛ راهنمای خدمات و قیمت'
-  : 'Corporate Catering and Staff Meals in Qazvin: Services, Event Hospitality and Pricing';
+  ? 'غذای پرسنلی و کترینگ شرکتی در قزوین؛ راهنمای خدمات'
+  : 'Corporate Catering in Qazvin: Staff Meals and Hospitality';
 const description = isFa
   ? 'راهنمای تأمین غذای پرسنل و کترینگ شرکتی در قزوین؛ منوی چرخشی، وعده‌های شیفتی، پذیرایی سازمانی و عوامل مؤثر بر قیمت و انتخاب خدمت.'
-  : 'A practical guide to staff meals and corporate catering in Qazvin: rotating menus, shift meals, organisational hospitality and the factors that affect price and service choice.';
+  : 'A practical guide to staff meals and corporate catering in Qazvin: rotating menus, shift meals, hospitality and the factors that affect price.';
 const hreflang = [
   { lang: 'fa', href: `${site}${baseUrl}/fa/articles/${slug}/` },
   { lang: 'en', href: `${site}${baseUrl}/en/articles/${slug}/` },
@@ -157,8 +157,8 @@ const schema = {
       datePublished: ARTICLE_PUBLISHED, dateModified: ARTICLE_UPDATED,
       image: [heroUrl, `${site}${deliveryPath}`, `${site}${hospitalityPath}`],
       mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
-      author: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
-      publisher: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: site, logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png`, width: 512, height: 512 } },
+      author: { '@type': 'Organization', '@id': `${site}${baseUrl}/#organization`, name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
+      publisher: { '@type': 'Organization', '@id': `${site}${baseUrl}/#organization`, name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: site, logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png`, width: 512, height: 512 } },
       articleSection: isFa ? 'کترینگ شرکتی و غذای پرسنلی' : 'Corporate catering and staff meals',
       keywords: isFa ? ['غذای پرسنلی قزوین', 'کترینگ شرکتی قزوین', 'غذای سازمانی', 'قیمت غذای پرسنل', 'پذیرایی سازمانی'] : ['staff catering Qazvin', 'corporate catering Qazvin', 'workplace meals', 'employee meal prices', 'organisational hospitality'],
       about: { '@type': 'Service', name: isFa ? 'تأمین غذای پرسنل و وعده‌های سازمانی' : 'Staff meals and corporate catering', url: serviceUrl, provider: { '@type': 'Organization', name: isFa ? 'قزوین تصویر' : 'Qazvin Tasvir Company' } },
@@ -174,7 +174,7 @@ const schema = {
 };
 ---
 
-<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} imageAlt={copy.heroAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" bodyClass="article-page" preloadImage={heroPath} preloadImageType="image/jpeg">
+<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} imageAlt={copy.heroAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" articlePublishedTime={ARTICLE_PUBLISHED} articleModifiedTime={ARTICLE_UPDATED} bodyClass="article-page" preloadImage={heroPath} preloadImageType="image/jpeg">
   <article class="service-guide">
     <section class="guide-hero"><div class="container">
       <nav class="breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}><a href={`${baseUrl}/${lang}/`}>{copy.home}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><a href={`${baseUrl}/${lang}/articles/`}>{copy.articles}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><span aria-current="page">{copy.current}</span></nav>

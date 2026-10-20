@@ -2,7 +2,7 @@
 import foodSectionSource from '../../content/food/personnel-food-fa.html?raw';
 import '../../styles/food-service.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { organizationSchema, serviceSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { serviceSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
 
 interface Props {
   noteTitle?: string;
@@ -23,7 +23,6 @@ const noteMarkup = noteTitle
 const content = foodSectionSource
   .replaceAll('${base}', base)
   .replace('<!-- ۴.۱۱.۸ CTA پایانی بخش غذا -->', `${noteMarkup}<!-- ۴.۱۱.۸ CTA پایانی بخش غذا -->`);
-const organization = organizationSchema(`${site}${base}`);
 const service = serviceSchema({
   title: 'تأمین غذای پرسنل و وعده‌های سازمانی',
   description,
@@ -59,7 +58,6 @@ const faqs = faqSchema([
 >
   <Fragment slot="head">
     <link rel="preload" href={`${base}/assets/img/personnel-food/hero-kitchen.webp`} as="image" type="image/webp" fetchpriority="high" />
-    <script type="application/ld+json" set:html={JSON.stringify(organization)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(service)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(faqs)}></script>

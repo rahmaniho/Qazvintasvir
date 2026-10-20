@@ -1,12 +1,17 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { breadcrumbSchema } from '../../../lib/schema';
 
 const lang = 'en';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const site = Astro.site?.toString() || 'https://qazvintasvir.ir';
 const siteClean = site.endsWith('/') ? site.slice(0,-1) : site;
 const canonical = `${siteClean}${baseUrl}/en/services/`;
+const breadcrumbs = breadcrumbSchema([
+  { name: 'Home', url: `${siteClean}${baseUrl}/en/` },
+  { name: 'Services', url: canonical },
+]);
 const hreflang = [
   { lang: 'fa', href: `${siteClean}${baseUrl}/fa/services/` },
   { lang: 'en', href: canonical },
@@ -32,7 +37,10 @@ const itemListSchema = {
 };
 ---
 
-<BaseLayout lang={lang} title="Services | Qazvin Tasvir — Eight specialist service paths" description="Eight specialist service pages of Qazvin Tasvir in trade, customs, sourcing, transport, VIP, shuttles, catering and consulting." canonical={canonical} hreflang={hreflang} schema={itemListSchema}>
+<BaseLayout lang={lang} title="Services | Qazvin Tasvir — Eight Service Paths" description="Eight specialist service pages of Qazvin Tasvir in trade, customs, sourcing, transport, VIP, shuttles, catering and consulting." canonical={canonical} hreflang={hreflang} schema={itemListSchema}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)}></script>
+  </Fragment>
   <section class="hero" style="padding-block:48px 32px;">
     <div class="container">
       <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={`${baseUrl}/en/`}>Home</a><span class="breadcrumbs__sep">/</span><span aria-current="page">Services</span></nav>

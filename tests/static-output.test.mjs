@@ -698,7 +698,7 @@ test('homepages publish linked WebSite, Organization and WebPage entities', () =
     assert.equal(org?.image, 'https://qazvintasvir.ir/assets/images/og-image.jpg', `organization image on ${lang} home`);
     assert.equal(website?.['@id'], 'https://qazvintasvir.ir/#website', `missing website id on ${lang} home`);
     assert.equal(website?.publisher?.['@id'], 'https://qazvintasvir.ir/#organization', `website publisher on ${lang} home`);
-    assert.equal(webpage?.['@id'], `https://qazvintasvir.ir/${lang}/#webpage`, `missing webpage id on ${lang} home`);
+    assert.equal(webpage?.['@id'], `https://qazvintasvir.ir/${lang}/`, `missing webpage id on ${lang} home`);
     assert.equal(webpage?.isPartOf?.['@id'], 'https://qazvintasvir.ir/#website', `webpage parent on ${lang} home`);
   }
 });
@@ -748,4 +748,103 @@ test('every internal route and asset link resolves in the built site', () => {
     ];
     assert.ok(candidates.some((candidate) => existsSync(candidate)), `broken internal link: ${link}`);
   }
+});
+
+const indexableArticleSlugs = ['services-guide', 'permitted-goods-trade', 'factory-staff-transport-qazvin', 'corporate-catering-qazvin'];
+const indexableRoutes = [
+  ...['fa', 'en'].flatMap((lang) => [
+    route(lang),
+    ...standaloneSectionSlugs.map((slug) => route(lang, slug)),
+    route(lang, 'about'),
+    route(lang, 'contact'),
+    route(lang, 'services'),
+    route(lang, 'articles'),
+    ...indexableArticleSlugs.map((slug) => route(lang, `articles/${slug}`)),
+    ...serviceSlugs.map((slug) => route(lang, `services/${slug}`)),
+  ]),
+];
+
+test('every indexable page ships complete snippet metadata and linked entities', () => {
+  for (const path of indexableRoutes) {
+    const html = read(path);
+    const title = html.match(/<title>([^<]*)<\/title>/)?.[1] ?? '';
+    const description = html.match(/<meta name="description" content="([^"]*)"\s*\/?>/)?.[1] ?? '';
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+    assert.ok(title.length > 0 && title.length <= 60, `title length ${title.length} outside 1-60 for ${path}`);
+    assert.ok(description.length >= 70 && description.length <= 160, `description length ${description.length} outside 70-160 for ${path}`);
+    assert.match(canonical ?? '', /^https:\/\/qazvintasvir\.ir\//, `canonical must be absolute for ${path}`);
+    assert.ok(html.includes('href="/favicon.ico"'), `favicon.ico link missing on ${path}`);
+    assert.match(html, /<meta property="og:image:alt" content="[^"]+"/, `og:image:alt missing on ${path}`);
+    assert.match(html, /<meta name="robots" content="index, follow, max-image-preview:large/, `robots directives missing on ${path}`);
+
+    const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+      .map((match) => JSON.parse(match[1]));
+    const organizations = schemas.filter((schema) => Array.isArray(schema['@type']) && schema['@type'].includes('Organization'));
+    const websites = schemas.filter((schema) => schema['@type'] === 'WebSite');
+    const webpages = schemas.filter((schema) => schema['@type'] === 'WebPage');
+    assert.equal(organizations.length, 1, `exactly one Organization entity expected on ${path}`);
+    assert.equal(websites.length, 1, `exactly one WebSite entity expected on ${path}`);
+    assert.equal(webpages.length, 1, `exactly one WebPage entity expected on ${path}`);
+    assert.equal(webpages[0]['@id'], canonical, `WebPage @id should match the canonical on ${path}`);
+    assert.equal(webpages[0].isPartOf?.['@id'], 'https://qazvintasvir.ir/#website', `WebPage parent missing on ${path}`);
+    assert.equal(websites[0].publisher?.['@id'], 'https://qazvintasvir.ir/#organization', `WebSite publisher missing on ${path}`);
+  }
+});
+
+test('article structured data points back to the page WebPage entity', () => {
+  for (const lang of ['fa', 'en']) {
+    for (const slug of indexableArticleSlugs) {
+      const html = read(route(lang, `articles/${slug}`));
+      const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+      const article = schemas.find((schema) => Array.isArray(schema['@graph']))
+        ?.['@graph'].find((node) => node['@type'] === 'Article');
+      const webpage = schemas.find((schema) => schema['@type'] === 'WebPage');
+      assert.ok(article, `Article schema missing on ${lang}/${slug}`);
+      assert.equal(article.mainEntityOfPage?.['@id'], webpage?.['@id'], `Article should reference the page WebPage node on ${lang}/${slug}`);
+      assert.equal(article.publisher?.['@id'], 'https://qazvintasvir.ir/#organization', `Article publisher reference missing on ${lang}/${slug}`);
+      assert.match(article.author?.['@id'] ?? '', /^https:\/\/qazvintasvir\.ir\/#organization$/, `Article author reference missing on ${lang}/${slug}`);
+      assert.match(html, /<meta property="article:published_time" content="2026-10-19"/, `article:published_time missing on ${lang}/${slug}`);
+      assert.match(html, /<meta property="article:modified_time" content="2026-10-20"/, `article:modified_time missing on ${lang}/${slug}`);
+    }
+  }
+});
+
+test('multi-resolution favicons are published for search and browser surfaces', () => {
+  const icons = [
+    ['favicon.ico', 512],
+    ['assets/images/brand/qazvin-tasvir-icon-32.png', 32],
+    ['assets/images/brand/qazvin-tasvir-icon-48.png', 48],
+    ['assets/images/brand/qazvin-tasvir-icon-96.png', 96],
+    ['assets/images/brand/qazvin-tasvir-icon-144.png', 144],
+    ['assets/images/brand/qazvin-tasvir-apple-touch.png', 180],
+  ];
+  for (const [asset, size] of icons) {
+    const path = resolve(dist, asset);
+    assert.ok(existsSync(path), `missing icon ${asset}`);
+    const png = readFileSync(path);
+    assert.equal(png.toString('hex', 0, 8), '89504e470d0a1a0a', `${asset} must be a PNG payload`);
+    assert.equal(png.readUInt32BE(16), size, `${asset} width mismatch`);
+    assert.equal(png.readUInt32BE(20), size, `${asset} height mismatch`);
+  }
+});
+
+test('sitemap marks article URLs with the content update date', () => {
+  const sitemap = read('sitemap-0.xml');
+  for (const lang of ['fa', 'en']) {
+    for (const slug of ['services-guide', 'permitted-goods-trade', 'factory-staff-transport-qazvin', 'corporate-catering-qazvin']) {
+      assert.match(
+        sitemap,
+        new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/${slug}/</loc><lastmod>2026-10-20`),
+        `missing lastmod for ${lang}/${slug}`,
+      );
+    }
+  }
+  for (const lang of ['fa', 'en']) {
+    assert.match(
+      sitemap,
+      new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/</loc><lastmod>2026-10-20`),
+      `missing lastmod for the ${lang} article index`,
+    );
+  }
+  assert.equal((sitemap.match(/<lastmod>/g) ?? []).length, 10, 'only the article index and article detail URLs should declare lastmod');
 });

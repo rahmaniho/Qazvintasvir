@@ -1,6 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import { organizationSchema, serviceSchema, breadcrumbSchema, faqSchema } from '../lib/schema';
+import { serviceSchema, breadcrumbSchema, faqSchema } from '../lib/schema';
 
 interface Props {
   lang: 'fa' | 'en';
@@ -58,7 +58,6 @@ const homeUrl = `${siteUrl}/${lang}/`;
 const servicesUrl = `${siteUrl}/${lang}/services/`;
 
 // schema
-const org = organizationSchema(siteUrl, lang);
 const svcSchema = serviceSchema({ title: props.title, description: props.description, image: props.image ? `${siteClean}${props.image}` : undefined, url: serviceUrl, providerUrl: siteUrl, lang });
 const crumbs = breadcrumbSchema([
   { name: lang==='fa' ? 'خانه' : 'Home', url: homeUrl },
@@ -78,7 +77,6 @@ const canonical = serviceUrl;
 
 <BaseLayout title={`${props.title} | ${lang==='fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}`} description={props.metaDescription || props.description} lang={lang} image={props.image ? `${siteUrl}${props.image}` : undefined} imageAlt={props.imageAlt} canonical={canonical} hreflang={hreflang} schema={null}>
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(org)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(svcSchema)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(crumbs)}></script>
     {faqList && <script type="application/ld+json" set:html={JSON.stringify(faqList)}></script>}

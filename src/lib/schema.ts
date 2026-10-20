@@ -36,6 +36,7 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
     "@type": ["Organization", "LocalBusiness"],
     "@id": `${siteUrl}/#organization`,
     name: isFa ? "شرکت قزوین تصویر" : "Qazvin Tasvir Company",
+    legalName: isFa ? "شرکت قزوین تصویر (با مسئولیت محدود)" : "Qazvin Tasvir Company (Ltd.)",
     alternateName: isFa ? ["قزوین تصویر", "Qazvin Tasvir"] : ["Qazvin Tasvir", "قزوین تصویر"],
     url: `${siteUrl}/`,
     logo: {
@@ -99,7 +100,11 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
       opens: "08:00",
       closes: "20:00",
     },
-    areaServed: { "@type": "Country", name: "Iran" },
+    areaServed: [
+      { "@type": "Country", name: isFa ? "ایران" : "Iran" },
+      { "@type": "AdministrativeArea", name: isFa ? "استان قزوین" : "Qazvin Province" },
+      { "@type": "City", name: isFa ? "قزوین" : "Qazvin" },
+    ],
     knowsAbout: entries.map((entry) => entry.name),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -147,7 +152,7 @@ export function webPageSchema(page: {
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": `${page.url}#webpage`,
+    "@id": page.url,
     url: page.url,
     name: page.title,
     description: page.description,
@@ -182,17 +187,25 @@ export function serviceSchema(service: {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${service.url}#service`,
     name: service.title,
+    serviceType: service.title,
     description: service.description,
     provider: {
       "@type": "Organization",
-      name: isFa ? "قزوین تصویر" : "Qazvin Tasvir Company",
+      "@id": `${service.providerUrl}/#organization`,
+      name: isFa ? "شرکت قزوین تصویر" : "Qazvin Tasvir Company",
       alternateName: isFa ? "قزوین تصویر" : "Qazvin Tasvir",
-      url: service.providerUrl,
+      url: `${service.providerUrl}/`,
     },
     url: service.url,
     image: service.image,
-    areaServed: { "@type": "Country", name: "Iran" },
+    availableLanguage: ["fa", "en"],
+    areaServed: [
+      { "@type": "Country", name: isFa ? "ایران" : "Iran" },
+      { "@type": "AdministrativeArea", name: isFa ? "استان قزوین" : "Qazvin Province" },
+      { "@type": "City", name: isFa ? "قزوین" : "Qazvin" },
+    ],
   };
 }
 

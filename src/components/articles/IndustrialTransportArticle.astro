@@ -16,11 +16,11 @@ const heroUrl = `${site}${heroPath}`;
 const minibusPath = `${baseUrl}/assets/img/articles/industrial-shuttle-minibus.jpg`;
 const planningPath = `${baseUrl}/assets/img/articles/industrial-shuttle-planning.jpg`;
 const articleTitle = isFa
-  ? 'بهترین سرویس ایاب‌وذهاب صنعتی در قزوین و حومه؟ راهنمای انتخاب و قیمت'
-  : 'Best Industrial Staff Transport in Qazvin? A Guide to Shuttle Services and Prices';
+  ? 'سرویس ایاب‌وذهاب صنعتی قزوین؛ راهنمای انتخاب و قیمت'
+  : 'Industrial Staff Transport in Qazvin: Guide and Prices';
 const description = isFa
   ? 'راهنمای انتخاب سرویس ایاب‌وذهاب کارخانه در قزوین و حومه؛ مسیر شیفت، اتوبوس و مینی‌بوس، ایمنی، پشتیبانی و عوامل مؤثر بر قیمت قرارداد.'
-  : 'A practical guide to factory staff shuttles in Qazvin: shift routes, buses and minibuses, safety, operations support and the factors that shape contract pricing.';
+  : 'A practical guide to factory staff shuttles in Qazvin: shift routes, buses and minibuses, safety, support and the factors that shape contract pricing.';
 const hrefs = {
   fa: [
     { lang: 'fa', href: `${site}${baseUrl}/fa/articles/${slug}/` },
@@ -174,8 +174,8 @@ const schema = {
       datePublished: ARTICLE_PUBLISHED, dateModified: ARTICLE_UPDATED,
       image: [heroUrl, `${site}${minibusPath}`, `${site}${planningPath}`],
       mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
-      author: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
-      publisher: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: site, logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png`, width: 512, height: 512 } },
+      author: { '@type': 'Organization', '@id': `${site}${baseUrl}/#organization`, name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
+      publisher: { '@type': 'Organization', '@id': `${site}${baseUrl}/#organization`, name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: site, logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png`, width: 512, height: 512 } },
       articleSection: isFa ? 'ترابری صنعتی و سرویس ایاب‌وذهاب' : 'Industrial transport and staff shuttles',
       keywords: isFa ? ['سرویس ایاب و ذهاب کارخانه قزوین', 'قیمت سرویس پرسنل قزوین', 'ترابری شهرک صنعتی قزوین', 'سرویس شیفتی کارکنان'] : ['factory staff transport Qazvin', 'employee shuttle price Qazvin', 'industrial estate shuttle', 'shift transport service'],
       about: { '@type': 'Service', name: isFa ? 'ترابری پرسنل کارخانجات' : 'Factory staff transportation', url: serviceUrl, provider: { '@type': 'Organization', name: isFa ? 'قزوین تصویر' : 'Qazvin Tasvir Company' } },
@@ -191,7 +191,7 @@ const schema = {
 };
 ---
 
-<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} imageAlt={copy.heroAlt} canonical={canonical} hreflang={hrefs[lang]} schema={schema} ogType="article" bodyClass="article-page" preloadImage={heroPath} preloadImageType="image/jpeg">
+<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} imageAlt={copy.heroAlt} canonical={canonical} hreflang={hrefs[lang]} schema={schema} ogType="article" articlePublishedTime={ARTICLE_PUBLISHED} articleModifiedTime={ARTICLE_UPDATED} bodyClass="article-page" preloadImage={heroPath} preloadImageType="image/jpeg">
   <article class="service-guide">
     <section class="guide-hero"><div class="container">
       <nav class="breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}><a href={`${baseUrl}/${lang}/`}>{copy.home}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><a href={`${baseUrl}/${lang}/articles/`}>{copy.articles}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><span aria-current="page">{copy.current}</span></nav>

@@ -3,7 +3,7 @@ import HomeLayout from '../../layouts/HomeLayout.astro';
 import Hero from '../../components/home/Hero.astro';
 import ClientLogoMarquee from '../../components/home/ClientLogoMarquee.astro';
 import HomeDirectory from '../../components/home/HomeDirectory.astro';
-import { organizationSchema, websiteSchema, itemListSchema } from '../../lib/schema';
+import { itemListSchema } from '../../lib/schema';
 
 const lang = 'fa';
 const site = Astro.site?.toString() || 'https://qazvintasvir.ir';
@@ -18,8 +18,6 @@ const hreflang = [
   { lang: 'x-default', href: `${siteUrl}/fa/` },
 ];
 
-const org = organizationSchema(siteUrl);
-const website = websiteSchema(siteUrl, 'fa');
 const servicesList = itemListSchema("خدمات تخصصی شرکت قزوین تصویر", [
   { name: "واردات و صادرات کالاهای مجاز", url: `${siteUrl}/fa/services/import-export/` },
   { name: "ترخیص گمرکی و امور بندری", url: `${siteUrl}/fa/services/customs-port/` },
@@ -40,8 +38,6 @@ const servicesList = itemListSchema("خدمات تخصصی شرکت قزوین �
   hreflang={hreflang}
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(org)}></script>
-    <script type="application/ld+json" set:html={JSON.stringify(website)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(servicesList)}></script>
   </Fragment>
 

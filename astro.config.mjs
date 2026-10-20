@@ -1,7 +1,12 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { readFileSync } from 'node:fs';
 
 const siteUrl = 'https://qazvintasvir.ir';
+
+// Keep the sitemap lastmod in sync with the article dates published on the pages.
+const schemaSource = readFileSync(new URL('./src/lib/schema.ts', import.meta.url), 'utf8');
+const contentLastUpdated = schemaSource.match(/ARTICLE_UPDATED\s*=\s*'([^']+)'/)?.[1];
 
 function localizedAlternates(pageUrl) {
   const { pathname } = new URL(pageUrl);
@@ -33,7 +38,13 @@ export default defineConfig({
       },
       serialize: (item) => {
         const links = localizedAlternates(item.url);
-        return links.length ? { ...item, links } : item;
+        if (!links.length) return item;
+        const isArticle = new URL(item.url).pathname.includes('/articles/');
+        return {
+          ...item,
+          links,
+          ...(isArticle && contentLastUpdated ? { lastmod: contentLastUpdated } : {}),
+        };
       },
     }),
   ],
