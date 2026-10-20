@@ -1,5 +1,10 @@
 type Locale = 'fa' | 'en';
 
+// The current bilingual article set was first published with the site rewrite.
+// Update these dates when the article copy (not just its metadata) changes.
+export const ARTICLE_PUBLISHED = '2026-10-19';
+export const ARTICLE_UPDATED = '2026-10-20';
+
 const serviceEntries: Record<Locale, Array<{ slug: string; name: string; description: string }>> = {
   fa: [
     { slug: 'import-export', name: 'واردات و صادرات کالاهای مجاز', description: 'هماهنگی مسیر تأمین، اسناد و حمل کالاهای مجاز.' },
@@ -29,11 +34,17 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
   return {
     "@context": "https://schema.org",
     "@type": ["Organization", "LocalBusiness"],
+    "@id": `${siteUrl}/#organization`,
     name: isFa ? "شرکت قزوین تصویر" : "Qazvin Tasvir Company",
-    alternateName: isFa ? "قزوین تصویر" : ["Qazvin Tasvir", "قزوین تصویر"],
-    url: siteUrl,
-    logo: `${siteUrl}/assets/images/brand/qazvin-tasvir-favicon.png`,
-    image: `${siteUrl}/assets/images/og-image.svg`,
+    alternateName: isFa ? ["قزوین تصویر", "Qazvin Tasvir"] : ["Qazvin Tasvir", "قزوین تصویر"],
+    url: `${siteUrl}/`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/assets/images/brand/qazvin-tasvir-favicon.png`,
+      width: 512,
+      height: 512,
+    },
+    image: `${siteUrl}/assets/images/og-image.jpg`,
     description: isFa
       ? "ارائه‌دهنده خدمات بازرگانی، واردات و صادرات کلیه کالاهای مجاز، ترخیص گمرکی و ترابری و سرویس ایاب و ذهاب پرسنل کارخانه‌ها و شرکت‌ها با بیش از ۳۱ سال سابقه درخشان."
       : "Provider of trading, import and export services for all permitted goods, customs clearance, transport and staff shuttle services for factories and companies, with more than 31 years of proven experience.",
@@ -56,6 +67,13 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
         ],
     telephone: ["+982832573842", "+989122815189", "+989352815189"],
     email: "qazvin.tasvir@gmail.com",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+982832573842",
+      contactType: isFa ? "خدمات مشتریان" : "customer service",
+      areaServed: "IR",
+      availableLanguage: ["fa", "en"],
+    },
     // The office street is company-confirmed; legacy postal code/coordinates remain unverified pending updated details.
     address: isFa
       ? {
@@ -100,6 +118,55 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
       "https://rasmio.com/company/10861415215/قزوین-تصویر/",
       "https://wa.me/989122815189",
     ],
+  };
+}
+
+export function websiteSchema(siteUrl: string, lang: Locale = 'fa') {
+  const isFa = lang === 'fa';
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    url: `${siteUrl}/`,
+    name: isFa ? "قزوین تصویر" : "Qazvin Tasvir",
+    alternateName: isFa ? ["قزوین تصویر", "Qazvin Tasvir"] : ["Qazvin Tasvir", "قزوین تصویر"],
+    inLanguage: ["fa-IR", "en"],
+    publisher: { "@id": `${siteUrl}/#organization` },
+  };
+}
+
+export function webPageSchema(page: {
+  url: string;
+  title: string;
+  description: string;
+  lang: Locale;
+  image?: string;
+  siteUrl: string;
+}) {
+  const isFa = page.lang === 'fa';
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${page.url}#webpage`,
+    url: page.url,
+    name: page.title,
+    description: page.description,
+    inLanguage: isFa ? "fa-IR" : "en",
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": `${page.siteUrl}/#website`,
+      url: `${page.siteUrl}/`,
+      name: isFa ? "قزوین تصویر" : "Qazvin Tasvir",
+    },
+    about: {
+      "@type": "Organization",
+      "@id": `${page.siteUrl}/#organization`,
+      name: isFa ? "شرکت قزوین تصویر" : "Qazvin Tasvir",
+      url: `${page.siteUrl}/`,
+    },
+    ...(page.image
+      ? { primaryImageOfPage: { "@type": "ImageObject", url: page.image } }
+      : {}),
   };
 }
 

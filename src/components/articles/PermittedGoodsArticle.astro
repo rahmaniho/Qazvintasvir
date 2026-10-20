@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ARTICLE_PUBLISHED, ARTICLE_UPDATED } from '../../lib/schema';
+import ArticleDates from './ArticleDates.astro';
 import '../../styles/articles.css';
 
 interface Props { lang: 'fa' | 'en' }
@@ -179,6 +181,8 @@ const schema = {
       headline: articleTitle,
       description: articleDescription,
       inLanguage: lang,
+      datePublished: ARTICLE_PUBLISHED,
+      dateModified: ARTICLE_UPDATED,
       image: [coverUrl, `${site}${industrialImage}`, `${site}${foodImage}`],
       mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
       author: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
@@ -186,7 +190,7 @@ const schema = {
         '@type': 'Organization',
         name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company',
         url: site,
-        logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png` },
+        logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png`, width: 512, height: 512 },
       },
       articleSection: isFa ? 'مقررات صادرات و واردات' : 'Import and export regulations',
       keywords: isFa
@@ -214,7 +218,7 @@ const schema = {
 };
 ---
 
-<BaseLayout lang={lang} title={articleTitle} description={articleDescription} image={coverUrl} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" bodyClass="article-page" preloadImage={coverPath} preloadImageType="image/jpeg">
+<BaseLayout lang={lang} title={articleTitle} description={articleDescription} image={coverUrl} imageAlt={copy.coverAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" bodyClass="article-page" preloadImage={coverPath} preloadImageType="image/jpeg">
   <article class="service-guide">
     <section class="guide-hero">
       <div class="container">
@@ -229,6 +233,7 @@ const schema = {
             <span class="guide-eyebrow">{copy.eyebrow}</span>
             <h1>{articleTitle}</h1>
             <p class="guide-hero__lead">{copy.lead}</p>
+            <ArticleDates lang={lang} published={ARTICLE_PUBLISHED} updated={ARTICLE_UPDATED} />
           </div>
           <figure class="guide-cover">
             <img src={coverPath} alt={copy.coverAlt} width="1200" height="800" fetchpriority="high" decoding="async" />

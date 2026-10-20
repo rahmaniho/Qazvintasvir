@@ -148,7 +148,7 @@ const schema = {
 };
 ---
 
-<BaseLayout lang={lang} title={copy.title} description={copy.description} image={`${site}${featured.image}`} canonical={canonical} hreflang={hreflang} schema={schema} bodyClass="articles-index" preloadImage={featured.image} preloadImageType="image/jpeg">
+<BaseLayout lang={lang} title={copy.title} description={copy.description} image={`${site}${featured.image}`} imageAlt={featured.alt} canonical={canonical} hreflang={hreflang} schema={schema} bodyClass="articles-index" preloadImage={featured.image} preloadImageType="image/jpeg">
   <section class="editorial-hero" aria-labelledby="articles-heading">
     <div class="container editorial-hero__container">
       <nav class="editorial-breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}>

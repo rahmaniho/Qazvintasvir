@@ -2,6 +2,7 @@
 import Header from '../components/nav/Header.astro';
 import Footer from '../components/Footer.astro';
 import { getLangFromUrl } from '../i18n/utils';
+import { webPageSchema } from '../lib/schema';
 import fa from '../i18n/fa';
 import en from '../i18n/en';
 import '../styles/tokens.css';
@@ -15,6 +16,7 @@ interface Props {
   description?: string;
   lang?: 'fa' | 'en';
   image?: string;
+  imageAlt?: string;
   canonical?: string;
   noindex?: boolean;
   schema?: any;
@@ -30,6 +32,7 @@ const {
   description: propDesc,
   lang: propLang,
   image: propImage,
+  imageAlt: propImageAlt,
   canonical: propCanonical,
   noindex,
   bodyClass,
@@ -55,8 +58,15 @@ const title = propTitle ?? t.siteTitle;
 const description = propDesc ?? t.siteDescription;
 const canonical = propCanonical ?? url.href;
 const ogImage = propImage ?? `${siteClean}${baseClean}/assets/images/og-image.jpg`;
+const ogImageAlt = propImageAlt ?? (lang === 'fa'
+  ? 'قزوین تصویر — بازرگانی، ترابری و تأمین غذای سازمانی'
+  : 'Qazvin Tasvir — trade, transport and corporate catering');
 const preloadImage = propPreloadImage ?? `${baseClean}/assets/img/sections/hero-port.webp`;
 const preloadImageMime = preloadImageType ?? 'image/webp';
+const robotsContent = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+const otherLocale = lang === 'fa' ? 'en_US' : 'fa_IR';
 
 // hreflang links
 let hreflangLinks: Array<{lang:string, href:string}> = hreflang ?? [];
@@ -78,6 +88,10 @@ if (!hreflangLinks.length) {
 }
 
 const currentPath = url.pathname;
+const siteUrl = `${siteClean}${baseClean}`;
+const pageSchema = !noindex && !schema
+  ? webPageSchema({ url: canonical, title, description, lang, image: ogImage, siteUrl })
+  : null;
 ---
 
 <!doctype html>
@@ -88,7 +102,8 @@ const currentPath = url.pathname;
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="author" content={lang === 'fa' ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company'} />
-  <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+  <meta name="google-site-verification" content="MBflR_hp5tDbD_VXkspc-6f1pcbB59wfEr45Ye3VnRw" />
+  <meta name="robots" content={robotsContent} />
   <link rel="canonical" href={canonical} />
   {hreflangLinks.map(l => <link rel="alternate" hreflang={l.lang} href={l.href} />)}
 
@@ -97,12 +112,16 @@ const currentPath = url.pathname;
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage} />
+  <meta property="og:image:alt" content={ogImageAlt} />
   <meta property="og:locale" content={lang === 'fa' ? 'fa_IR' : 'en_US'} />
+  <meta property="og:locale:alternate" content={otherLocale} />
   <meta property="og:site_name" content={lang === 'fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'} />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={canonical} />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:image:alt" content={ogImageAlt} />
   <meta name="theme-color" content="#0A2540" />
   <link rel="icon" type="image/png" sizes="32x32" href={`${baseClean}/assets/images/brand/qazvin-tasvir-icon-32.png`} />
   <link rel="apple-touch-icon" sizes="180x180" href={`${baseClean}/assets/images/brand/qazvin-tasvir-apple-touch.png`} />
@@ -120,6 +139,7 @@ const currentPath = url.pathname;
       } catch(e){}
     })();
   </script>
+  {pageSchema && <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />}
   {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
   <slot name="head" />
 </head>

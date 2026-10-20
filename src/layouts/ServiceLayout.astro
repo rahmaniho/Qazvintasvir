@@ -76,7 +76,7 @@ const hreflang = [
 const canonical = serviceUrl;
 ---
 
-<BaseLayout title={`${props.title} | ${lang==='fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}`} description={props.metaDescription || props.description} lang={lang} image={`${siteUrl}/assets/images/og-image.jpg`} canonical={canonical} hreflang={hreflang} schema={null}>
+<BaseLayout title={`${props.title} | ${lang==='fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}`} description={props.metaDescription || props.description} lang={lang} image={props.image ? `${siteUrl}${props.image}` : undefined} imageAlt={props.imageAlt} canonical={canonical} hreflang={hreflang} schema={null}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(org)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(svcSchema)}></script>

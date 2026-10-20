@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { ARTICLE_PUBLISHED, ARTICLE_UPDATED } from '../../lib/schema';
+import ArticleDates from './ArticleDates.astro';
 import '../../styles/articles.css';
 
 interface Props { lang: 'fa' | 'en' }
@@ -152,10 +154,11 @@ const schema = {
   '@graph': [
     {
       '@type': 'Article', headline: articleTitle, description, inLanguage: lang,
+      datePublished: ARTICLE_PUBLISHED, dateModified: ARTICLE_UPDATED,
       image: [heroUrl, `${site}${deliveryPath}`, `${site}${hospitalityPath}`],
       mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
       author: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
-      publisher: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: site, logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png` } },
+      publisher: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: site, logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png`, width: 512, height: 512 } },
       articleSection: isFa ? 'کترینگ شرکتی و غذای پرسنلی' : 'Corporate catering and staff meals',
       keywords: isFa ? ['غذای پرسنلی قزوین', 'کترینگ شرکتی قزوین', 'غذای سازمانی', 'قیمت غذای پرسنل', 'پذیرایی سازمانی'] : ['staff catering Qazvin', 'corporate catering Qazvin', 'workplace meals', 'employee meal prices', 'organisational hospitality'],
       about: { '@type': 'Service', name: isFa ? 'تأمین غذای پرسنل و وعده‌های سازمانی' : 'Staff meals and corporate catering', url: serviceUrl, provider: { '@type': 'Organization', name: isFa ? 'قزوین تصویر' : 'Qazvin Tasvir Company' } },
@@ -171,12 +174,12 @@ const schema = {
 };
 ---
 
-<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" bodyClass="article-page" preloadImage={heroPath} preloadImageType="image/jpeg">
+<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} imageAlt={copy.heroAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" bodyClass="article-page" preloadImage={heroPath} preloadImageType="image/jpeg">
   <article class="service-guide">
     <section class="guide-hero"><div class="container">
       <nav class="breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}><a href={`${baseUrl}/${lang}/`}>{copy.home}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><a href={`${baseUrl}/${lang}/articles/`}>{copy.articles}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><span aria-current="page">{copy.current}</span></nav>
       <div class="guide-hero__grid"><div class="guide-hero__copy"><span class="editorial-eyebrow editorial-eyebrow--article" lang="en" dir="ltr">INSIGHTS &amp; GUIDES</span>
-            <span class="guide-eyebrow">{copy.eyebrow}</span><h1>{articleTitle}</h1><p class="guide-hero__lead">{copy.lead}</p></div>
+            <span class="guide-eyebrow">{copy.eyebrow}</span><h1>{articleTitle}</h1><p class="guide-hero__lead">{copy.lead}</p><ArticleDates lang={lang} published={ARTICLE_PUBLISHED} updated={ARTICLE_UPDATED} /></div>
         <figure class="guide-cover"><img src={heroPath} alt={copy.heroAlt} width="1360" height="768" fetchpriority="high" decoding="async"/><figcaption>{copy.heroCaption}</figcaption></figure>
       </div>
     </div></section>

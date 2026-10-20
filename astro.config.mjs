@@ -1,8 +1,22 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
+const siteUrl = 'https://qazvintasvir.ir';
+
+function localizedAlternates(pageUrl) {
+  const { pathname } = new URL(pageUrl);
+  const match = pathname.match(/^\/(fa|en)(\/.*)?$/);
+  if (!match) return [];
+  const rest = match[2] || '/';
+  return [
+    { lang: 'fa', url: `${siteUrl}/fa${rest}` },
+    { lang: 'en', url: `${siteUrl}/en${rest}` },
+    { lang: 'x-default', url: `${siteUrl}/fa${rest}` },
+  ];
+}
+
 export default defineConfig({
-  site: 'https://qazvintasvir.ir',
+  site: siteUrl,
   base: '/',
   i18n: {
     defaultLocale: 'fa',
@@ -16,6 +30,10 @@ export default defineConfig({
       filter: (page) => {
         const path = new URL(page).pathname;
         return path !== '/' && !path.startsWith('/services/');
+      },
+      serialize: (item) => {
+        const links = localizedAlternates(item.url);
+        return links.length ? { ...item, links } : item;
       },
     }),
   ],

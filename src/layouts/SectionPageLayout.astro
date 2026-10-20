@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import { breadcrumbSchema } from '../lib/schema';
 
 interface Props {
   lang: 'fa' | 'en';
@@ -19,6 +20,10 @@ const hreflang = [
 ];
 const homeLabel = lang === 'fa' ? 'خانه' : 'Home';
 const companyName = lang === 'fa' ? 'قزوین تصویر' : 'Qazvin Tasvir';
+const breadcrumbs = breadcrumbSchema([
+  { name: homeLabel, url: `${site}${base}/${lang}/` },
+  { name: title, url: canonical },
+]);
 ---
 
 <BaseLayout
@@ -28,6 +33,9 @@ const companyName = lang === 'fa' ? 'قزوین تصویر' : 'Qazvin Tasvir';
   canonical={canonical}
   hreflang={hreflang}
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)}></script>
+  </Fragment>
   <section class="hero section-page-hero" aria-labelledby="section-page-title">
     <div class="container">
       <nav class="breadcrumbs section-page-hero__crumbs" aria-label={lang === 'fa' ? 'مسیر صفحه' : 'Breadcrumb'}>
