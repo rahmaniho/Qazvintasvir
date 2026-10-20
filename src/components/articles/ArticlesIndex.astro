@@ -53,7 +53,7 @@ const articles = isFa ? [
     image: `${baseUrl}/assets/img/articles/services-guide-hero.jpg`,
     alt: 'تصویر مفهومی هماهنگی عملیات بازرگانی و خدمات سازمانی',
     category: 'راهنمای جامع خدمات',
-    title: 'خدمات قزوین تصویر چیست؟ راهنمای جامع بازرگانی، ترابری و پشتیبانی سازمانی',
+    title: 'خدمات قزوین تصویر چیست؟ راهنمای بازرگانی و ترابری',
     summary: 'هشت مسیر خدمت قزوین تصویر را در سه حوزه‌ی بازرگانی و تأمین، ترابری سازمانی و پشتیبانی محل کار بشناسید؛ همراه با نکات کاربردی برای شروع گفت‌وگو.',
   },
   {
@@ -62,7 +62,7 @@ const articles = isFa ? [
     image: `${baseUrl}/assets/img/articles/permitted-goods-hero.jpg`,
     alt: 'کارشناس بازرگانی در حال بررسی نمونه‌ی کالا و اسناد پیش از حمل بین‌المللی',
     category: 'راهنمای مقررات واردات و صادرات',
-    title: 'چه کالاهایی برای بازرگانی مجازند؟ راهنمای تشخیص واردات و صادرات',
+    title: 'چه کالاهایی برای بازرگانی مجازند؟ راهنمای واردات و صادرات',
     summary: 'تفاوت کالای مجاز، مشروط و ممنوع را بشناسید و پیش از معامله، کد تعرفه، ضوابط روز و مجوزهای احتمالی را چگونه بررسی کنید.',
   },
   {
@@ -71,7 +71,7 @@ const articles = isFa ? [
     image: `${baseUrl}/assets/img/articles/industrial-shuttle-hero.jpg`,
     alt: 'اتوبوس سرویس پرسنل در ورودی یک مجموعه‌ی صنعتی در آغاز شیفت کاری',
     category: 'راهنمای سرویس ایاب‌وذهاب صنعتی',
-    title: 'بهترین سرویس ایاب‌وذهاب صنعتی در قزوین و حومه؟ راهنمای انتخاب و قیمت',
+    title: 'سرویس ایاب‌وذهاب صنعتی قزوین؛ راهنمای انتخاب و قیمت',
     summary: 'معیارهای انتخاب سرویس شیفتی، مسیرسنجی کارخانه، ناوگان اتوبوس و مینی‌بوس و عوامل مؤثر بر قیمت قرارداد را بخوانید.',
   },
   {
@@ -80,7 +80,7 @@ const articles = isFa ? [
     image: `${baseUrl}/assets/img/articles/corporate-catering-hero.jpg`,
     alt: 'آشپزهای حرفه‌ای در حال آماده‌سازی وعده‌های غذایی برای پذیرایی و غذای سازمانی',
     category: 'راهنمای غذای سازمانی و پذیرایی',
-    title: 'غذای پرسنلی، کترینگ شرکتی و پذیرایی سازمانی در قزوین؛ راهنمای خدمات و قیمت',
+    title: 'غذای پرسنلی و کترینگ شرکتی در قزوین؛ راهنمای خدمات',
     summary: 'از منوی چرخشی و وعده‌های شیفتی تا پذیرایی سازمانی و معیارهای مقایسه‌ی قیمت کترینگ در قزوین.',
   },
 ] : [
@@ -90,7 +90,7 @@ const articles = isFa ? [
     image: `${baseUrl}/assets/img/articles/services-guide-hero.jpg`,
     alt: 'Illustrative image of trade operations and corporate services coordination',
     category: 'Complete service guide',
-    title: 'What Does Qazvin Tasvir Do? A Guide to Trade, Transport and Corporate Services',
+    title: 'What Does Qazvin Tasvir Do? Trade and Transport Guide',
     summary: 'Explore Qazvin Tasvir’s eight service paths across trade and sourcing, organisational transport and workplace support—with practical notes for starting a discussion.',
   },
   {
@@ -99,7 +99,7 @@ const articles = isFa ? [
     image: `${baseUrl}/assets/img/articles/permitted-goods-hero.jpg`,
     alt: 'Trade specialist reviewing a product sample and documents before an international shipment',
     category: 'Import and export regulations guide',
-    title: 'Which Goods Are Permitted for Trade? A Guide to Import and Export Checks',
+    title: 'Which Goods Are Permitted for Trade? A Practical Guide',
     summary: 'Understand permitted, conditional and prohibited goods, and how to check tariff classification, current rules and required approvals before trading.',
   },
   {
@@ -108,7 +108,7 @@ const articles = isFa ? [
     image: `${baseUrl}/assets/img/articles/industrial-shuttle-hero.jpg`,
     alt: 'Staff shuttle bus at the entrance of an industrial workplace at shift change',
     category: 'Industrial staff transport guide',
-    title: 'Best Industrial Staff Transport in Qazvin? A Guide to Shuttle Services and Prices',
+    title: 'Industrial Staff Transport in Qazvin: Guide and Prices',
     summary: 'Compare shift shuttle options, route planning, bus and minibus fleets, and the factors that shape factory transport contracts.',
   },
   {
@@ -117,7 +117,7 @@ const articles = isFa ? [
     image: `${baseUrl}/assets/img/articles/corporate-catering-hero.jpg`,
     alt: 'Professional kitchen team preparing meals for workplace catering',
     category: 'Workplace meals and hospitality guide',
-    title: 'Corporate Catering and Staff Meals in Qazvin: Services, Event Hospitality and Pricing',
+    title: 'Corporate Catering in Qazvin: Staff Meals and Hospitality',
     summary: 'Explore rotating menus, shift meals, organisational hospitality and practical ways to compare catering prices in Qazvin.',
   },
 ];
@@ -132,10 +132,20 @@ const hreflang = [
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
+  '@id': `${canonical}#collectionpage`,
   name: copy.title,
   description: copy.description,
   inLanguage: lang,
   url: canonical,
+  isPartOf: { '@type': 'WebSite', '@id': `${site}${baseUrl}/#website`, url: `${site}${baseUrl}/`, name: isFa ? 'قزوین تصویر' : 'Qazvin Tasvir' },
+  about: { '@type': 'Organization', '@id': `${site}${baseUrl}/#organization`, name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company' },
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: copy.breadcrumbHome, item: `${site}${baseUrl}/${lang}/` },
+      { '@type': 'ListItem', position: 2, name: copy.breadcrumbCurrent, item: canonical },
+    ],
+  },
   mainEntity: {
     '@type': 'ItemList',
     itemListElement: articles.map((article, index) => ({
@@ -148,7 +158,7 @@ const schema = {
 };
 ---
 
-<BaseLayout lang={lang} title={copy.title} description={copy.description} image={`${site}${featured.image}`} canonical={canonical} hreflang={hreflang} schema={schema} bodyClass="articles-index" preloadImage={featured.image} preloadImageType="image/jpeg">
+<BaseLayout lang={lang} title={copy.title} description={copy.description} image={`${site}${featured.image}`} imageAlt={featured.alt} canonical={canonical} hreflang={hreflang} schema={schema} bodyClass="articles-index" preloadImage={featured.image} preloadImageType="image/jpeg">
   <section class="editorial-hero" aria-labelledby="articles-heading">
     <div class="container editorial-hero__container">
       <nav class="editorial-breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}>

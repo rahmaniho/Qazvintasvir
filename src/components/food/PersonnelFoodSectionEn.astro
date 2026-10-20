@@ -1,7 +1,7 @@
 ---
 import '../../styles/food-service.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { organizationSchema, serviceSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { serviceSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const site = Astro.site?.toString().replace(/\/$/, '') || 'https://qazvintasvir.ir';
@@ -19,7 +19,6 @@ const canonical = `${site}${base}/en/services/personnel-food/`;
 const image = `${site}${base}/assets/img/personnel-food/hero-kitchen.jpg`;
 const socialImage = `${site}${base}/assets/images/og-image.jpg`;
 const asset = (name: string) => `${base}/assets/img/personnel-food/${name}`;
-const organization = organizationSchema(`${site}${base}`, 'en');
 const service = serviceSchema({ title, description, image, url: canonical, providerUrl: `${site}${base}`, lang: 'en' });
 const breadcrumbs = breadcrumbSchema([
   { name: 'Home', url: `${site}${base}/en/` },
@@ -118,7 +117,6 @@ const steps = [
 >
   <Fragment slot="head">
     <link rel="preload" href={asset('hero-kitchen.webp')} as="image" type="image/webp" fetchpriority="high" />
-    <script type="application/ld+json" set:html={JSON.stringify(organization)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(service)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)}></script>

@@ -6,9 +6,9 @@ description: "Staff transportation planning for factories and industrial compani
 meta: "Factory staff transportation by Qazvin Tasvir: route and shift planning with bus, minibus and van options for industrial organizations."
 summary: "A coordinated staff shuttle plan built around your routes and shift schedule."
 highlight: "Staff Transportation"
-image: "/assets/img/sections/fleet-minibus.jpg"
+image: "/assets/images/minibus-fleet.jpg"
 image_alt: "Passenger minibus used for organized staff transportation"
-story_image: "/assets/img/sections/fleet-bus.jpg"
+story_image: "/assets/images/bus-fleet.jpg"
 story_alt: "Bus prepared for a scheduled staff shuttle route"
 order: 4
 points:

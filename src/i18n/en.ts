@@ -1,6 +1,6 @@
 export default {
-  siteTitle: "Qazvin Tasvir Company | Trading, Import & Export, Transport and Staff Catering — Founded 1995",
-  siteDescription: "Qazvin Tasvir Company (National ID 10861415215), managed by Saeed Aminzadeh: eight specialist services spanning permitted trade, customs, industrial sourcing, staff transport, VIP mobility, corporate shuttles, catering and trade consulting. Founded 1995. Phone: +98 912 281 5189 or +98 935 281 5189.",
+  siteTitle: "Qazvin Tasvir | Trade, Transport & Staff Catering",
+  siteDescription: "Qazvin Tasvir Company (est. 1995) provides permitted-goods trade, customs clearance, staff transport and corporate catering in Qazvin. Call +98 912 281 5189.",
   nav: {
     home: "Home",
     about: "About",

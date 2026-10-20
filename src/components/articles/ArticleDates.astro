@@ -1,0 +1,24 @@
+---
+interface Props {
+  lang: 'fa' | 'en';
+  published: string;
+  updated: string;
+}
+
+const { lang, published, updated } = Astro.props;
+const locale = lang === 'fa' ? 'fa-IR-u-ca-persian' : 'en-US';
+const formatDate = (value: string) =>
+  new Intl.DateTimeFormat(locale, { dateStyle: 'long', timeZone: 'UTC' })
+    .format(new Date(`${value}T12:00:00Z`));
+const publishedLabel = lang === 'fa' ? 'انتشار' : 'Published';
+const updatedLabel = lang === 'fa' ? 'به‌روزرسانی' : 'Updated';
+---
+
+<p
+  class="guide-dates"
+  aria-label={lang === 'fa' ? 'تاریخ انتشار و به‌روزرسانی مقاله' : 'Article publication and update dates'}
+>
+  <span>{publishedLabel}: <time datetime={published}>{formatDate(published)}</time></span>
+  <span class="guide-dates__sep" aria-hidden="true">·</span>
+  <span>{updatedLabel}: <time datetime={updated}>{formatDate(updated)}</time></span>
+</p>

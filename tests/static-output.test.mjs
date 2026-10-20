@@ -641,3 +641,210 @@ test('root entry redirects to the localized Persian root at the custom-domain ro
     assert.ok(html.includes(`${slug}: '${slug}'`) || html.includes(`'${slug}': '${slug}'`), `root redirect should resolve legacy #${slug} links`);
   }
 });
+
+test('Google Search Console verification file, meta tag and crawl directives are published', () => {
+  const token = 'MBflR_hp5tDbD_VXkspc-6f1pcbB59wfEr45Ye3VnRw';
+  const verificationFile = resolve(dist, 'googled6648bb785ab023d.html');
+  assert.ok(existsSync(verificationFile), 'missing Google Search Console verification file');
+  assert.equal(
+    readFileSync(verificationFile, 'utf8').trim(),
+    'google-site-verification: googled6648bb785ab023d.html',
+    'verification file must keep the exact Google token',
+  );
+
+  for (const path of ['index.html', route('fa'), route('en'), route('fa', 'about'), route('fa', 'services/customs-port'), route('en', 'contact')]) {
+    const html = read(path);
+    assert.match(
+      html,
+      new RegExp(`<meta name="google-site-verification" content="${token}"\\s*/?>`),
+      `missing Google verification meta on ${path}`,
+    );
+  }
+
+  const home = read(route('fa'));
+  assert.match(home, /<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"\s*\/?>/);
+  assert.match(home, /<meta property="og:image" content="https:\/\/qazvintasvir\.ir\/assets\/images\/og-image\.jpg"/);
+  assert.match(home, /<meta property="og:locale:alternate" content="en_US"/);
+  assert.match(home, /<meta name="twitter:image:alt"/);
+  assert.match(read('404.html'), /<meta name="robots" content="noindex, nofollow"/);
+});
+
+test('sitemap exposes hreflang alternates for every indexable page', () => {
+  const sitemap = read('sitemap-0.xml');
+  const blocks = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
+  assert.equal(blocks.length, 48, 'sitemap should list the 48 localized indexable pages');
+  for (const block of blocks) {
+    const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1];
+    assert.ok(loc, 'every sitemap entry needs a loc');
+    const path = new URL(loc).pathname;
+    const rest = path.replace(/^\/(fa|en)/, '');
+    assert.ok(block.includes(`hreflang="fa" href="https://qazvintasvir.ir/fa${rest}"`), `missing fa alternate for ${loc}`);
+    assert.ok(block.includes(`hreflang="en" href="https://qazvintasvir.ir/en${rest}"`), `missing en alternate for ${loc}`);
+    assert.ok(block.includes(`hreflang="x-default" href="https://qazvintasvir.ir/fa${rest}"`), `missing x-default alternate for ${loc}`);
+  }
+  assert.doesNotMatch(sitemap, /<loc>https:\/\/qazvintasvir\.ir\/services\//, 'legacy redirect pages must stay out of the sitemap');
+});
+
+test('homepages publish linked WebSite, Organization and WebPage entities', () => {
+  for (const lang of ['fa', 'en']) {
+    const html = read(route(lang));
+    const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+    const org = schemas.find((schema) => Array.isArray(schema['@type']) && schema['@type'].includes('Organization'));
+    const website = schemas.find((schema) => schema['@type'] === 'WebSite');
+    const webpage = schemas.find((schema) => schema['@type'] === 'WebPage');
+    assert.equal(org?.['@id'], 'https://qazvintasvir.ir/#organization', `missing organization id on ${lang} home`);
+    assert.equal(org?.logo?.width, 512, `organization logo width on ${lang} home`);
+    assert.equal(org?.logo?.height, 512, `organization logo height on ${lang} home`);
+    assert.equal(org?.image, 'https://qazvintasvir.ir/assets/images/og-image.jpg', `organization image on ${lang} home`);
+    assert.equal(website?.['@id'], 'https://qazvintasvir.ir/#website', `missing website id on ${lang} home`);
+    assert.equal(website?.publisher?.['@id'], 'https://qazvintasvir.ir/#organization', `website publisher on ${lang} home`);
+    assert.equal(webpage?.['@id'], `https://qazvintasvir.ir/${lang}/`, `missing webpage id on ${lang} home`);
+    assert.equal(webpage?.isPartOf?.['@id'], 'https://qazvintasvir.ir/#website', `webpage parent on ${lang} home`);
+  }
+});
+
+test('article pages expose visible and structured publication dates', () => {
+  const articleSlugs = ['services-guide', 'permitted-goods-trade', 'factory-staff-transport-qazvin', 'corporate-catering-qazvin'];
+  for (const lang of ['fa', 'en']) {
+    for (const slug of articleSlugs) {
+      const html = read(route(lang, `articles/${slug}`));
+      assert.match(html, /class="guide-dates"/, `missing visible dates on ${lang}/${slug}`);
+      assert.match(html, /<time datetime="2026-10-19">/, `missing published time on ${lang}/${slug}`);
+      assert.match(html, /"datePublished":"2026-10-19"/, `missing datePublished on ${lang}/${slug}`);
+      assert.match(html, /"dateModified":"2026-10-20"/, `missing dateModified on ${lang}/${slug}`);
+    }
+  }
+});
+
+test('standalone section pages expose BreadcrumbList structured data', () => {
+  for (const lang of ['fa', 'en']) {
+    for (const slug of standaloneSectionSlugs) {
+      const html = read(route(lang, slug));
+      assert.match(html, /"@type":"BreadcrumbList"/, `missing breadcrumb schema on ${lang}/${slug}`);
+      assert.ok(
+        html.includes(`"item":"https://qazvintasvir.ir/${lang}/${slug}/"`),
+        `breadcrumb should link the page on ${lang}/${slug}`,
+      );
+    }
+  }
+});
+
+test('every internal route and asset link resolves in the built site', () => {
+  const htmlFiles = walkFiles(dist).filter((path) => path.endsWith('.html'));
+  const links = new Set();
+  for (const file of htmlFiles) {
+    const html = readFileSync(file, 'utf8');
+    for (const match of html.matchAll(/(?:href|src)="(\/[^"#?]*)/g)) {
+      if (!match[1].startsWith('//')) links.add(match[1]);
+    }
+  }
+  assert.ok(links.size > 0, 'the built pages should contain internal links');
+  for (const link of links) {
+    if (link === '/') continue;
+    const candidates = [
+      resolve(dist, link.slice(1)),
+      resolve(dist, link.replace(/\/$/, ''), 'index.html'),
+      resolve(dist, `${link.slice(1)}.html`),
+    ];
+    assert.ok(candidates.some((candidate) => existsSync(candidate)), `broken internal link: ${link}`);
+  }
+});
+
+const indexableArticleSlugs = ['services-guide', 'permitted-goods-trade', 'factory-staff-transport-qazvin', 'corporate-catering-qazvin'];
+const indexableRoutes = [
+  ...['fa', 'en'].flatMap((lang) => [
+    route(lang),
+    ...standaloneSectionSlugs.map((slug) => route(lang, slug)),
+    route(lang, 'about'),
+    route(lang, 'contact'),
+    route(lang, 'services'),
+    route(lang, 'articles'),
+    ...indexableArticleSlugs.map((slug) => route(lang, `articles/${slug}`)),
+    ...serviceSlugs.map((slug) => route(lang, `services/${slug}`)),
+  ]),
+];
+
+test('every indexable page ships complete snippet metadata and linked entities', () => {
+  for (const path of indexableRoutes) {
+    const html = read(path);
+    const title = html.match(/<title>([^<]*)<\/title>/)?.[1] ?? '';
+    const description = html.match(/<meta name="description" content="([^"]*)"\s*\/?>/)?.[1] ?? '';
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+    assert.ok(title.length > 0 && title.length <= 60, `title length ${title.length} outside 1-60 for ${path}`);
+    assert.ok(description.length >= 70 && description.length <= 160, `description length ${description.length} outside 70-160 for ${path}`);
+    assert.match(canonical ?? '', /^https:\/\/qazvintasvir\.ir\//, `canonical must be absolute for ${path}`);
+    assert.ok(html.includes('href="/favicon.ico"'), `favicon.ico link missing on ${path}`);
+    assert.match(html, /<meta property="og:image:alt" content="[^"]+"/, `og:image:alt missing on ${path}`);
+    assert.match(html, /<meta name="robots" content="index, follow, max-image-preview:large/, `robots directives missing on ${path}`);
+
+    const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+      .map((match) => JSON.parse(match[1]));
+    const organizations = schemas.filter((schema) => Array.isArray(schema['@type']) && schema['@type'].includes('Organization'));
+    const websites = schemas.filter((schema) => schema['@type'] === 'WebSite');
+    const webpages = schemas.filter((schema) => schema['@type'] === 'WebPage');
+    assert.equal(organizations.length, 1, `exactly one Organization entity expected on ${path}`);
+    assert.equal(websites.length, 1, `exactly one WebSite entity expected on ${path}`);
+    assert.equal(webpages.length, 1, `exactly one WebPage entity expected on ${path}`);
+    assert.equal(webpages[0]['@id'], canonical, `WebPage @id should match the canonical on ${path}`);
+    assert.equal(webpages[0].isPartOf?.['@id'], 'https://qazvintasvir.ir/#website', `WebPage parent missing on ${path}`);
+    assert.equal(websites[0].publisher?.['@id'], 'https://qazvintasvir.ir/#organization', `WebSite publisher missing on ${path}`);
+  }
+});
+
+test('article structured data points back to the page WebPage entity', () => {
+  for (const lang of ['fa', 'en']) {
+    for (const slug of indexableArticleSlugs) {
+      const html = read(route(lang, `articles/${slug}`));
+      const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+      const article = schemas.find((schema) => Array.isArray(schema['@graph']))
+        ?.['@graph'].find((node) => node['@type'] === 'Article');
+      const webpage = schemas.find((schema) => schema['@type'] === 'WebPage');
+      assert.ok(article, `Article schema missing on ${lang}/${slug}`);
+      assert.equal(article.mainEntityOfPage?.['@id'], webpage?.['@id'], `Article should reference the page WebPage node on ${lang}/${slug}`);
+      assert.equal(article.publisher?.['@id'], 'https://qazvintasvir.ir/#organization', `Article publisher reference missing on ${lang}/${slug}`);
+      assert.match(article.author?.['@id'] ?? '', /^https:\/\/qazvintasvir\.ir\/#organization$/, `Article author reference missing on ${lang}/${slug}`);
+      assert.match(html, /<meta property="article:published_time" content="2026-10-19"/, `article:published_time missing on ${lang}/${slug}`);
+      assert.match(html, /<meta property="article:modified_time" content="2026-10-20"/, `article:modified_time missing on ${lang}/${slug}`);
+    }
+  }
+});
+
+test('multi-resolution favicons are published for search and browser surfaces', () => {
+  const icons = [
+    ['favicon.ico', 512],
+    ['assets/images/brand/qazvin-tasvir-icon-32.png', 32],
+    ['assets/images/brand/qazvin-tasvir-icon-48.png', 48],
+    ['assets/images/brand/qazvin-tasvir-icon-96.png', 96],
+    ['assets/images/brand/qazvin-tasvir-icon-144.png', 144],
+    ['assets/images/brand/qazvin-tasvir-apple-touch.png', 180],
+  ];
+  for (const [asset, size] of icons) {
+    const path = resolve(dist, asset);
+    assert.ok(existsSync(path), `missing icon ${asset}`);
+    const png = readFileSync(path);
+    assert.equal(png.toString('hex', 0, 8), '89504e470d0a1a0a', `${asset} must be a PNG payload`);
+    assert.equal(png.readUInt32BE(16), size, `${asset} width mismatch`);
+    assert.equal(png.readUInt32BE(20), size, `${asset} height mismatch`);
+  }
+});
+
+test('sitemap marks article URLs with the content update date', () => {
+  const sitemap = read('sitemap-0.xml');
+  for (const lang of ['fa', 'en']) {
+    for (const slug of ['services-guide', 'permitted-goods-trade', 'factory-staff-transport-qazvin', 'corporate-catering-qazvin']) {
+      assert.match(
+        sitemap,
+        new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/${slug}/</loc><lastmod>2026-10-20`),
+        `missing lastmod for ${lang}/${slug}`,
+      );
+    }
+  }
+  for (const lang of ['fa', 'en']) {
+    assert.match(
+      sitemap,
+      new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/</loc><lastmod>2026-10-20`),
+      `missing lastmod for the ${lang} article index`,
+    );
+  }
+  assert.equal((sitemap.match(/<lastmod>/g) ?? []).length, 10, 'only the article index and article detail URLs should declare lastmod');
+});

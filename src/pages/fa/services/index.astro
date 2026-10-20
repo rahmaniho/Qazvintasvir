@@ -1,12 +1,17 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { breadcrumbSchema } from '../../../lib/schema';
 
 const lang = 'fa';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const site = Astro.site?.toString() || 'https://qazvintasvir.ir';
 const siteClean = site.endsWith('/') ? site.slice(0,-1) : site;
 const canonical = `${siteClean}${baseUrl}/fa/services/`;
+const breadcrumbs = breadcrumbSchema([
+  { name: 'خانه', url: `${siteClean}${baseUrl}/fa/` },
+  { name: 'خدمات', url: canonical },
+]);
 const hreflang = [
   { lang: 'fa', href: canonical },
   { lang: 'en', href: `${siteClean}${baseUrl}/en/services/` },
@@ -33,7 +38,10 @@ const itemListSchema = {
 };
 ---
 
-<BaseLayout lang={lang} title="خدمات تخصصی | قزوین تصویر — هشت مسیر خدمت از بازرگانی تا کیترینگ" description="هشت صفحه مستقل خدمات شرکت قزوین تصویر در حوزه بازرگانی، ترخیص، تأمین، ترابری، VIP، سرویس سازمانی، غذای پرسنل و مشاوره بازرگانی." canonical={canonical} hreflang={hreflang} schema={itemListSchema}>
+<BaseLayout lang={lang} title="خدمات تخصصی | قزوین تصویر — هشت مسیر خدمت" description="هشت صفحه مستقل خدمات شرکت قزوین تصویر در حوزه بازرگانی، ترخیص، تأمین، ترابری، VIP، سرویس سازمانی، غذای پرسنل و مشاوره بازرگانی." canonical={canonical} hreflang={hreflang} schema={itemListSchema}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)}></script>
+  </Fragment>
   <section class="hero" style="padding-block:48px 32px;">
     <div class="container">
       <nav class="breadcrumbs" aria-label="مسیر صفحه"><a href={`${baseUrl}/fa/`}>خانه</a><span class="breadcrumbs__sep">/</span><span aria-current="page">خدمات</span></nav>

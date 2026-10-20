@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { ARTICLE_PUBLISHED, ARTICLE_UPDATED } from '../../lib/schema';
+import ArticleDates from './ArticleDates.astro';
 import '../../styles/articles.css';
 
 interface Props { lang: 'fa' | 'en' }
@@ -16,11 +18,11 @@ const tradeImage = `${baseUrl}/assets/img/articles/services-guide-trade.jpg`;
 const mobilityImage = `${baseUrl}/assets/img/articles/services-guide-mobility.jpg`;
 const cateringImage = `${baseUrl}/assets/img/articles/services-guide-catering.jpg`;
 const articleTitle = isFa
-  ? 'خدمات قزوین تصویر چیست؟ راهنمای جامع بازرگانی، ترابری و پشتیبانی سازمانی'
-  : 'What Does Qazvin Tasvir Do? A Guide to Trade, Transport and Corporate Services';
+  ? 'خدمات قزوین تصویر چیست؟ راهنمای بازرگانی و ترابری'
+  : 'What Does Qazvin Tasvir Do? Trade and Transport Guide';
 const articleDescription = isFa
   ? 'راهنمای دقیق خدمات قزوین تصویر؛ از واردات و تأمین کالاهای مجاز و هماهنگی گمرکی تا سرویس پرسنل، حمل‌ونقل سازمانی و غذای کارکنان.'
-  : 'A practical guide to Qazvin Tasvir’s services: permitted-goods trade, sourcing and customs coordination, staff transport, organisational shuttles and workplace catering.';
+  : 'A practical guide to Qazvin Tasvir’s services: permitted-goods trade, sourcing, customs coordination, staff transport and workplace catering.';
 const hreflang = [
   { lang: 'fa', href: `${site}${baseUrl}/fa/articles/services-guide/` },
   { lang: 'en', href: `${site}${baseUrl}/en/articles/services-guide/` },
@@ -174,14 +176,17 @@ const schema = {
       headline: articleTitle,
       description: articleDescription,
       inLanguage: lang,
+      datePublished: ARTICLE_PUBLISHED,
+      dateModified: ARTICLE_UPDATED,
       image: [coverUrl],
       mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
-      author: { '@type': 'Organization', name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
+      author: { '@type': 'Organization', '@id': `${site}${baseUrl}/#organization`, name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company', url: `${site}${baseUrl}/${lang}/` },
       publisher: {
         '@type': 'Organization',
+        '@id': `${site}${baseUrl}/#organization`,
         name: isFa ? 'شرکت قزوین تصویر' : 'Qazvin Tasvir Company',
         url: site,
-        logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png` },
+        logo: { '@type': 'ImageObject', url: `${site}${baseUrl}/assets/images/brand/qazvin-tasvir-favicon.png`, width: 512, height: 512 },
       },
       articleSection: isFa ? 'راهنمای خدمات' : 'Service guide',
       keywords: isFa
@@ -217,7 +222,7 @@ const schema = {
 };
 ---
 
-<BaseLayout lang={lang} title={articleTitle} description={articleDescription} image={coverUrl} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" bodyClass="article-page" preloadImage={coverPath} preloadImageType="image/jpeg">
+<BaseLayout lang={lang} title={articleTitle} description={articleDescription} image={coverUrl} imageAlt={copy.coverAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" articlePublishedTime={ARTICLE_PUBLISHED} articleModifiedTime={ARTICLE_UPDATED} bodyClass="article-page" preloadImage={coverPath} preloadImageType="image/jpeg">
   <article class="service-guide">
     <section class="guide-hero">
       <div class="container">
@@ -232,6 +237,7 @@ const schema = {
             <span class="guide-eyebrow">{copy.eyebrow}</span>
             <h1>{copy.title}</h1>
             <p class="guide-hero__lead">{copy.lead}</p>
+            <ArticleDates lang={lang} published={ARTICLE_PUBLISHED} updated={ARTICLE_UPDATED} />
           </div>
           <figure class="guide-cover">
             <img src={coverPath} alt={copy.coverAlt} width="1200" height="800" fetchpriority="high" decoding="async" />

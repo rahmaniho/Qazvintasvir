@@ -3,7 +3,7 @@ import HomeLayout from '../../layouts/HomeLayout.astro';
 import Hero from '../../components/home/Hero.astro';
 import ClientLogoMarquee from '../../components/home/ClientLogoMarquee.astro';
 import HomeDirectory from '../../components/home/HomeDirectory.astro';
-import { organizationSchema, itemListSchema } from '../../lib/schema';
+import { itemListSchema } from '../../lib/schema';
 
 const lang = 'en';
 const site = Astro.site?.toString() || 'https://qazvintasvir.ir';
@@ -16,7 +16,6 @@ const hreflang = [
   { lang: 'en', href: canonical },
   { lang: 'x-default', href: `${siteUrl}/fa/` },
 ];
-const org = organizationSchema(siteUrl, 'en');
 const servicesList = itemListSchema("Services of Qazvin Tasvir Company", [
   { name: "Permitted goods import and export", url: `${siteUrl}/en/services/import-export/` },
   { name: "Customs clearance and port affairs", url: `${siteUrl}/en/services/customs-port/` },
@@ -31,13 +30,12 @@ const servicesList = itemListSchema("Services of Qazvin Tasvir Company", [
 
 <HomeLayout
   lang={lang}
-  title="Qazvin Tasvir Company | Trading, Import & Export, Transport and Staff Catering — Founded 1995"
-  description="Qazvin Tasvir Company (National ID 10861415215), managed by Saeed Aminzadeh: eight specialist services spanning permitted trade, customs, industrial sourcing, staff transport, VIP mobility, corporate shuttles, catering and trade consulting. Founded 1995. Contact: +98 912 281 5189 or +98 935 281 5189."
+  title="Qazvin Tasvir | Trade, Transport & Staff Catering"
+  description="Qazvin Tasvir Company (est. 1995) provides permitted-goods trade, customs clearance, staff transport and corporate catering in Qazvin. Call +98 912 281 5189."
   canonical={canonical}
   hreflang={hreflang}
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(org)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(servicesList)}></script>
   </Fragment>
 

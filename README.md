@@ -39,6 +39,23 @@ The production build targets the confirmed custom domain <https://qazvintasvir.i
 
 In **Settings → Pages**, the deployment source should be **GitHub Actions** and the custom domain should be `qazvintasvir.ir`. GitHub must finish provisioning the TLS certificate before **Enforce HTTPS** can be enabled; verify that HTTPS enforcement is on once the certificate is ready.
 
+## Google Search Console
+
+The site is prepared for a **URL-prefix** property at `https://qazvintasvir.ir/`:
+
+- `public/googled6648bb785ab023d.html` is copied to the site root and contains the exact verification token.
+- `src/layouts/BaseLayout.astro` adds the `google-site-verification` meta tag to every page; `src/pages/index.astro` adds it to the root redirect page as well.
+- `public/robots.txt` points Google to `https://qazvintasvir.ir/sitemap-index.xml`.
+- The generated `sitemap-0.xml` lists 48 indexable localized pages and declares `fa`, `en`, and `x-default` alternates for each URL. Root `/` and the legacy `/services/*.html` redirects are intentionally excluded.
+- Canonicals, `hreflang`, Open Graph/Twitter metadata, and JSON-LD (`Organization`, `WebSite`, `WebPage`, `BreadcrumbList`, `Service`, `Article`, `FAQPage`) are emitted at build time.
+- Every indexable page defines exactly one `Organization`, `WebSite` and `WebPage` entity; the `WebPage` `@id` equals the page canonical, and articles point back to it through `mainEntityOfPage`.
+- Article URLs carry a `lastmod` value in the sitemap that is read from `ARTICLE_UPDATED`, so the sitemap stays in sync with the visible page dates.
+- `ARTICLE_PUBLISHED` and `ARTICLE_UPDATED` in `src/lib/schema.ts` control the article dates shown on the page, in `Article` structured data (`datePublished`/`dateModified`), in `article:published_time`/`article:modified_time`, and in the sitemap. Update them when article copy changes.
+- Titles stay within 60 characters and meta descriptions within 70–160 characters; both are asserted by the static-output tests.
+- `favicon.ico` plus 32/48/96/144 px PNG icons and a 180 px Apple touch icon are published and linked from every page.
+
+After deployment, verify the property in Search Console and submit `sitemap-index.xml`. The root `/` is a static redirect to `/fa/`, so the indexable homepage is `https://qazvintasvir.ir/fa/`. For a **Domain** property, add the DNS TXT record that Search Console provides; the HTML file and meta tag only cover URL-prefix properties.
+
 ## Routes
 
 - `/fa/` and `/en/` — localized home pages

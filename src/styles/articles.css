@@ -56,6 +56,19 @@
     font-size: clamp(1rem, 1.3vw, 1.12rem);
     line-height: 2;
   }
+  .guide-dates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-block: 14px 0;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    line-height: 1.8;
+  }
+  .guide-dates time { color: var(--text-primary); font-weight: 700; }
+  .guide-dates__sep { color: var(--amber-accent); }
+  [data-theme="dark"] .guide-dates time { color: #e2e8f0; }
   .guide-cover,
   .guide-group__image { min-width: 0; margin: 0; }
   .guide-cover {
