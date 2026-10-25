@@ -626,6 +626,34 @@
   .mobile-drawer__sub a[aria-current="page"] { background: rgb(13 79 201 / 28%); color: #fff; }
   .mobile-drawer__languages a { border-color: rgb(202 218 247 / 20%); color: #c0cadb; }
   .mobile-drawer__languages a[aria-current="page"] { border-color: rgb(245 158 11 / 56%); background: rgb(245 158 11 / 12%); color: #fcd34d; }
+  .mobile-drawer__social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .mobile-drawer__social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px;
+    border: 1px solid rgb(202 218 247 / 20%);
+    border-radius: var(--r-full);
+    background: rgb(255 255 255 / 6%);
+    color: #e7eefb;
+    font-size: 0.78rem;
+    font-weight: 700;
+    transition: border-color var(--dur-fast) ease, background var(--dur-fast) ease, color var(--dur-fast) ease;
+  }
+  .mobile-drawer__social-link:hover {
+    border-color: rgb(225 48 108 / 62%);
+    background: rgb(225 48 108 / 16%);
+    color: #fff;
+  }
+  .mobile-drawer__social-link--whatsapp:hover {
+    border-color: rgb(37 211 102 / 62%);
+    background: rgb(37 211 102 / 14%);
+  }
   @media (max-width: 1023px) {
     .site-header .header-inner { gap: 8px; }
     .mobile-drawer__link .navigation-icon { inline-size: 21px; block-size: 21px; }
@@ -645,10 +673,61 @@
   }
   @media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
-  .footer-brand { display: grid; gap: 12px; }
+  .footer-brand { display: grid; align-content: start; gap: 12px; }
   .footer-brand__logo { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-weight: 800; }
   .footer-brand__logo img { width: 32px; height: 32px; border-radius: 8px; }
   .footer-brand p { color: #94A3B8; font-size: 0.9rem; line-height: 1.8; }
+  .footer-social {
+    display: grid;
+    gap: 8px;
+    margin-block-start: 4px;
+  }
+  .footer-social__title {
+    color: #CBD5E1;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+  .footer-social__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .footer-social__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, 0.05);
+    color: #E2E8F0;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.2;
+    transition: transform var(--dur-fast) ease, border-color var(--dur-fast) ease, background var(--dur-fast) ease, color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+  }
+  .footer-social__link:hover {
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  .footer-social__link:focus-visible {
+    outline: 2px solid var(--sky-light);
+    outline-offset: 3px;
+  }
+  .footer-social__link--instagram svg { color: #F472B6; }
+  .footer-social__link--instagram:hover {
+    border-color: rgba(225, 48, 108, 0.65);
+    background: rgba(225, 48, 108, 0.16);
+    box-shadow: 0 6px 18px rgba(225, 48, 108, 0.2);
+  }
+  .footer-social__link--instagram:hover svg { color: #FBCFE8; }
+  .footer-social__link--whatsapp svg { color: var(--whatsapp); }
+  .footer-social__link--whatsapp:hover {
+    border-color: rgba(37, 211, 102, 0.6);
+    background: rgba(37, 211, 102, 0.14);
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.16);
+  }
   .footer-col h4 { color: #fff; font-size: 0.95rem; margin-bottom: 16px; }
   .footer-col ul { display: grid; gap: 10px; }
   .footer-col a { color: #94A3B8; font-size: 0.88rem; }
@@ -765,8 +844,10 @@
     .karensoft-credit__label,
     .karensoft-credit__mark-wrap::before,
     .karensoft-credit__mark,
-    .karensoft-credit__wordmarks { animation: none; transition: none; }
-    .karensoft-credit:hover { transform: none; }
+    .karensoft-credit__wordmarks,
+    .footer-social__link { animation: none; transition: none; }
+    .karensoft-credit:hover,
+    .footer-social__link:hover { transform: none; }
   }
   .footer-bottom a { color: #94A3B8; }
 }

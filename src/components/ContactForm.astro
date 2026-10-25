@@ -42,6 +42,26 @@ const options = isFa ? serviceOptionsFa : serviceOptionsEn;
             <p style="margin-top:4px;"><a href="mailto:qazvin.tasvir@gmail.com" dir="ltr" class="bidi-ltr" style="color:var(--sky-blue); font-weight:700;">qazvin.tasvir@gmail.com</a></p>
           </div>
           <div>
+            <strong>{isFa ? 'شبکه‌های اجتماعی' : 'Social media'}</strong>
+            <div class="contact-actions">
+              <a
+                href="https://www.instagram.com/qazvintasvir.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn--sm btn--instagram"
+                aria-label={isFa ? 'صفحه‌ی اینستاگرام قزوین تصویر (@Qazvintasvir.co)' : 'Qazvin Tasvir on Instagram (@Qazvintasvir.co)'}
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span>{isFa ? 'اینستاگرام' : 'Instagram'}</span>
+                <bdi class="bidi-ltr" dir="ltr">@Qazvintasvir.co</bdi>
+              </a>
+            </div>
+          </div>
+          <div>
             <strong>{isFa ? 'ساعات کاری' : 'Working hours'}</strong>
             <p style="margin-top:4px;">{isFa ? <>شنبه تا پنجشنبه — <bdi class="bidi-ltr" dir="ltr">۰۸:۰۰</bdi> تا <bdi class="bidi-ltr" dir="ltr">۲۰:۰۰</bdi></> : <>Sat–Thu — <bdi class="bidi-ltr" dir="ltr">08:00</bdi> to <bdi class="bidi-ltr" dir="ltr">20:00</bdi></>}</p>
           </div>
