@@ -24,6 +24,8 @@
   .btn--ghost { background: transparent; color: var(--text-primary); border-color: var(--line-soft); }
   .btn--ghost:hover { background: var(--surface-bg); border-color: var(--text-muted); }
   .btn--whatsapp { background: var(--whatsapp); color: #fff; }
+  .btn--instagram { background: var(--grad-instagram); color: #fff; }
+  .btn--instagram:hover { box-shadow: 0 10px 24px rgba(225, 48, 108, 0.32); }
   .btn--lg { padding: 16px 28px; font-size: 1rem; border-radius: var(--r-md); }
   .btn--sm { padding: 8px 14px; font-size: 0.84rem; }
 

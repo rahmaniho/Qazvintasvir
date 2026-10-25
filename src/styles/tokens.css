@@ -20,6 +20,8 @@
     --success: #10B981;
     --error: #EF4444;
     --whatsapp: #25D366;
+    --instagram: #E1306C;
+    --grad-instagram: linear-gradient(135deg, #833AB4 0%, #E1306C 52%, #F77737 100%);
 
     /* گرادیان‌ها */
     --grad-hero: linear-gradient(155deg, #061829 0%, #0A2540 50%, #0E4B6E 100%);
@@ -108,6 +110,7 @@
     --text-light: #64748B;
     --primary-navy: #0E3356;
     --navy-deep: #061829;
+    --instagram: #F472B6;
   }
 
   [data-theme="dark"] body {

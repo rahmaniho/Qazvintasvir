@@ -120,6 +120,7 @@ export function organizationSchema(siteUrl: string, lang: Locale = 'fa') {
       })),
     },
     sameAs: [
+      "https://www.instagram.com/qazvintasvir.co/",
       "https://rasmio.com/company/10861415215/قزوین-تصویر/",
       "https://wa.me/989122815189",
     ],

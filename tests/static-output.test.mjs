@@ -878,3 +878,34 @@ test('every sitemap URL is built, self-canonical and indexable', () => {
     assert.match(html, /<h1[\s>]/, `sitemap URL has no H1: ${loc}`);
   }
 });
+
+test('company Instagram social network (@Qazvintasvir.co) is published in UI and structured data', () => {
+  const instagramUrl = 'https://www.instagram.com/qazvintasvir.co/';
+  for (const lang of ['fa', 'en']) {
+    const home = read(route(lang));
+    const contact = read(route(lang, 'contact'));
+
+    assert.match(home, /class="footer-social"/, `missing footer social section on ${lang} homepage`);
+    assert.match(home, /class="mobile-drawer__social"/, `missing mobile drawer social section on ${lang} homepage`);
+    assert.ok(home.includes(`href="${instagramUrl}"`), `missing Instagram URL on ${lang} homepage`);
+    assert.ok(contact.includes(`href="${instagramUrl}"`), `missing Instagram URL on ${lang} contact page`);
+    assert.match(contact, /class="[^"]*\bbtn--instagram\b[^"]*"/, `missing Instagram button on ${lang} contact page`);
+    assert.match(contact, lang === 'fa' ? /شبکه‌های اجتماعی/ : /Social media/, `missing localized social heading on ${lang} contact page`);
+
+    for (const [label, html] of [[`${lang}/home`, home], [`${lang}/contact`, contact]]) {
+      const igLinks = [...html.matchAll(/<a\b([^>]*href="https:\/\/www\.instagram\.com\/qazvintasvir\.co\/"[^>]*)>([\s\S]*?)<\/a>/g)];
+      assert.ok(igLinks.length >= 3, `expected Instagram links in footer, contact list and drawer on ${label}`);
+      for (const [, attrs, inner] of igLinks) {
+        assert.match(attrs, /\btarget="_blank"/, `Instagram link must open in a new tab on ${label}`);
+        assert.match(attrs, /\brel="noopener noreferrer"/, `Instagram link must include rel="noopener noreferrer" on ${label}`);
+        const linkIsLtr = /\bdir="ltr"/.test(attrs) && /\bclass="[^"]*\bbidi-ltr\b/.test(attrs);
+        const handleIsIsolated = /<bdi\b[^>]*class="[^"]*\bbidi-ltr\b[^"]*"[^>]*dir="ltr"[^>]*>@Qazvintasvir\.co<\/bdi>/.test(inner);
+        assert.ok(linkIsLtr || handleIsIsolated, `Instagram handle @Qazvintasvir.co must be LTR-isolated on ${label}`);
+      }
+
+      const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+      const organization = schemas.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
+      assert.ok(organization?.sameAs?.includes(instagramUrl), `Organization sameAs should include Instagram URL on ${label}`);
+    }
+  }
+});
