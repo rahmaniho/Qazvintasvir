@@ -851,16 +851,13 @@ test('sitemap marks article URLs with the content update date', () => {
   assert.equal((sitemap.match(/<lastmod>/g) ?? []).length, 10, 'only the article index and article detail URLs should declare lastmod');
 });
 
-test('root sitemap.xml exposes the generated URL set for search engines', () => {
-  const index = read('sitemap.xml');
-  assert.match(index, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
-  assert.match(index, /<sitemapindex xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
-  assert.match(index, /<loc>https:\/\/qazvintasvir\.ir\/sitemap-0\.xml<\/loc>/);
-  assert.doesNotMatch(index, /<lastmod>/, 'do not claim the sitemap file was modified on the article update date');
-
-  const chunk = read('sitemap-0.xml');
-  assert.equal((chunk.match(/<url>/g) ?? []).length, 48, 'URL set should keep all 48 indexable pages');
-  assert.doesNotMatch(chunk, /<loc>https:\/\/qazvintasvir\.ir\/sitemap[^<]*<\/loc>/, 'sitemaps must not list themselves');
+test('root sitemap.xml directly exposes the generated URL set for search engines', () => {
+  const sitemap = read('sitemap.xml');
+  assert.match(sitemap, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
+  assert.match(sitemap, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9"/);
+  assert.doesNotMatch(sitemap, /<sitemapindex/, 'a single sitemap should expose URLs directly, not point to another sitemap');
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 48, 'URL set should keep all 48 indexable pages');
+  assert.doesNotMatch(sitemap, /<loc>https:\/\/qazvintasvir\.ir\/sitemap[^<]*<\/loc>/, 'sitemaps must not list themselves');
 
   const robots = read('robots.txt');
   assert.match(robots, /^Sitemap: https:\/\/qazvintasvir\.ir\/sitemap\.xml$/m, 'robots.txt should advertise /sitemap.xml');
