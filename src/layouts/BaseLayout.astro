@@ -3,6 +3,7 @@ import Header from '../components/nav/Header.astro';
 import Footer from '../components/Footer.astro';
 import { getLangFromUrl } from '../i18n/utils';
 import { webPageSchema, organizationSchema, websiteSchema } from '../lib/schema';
+import { createSeoMetadata } from '../lib/seo';
 import fa from '../i18n/fa';
 import en from '../i18n/en';
 import '../styles/tokens.css';
@@ -60,36 +61,24 @@ const t = lang === 'fa' ? fa : en;
 
 const title = propTitle ?? t.siteTitle;
 const description = propDesc ?? t.siteDescription;
-const canonical = propCanonical ?? url.href;
-const ogImage = propImage ?? `${siteClean}${baseClean}/assets/images/og-image.jpg`;
-const ogImageAlt = propImageAlt ?? (lang === 'fa'
-  ? 'قزوین تصویر — بازرگانی، ترابری و تأمین غذای سازمانی'
-  : 'Qazvin Tasvir — trade, transport and corporate catering');
+const seo = createSeoMetadata({
+  url,
+  site: siteClean,
+  base: baseClean,
+  lang,
+  title,
+  description,
+  canonical: propCanonical,
+  image: propImage,
+  imageAlt: propImageAlt,
+  noindex,
+  hreflang,
+});
+const { canonical, image: ogImage, imageAlt: ogImageAlt, robots: robotsContent } = seo;
+const hreflangLinks = seo.hreflang;
 const preloadImage = propPreloadImage ?? `${baseClean}/assets/img/sections/hero-port.webp`;
 const preloadImageMime = preloadImageType ?? 'image/webp';
-const robotsContent = noindex
-  ? 'noindex, nofollow'
-  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
-const otherLocale = lang === 'fa' ? 'en_US' : 'fa_IR';
-
-// hreflang links
-let hreflangLinks: Array<{lang:string, href:string}> = hreflang ?? [];
-if (!hreflangLinks.length) {
-  // generate default hreflang based on current url
-  // Strip base + lang to get path without lang
-  let pathname = url.pathname;
-  let withoutBase = pathname;
-  if (baseClean && withoutBase.startsWith(baseClean)) withoutBase = withoutBase.slice(baseClean.length);
-  if (!withoutBase.startsWith('/')) withoutBase = '/' + withoutBase;
-  const pathWithoutLang = withoutBase.replace(/^\/(fa|en)(\/|$)/, '/');
-  const faUrl = `${siteClean}${baseClean}/fa${pathWithoutLang === '/' ? '/' : pathWithoutLang}`;
-  const enUrl = `${siteClean}${baseClean}/en${pathWithoutLang === '/' ? '/' : pathWithoutLang}`;
-  hreflangLinks = [
-    { lang: 'fa', href: faUrl },
-    { lang: 'en', href: enUrl },
-    { lang: 'x-default', href: faUrl },
-  ];
-}
+const otherLocale = seo.alternateLocale;
 
 const currentPath = url.pathname;
 const siteUrl = `${siteClean}${baseClean}`;
@@ -119,9 +108,9 @@ const pageSchema = noindex
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage} />
   <meta property="og:image:alt" content={ogImageAlt} />
-  <meta property="og:locale" content={lang === 'fa' ? 'fa_IR' : 'en_US'} />
+  <meta property="og:locale" content={seo.locale} />
   <meta property="og:locale:alternate" content={otherLocale} />
-  <meta property="og:site_name" content={lang === 'fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'} />
+  <meta property="og:site_name" content={seo.siteName} />
   {ogType === 'article' && articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
   {ogType === 'article' && articleModifiedTime && <meta property="article:modified_time" content={articleModifiedTime} />}
   <meta name="twitter:card" content="summary_large_image" />
