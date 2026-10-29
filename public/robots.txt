@@ -1,6 +1,5 @@
 User-agent: *
-Allow: /
+Allow: *
 
-# Sitemap index that points to /sitemap-0.xml with all 48 localized URLs.
+# Canonical sitemap entry point (includes all generated sitemap chunks).
 Sitemap: https://qazvintasvir.ir/sitemap.xml
-Sitemap: https://qazvintasvir.ir/sitemap-index.xml

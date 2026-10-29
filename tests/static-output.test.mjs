@@ -626,7 +626,9 @@ test('sitemap and robots.txt use the confirmed custom domain', () => {
   assert.doesNotMatch(sitemap, /\/services\/personnel-food\.html/);
   assert.doesNotMatch(sitemap, /\/Qazvintasvir\//);
   const robots = read('robots.txt');
-  assert.match(robots, /^Sitemap: https:\/\/qazvintasvir\.ir\/sitemap-index\.xml$/m);
+  assert.match(robots, /^Allow: \*$/m, 'robots.txt should allow all paths');
+  assert.match(robots, /^Sitemap: https:\/\/qazvintasvir\.ir\/sitemap\.xml$/m);
+  assert.equal((robots.match(/^Sitemap:/gm) ?? []).length, 1, 'robots.txt should advertise one canonical sitemap entry point');
   assert.doesNotMatch(robots, /rahmaniho\.github\.io|\/Qazvintasvir\//);
   assert.doesNotMatch(sitemap, /rahmaniho\.github\.io/);
   assert.equal(readFileSync(resolve(dist, 'CNAME'), 'utf8').trim(), 'qazvintasvir.ir', 'Pages artifact should retain the custom domain');
@@ -854,7 +856,7 @@ test('root sitemap.xml exposes the generated URL set for search engines', () => 
   assert.match(index, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
   assert.match(index, /<sitemapindex xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
   assert.match(index, /<loc>https:\/\/qazvintasvir\.ir\/sitemap-0\.xml<\/loc>/);
-  assert.match(index, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/);
+  assert.doesNotMatch(index, /<lastmod>/, 'do not claim the sitemap file was modified on the article update date');
 
   const chunk = read('sitemap-0.xml');
   assert.equal((chunk.match(/<url>/g) ?? []).length, 48, 'URL set should keep all 48 indexable pages');
@@ -862,7 +864,7 @@ test('root sitemap.xml exposes the generated URL set for search engines', () => 
 
   const robots = read('robots.txt');
   assert.match(robots, /^Sitemap: https:\/\/qazvintasvir\.ir\/sitemap\.xml$/m, 'robots.txt should advertise /sitemap.xml');
-  assert.match(robots, /^Sitemap: https:\/\/qazvintasvir\.ir\/sitemap-index\.xml$/m, 'robots.txt should keep the generated index');
+  assert.equal((robots.match(/^Sitemap:/gm) ?? []).length, 1, 'robots.txt should advertise one canonical sitemap entry point');
 });
 
 test('every sitemap URL is built, self-canonical and indexable', () => {
