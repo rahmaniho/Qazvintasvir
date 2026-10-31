@@ -10,7 +10,7 @@ const isFa = lang === 'fa';
     <div class="section-header reveal">
       <span class="section-label section-label--sky">{isFa ? 'ناوگان' : 'Fleet'}</span>
       <h2 class="section-title">{isFa ? 'ناوگان مجهز ترابری' : 'Modern Transport Fleet'}</h2>
-      <p class="section-desc">{isFa ? 'اتوبوس، مینی‌بوس و ون‌های مجهز برای جابه‌جایی ایمن و منظم پرسنل در تمام شیفت‌ها.' : 'Buses, minibuses and vans for safe, regular personnel transport across all shifts.'}</p>
+      <p class="section-desc">{isFa ? 'اتوبوس، مینی‌بوس و ون‌های مجهز برای جابه‌جایی ایمن و منظم پرسنل در تمام شیفت‌ها؛ محدوده‌ی سرویس، استان قزوین و شهرک‌های صنعتی این استان است.' : 'Buses, minibuses and vans for safe, regular personnel transport across all shifts, with service focused on Qazvin Province and its industrial parks.'}</p>
     </div>
 
     <div class="fleet-grid">
@@ -36,6 +36,8 @@ const isFa = lang === 'fa';
         </div>
       </div>
     </div>
+
+    <p class="fleet-scope reveal">{isFa ? <>محدوده‌ی سرویس ناوگان: استان قزوین و شهرک‌های صنعتی استان قزوین (از جمله کاسپین، البرز، لیا و حیدریه).</> : <>Fleet service area: Qazvin Province and its industrial parks, including Caspian, Alborz, Lia and Heydariyeh.</>}</p>
 
     <div class="fleet-equipment-grid reveal">
       <img src={`${baseUrl}/assets/images/hyundai-minibus-interior.jpg`} alt={isFa ? 'فضای داخلی مینی‌بوس هیوندای با نشان قزوین تصویر' : 'Hyundai minibus interior with the Qazvin Tasvir logo'} width="560" height="320" loading="lazy" decoding="async" style="border-radius:var(--r-lg); width:100%; aspect-ratio:16/10; object-fit:cover;" />

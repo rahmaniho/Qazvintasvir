@@ -19,7 +19,23 @@ const canonical = `${site}${base}/en/services/personnel-food/`;
 const image = `${site}${base}/assets/img/personnel-food/hero-kitchen.jpg`;
 const socialImage = `${site}${base}/assets/images/og-image.jpg`;
 const asset = (name: string) => `${base}/assets/img/personnel-food/${name}`;
-const service = serviceSchema({ title, description, image, url: canonical, providerUrl: `${site}${base}`, lang: 'en' });
+const service = serviceSchema({
+  title,
+  description,
+  image,
+  url: canonical,
+  providerUrl: `${site}${base}`,
+  lang: 'en',
+  areaServed: [
+    { '@type': 'Country', name: 'Iran' },
+    { '@type': 'AdministrativeArea', name: 'Qazvin Province' },
+    { '@type': 'AdministrativeArea', name: 'Alborz Province' },
+    { '@type': 'AdministrativeArea', name: 'Tehran Province' },
+    { '@type': 'City', name: 'Qazvin' },
+    { '@type': 'City', name: 'Karaj' },
+    { '@type': 'City', name: 'Tehran' },
+  ],
+});
 const breadcrumbs = breadcrumbSchema([
   { name: 'Home', url: `${site}${base}/en/` },
   { name: 'Services', url: `${site}${base}/en/services/` },
@@ -30,6 +46,7 @@ const defaultFaqs = [
   { q: 'Can the menu be changed?', a: 'Yes. Weekly and seasonal menus can be reviewed around staff preferences, your budget and production schedules. Less popular items can be replaced, and dietary, vegetarian or lower-salt options can be discussed.' },
   { q: 'Is employer-provided food treated as part of wages?', a: 'Under Iranian labour law, meals provided to staff are treated as a non-cash benefit and may have specific tax and social-insurance implications. The contract should document how meals are calculated and recorded. Before signing, consult your organisation’s finance and insurance advisers.' },
   { q: 'How are meal delivery times arranged?', a: 'Delivery is planned around your work shifts and recorded in the contract. Night shifts, holidays and production peaks can be considered; temporary schedule changes are coordinated in advance.' },
+  { q: 'Which areas does the catering service cover?', a: 'Qazvin, Alborz and Tehran provinces, including Qazvin, Alvand, Takestan and Abyek, Karaj, Fardis, Hashtgerd, Nazarabad and Eshtehard, plus Tehran, Eslamshahr, Robat Karim, Shahriar and the industrial parks in these provinces. Each address is confirmed after reviewing distance, daily meal volume and delivery time.' },
 ];
 const faqs = translatedFaqs?.length ? translatedFaqs : defaultFaqs;
 const faqStructuredData = faqSchema(faqs);
@@ -132,11 +149,12 @@ const steps = [
           <div class="food-hero__content reveal">
             <span class="food-hero__badge"><span aria-hidden="true">●</span> Corporate catering service</span>
             <h1 id="food-title" class="food-hero__title">Staff catering and <span class="gradient-text">corporate meals</span></h1>
-            <p class="food-hero__lead">Qazvin Tasvir provides contract meal services for factory and company teams. We coordinate menu planning, hygienic preparation and delivery of hot meals at your workplace.</p>
+            <p class="food-hero__lead">Qazvin Tasvir provides contract meal services for factory and company teams in Qazvin, Alborz and Tehran provinces. We coordinate menu planning, hygienic preparation and delivery of hot meals at your workplace.</p>
             <ul class="food-hero__facts">
               <li><span aria-hidden="true">✓</span><span>Usual minimum: 50 meals per service</span></li>
               <li><span aria-hidden="true">✓</span><span>Breakfast, lunch, dinner and snacks</span></li>
               <li><span aria-hidden="true">✓</span><span>Delivery to your restaurant or designated location</span></li>
+              <li><span aria-hidden="true">✓</span><span>Coverage across Qazvin, Alborz and Tehran provinces</span></li>
             </ul>
             <div class="food-hero__actions">
               <a href="#food-request" class="btn btn-primary btn-lg"><span>Request a catering proposal</span><span aria-hidden="true">→</span></a>
@@ -158,6 +176,48 @@ const steps = [
           <li class="food-metric"><span class="food-metric__value">7 days</span><span class="food-metric__label">Rotating weekly menu</span></li>
           <li class="food-metric"><span class="food-metric__value">2 hours</span><span class="food-metric__label">Target response time</span></li>
         </ul>
+      </div>
+    </div>
+
+    <div class="food-zone food-zone--cream" id="food-coverage">
+      <div class="container">
+        <header class="section-header reveal"><span class="section-label section-label--food">Coverage area</span><h2 class="section-title">Corporate catering in Qazvin, Alborz and Tehran</h2><p class="section-desc">Daily meals and contracted programmes for factories, companies and offices across the three provinces. Scope, schedule and delivery volumes are reviewed and confirmed before the contract.</p></header>
+        <ul class="food-coverage">
+          <li class="food-coverage__card reveal">
+            <span class="food-coverage__badge">Qazvin Province</span>
+            <h3 class="food-coverage__title">Qazvin, Alvand and industrial parks</h3>
+            <span class="food-coverage__meta">Daily coverage and recurring contracts</span>
+            <ul class="food-coverage__list">
+              <li>Qazvin, Alvand, Mohammadiyeh, Bidestan and Eqbaliyeh</li>
+              <li>Takestan, Abyek, Shal and Esfervarin</li>
+              <li>Caspian, Alborz (Qazvin), Lia and Heydariyeh industrial parks</li>
+            </ul>
+            <p class="food-coverage__note">Hot meals delivered daily, coordinated with shift schedules and the serving location.</p>
+          </li>
+          <li class="food-coverage__card reveal">
+            <span class="food-coverage__badge">Alborz Province</span>
+            <h3 class="food-coverage__title">Karaj, Fardis and Hashtgerd</h3>
+            <span class="food-coverage__meta">Scheduled coverage along each route</span>
+            <ul class="food-coverage__list">
+              <li>Karaj, Fardis, Mehrshahr and Kamalshahr</li>
+              <li>Hashtgerd, Nazarabad and Eshtehard</li>
+              <li>Baharestan, Simin Dasht and Nazarabad industrial parks</li>
+            </ul>
+            <p class="food-coverage__note">Delivery plans are set around distance, daily meal volume and shift times.</p>
+          </li>
+          <li class="food-coverage__card reveal">
+            <span class="food-coverage__badge">Tehran Province</span>
+            <h3 class="food-coverage__title">Tehran, Eslamshahr and Robat Karim</h3>
+            <span class="food-coverage__meta">Scheduled coverage along each route</span>
+            <ul class="food-coverage__list">
+              <li>Tehran, Eslamshahr, Robat Karim and Parand</li>
+              <li>Shahriar, Qods, Malard and Pakdasht</li>
+              <li>Chahardangeh, Shams Abad and Charm Shahr industrial parks</li>
+            </ul>
+            <p class="food-coverage__note">Route and delivery timing coordinated for recurring contracts and special events.</p>
+          </li>
+        </ul>
+        <p class="food-coverage__footnote">Each address is confirmed after reviewing distance, daily meal volume and delivery time; for more distant sites, a scheduled delivery plan is proposed. Staff transport and fleet services remain focused on Qazvin Province and its industrial parks.</p>
       </div>
     </div>
 
@@ -261,7 +321,7 @@ const steps = [
       </section>
     )}
 
-    <div class="food-cta"><div class="container"><div class="food-cta__panel reveal"><div class="food-cta__glow" aria-hidden="true"></div><div class="food-cta__body"><span class="food-cta__badge">Ready to discuss a contract?</span><h2 class="food-cta__title">Plan staff catering around your workplace</h2><p class="food-cta__text">Contact our team to arrange a site visit, review a sample menu and discuss a clear proposal for hot, hygienically prepared meals delivered to your location.</p><div class="food-cta__actions"><a href="tel:+989122815189" class="food-cta__phone bidi-ltr" dir="ltr"><span class="food-cta__phone-label">Call our catering team</span><span class="food-cta__phone-number">+98 912 281 5189</span></a><a href="#food-request" class="btn btn-primary btn-lg">Send a catering request →</a></div><p class="food-cta__note">Site visit and initial proposal are complimentary • Serving Qazvin Province and its industrial parks</p></div></div></div></div>
+    <div class="food-cta"><div class="container"><div class="food-cta__panel reveal"><div class="food-cta__glow" aria-hidden="true"></div><div class="food-cta__body"><span class="food-cta__badge">Ready to discuss a contract?</span><h2 class="food-cta__title">Plan staff catering around your workplace</h2><p class="food-cta__text">Contact our team to arrange a site visit, review a sample menu and discuss a clear proposal for hot, hygienically prepared meals delivered to your location.</p><div class="food-cta__actions"><a href="tel:+989122815189" class="food-cta__phone bidi-ltr" dir="ltr"><span class="food-cta__phone-label">Call our catering team</span><span class="food-cta__phone-number">+98 912 281 5189</span></a><a href="#food-request" class="btn btn-primary btn-lg">Send a catering request →</a></div><p class="food-cta__note">Site visit and initial proposal are complimentary • Serving Qazvin, Alborz and Tehran provinces</p></div></div></div></div>
   </section>
   <script>
     import '../../scripts/food-service.js';

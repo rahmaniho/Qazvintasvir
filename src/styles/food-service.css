@@ -448,7 +448,7 @@ body.food-service-page {
   .food-service-page .food-hero__facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .food-service-page .food-hero__facts li:last-child {
+  .food-service-page .food-hero__facts li:last-child:nth-child(3) {
     grid-column: 1 / -1;
   }
 }
@@ -613,6 +613,102 @@ body.food-service-page {
   font-size: 0.8125rem;
   font-weight: 600;
   color: #C6DED3;
+}
+
+/* --- محدوده پوشش کیترینگ (قزوین، البرز و تهران) --- */
+.food-service-page .food-coverage {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  margin-top: clamp(24px, 4vw, 36px);
+}
+@media (min-width: 720px) {
+  .food-service-page .food-coverage {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.food-service-page .food-coverage__card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px 24px;
+  border-radius: var(--r-lg);
+  background: var(--food-card);
+  border: 1px solid var(--food-cream-line);
+  box-shadow: var(--food-shadow-sm);
+  transition: transform var(--dur-base) var(--ease-quint), box-shadow var(--dur-base) ease;
+}
+.food-service-page .food-coverage__card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--food-shadow-md);
+}
+@media (prefers-reduced-motion: reduce) {
+  .food-service-page .food-coverage__card:hover {
+    transform: none;
+  }
+}
+.food-service-page .food-coverage__badge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border-radius: var(--r-full);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--food-green);
+  background: var(--food-green-soft);
+  border: 1px solid var(--food-green-line);
+}
+.food-service-page .food-coverage__title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1.7;
+  color: var(--food-forest);
+}
+.food-service-page .food-coverage__meta {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--food-brick);
+}
+.food-service-page .food-coverage__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+}
+.food-service-page .food-coverage__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.9rem;
+  line-height: 1.85;
+  color: var(--text-primary);
+}
+.food-service-page .food-coverage__list li::before {
+  content: "✓";
+  flex-shrink: 0;
+  font-weight: 900;
+  color: var(--food-green);
+}
+.food-service-page .food-coverage__note {
+  margin-top: auto;
+  padding-top: 13px;
+  border-top: 1px dashed var(--food-cream-line);
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+.food-service-page .food-coverage__footnote {
+  max-width: 880px;
+  margin: 22px auto 0;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 2;
+  color: var(--text-muted);
 }
 
 /* --------------------------------------------------------------------------
