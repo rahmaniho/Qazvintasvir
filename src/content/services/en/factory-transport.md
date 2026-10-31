@@ -33,7 +33,7 @@ process_desc: "A reliable staff shuttle starts with clear routes, realistic trav
 details_title: "For factories and industrial parks"
 details_body: "This service is designed for organizations that need recurring staff transportation aligned with operating hours and shift changes."
 details_items:
-  - "Factories and industrial parks"
+  - "Factories and industrial parks in Qazvin Province"
   - "Morning, evening and night shifts"
   - "Staff routes between pickup points and the workplace"
   - "Organizations needing a documented daily schedule"

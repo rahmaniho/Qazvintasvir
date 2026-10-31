@@ -183,6 +183,7 @@ export function serviceSchema(service: {
   url: string;
   providerUrl: string;
   lang?: Locale;
+  areaServed?: Array<{ "@type": string; name: string }>;
 }) {
   const isFa = service.lang !== 'en';
   return {
@@ -202,7 +203,7 @@ export function serviceSchema(service: {
     url: service.url,
     image: service.image,
     availableLanguage: ["fa", "en"],
-    areaServed: [
+    areaServed: service.areaServed ?? [
       { "@type": "Country", name: isFa ? "ایران" : "Iran" },
       { "@type": "AdministrativeArea", name: isFa ? "استان قزوین" : "Qazvin Province" },
       { "@type": "City", name: isFa ? "قزوین" : "Qazvin" },

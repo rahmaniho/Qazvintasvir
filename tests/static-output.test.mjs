@@ -374,6 +374,12 @@ test('fleet pages show the Hyundai minibus exterior and branded interior', () =>
     assert.ok(html.includes(exteriorUrl), `missing Hyundai minibus exterior on ${lang} fleet page`);
     assert.ok(html.includes(interiorUrl), `missing branded Hyundai minibus interior on ${lang} fleet page`);
     assert.match(html, lang === 'fa' ? /مینی‌بوس هیوندای/ : /Hyundai Minibus/);
+    assert.match(html, /class="fleet-scope reveal"/, `missing fleet service-area note on ${lang} fleet page`);
+    assert.match(
+      html,
+      lang === 'fa' ? /محدوده‌ی سرویس ناوگان: استان قزوین و شهرک‌های صنعتی استان قزوین/ : /Fleet service area: Qazvin Province and its industrial parks/,
+      `fleet service area should stay limited to Qazvin Province on ${lang} fleet page`,
+    );
   }
   assert.ok(existsSync(resolve(dist, 'assets/images/hyundai-minibus-exterior.jpg')));
   assert.ok(existsSync(resolve(dist, 'assets/images/hyundai-minibus-interior.jpg')));
@@ -496,14 +502,16 @@ test('English catering page preserves the complete localized menu, gallery, form
   const html = read(route('en', 'services/personnel-food'));
   const visibleHtml = html.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<style\b[\s\S]*?<\/style>/gi, '');
   assert.doesNotMatch(visibleHtml, /[\u0600-\u06FF]/, 'English catering page contains untranslated visible copy');
-  for (const id of ['personnel-food', 'food-menu', 'food-gallery', 'food-request', 'food-faq', 'personnel-food-form', 'food-meals-mirror']) {
+  for (const id of ['personnel-food', 'food-coverage', 'food-menu', 'food-gallery', 'food-request', 'food-faq', 'personnel-food-form', 'food-meals-mirror']) {
     assert.match(html, new RegExp(`\\bid="${id}"`), `missing English catering anchor or form hook #${id}`);
   }
+  assert.match(html, /Alborz Province/, 'English coverage section should list Alborz Province');
+  assert.match(html, /Tehran Province/, 'English coverage section should list Tehran Province');
   assert.equal((html.match(/class="food-tab(?:\s|"|$)/g) ?? []).length, 4, 'all four English meal tabs should be present');
   assert.equal((html.match(/class="food-panel(?:\s|"|$)/g) ?? []).length, 4, 'all four English meal panels should be present');
   assert.equal((html.match(/class="dish-card"/g) ?? []).length, 16, 'all sixteen English sample dishes should be present');
   assert.equal((html.match(/class="food-gallery__item(?: food-gallery__item--wide)?"/g) ?? []).length, 6, 'all six English gallery entries should be present');
-  assert.equal((html.match(/class="food-faq__item reveal"/g) ?? []).length, 4, 'all four English FAQ entries should be present');
+  assert.equal((html.match(/class="food-faq__item reveal"/g) ?? []).length, 5, 'all five English FAQ entries should be present');
   assert.match(html, /Request ready in WhatsApp/, 'the English form has a localized success label');
   assert.match(html, /Sample options for four meal periods/, 'the English page presents the dishes as menu examples');
   assert.match(html, /food-headcount-hint/, 'the English form clarifies the difference between staff count and meal minimum');
@@ -515,8 +523,13 @@ test('English catering page preserves the complete localized menu, gallery, form
   assert.doesNotMatch(html, /Seven days, 28 menu items|HACCP standards/, 'the English page avoids unsupported menu-count and certification claims');
   const structuredData = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
   const faqData = structuredData.find((item) => item['@type'] === 'FAQPage');
-  assert.equal(faqData?.mainEntity?.length, 4, 'all four English FAQ entries should be in structured data');
+  assert.equal(faqData?.mainEntity?.length, 5, 'all five English FAQ entries should be in structured data');
   assert.doesNotMatch(JSON.stringify(faqData), /[\u0600-\u06FF]/, 'English FAQ schema should be localized');
+  const cateringService = structuredData.find((item) => item['@type'] === 'Service');
+  const servedAreas = (cateringService?.areaServed ?? []).map((area) => area.name);
+  for (const province of ['Qazvin Province', 'Alborz Province', 'Tehran Province']) {
+    assert.ok(servedAreas.includes(province), `English catering Service schema should include ${province}`);
+  }
 
   const assetUrls = [...html.matchAll(/(?:src|srcset)="(\/assets\/img\/personnel-food\/[^" ]+)/g)].map((match) => match[1]);
   assert.ok(assetUrls.length >= 30, 'expected local images for English meal cards and gallery');
@@ -528,13 +541,22 @@ test('English catering page preserves the complete localized menu, gallery, form
 
 test('Persian catering page retains source content, anchors, media, tabs, and form behavior hooks', () => {
   const html = read(route('fa', 'services/personnel-food'));
-  for (const id of ['personnel-food', 'food-menu', 'food-gallery', 'food-request', 'food-faq', 'personnel-food-form', 'food-meals-mirror']) {
+  for (const id of ['personnel-food', 'food-coverage', 'food-menu', 'food-gallery', 'food-request', 'food-faq', 'personnel-food-form', 'food-meals-mirror']) {
     assert.match(html, new RegExp(`\\bid="${id}"`), `missing catering anchor or form hook #${id}`);
+  }
+  for (const province of ['استان قزوین', 'استان البرز', 'استان تهران']) {
+    assert.ok(html.includes(province), `Persian coverage section should list ${province}`);
+  }
+  const faServingAreas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map((match) => JSON.parse(match[1]))
+    .find((item) => item['@type'] === 'Service')?.areaServed ?? [];
+  for (const province of ['استان قزوین', 'استان البرز', 'استان تهران']) {
+    assert.ok(faServingAreas.some((area) => area.name === province), `Persian catering Service schema should include ${province}`);
   }
   assert.equal((html.match(/class="food-tab(?:\s|"|$)/g) ?? []).length, 4, 'all four meal tabs should be present');
   assert.equal((html.match(/class="food-panel(?:\s|"|$)/g) ?? []).length, 4, 'all four tab panels should be present');
   assert.equal((html.match(/class="dish-card"/g) ?? []).length, 16, 'all sixteen dish cards should be present');
-  assert.equal((html.match(/class="food-faq__item reveal"/g) ?? []).length, 4, 'all four FAQ entries should be present');
+  assert.equal((html.match(/class="food-faq__item reveal"/g) ?? []).length, 5, 'all five FAQ entries should be present');
   assert.match(html, /PersonnelFoodSection\.astro_astro_type_script_index_0_lang|food-service\.js/, 'catering interaction module should be emitted');
   assert.match(html, /food-headcount-hint/, 'the Persian form explains the initial staff-count estimate and usual per-meal minimum');
   for (const id of ['food-company', 'food-person', 'food-phone', 'food-headcount', 'food-address', 'food-notes']) {
