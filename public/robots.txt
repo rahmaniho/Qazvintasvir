@@ -1,5 +1,5 @@
 User-agent: *
-Allow: *
+Allow: /
 
 # Canonical sitemap entry point (includes all generated sitemap chunks).
 Sitemap: https://qazvintasvir.ir/sitemap.xml

@@ -1,4 +1,5 @@
 ---
+import { preferWebp } from '../../lib/images';
 interface Props { lang: 'fa' | 'en'; }
 const { lang } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -22,7 +23,7 @@ const isFa = lang === 'fa';
         </div>
       </div>
       <div class="fleet-card reveal">
-        <div class="fleet-card__media"><img src={`${baseUrl}/assets/images/hyundai-minibus-exterior.jpg`} alt={isFa ? 'نمای بیرونی مینی‌بوس هیوندای' : 'Exterior of a Hyundai minibus'} width="400" height="280" loading="lazy" decoding="async" /></div>
+        <div class="fleet-card__media"><img src={preferWebp(`${baseUrl}/assets/images/hyundai-minibus-exterior.jpg`)} alt={isFa ? 'نمای بیرونی مینی‌بوس هیوندای' : 'Exterior of a Hyundai minibus'} width="400" height="280" loading="lazy" decoding="async" /></div>
         <div class="fleet-card__body">
           <h3>{isFa ? 'مینی‌بوس هیوندای' : 'Hyundai Minibus'}</h3>
           <p>{isFa ? <>ظرفیت <bdi class="bidi-ltr" dir="ltr">۱۸</bdi> نفره — چابک برای مسیرهای شهری و بین‌شهری</> : <><bdi class="bidi-ltr" dir="ltr">18</bdi> seats — agile for urban and intercity routes</>}</p>
@@ -40,7 +41,7 @@ const isFa = lang === 'fa';
     <p class="fleet-scope reveal">{isFa ? <>محدوده‌ی سرویس ناوگان: استان قزوین و شهرک‌های صنعتی استان قزوین (از جمله کاسپین، البرز، لیا و حیدریه).</> : <>Fleet service area: Qazvin Province and its industrial parks, including Caspian, Alborz, Lia and Heydariyeh.</>}</p>
 
     <div class="fleet-equipment-grid reveal">
-      <img src={`${baseUrl}/assets/images/hyundai-minibus-interior.jpg`} alt={isFa ? 'فضای داخلی مینی‌بوس هیوندای با نشان قزوین تصویر' : 'Hyundai minibus interior with the Qazvin Tasvir logo'} width="560" height="320" loading="lazy" decoding="async" style="border-radius:var(--r-lg); width:100%; aspect-ratio:16/10; object-fit:cover;" />
+      <img src={preferWebp(`${baseUrl}/assets/images/hyundai-minibus-interior.jpg`)} alt={isFa ? 'فضای داخلی مینی‌بوس هیوندای با نشان قزوین تصویر' : 'Hyundai minibus interior with the Qazvin Tasvir logo'} width="560" height="320" loading="lazy" decoding="async" style="border-radius:var(--r-lg); width:100%; aspect-ratio:16/10; object-fit:cover;" />
       <img src={`${baseUrl}/assets/img/fleet-specs/vip-catering.webp`} alt={isFa ? 'پذیرایی VIP' : 'VIP catering'} width="560" height="320" loading="lazy" decoding="async" style="border-radius:var(--r-lg); width:100%; aspect-ratio:16/10; object-fit:cover;" />
     </div>
   </div>

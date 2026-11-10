@@ -10,7 +10,7 @@ image: "/assets/images/van-fleet.jpg"
 image_alt: "Passenger van used for a scheduled organizational shuttle"
 story_image: "/assets/images/minibus-fleet.jpg"
 story_alt: "Minibus ready for a school or office shuttle route"
-order: 6
+order: 7
 points:
   - "Planned daily routes"
   - "Bus, minibus and van options"

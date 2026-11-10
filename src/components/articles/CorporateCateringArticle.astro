@@ -1,4 +1,5 @@
 ---
+import { preferWebp } from '../../lib/images';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { ARTICLE_PUBLISHED, ARTICLE_UPDATED } from '../../lib/schema';
 import ArticleDates from './ArticleDates.astro';
@@ -12,9 +13,12 @@ const site = (Astro.site?.toString() || 'https://qazvintasvir.ir').replace(/\/$/
 const slug = 'corporate-catering-qazvin';
 const canonical = `${site}${baseUrl}/${lang}/articles/${slug}/`;
 const heroPath = `${baseUrl}/assets/img/articles/corporate-catering-hero.jpg`;
+const heroPathImg = preferWebp(heroPath)!;
 const heroUrl = `${site}${heroPath}`;
 const deliveryPath = `${baseUrl}/assets/img/articles/corporate-catering-meal-delivery.jpg`;
+const deliveryPathImg = preferWebp(deliveryPath)!;
 const hospitalityPath = `${baseUrl}/assets/img/articles/corporate-catering-hospitality.jpg`;
+const hospitalityPathImg = preferWebp(hospitalityPath)!;
 const articleTitle = isFa
   ? 'غذای پرسنلی و کترینگ شرکتی در قزوین؛ راهنمای خدمات'
   : 'Corporate Catering in Qazvin: Staff Meals and Hospitality';
@@ -51,9 +55,9 @@ const copy = isFa ? {
   hospitalityNote: 'اگر منظور از «تشریفات» اجرای کامل رویداد است، اقلام مورد انتظار—مانند محل، چیدمان، نیروی پذیرایی یا تجهیزات—را جداگانه بپرسید؛ این مقاله درباره‌ی خدمات غذای سازمانی و پذیرایی است، نه تضمین همه‌ی خدمات رویدادی.',
   galleryTitle: 'از آشپزخانه تا محل پذیرایی',
   gallery: [
-    [heroPath, 'آماده‌سازی غذا در آشپزخانه‌ی حرفه‌ای برای سفارش سازمانی', 'تصویرسازی مفهومی از مرحله‌ی طبخ و آماده‌سازی.'],
-    [deliveryPath, 'ظرف‌های غذای بسته‌بندی‌شده در محل تحویل یک مجموعه‌ی صنعتی', 'تصویرسازی مفهومی از بسته‌بندی و توزیع وعده‌های پرسنلی.'],
-    [hospitalityPath, 'میز پذیرایی برای جلسه یا برنامه‌ی شرکتی در فضای کنفرانس', 'تصویر مفهومی پذیرایی؛ محدوده‌ی هر سفارش باید توافق شود.'],
+    [heroPathImg, 'آماده‌سازی غذا در آشپزخانه‌ی حرفه‌ای برای سفارش سازمانی', 'تصویرسازی مفهومی از مرحله‌ی طبخ و آماده‌سازی.'],
+    [deliveryPathImg, 'ظرف‌های غذای بسته‌بندی‌شده در محل تحویل یک مجموعه‌ی صنعتی', 'تصویرسازی مفهومی از بسته‌بندی و توزیع وعده‌های پرسنلی.'],
+    [hospitalityPathImg, 'میز پذیرایی برای جلسه یا برنامه‌ی شرکتی در فضای کنفرانس', 'تصویر مفهومی پذیرایی؛ محدوده‌ی هر سفارش باید توافق شود.'],
   ],
   priceTitle: 'قیمت غذای پرسنلی و کترینگ شرکتی در قزوین به چه چیزهایی بستگی دارد؟',
   priceIntro: 'نرخ هر وعده به مشخصات سفارش وابسته است و یک عدد واحد برای همه‌ی شرکت‌ها معنای دقیقی ندارد. برای دریافت قیمت قابل مقایسه، این موارد را در درخواست خود بنویسید:',
@@ -111,9 +115,9 @@ const copy = isFa ? {
   hospitalityNote: 'If “event services” means full event production, ask separately about venue, layout, service staff and equipment. This guide covers workplace food and hospitality, not a guarantee of every event service.',
   galleryTitle: 'From the kitchen to the serving point',
   gallery: [
-    [heroPath, 'Meals being prepared in a professional kitchen for a corporate order', 'Illustrative scene of cooking and preparation.'],
-    [deliveryPath, 'Packaged meals at a workplace delivery point', 'Illustrative scene of staff meal packing and distribution.'],
-    [hospitalityPath, 'Corporate hospitality table set for a meeting or company event', 'Illustrative event catering; each order’s scope must be agreed.'],
+    [heroPathImg, 'Meals being prepared in a professional kitchen for a corporate order', 'Illustrative scene of cooking and preparation.'],
+    [deliveryPathImg, 'Packaged meals at a workplace delivery point', 'Illustrative scene of staff meal packing and distribution.'],
+    [hospitalityPathImg, 'Corporate hospitality table set for a meeting or company event', 'Illustrative event catering; each order’s scope must be agreed.'],
   ],
   priceTitle: 'What affects staff meal and corporate catering prices in Qazvin?',
   priceIntro: 'A meal price depends on the order details; one figure does not describe every organisation’s needs. To receive a comparable quote, include these items in your request:',
@@ -174,13 +178,13 @@ const schema = {
 };
 ---
 
-<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} imageAlt={copy.heroAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" articlePublishedTime={ARTICLE_PUBLISHED} articleModifiedTime={ARTICLE_UPDATED} bodyClass="article-page" preloadImage={heroPath} preloadImageType="image/jpeg">
+<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} imageAlt={copy.heroAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" articlePublishedTime={ARTICLE_PUBLISHED} articleModifiedTime={ARTICLE_UPDATED} bodyClass="article-page" preloadImage={heroPathImg} preloadImageType="image/webp">
   <article class="service-guide">
     <section class="guide-hero"><div class="container">
       <nav class="breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}><a href={`${baseUrl}/${lang}/`}>{copy.home}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><a href={`${baseUrl}/${lang}/articles/`}>{copy.articles}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><span aria-current="page">{copy.current}</span></nav>
       <div class="guide-hero__grid"><div class="guide-hero__copy"><span class="editorial-eyebrow editorial-eyebrow--article" lang="en" dir="ltr">INSIGHTS &amp; GUIDES</span>
             <span class="guide-eyebrow">{copy.eyebrow}</span><h1>{articleTitle}</h1><p class="guide-hero__lead">{copy.lead}</p><ArticleDates lang={lang} published={ARTICLE_PUBLISHED} updated={ARTICLE_UPDATED} /></div>
-        <figure class="guide-cover"><img src={heroPath} alt={copy.heroAlt} width="1360" height="768" fetchpriority="high" decoding="async"/><figcaption>{copy.heroCaption}</figcaption></figure>
+        <figure class="guide-cover"><img src={heroPathImg} alt={copy.heroAlt} width="1360" height="768" fetchpriority="high" decoding="async"/><figcaption>{copy.heroCaption}</figcaption></figure>
       </div>
     </div></section>
     <div class="container guide-content">

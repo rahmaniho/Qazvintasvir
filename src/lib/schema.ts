@@ -3,13 +3,17 @@ type Locale = 'fa' | 'en';
 // The current bilingual article set was first published with the site rewrite.
 // Update these dates when the article copy (not just its metadata) changes.
 export const ARTICLE_PUBLISHED = '2026-10-19';
-export const ARTICLE_UPDATED = '2026-10-20';
+export const ARTICLE_UPDATED = '2026-11-10';
+// The three promotional shuttle articles were published together with the
+// staff-shuttle landing page; keep their date separate from the older guides.
+export const PROMO_PARTNER_PUBLISHED = '2026-11-10';
 
 const serviceEntries: Record<Locale, Array<{ slug: string; name: string; description: string }>> = {
   fa: [
     { slug: 'import-export', name: 'واردات و صادرات کالاهای مجاز', description: 'هماهنگی مسیر تأمین، اسناد و حمل کالاهای مجاز.' },
     { slug: 'customs-port', name: 'ترخیص گمرکی و امور بندری', description: 'کنترل مدارک و هماهنگی مراحل اجرایی پرونده‌های گمرکی و بندری.' },
     { slug: 'sourcing', name: 'تأمین مواد اولیه و تجهیزات', description: 'نیازسنجی و هماهنگی تأمین، خرید و تحویل اقلام صنعتی.' },
+    { slug: 'staff-shuttle', name: 'سرویس ایاب و ذهاب پرسنل و کارخانه', description: 'سرویس ایاب و ذهاب قراردادی با مسیر، شیفت و ناوگان متناسب در قزوین.' },
     { slug: 'factory-transport', name: 'ترابری پرسنل کارخانجات', description: 'سرویس شیفتی کارخانه با اتوبوس، مینی‌بوس و ون.' },
     { slug: 'urban-vip', name: 'حمل‌ونقل درون‌شهری و سرویس‌های VIP', description: 'جابجایی سازمانی و VIP با برنامه‌ریزی مسیر و زمان.' },
     { slug: 'school-office', name: 'سرویس مدارس، ادارات و شرکت‌ها', description: 'راهکار رفت‌وآمد روزانه برای مجموعه‌های آموزشی و سازمانی.' },
@@ -20,6 +24,7 @@ const serviceEntries: Record<Locale, Array<{ slug: string; name: string; descrip
     { slug: 'import-export', name: 'Permitted goods import and export', description: 'Supply-route, documentation and freight coordination for permitted goods.' },
     { slug: 'customs-port', name: 'Customs clearance and port affairs', description: 'Document control and operational coordination for customs and port files.' },
     { slug: 'sourcing', name: 'Raw materials and equipment sourcing', description: 'Needs assessment and coordination of industrial procurement and delivery.' },
+    { slug: 'staff-shuttle', name: 'Staff shuttle service for factories and offices', description: 'Contracted staff shuttle service with routes, shifts and fleet matched to the site.' },
     { slug: 'factory-transport', name: 'Factory staff transportation', description: 'Shift-based factory staff shuttle service with buses, minibuses and vans.' },
     { slug: 'urban-vip', name: 'Urban transport and VIP services', description: 'Planned organisational and VIP mobility with route and schedule coordination.' },
     { slug: 'school-office', name: 'School, office and company shuttles', description: 'Daily mobility solutions for educational and organisational groups.' },

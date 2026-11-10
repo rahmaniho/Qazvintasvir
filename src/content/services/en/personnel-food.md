@@ -10,7 +10,7 @@ image: "/assets/img/personnel-food/hero-kitchen.jpg"
 image_alt: "Industrial kitchen prepared for hygienic corporate meal production"
 story_image: "/assets/img/personnel-food/food-delivery.jpg"
 story_alt: "Packed staff meals ready for delivery to an industrial workplace"
-order: 7
+order: 8
 points:
   - "Breakfast, lunch, dinner and snacks"
   - "A configurable rotating weekly menu"

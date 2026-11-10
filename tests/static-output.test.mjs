@@ -14,7 +14,7 @@ const walkFiles = (directory) => readdirSync(directory, { withFileTypes: true })
 
 const serviceSlugs = [
   'customs-port', 'factory-transport', 'import-export', 'personnel-food',
-  'school-office', 'sourcing', 'trade-consulting', 'urban-vip',
+  'school-office', 'sourcing', 'staff-shuttle', 'trade-consulting', 'urban-vip',
 ];
 const standaloneSectionSlugs = ['fleet', 'brands', 'why-us', 'clients', 'trust', 'resume', 'legal'];
 
@@ -29,6 +29,9 @@ test('build emits the bilingual public route set', () => {
     assert.ok(existsSync(resolve(dist, route(lang, 'articles/permitted-goods-trade'))), `missing /${lang}/articles/permitted-goods-trade/`);
     assert.ok(existsSync(resolve(dist, route(lang, 'articles/factory-staff-transport-qazvin'))), `missing /${lang}/articles/factory-staff-transport-qazvin/`);
     assert.ok(existsSync(resolve(dist, route(lang, 'articles/corporate-catering-qazvin'))), `missing /${lang}/articles/corporate-catering-qazvin/`);
+    for (const slug of ['factory-shuttle-outsourcing-qazvin', 'staff-shuttle-pricing-qazvin', 'office-staff-shuttle-qazvin']) {
+      assert.ok(existsSync(resolve(dist, route(lang, `articles/${slug}`))), `missing /${lang}/articles/${slug}/`);
+    }
     for (const slug of standaloneSectionSlugs) {
       assert.ok(existsSync(resolve(dist, route(lang, slug))), `missing /${lang}/${slug}/`);
     }
@@ -221,7 +224,7 @@ test('bilingual service-guide articles publish localized Article, FAQ and servic
     const faq = graph.find((schema) => schema['@type'] === 'FAQPage');
     const items = graph.find((schema) => schema['@type'] === 'ItemList');
     assert.equal(faq?.mainEntity?.length, 5, `FAQ schema should match visible questions on ${lang} article`);
-    assert.equal(items?.itemListElement?.length, 8, `article should reference all eight source services in ${lang}`);
+    assert.equal(items?.itemListElement?.length, 9, `article should reference all nine source services in ${lang}`);
   }
 
   for (const asset of ['services-guide-hero.jpg', 'services-guide-trade.jpg', 'services-guide-mobility.jpg', 'services-guide-catering.jpg']) {
@@ -253,15 +256,15 @@ test('permitted-goods article explains classification, cites references and avoi
   for (const lang of ['fa', 'en']) {
     const index = read(route(lang, 'articles'));
     assert.equal((index.match(/class="editorial-feature"/g) ?? []).length, 1, `exactly one featured article should render for ${lang}`);
-    assert.equal((index.match(/class="editorial-card"/g) ?? []).length, 3, `the remaining three articles should render as cards for ${lang}`);
+    assert.equal((index.match(/class="editorial-card"/g) ?? []).length, 6, `the six non-featured articles should render as cards for ${lang}`);
     assert.match(index, /INSIGHTS &amp; GUIDES/, `editorial eyebrow missing for ${lang}`);
     assert.match(index, /<h1 id="articles-heading">/, `page should retain one prominent H1 for ${lang}`);
     assert.match(index, /rel="canonical" href="https:\/\/qazvintasvir\.ir\//, `canonical missing for ${lang}`);
     const collectionSchema = [...index.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
       .map((match) => JSON.parse(match[1]))
       .find((schema) => schema['@type'] === 'CollectionPage');
-    assert.equal(collectionSchema?.mainEntity?.itemListElement?.length, 4, `collection schema should retain all four guides for ${lang}`);
-    for (const slug of ['services-guide', 'permitted-goods-trade', 'factory-staff-transport-qazvin', 'corporate-catering-qazvin']) {
+    assert.equal(collectionSchema?.mainEntity?.itemListElement?.length, 7, `collection schema should retain all seven guides for ${lang}`);
+    for (const slug of [...['services-guide', 'permitted-goods-trade', 'factory-staff-transport-qazvin', 'corporate-catering-qazvin'], ...promoArticleSlugs]) {
       assert.ok(index.includes(`/${lang}/articles/${slug}/`), `${slug} missing from ${lang} article index`);
     }
   }
@@ -309,8 +312,8 @@ test('English service pages use translated visible copy and structured data', ()
     assert.equal(organization?.name, 'Qazvin Tasvir Company', `English organization schema name missing for ${slug}`);
     assert.doesNotMatch(organization?.description ?? '', persianOrArabic, `English organization description not localized for ${slug}`);
     assert.doesNotMatch(service?.description ?? '', persianOrArabic, `English service schema not localized for ${slug}`);
-    assert.equal(organization?.knowsAbout?.length, 8, 'all eight source areas of expertise should remain in schema');
-    assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 8, 'all eight source offers should remain in schema');
+    assert.equal(organization?.knowsAbout?.length, 9, 'all nine source areas of expertise should remain in schema');
+    assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 9, 'all nine source offers should remain in schema');
     assert.equal(organization?.openingHoursSpecification?.closes, '20:00', 'source opening hours should remain in schema');
     assert.ok(organization?.sameAs?.some((url) => url.includes('rasmio.com/company/10861415215')), 'source Rasmio sameAs URL should remain in schema');
   }
@@ -352,14 +355,15 @@ test('company email is reachable from contact and catering pages in both locales
 });
 
 test('urban and VIP service pages use the generated local transport imagery', () => {
-  const cityImageUrl = '/assets/img/fleet-specs/urban-vip-city-van.jpg';
-  const interiorImageUrl = '/assets/img/fleet-specs/urban-vip-interior.jpg';
+  // Pages serve the WebP sibling of each photo when one is published.
+  const cityImagePattern = /\/assets\/img\/fleet-specs\/urban-vip-city-van\.(?:jpg|webp)/;
+  const interiorImagePattern = /\/assets\/img\/fleet-specs\/urban-vip-interior\.(?:jpg|webp)/;
   for (const lang of ['fa', 'en']) {
     const index = read(route(lang, 'services'));
     const detail = read(route(lang, 'services/urban-vip'));
-    assert.ok(index.includes(cityImageUrl), `/${lang}/services/ should display the generated city van image`);
-    assert.ok(detail.includes(cityImageUrl), `/${lang}/services/urban-vip/ should display the generated van image`);
-    assert.ok(detail.includes(interiorImageUrl), `/${lang}/services/urban-vip/ should display the generated VIP interior image`);
+    assert.match(index, cityImagePattern, `/${lang}/services/ should display the generated city van image`);
+    assert.match(detail, cityImagePattern, `/${lang}/services/urban-vip/ should display the generated van image`);
+    assert.match(detail, interiorImagePattern, `/${lang}/services/urban-vip/ should display the generated VIP interior image`);
   }
   for (const asset of ['urban-vip-city-van.jpg', 'urban-vip-interior.jpg']) {
     assert.ok(existsSync(resolve(dist, 'assets/img/fleet-specs', asset)), `missing generated local asset ${asset}`);
@@ -367,12 +371,12 @@ test('urban and VIP service pages use the generated local transport imagery', ()
 });
 
 test('fleet pages show the Hyundai minibus exterior and branded interior', () => {
-  const exteriorUrl = '/assets/images/hyundai-minibus-exterior.jpg';
-  const interiorUrl = '/assets/images/hyundai-minibus-interior.jpg';
+  const exteriorPattern = /\/assets\/images\/hyundai-minibus-exterior\.(?:jpg|webp)/;
+  const interiorPattern = /\/assets\/images\/hyundai-minibus-interior\.(?:jpg|webp)/;
   for (const lang of ['fa', 'en']) {
     const html = read(route(lang, 'fleet'));
-    assert.ok(html.includes(exteriorUrl), `missing Hyundai minibus exterior on ${lang} fleet page`);
-    assert.ok(html.includes(interiorUrl), `missing branded Hyundai minibus interior on ${lang} fleet page`);
+    assert.match(html, exteriorPattern, `missing Hyundai minibus exterior on ${lang} fleet page`);
+    assert.match(html, interiorPattern, `missing branded Hyundai minibus interior on ${lang} fleet page`);
     assert.match(html, lang === 'fa' ? /مینی‌بوس هیوندای/ : /Hyundai Minibus/);
     assert.match(html, /class="fleet-scope reveal"/, `missing fleet service-area note on ${lang} fleet page`);
     assert.match(
@@ -392,9 +396,12 @@ test('service detail pages render source notes, related services and localized C
       assert.match(html, /service-detail-card--note/, `missing source note on ${lang}/${slug}`);
       if (slug !== 'personnel-food') {
         assert.match(html, /related-services__grid/, `missing related services on ${lang}/${slug}`);
-        assert.equal((html.match(/class="related-service-card"/g) ?? []).length, 3, `expected three related service cards on ${lang}/${slug}`);
+        const expectedCards = slug === 'staff-shuttle' ? 6 : 3;
+        assert.equal((html.match(/class="related-service-card"/g) ?? []).length, expectedCards, `expected ${expectedCards} related cards on ${lang}/${slug}`);
         assert.match(html, /cta-title/, `missing source CTA on ${lang}/${slug}`);
-        assert.match(html, lang === 'fa' ? /برای بررسی نیاز مجموعه‌تان گفت‌وگو کنیم/ : /Let’s discuss your organization’s needs/);
+        if (slug !== 'staff-shuttle') {
+          assert.match(html, lang === 'fa' ? /برای بررسی نیاز مجموعه‌تان گفت‌وگو کنیم/ : /Let’s discuss your organization’s needs/);
+        }
         assert.match(html, new RegExp(`/${lang}/services/`), `related-service links should remain in the ${lang} locale`);
       }
     }
@@ -458,8 +465,8 @@ test('homepages act as concise directories while full source sections live on de
 
   const faHomeSchema = [...faHome.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
   const organization = faHomeSchema.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
-  assert.equal(organization?.knowsAbout?.length, 8, 'all eight source areas of expertise should remain in the Persian schema');
-  assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 8, 'all eight source offers should remain in the Persian schema');
+  assert.equal(organization?.knowsAbout?.length, 9, 'all nine source areas of expertise should remain in the Persian schema');
+  assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 9, 'all nine source offers should remain in the Persian schema');
   assert.equal(organization?.openingHoursSpecification?.closes, '20:00');
   assert.ok(organization?.sameAs?.some((url) => url.includes('rasmio.com/company/10861415215')));
 
@@ -648,7 +655,7 @@ test('sitemap and robots.txt use the confirmed custom domain', () => {
   assert.doesNotMatch(sitemap, /\/services\/personnel-food\.html/);
   assert.doesNotMatch(sitemap, /\/Qazvintasvir\//);
   const robots = read('robots.txt');
-  assert.match(robots, /^Allow: \*$/m, 'robots.txt should allow all paths');
+  assert.match(robots, /^Allow: \/$/m, 'robots.txt should allow all paths');
   assert.match(robots, /^Sitemap: https:\/\/qazvintasvir\.ir\/sitemap\.xml$/m);
   assert.equal((robots.match(/^Sitemap:/gm) ?? []).length, 1, 'robots.txt should advertise one canonical sitemap entry point');
   assert.doesNotMatch(robots, /rahmaniho\.github\.io|\/Qazvintasvir\//);
@@ -696,7 +703,7 @@ test('Google Search Console verification file, meta tag and crawl directives are
 test('sitemap exposes hreflang alternates for every indexable page', () => {
   const sitemap = read('sitemap-0.xml');
   const blocks = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
-  assert.equal(blocks.length, 48, 'sitemap should list the 48 localized indexable pages');
+  assert.equal(blocks.length, 56, 'sitemap should list the 56 localized indexable pages');
   for (const block of blocks) {
     const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1];
     assert.ok(loc, 'every sitemap entry needs a loc');
@@ -735,7 +742,7 @@ test('article pages expose visible and structured publication dates', () => {
       assert.match(html, /class="guide-dates"/, `missing visible dates on ${lang}/${slug}`);
       assert.match(html, /<time datetime="2026-10-19">/, `missing published time on ${lang}/${slug}`);
       assert.match(html, /"datePublished":"2026-10-19"/, `missing datePublished on ${lang}/${slug}`);
-      assert.match(html, /"dateModified":"2026-10-20"/, `missing dateModified on ${lang}/${slug}`);
+      assert.match(html, /"dateModified":"2026-11-10"/, `missing dateModified on ${lang}/${slug}`);
     }
   }
 });
@@ -775,6 +782,7 @@ test('every internal route and asset link resolves in the built site', () => {
 });
 
 const indexableArticleSlugs = ['services-guide', 'permitted-goods-trade', 'factory-staff-transport-qazvin', 'corporate-catering-qazvin'];
+const promoArticleSlugs = ['factory-shuttle-outsourcing-qazvin', 'staff-shuttle-pricing-qazvin', 'office-staff-shuttle-qazvin'];
 const indexableRoutes = [
   ...['fa', 'en'].flatMap((lang) => [
     route(lang),
@@ -784,6 +792,7 @@ const indexableRoutes = [
     route(lang, 'services'),
     route(lang, 'articles'),
     ...indexableArticleSlugs.map((slug) => route(lang, `articles/${slug}`)),
+    ...promoArticleSlugs.map((slug) => route(lang, `articles/${slug}`)),
     ...serviceSlugs.map((slug) => route(lang, `services/${slug}`)),
   ]),
 ];
@@ -828,8 +837,39 @@ test('article structured data points back to the page WebPage entity', () => {
       assert.equal(article.publisher?.['@id'], 'https://qazvintasvir.ir/#organization', `Article publisher reference missing on ${lang}/${slug}`);
       assert.match(article.author?.['@id'] ?? '', /^https:\/\/qazvintasvir\.ir\/#organization$/, `Article author reference missing on ${lang}/${slug}`);
       assert.match(html, /<meta property="article:published_time" content="2026-10-19"/, `article:published_time missing on ${lang}/${slug}`);
-      assert.match(html, /<meta property="article:modified_time" content="2026-10-20"/, `article:modified_time missing on ${lang}/${slug}`);
+      assert.match(html, /<meta property="article:modified_time" content="2026-11-10"/, `article:modified_time missing on ${lang}/${slug}`);
     }
+  }
+});
+
+test('promotional shuttle articles target the Qazvin keyword and link the service page', () => {
+  for (const lang of ['fa', 'en']) {
+    for (const slug of promoArticleSlugs) {
+      const html = read(route(lang, `articles/${slug}`));
+      assert.match(html, /class="guide-hero"/, `missing editorial hero on ${lang}/${slug}`);
+      assert.match(html, /class="guide-answer"/, `missing concise answer on ${lang}/${slug}`);
+      assert.match(html, /class="guide-faq__list"/, `missing visible FAQ on ${lang}/${slug}`);
+      assert.match(html, /class="guide-cta"/, `missing call to action on ${lang}/${slug}`);
+      assert.match(html, /<time datetime="2026-11-10">/, `missing publication date on ${lang}/${slug}`);
+      assert.ok(html.includes(`/${lang}/services/staff-shuttle/`), `${lang}/${slug} should link the staff shuttle service page`);
+      assert.ok(html.includes(`/${lang}/contact/`), `${lang}/${slug} should link the contact page`);
+
+      const scripts = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+      const graph = scripts.find((schema) => Array.isArray(schema['@graph']))?.['@graph'] ?? [];
+      const article = graph.find((node) => node['@type'] === 'Article');
+      const faq = graph.find((node) => node['@type'] === 'FAQPage');
+      assert.ok(article, `Article schema missing on ${lang}/${slug}`);
+      assert.equal(article.datePublished, '2026-11-10', `published date in schema on ${lang}/${slug}`);
+      assert.ok(article.keywords?.length >= 3, `article keywords missing on ${lang}/${slug}`);
+      assert.ok(faq?.mainEntity?.length >= 4, `FAQ schema should list the visible questions on ${lang}/${slug}`);
+    }
+  }
+
+  const faArticle = read(route('fa', 'articles/factory-shuttle-outsourcing-qazvin'));
+  assert.match(faArticle, /<title>[^<]*سرویس ایاب و ذهاب کارخانه در قزوین[^<]*<\/title>/);
+  const index = read(route('fa', 'articles'));
+  for (const slug of promoArticleSlugs) {
+    assert.ok(index.includes(`/fa/articles/${slug}/`), `${slug} should be listed on the Persian articles index`);
   }
 });
 
@@ -858,7 +898,7 @@ test('sitemap marks article URLs with the content update date', () => {
     for (const slug of ['services-guide', 'permitted-goods-trade', 'factory-staff-transport-qazvin', 'corporate-catering-qazvin']) {
       assert.match(
         sitemap,
-        new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/${slug}/</loc><lastmod>2026-10-20`),
+        new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/${slug}/</loc><lastmod>2026-11-10`),
         `missing lastmod for ${lang}/${slug}`,
       );
     }
@@ -866,11 +906,11 @@ test('sitemap marks article URLs with the content update date', () => {
   for (const lang of ['fa', 'en']) {
     assert.match(
       sitemap,
-      new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/</loc><lastmod>2026-10-20`),
+      new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/</loc><lastmod>2026-11-10`),
       `missing lastmod for the ${lang} article index`,
     );
   }
-  assert.equal((sitemap.match(/<lastmod>/g) ?? []).length, 10, 'only the article index and article detail URLs should declare lastmod');
+  assert.equal((sitemap.match(/<lastmod>/g) ?? []).length, 16, 'only the article index and article detail URLs should declare lastmod');
 });
 
 test('root sitemap.xml directly exposes the generated URL set for search engines', () => {
@@ -878,7 +918,7 @@ test('root sitemap.xml directly exposes the generated URL set for search engines
   assert.match(sitemap, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
   assert.match(sitemap, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9"/);
   assert.doesNotMatch(sitemap, /<sitemapindex/, 'a single sitemap should expose URLs directly, not point to another sitemap');
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 48, 'URL set should keep all 48 indexable pages');
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 56, 'URL set should keep all 56 indexable pages');
   assert.doesNotMatch(sitemap, /<loc>https:\/\/qazvintasvir\.ir\/sitemap[^<]*<\/loc>/, 'sitemaps must not list themselves');
 
   const robots = read('robots.txt');
@@ -889,7 +929,7 @@ test('root sitemap.xml directly exposes the generated URL set for search engines
 test('every sitemap URL is built, self-canonical and indexable', () => {
   const chunk = read('sitemap-0.xml');
   const locs = [...chunk.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locs.length, 48, 'sitemap URL set size');
+  assert.equal(locs.length, 56, 'sitemap URL set size');
   for (const loc of locs) {
     const htmlPath = resolve(dist, new URL(loc).pathname.replace(/^\//, ''), 'index.html');
     assert.ok(existsSync(htmlPath), `sitemap URL is not built: ${loc}`);

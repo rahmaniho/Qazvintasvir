@@ -10,7 +10,7 @@ image: "/assets/img/personnel-food/hero-kitchen.jpg"
 image_alt: "آشپزخانه صنعتی بهداشتی در حال آماده‌سازی غذای سازمانی"
 story_image: "/assets/img/personnel-food/food-delivery.jpg"
 story_alt: "بسته‌بندی و تحویل غذای پرسنل برای یک مجموعه صنعتی"
-order: 7
+order: 8
 points:
   - "صبحانه تا شام و میان‌وعده"
   - "منوی چرخشی قابل تنظیم"

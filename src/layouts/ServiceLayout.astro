@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import { serviceSchema, breadcrumbSchema, faqSchema } from '../lib/schema';
+import { preferWebp, imageMime } from '../lib/images';
 
 interface Props {
   lang: 'fa' | 'en';
@@ -58,7 +59,10 @@ const homeUrl = `${siteUrl}/${lang}/`;
 const servicesUrl = `${siteUrl}/${lang}/services/`;
 
 // schema
-const svcSchema = serviceSchema({ title: props.title, description: props.description, image: props.image ? `${siteClean}${props.image}` : undefined, url: serviceUrl, providerUrl: siteUrl, lang });
+const heroImage = preferWebp(props.image);
+const storyImage = preferWebp(props.storyImage || props.image);
+const heroImageUrl = heroImage ? `${siteClean}${heroImage}` : undefined;
+const svcSchema = serviceSchema({ title: props.title, description: props.description, image: heroImageUrl, url: serviceUrl, providerUrl: siteUrl, lang });
 const crumbs = breadcrumbSchema([
   { name: lang==='fa' ? 'خانه' : 'Home', url: homeUrl },
   { name: lang==='fa' ? 'خدمات' : 'Services', url: servicesUrl },
@@ -75,7 +79,7 @@ const hreflang = [
 const canonical = serviceUrl;
 ---
 
-<BaseLayout title={`${props.title} | ${lang==='fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}`} description={props.metaDescription || props.description} lang={lang} image={props.image ? `${siteUrl}${props.image}` : undefined} imageAlt={props.imageAlt} canonical={canonical} hreflang={hreflang} schema={null}>
+<BaseLayout title={`${props.title} | ${lang==='fa' ? 'قزوین تصویر' : 'Qazvin Tasvir'}`} description={props.metaDescription || props.description} lang={lang} image={props.image ? `${siteUrl}${props.image}` : undefined} imageAlt={props.imageAlt} canonical={canonical} hreflang={hreflang} schema={null} preloadImage={heroImage ? `${baseClean}${heroImage}` : undefined} preloadImageType={heroImage ? imageMime(heroImage) : undefined}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(svcSchema)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(crumbs)}></script>
@@ -97,9 +101,11 @@ const canonical = serviceUrl;
         <div>
           {props.kicker && <span class="eyebrow">{props.kicker}</span>}
           <h1 id="service-title">
-            {props.highlight ? (
+            {props.highlight && props.title.includes(props.highlight) ? (
               <>
-                {props.title.replace(props.highlight, '').trim()} <span class="gradient-text" style="background:var(--grad-amber); -webkit-background-clip:text;">{props.highlight}</span>
+                {props.title.slice(0, props.title.indexOf(props.highlight))}
+                <span class="gradient-text" style="background:var(--grad-amber); -webkit-background-clip:text;">{props.highlight}</span>
+                {props.title.slice(props.title.indexOf(props.highlight) + props.highlight.length)}
               </>
             ) : props.title}
           </h1>
@@ -126,8 +132,8 @@ const canonical = serviceUrl;
         </div>
 
         <div class="reveal" style="border-radius: var(--r-lg); overflow:hidden; background:#0B1A30; border:1px solid rgba(255,255,255,0.1);">
-          {props.image ? (
-            <img src={`${baseClean}${props.image}`} alt={props.imageAlt || props.title} loading="eager" decoding="async" style="width:100%; aspect-ratio:4/3; object-fit:cover;" />
+          {heroImage ? (
+            <img src={`${baseClean}${heroImage}`} alt={props.imageAlt || props.title} loading="eager" fetchpriority="high" decoding="async" style="width:100%; aspect-ratio:4/3; object-fit:cover;" />
           ) : (
             <div style="aspect-ratio:4/3; display:grid; place-items:center; color:#64748B;">{props.title}</div>
           )}
@@ -235,7 +241,7 @@ const canonical = serviceUrl;
             {(props.storyImage || props.image) && (
               <div class="service-story__image">
                 <img
-                  src={`${baseClean}${(props.storyImage || props.image)!}`}
+                  src={`${baseClean}${storyImage!}`}
                   alt={props.storyAlt || props.storyTitle || props.title}
                   loading="lazy"
                   decoding="async"

@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { breadcrumbSchema } from '../../../lib/schema';
+import { preferWebp } from '../../../lib/images';
 
 const lang = 'fa';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -38,7 +39,7 @@ const itemListSchema = {
 };
 ---
 
-<BaseLayout lang={lang} title="خدمات تخصصی | قزوین تصویر — هشت مسیر خدمت" description="هشت صفحه مستقل خدمات شرکت قزوین تصویر در حوزه بازرگانی، ترخیص، تأمین، ترابری، VIP، سرویس سازمانی، غذای پرسنل و مشاوره بازرگانی." canonical={canonical} hreflang={hreflang} schema={itemListSchema}>
+<BaseLayout lang={lang} title="خدمات تخصصی | قزوین تصویر — نه مسیر خدمت" description="نه صفحه مستقل خدمات شرکت قزوین تصویر در حوزه بازرگانی، ترخیص، تأمین، سرویس ایاب و ذهاب، ترابری، VIP، سرویس سازمانی، غذای پرسنل و مشاوره بازرگانی." canonical={canonical} hreflang={hreflang} schema={itemListSchema}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)}></script>
   </Fragment>
@@ -46,14 +47,14 @@ const itemListSchema = {
     <div class="container">
       <nav class="breadcrumbs" aria-label="مسیر صفحه"><a href={`${baseUrl}/fa/`}>خانه</a><span class="breadcrumbs__sep">/</span><span aria-current="page">خدمات</span></nav>
       <h1 style="color:#fff; margin-top:16px;">خدمات تخصصی قزوین تصویر</h1>
-      <p class="hero__lead">هشت خدمت تخصصی برای پوشش زنجیره‌ی بازرگانی، ترابری و پشتیبانی سازمانی — از واردات تا تأمین غذای پرسنل.</p>
+      <p class="hero__lead">نه خدمت تخصصی برای پوشش زنجیره‌ی بازرگانی، ترابری و پشتیبانی سازمانی — از واردات تا سرویس ایاب و ذهاب و تأمین غذای پرسنل.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">هشت خدمت تخصصی</span>
+        <span class="section-label">نه خدمت تخصصی</span>
         <h2>راهکارهایی برای اینکه زنجیره عملیات شما روان‌تر پیش برود</h2>
         <p>هر خدمت با شناخت نیاز واقعی مجموعه شما شروع می‌شود و تا اجرا و پشتیبانی ادامه دارد.</p>
       </div>
@@ -66,7 +67,7 @@ const itemListSchema = {
             <a href={`${baseUrl}/fa/services/${slug}/`} style="display:flex; flex-direction:column; height:100%;">
               <div class="service-card__media">
                 {s.data.image ? (
-                  <img src={`${baseUrl}${s.data.image}`} alt={s.data.image_alt || s.data.title} width="400" height="250" loading="lazy" decoding="async" />
+                  <img src={`${baseUrl}${preferWebp(s.data.image)}`} alt={s.data.image_alt || s.data.title} width="400" height="250" loading="lazy" decoding="async" />
                 ) : <div style="height:100%; background:var(--line-soft); display:grid; place-items:center; color:var(--text-muted);">{s.data.title}</div>}
                 <span style="position:absolute; top:12px; inset-inline-start:12px; background:rgba(0,0,0,0.6); color:#fff; padding:4px 10px; border-radius:9999px; font-size:0.74rem; font-weight:700;"><bdi class="bidi-ltr" dir="ltr">{toPersianDigits(String(s.data.order).padStart(2,'0'))}</bdi></span>
               </div>
@@ -91,7 +92,7 @@ const itemListSchema = {
         <div>
           <span class="section-label">راهنمای کاربردی</span>
           <h2>پیش از انتخاب خدمت، تصویر کامل‌تری داشته باشید</h2>
-          <p>در یک مقاله، هشت مسیر خدمت قزوین تصویر، اطلاعات لازم برای شروع و نکته‌های مهم هر حوزه را مرور کنید.</p>
+          <p>در یک مقاله، نه مسیر خدمت قزوین تصویر، اطلاعات لازم برای شروع و نکته‌های مهم هر حوزه را مرور کنید.</p>
         </div>
         <a class="btn btn--secondary" href={`${baseUrl}/fa/articles/services-guide/`}>خواندن راهنمای خدمات <span aria-hidden="true">←</span></a>
       </aside>

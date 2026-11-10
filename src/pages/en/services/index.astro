@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { breadcrumbSchema } from '../../../lib/schema';
+import { preferWebp } from '../../../lib/images';
 
 const lang = 'en';
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -65,7 +66,7 @@ const itemListSchema = {
             <a href={`${baseUrl}/en/services/${slug}/`} style="display:flex; flex-direction:column; height:100%;">
               <div class="service-card__media">
                 {s.data.image ? (
-                  <img src={`${baseUrl}${s.data.image}`} alt={s.data.title} width="400" height="250" loading="lazy" decoding="async" />
+                  <img src={`${baseUrl}${preferWebp(s.data.image)}`} alt={s.data.title} width="400" height="250" loading="lazy" decoding="async" />
                 ) : <div style="height:100%; background:var(--line-soft); display:grid; place-items:center; color:var(--text-muted);">{s.data.title}</div>}
                 <span style="position:absolute; top:12px; inset-inline-start:12px; background:rgba(0,0,0,0.6); color:#fff; padding:4px 10px; border-radius:9999px; font-size:0.74rem; font-weight:700;">{String(s.data.order).padStart(2,'0')}</span>
               </div>
@@ -84,7 +85,7 @@ const itemListSchema = {
         <div>
           <span class="section-label">Practical guide</span>
           <h2>Get the full picture before choosing a service</h2>
-          <p>Explore all eight Qazvin Tasvir service paths, the information useful at the outset and key considerations for each area.</p>
+          <p>Explore all nine Qazvin Tasvir service paths, the information useful at the outset and key considerations for each area.</p>
         </div>
         <a class="btn btn--secondary" href={`${baseUrl}/en/articles/services-guide/`}>Read the service guide <span aria-hidden="true">→</span></a>
       </aside>
