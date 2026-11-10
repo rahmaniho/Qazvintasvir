@@ -872,6 +872,18 @@ test('promotional shuttle articles target the Qazvin keyword and link the servic
     assert.ok(coverage.includes(park), `coverage table should mention ${park}`);
   }
   assert.match(coverage, /<title>[^<]*سرویس قزوین[^<]*<\/title>/, 'coverage page title should target «سرویس قزوین»');
+  assert.match(coverage, /class="guide-coverage__map"/, 'coverage map block missing');
+  assert.equal((coverage.match(/class="guide-coverage__chip"/g) ?? []).length, 8, 'coverage map should place all eight areas');
+  const coverageGraph = [...coverage.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map((match) => JSON.parse(match[1]))
+    .find((schema) => Array.isArray(schema['@graph']))?.['@graph'] ?? [];
+  const coverageService = coverageGraph.find((node) => node['@type'] === 'Service' && node.areaServed);
+  assert.ok(coverageService, 'AreaServed Service node missing from the coverage page');
+  assert.equal(coverageService.areaServed.length, 8, 'areaServed should list the eight covered areas');
+  assert.ok(
+    coverageService.areaServed.every((area) => area['@type'] === 'Place' && area.name),
+    'every areaServed entry needs a Place type and a name',
+  );
 
   const faArticle = read(route('fa', 'articles/factory-shuttle-outsourcing-qazvin'));
   assert.match(faArticle, /<title>[^<]*سرویس ایاب و ذهاب کارخانه در قزوین[^<]*<\/title>/);

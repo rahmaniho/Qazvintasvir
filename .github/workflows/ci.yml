@@ -32,3 +32,5 @@ jobs:
         run: npm run build
       - name: Run static output smoke tests
         run: npm test
+      - name: Run SEO audit
+        run: npm run seo:audit

@@ -24,6 +24,10 @@ const hreflang = [
   { lang: 'x-default', href: `${site}${baseUrl}/fa/articles/${copy.slug}/` },
 ];
 
+const coverageAreas = copy.coverage
+  ? copy.coverage.groups.flatMap((group) => group.areas.map((area) => area.name))
+  : [];
+
 const [heroImage, heroAlt, heroCaption] = copy.hero;
 const heroPath = `${baseUrl}${heroImage}`;
 const heroSrc = preferWebp(heroPath)!;
@@ -67,6 +71,18 @@ const schema = {
         { '@type': 'ListItem', position: 3, name: copy.title, item: canonical },
       ],
     },
+    ...(copy.coverage
+      ? [
+          {
+            '@type': 'Service',
+            '@id': `${canonical}#coverage`,
+            name: copy.coverage.schemaName,
+            serviceType: copy.coverage.schemaName,
+            provider: { '@type': 'Organization', '@id': `${site}${baseUrl}/#organization` },
+            areaServed: coverageAreas.map((name) => ({ '@type': 'Place', name })),
+          },
+        ]
+      : []),
     {
       '@type': 'FAQPage',
       mainEntity: copy.faqs.map(([question, answer]) => ({
@@ -188,6 +204,41 @@ const schema = {
         </section>
       ))}
 
+      {copy.coverage && (
+        <section id="coverage-map" class="guide-goods-section guide-coverage">
+          <div class="guide-section-heading">
+            <span class="guide-kicker">{copy.coverage.kicker}</span>
+            <h2>{copy.coverage.title}</h2>
+          </div>
+          <p class="guide-article-intro">{copy.coverage.intro}</p>
+          <div class="guide-coverage__map">
+            {copy.coverage.groups.map((group) => (
+              <div class="guide-coverage__group">
+                <div class="guide-coverage__group-head">
+                  <h3>{group.label}</h3>
+                  <p>{group.note}</p>
+                </div>
+                <ul class="guide-coverage__chips">
+                  {group.areas.map((area) => (
+                    <li class="guide-coverage__chip">
+                      <strong>{area.name}</strong>
+                      <span>{area.detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p class="guide-coverage__legend">{copy.coverage.legend}</p>
+          {copy.coverage.note && (
+            <aside class="guide-note guide-note--wide">
+              <strong>{copy.coverage.note.title}</strong>
+              <p>{copy.coverage.note.text}</p>
+            </aside>
+          )}
+        </section>
+      )}
+
       <section class="guide-goods-section">
         <div class="guide-section-heading">
           <span class="guide-kicker">{isFa ? 'تصویرهایی از خدمت' : 'Service in context'}</span>
@@ -249,6 +300,60 @@ const schema = {
 </BaseLayout>
 
 <style>
+  .guide-coverage__map {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-block: 22px 12px;
+  }
+  .guide-coverage__group {
+    padding: 18px;
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-md);
+    background: var(--surface-white);
+  }
+  .guide-coverage__group-head h3 {
+    margin: 0 0 4px;
+    color: var(--primary-navy);
+    font-size: 1.02rem;
+  }
+  .guide-coverage__group-head p {
+    margin: 0 0 14px;
+    color: var(--text-muted);
+    font-size: 0.86rem;
+  }
+  .guide-coverage__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .guide-coverage__chip {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 128px;
+    padding: 10px 12px;
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-sm, 10px);
+    background: var(--surface-muted, #f4f7fb);
+  }
+  .guide-coverage__chip strong {
+    color: var(--primary-navy);
+    font-size: 0.92rem;
+  }
+  .guide-coverage__chip span {
+    color: var(--text-muted);
+    font-size: 0.76rem;
+    line-height: 1.6;
+  }
+  .guide-coverage__legend {
+    margin: 0 0 18px;
+    color: var(--text-muted);
+    font-size: 0.84rem;
+  }
   .guide-table-wrap {
     margin-block: 22px 10px;
     overflow-x: auto;

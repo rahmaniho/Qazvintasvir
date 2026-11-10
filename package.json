@@ -10,6 +10,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "test": "node --test tests/*.test.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs",
     "legacy:redirects": "node scripts/generate-legacy-redirects.mjs",
     "images:optimize": "node scripts/optimize-images.mjs",
     "astro": "astro"

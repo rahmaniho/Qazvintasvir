@@ -157,6 +157,40 @@ export const fa: PromoCopy = {
       },
     },
   ],
+  coverage: {
+    kicker: 'نقشه‌ی پوشش',
+    title: 'نقشه‌ی پوشش سرویس قزوین',
+    intro:
+      'دو خوشه‌ی جغرافیایی، دو نوع مسیر. داخل استان قزوین مسیرها کوتاه‌ترند و بیشتر روزانه‌اند؛ مناطق شرقی در استان البرز، مسیر بین‌استانی و زمان‌بندی حساس‌تری دارند.',
+    schemaName: 'سرویس ایاب و ذهاب قزوین و شهرک‌های صنعتی اطراف',
+    groups: [
+      {
+        label: 'استان قزوین',
+        note: 'مسیرهای داخل استان؛ از محله‌های شهر تا دروازه‌ی شهرک.',
+        areas: [
+          { name: 'لیا', detail: 'دو یا سه شیفت' },
+          { name: 'البرز', detail: 'صبح و عصر' },
+          { name: 'الوند', detail: 'شیفت ثابت' },
+          { name: 'کاسپین ۱', detail: 'شیفت کارخانه‌ای' },
+          { name: 'کاسپین ۲', detail: 'شب و اضافه‌کاری' },
+          { name: 'خرمدشت', detail: 'مسیر تاکستان' },
+        ],
+      },
+      {
+        label: 'استان البرز · شرق قزوین',
+        note: 'مسیر بین‌استانی؛ زمان جاده جدا از زمان جمع‌آوری مسافران حساب می‌شود.',
+        areas: [
+          { name: 'اشتهارد', detail: 'بین‌استانی' },
+          { name: 'نظرآباد', detail: 'بین‌استانی' },
+        ],
+      },
+    ],
+    legend: 'نقشه شماتیک است، نه مقیاس جغرافیایی؛ پوشش هر منطقه پس از امکان‌سنجی مسیر تأیید می‌شود.',
+    note: {
+      title: 'چرا نقشه مهم است',
+      text: 'پوشش هر منطقه به دو عدد بستگی دارد: مبدأ کارکنان و تعداد نفرات هر شیفت. همین دو عدد تعیین می‌کند یک مسیر اقتصادی است یا باید با منطقه‌ی دیگری ترکیب شود.',
+    },
+  },
   gallery: {
     title: 'سرویس قزوین در عمل',
     items: [
@@ -354,6 +388,40 @@ export const en: PromoCopy = {
       },
     },
   ],
+  coverage: {
+    kicker: 'Coverage map',
+    title: 'The Qazvin shuttle coverage map',
+    intro:
+      'Two geographic clusters, two kinds of route. Inside Qazvin province runs are shorter and mostly daily; the eastern areas in Alborz province need an inter-provincial schedule.',
+    schemaName: 'Qazvin shuttle service and surrounding industrial parks',
+    groups: [
+      {
+        label: 'Qazvin province',
+        note: 'Runs inside the province, from city districts to the park gate.',
+        areas: [
+          { name: 'Liya', detail: 'Two or three shifts' },
+          { name: 'Alborz', detail: 'Morning and evening' },
+          { name: 'Alvand', detail: 'Fixed shift' },
+          { name: 'Caspian 1', detail: 'Factory shift' },
+          { name: 'Caspian 2', detail: 'Night and overtime' },
+          { name: 'Khorramdasht', detail: 'Takestan route' },
+        ],
+      },
+      {
+        label: 'Alborz province · east of Qazvin',
+        note: 'Inter-provincial runs; road time is counted separately from pickup time.',
+        areas: [
+          { name: 'Eshtehard', detail: 'Inter-provincial' },
+          { name: 'Nazarabad', detail: 'Inter-provincial' },
+        ],
+      },
+    ],
+    legend: 'The map is schematic, not to scale; coverage of each area is confirmed after a route feasibility review.',
+    note: {
+      title: 'Why the map matters',
+      text: 'Coverage depends on two numbers: where staff live and headcount per shift. Those decide whether a route stands on its own or should be combined with a neighbouring area.',
+    },
+  },
   gallery: {
     title: 'The Qazvin shuttle in practice',
     items: [

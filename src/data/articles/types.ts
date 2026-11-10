@@ -29,6 +29,21 @@ export interface PromoCopy {
   tocTitle: string;
   toc: Array<[string, string]>;
   sections: PromoSection[];
+  /** Optional schematic coverage map, also emitted as an AreaServed Service node. */
+  coverage?: {
+    kicker: string;
+    title: string;
+    intro: string;
+    /** Schema.org name for the coverage Service node. */
+    schemaName: string;
+    groups: Array<{
+      label: string;
+      note: string;
+      areas: Array<{ name: string; detail: string }>;
+    }>;
+    legend: string;
+    note?: { title: string; text: string };
+  };
   gallery: { title: string; items: Array<[string, string, string]> };
   faqTitle: string;
   faqs: Array<[string, string]>;

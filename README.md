@@ -103,6 +103,7 @@ The homepages keep the hero and a concise page directory; full sections are on t
 - `src/content/food/personnel-food-fa.html` — source-preserving Persian staff-catering section
 - `src/components/` — Astro layouts and reusable UI
 - `src/data/articles/` — bilingual copy for the promotional article template
+- `scripts/seo-audit.mjs` — static SEO gate (`npm run seo:audit`): snippet lengths, single H1, canonical/hreflang targets, JSON-LD validity, alt text, broken internal links, sitemap parity and orphan pages
 - `src/lib/images.ts` — resolves the published WebP sibling of a photo at build time
 - `src/styles/` — layered local stylesheets and local font assets
 - `public/` — local images, documents, icons, and compatibility redirects
