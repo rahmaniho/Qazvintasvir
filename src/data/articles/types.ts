@@ -5,6 +5,12 @@ export interface PromoSection {
   intro?: string;
   /** Numbered cards rendered as a grid. */
   cards?: Array<[string, string]>;
+  /** Data table, first column rendered as a row header. */
+  table?: {
+    caption?: string;
+    head: string[];
+    rows: string[][];
+  };
   bullets?: string[];
   note?: { title: string; text: string };
 }
