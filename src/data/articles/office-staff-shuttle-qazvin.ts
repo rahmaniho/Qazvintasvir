@@ -151,6 +151,7 @@ export const fa: PromoCopy = {
   relatedTitle: 'راهنماهای مرتبط',
   related: [
     ['سرویس ایاب و ذهاب قزوین؛ پرسنل و کارخانه', `${site}/fa/services/staff-shuttle/`],
+    ['سرویس ایاب و ذهاب شرکت‌ها در قزوین؛ انتخاب ناوگان', `${site}/fa/articles/company-shuttle-service-qazvin/`],
     ['سرویس ایاب و ذهاب کارخانه در قزوین؛ ۷ دلیل برون‌سپاری', `${site}/fa/articles/factory-shuttle-outsourcing-qazvin/`],
     ['قیمت سرویس ایاب و ذهاب در قزوین؛ چه چیزی نرخ را می‌سازد؟', `${site}/fa/articles/staff-shuttle-pricing-qazvin/`],
     ['سرویس مدارس، ادارات و شرکت‌ها', `${site}/fa/services/school-office/`],
@@ -304,6 +305,7 @@ export const en: PromoCopy = {
   relatedTitle: 'Related guides',
   related: [
     ['Staff shuttle service in Qazvin: factories and offices', `${site}/en/services/staff-shuttle/`],
+    ['Company shuttle service in Qazvin: choosing a fleet', `${site}/en/articles/company-shuttle-service-qazvin/`],
     ['Factory shuttle service in Qazvin: seven reasons to outsource', `${site}/en/articles/factory-shuttle-outsourcing-qazvin/`],
     ['Staff shuttle pricing in Qazvin: what sets the rate', `${site}/en/articles/staff-shuttle-pricing-qazvin/`],
     ['School, office and company shuttles', `${site}/en/services/school-office/`],
