@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -912,25 +913,42 @@ test('multi-resolution favicons are published for search and browser surfaces', 
   }
 });
 
-test('sitemap marks article URLs with the content update date', () => {
+test('sitemap marks every URL with a git-derived lastmod date', () => {
   const sitemap = read('sitemap-0.xml');
+  const blocks = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
+  assert.ok(blocks.length >= 60, 'sitemap should expose every localized page');
+
+  const commitDate = (path) => {
+    try {
+      return execFileSync('git', ['log', '-1', '--format=%cs', '--', path], { encoding: 'utf8' }).trim();
+    } catch {
+      return '';
+    }
+  };
+
+  for (const block of blocks) {
+    const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] ?? '';
+    const lastmod = block.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1] ?? '';
+    assert.match(lastmod, /^\d{4}-\d{2}-\d{2}$/, `missing ISO lastmod for ${loc}`);
+    assert.ok(lastmod <= new Date().toISOString().slice(0, 10), `lastmod in the future for ${loc}`);
+  }
+
   for (const lang of ['fa', 'en']) {
-    for (const slug of ['services-guide', 'permitted-goods-trade', 'factory-staff-transport-qazvin', 'corporate-catering-qazvin']) {
+    for (const slug of promoArticleSlugs) {
+      const expected = commitDate(`src/data/articles/${slug}.ts`);
+      if (!expected) continue;
       assert.match(
         sitemap,
-        new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/${slug}/</loc><lastmod>2026-11-10`),
-        `missing lastmod for ${lang}/${slug}`,
+        new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/${slug}/</loc><lastmod>${expected}<\\/lastmod>`),
+        `lastmod for ${lang}/${slug} should come from its data file commit`,
       );
     }
-  }
-  for (const lang of ['fa', 'en']) {
     assert.match(
       sitemap,
-      new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/</loc><lastmod>2026-11-10`),
+      new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/</loc><lastmod>\\d{4}-\\d{2}-\\d{2}`),
       `missing lastmod for the ${lang} article index`,
     );
   }
-  assert.equal((sitemap.match(/<lastmod>/g) ?? []).length, 22, 'only the article index and article detail URLs should declare lastmod');
 });
 
 test('root sitemap.xml directly exposes the generated URL set for search engines', () => {
