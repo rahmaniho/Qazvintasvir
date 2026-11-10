@@ -90,7 +90,7 @@ After deployment, add the property in Search Console (Domain via the TXT record 
 - `/fa/contact/`, `/en/contact/`
 - `/fa/services/`, `/en/services/`
 - Nine localized service detail routes under each language's `/services/`, including the `staff-shuttle` landing page that targets «سرویس ایاب و ذهاب» in Qazvin
-- `/fa/articles/`, `/en/articles/` — editorial index plus four evergreen guides; the four promotional shuttle articles (`company-shuttle-service-qazvin`, `factory-shuttle-outsourcing-qazvin`, `staff-shuttle-pricing-qazvin`, `office-staff-shuttle-qazvin`) are rendered by `src/components/articles/PromoArticle.astro` from copy in `src/data/articles/`
+- `/fa/articles/`, `/en/articles/` — editorial index plus four evergreen guides; the five promotional shuttle articles (`company-shuttle-service-qazvin`, `industrial-park-shuttle-qazvin`, `factory-shuttle-outsourcing-qazvin`, `staff-shuttle-pricing-qazvin`, `office-staff-shuttle-qazvin`) are rendered by `src/components/articles/PromoArticle.astro` from copy in `src/data/articles/`
 - `/fa/fleet/`, `/fa/brands/`, `/fa/why-us/`, `/fa/clients/`, `/fa/trust/`, `/fa/resume/`, `/fa/legal/` and matching `/en/` routes — dedicated pages for homepage sections
 - `/services/` and `/services/*.html` — static compatibility redirects for the legacy Persian service URLs
 
