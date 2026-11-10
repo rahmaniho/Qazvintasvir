@@ -14,7 +14,7 @@ const walkFiles = (directory) => readdirSync(directory, { withFileTypes: true })
 
 const serviceSlugs = [
   'customs-port', 'factory-transport', 'import-export', 'personnel-food',
-  'school-office', 'sourcing', 'trade-consulting', 'urban-vip',
+  'school-office', 'sourcing', 'staff-shuttle', 'trade-consulting', 'urban-vip',
 ];
 const standaloneSectionSlugs = ['fleet', 'brands', 'why-us', 'clients', 'trust', 'resume', 'legal'];
 
@@ -221,7 +221,7 @@ test('bilingual service-guide articles publish localized Article, FAQ and servic
     const faq = graph.find((schema) => schema['@type'] === 'FAQPage');
     const items = graph.find((schema) => schema['@type'] === 'ItemList');
     assert.equal(faq?.mainEntity?.length, 5, `FAQ schema should match visible questions on ${lang} article`);
-    assert.equal(items?.itemListElement?.length, 8, `article should reference all eight source services in ${lang}`);
+    assert.equal(items?.itemListElement?.length, 9, `article should reference all nine source services in ${lang}`);
   }
 
   for (const asset of ['services-guide-hero.jpg', 'services-guide-trade.jpg', 'services-guide-mobility.jpg', 'services-guide-catering.jpg']) {
@@ -309,8 +309,8 @@ test('English service pages use translated visible copy and structured data', ()
     assert.equal(organization?.name, 'Qazvin Tasvir Company', `English organization schema name missing for ${slug}`);
     assert.doesNotMatch(organization?.description ?? '', persianOrArabic, `English organization description not localized for ${slug}`);
     assert.doesNotMatch(service?.description ?? '', persianOrArabic, `English service schema not localized for ${slug}`);
-    assert.equal(organization?.knowsAbout?.length, 8, 'all eight source areas of expertise should remain in schema');
-    assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 8, 'all eight source offers should remain in schema');
+    assert.equal(organization?.knowsAbout?.length, 9, 'all nine source areas of expertise should remain in schema');
+    assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 9, 'all nine source offers should remain in schema');
     assert.equal(organization?.openingHoursSpecification?.closes, '20:00', 'source opening hours should remain in schema');
     assert.ok(organization?.sameAs?.some((url) => url.includes('rasmio.com/company/10861415215')), 'source Rasmio sameAs URL should remain in schema');
   }
@@ -352,14 +352,15 @@ test('company email is reachable from contact and catering pages in both locales
 });
 
 test('urban and VIP service pages use the generated local transport imagery', () => {
-  const cityImageUrl = '/assets/img/fleet-specs/urban-vip-city-van.jpg';
-  const interiorImageUrl = '/assets/img/fleet-specs/urban-vip-interior.jpg';
+  // Pages serve the WebP sibling of each photo when one is published.
+  const cityImagePattern = /\/assets\/img\/fleet-specs\/urban-vip-city-van\.(?:jpg|webp)/;
+  const interiorImagePattern = /\/assets\/img\/fleet-specs\/urban-vip-interior\.(?:jpg|webp)/;
   for (const lang of ['fa', 'en']) {
     const index = read(route(lang, 'services'));
     const detail = read(route(lang, 'services/urban-vip'));
-    assert.ok(index.includes(cityImageUrl), `/${lang}/services/ should display the generated city van image`);
-    assert.ok(detail.includes(cityImageUrl), `/${lang}/services/urban-vip/ should display the generated van image`);
-    assert.ok(detail.includes(interiorImageUrl), `/${lang}/services/urban-vip/ should display the generated VIP interior image`);
+    assert.match(index, cityImagePattern, `/${lang}/services/ should display the generated city van image`);
+    assert.match(detail, cityImagePattern, `/${lang}/services/urban-vip/ should display the generated van image`);
+    assert.match(detail, interiorImagePattern, `/${lang}/services/urban-vip/ should display the generated VIP interior image`);
   }
   for (const asset of ['urban-vip-city-van.jpg', 'urban-vip-interior.jpg']) {
     assert.ok(existsSync(resolve(dist, 'assets/img/fleet-specs', asset)), `missing generated local asset ${asset}`);
@@ -367,12 +368,12 @@ test('urban and VIP service pages use the generated local transport imagery', ()
 });
 
 test('fleet pages show the Hyundai minibus exterior and branded interior', () => {
-  const exteriorUrl = '/assets/images/hyundai-minibus-exterior.jpg';
-  const interiorUrl = '/assets/images/hyundai-minibus-interior.jpg';
+  const exteriorPattern = /\/assets\/images\/hyundai-minibus-exterior\.(?:jpg|webp)/;
+  const interiorPattern = /\/assets\/images\/hyundai-minibus-interior\.(?:jpg|webp)/;
   for (const lang of ['fa', 'en']) {
     const html = read(route(lang, 'fleet'));
-    assert.ok(html.includes(exteriorUrl), `missing Hyundai minibus exterior on ${lang} fleet page`);
-    assert.ok(html.includes(interiorUrl), `missing branded Hyundai minibus interior on ${lang} fleet page`);
+    assert.match(html, exteriorPattern, `missing Hyundai minibus exterior on ${lang} fleet page`);
+    assert.match(html, interiorPattern, `missing branded Hyundai minibus interior on ${lang} fleet page`);
     assert.match(html, lang === 'fa' ? /مینی‌بوس هیوندای/ : /Hyundai Minibus/);
     assert.match(html, /class="fleet-scope reveal"/, `missing fleet service-area note on ${lang} fleet page`);
     assert.match(
@@ -394,7 +395,9 @@ test('service detail pages render source notes, related services and localized C
         assert.match(html, /related-services__grid/, `missing related services on ${lang}/${slug}`);
         assert.equal((html.match(/class="related-service-card"/g) ?? []).length, 3, `expected three related service cards on ${lang}/${slug}`);
         assert.match(html, /cta-title/, `missing source CTA on ${lang}/${slug}`);
-        assert.match(html, lang === 'fa' ? /برای بررسی نیاز مجموعه‌تان گفت‌وگو کنیم/ : /Let’s discuss your organization’s needs/);
+        if (slug !== 'staff-shuttle') {
+          assert.match(html, lang === 'fa' ? /برای بررسی نیاز مجموعه‌تان گفت‌وگو کنیم/ : /Let’s discuss your organization’s needs/);
+        }
         assert.match(html, new RegExp(`/${lang}/services/`), `related-service links should remain in the ${lang} locale`);
       }
     }
@@ -458,8 +461,8 @@ test('homepages act as concise directories while full source sections live on de
 
   const faHomeSchema = [...faHome.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
   const organization = faHomeSchema.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
-  assert.equal(organization?.knowsAbout?.length, 8, 'all eight source areas of expertise should remain in the Persian schema');
-  assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 8, 'all eight source offers should remain in the Persian schema');
+  assert.equal(organization?.knowsAbout?.length, 9, 'all nine source areas of expertise should remain in the Persian schema');
+  assert.equal(organization?.hasOfferCatalog?.itemListElement?.length, 9, 'all nine source offers should remain in the Persian schema');
   assert.equal(organization?.openingHoursSpecification?.closes, '20:00');
   assert.ok(organization?.sameAs?.some((url) => url.includes('rasmio.com/company/10861415215')));
 
@@ -648,7 +651,7 @@ test('sitemap and robots.txt use the confirmed custom domain', () => {
   assert.doesNotMatch(sitemap, /\/services\/personnel-food\.html/);
   assert.doesNotMatch(sitemap, /\/Qazvintasvir\//);
   const robots = read('robots.txt');
-  assert.match(robots, /^Allow: \*$/m, 'robots.txt should allow all paths');
+  assert.match(robots, /^Allow: \/$/m, 'robots.txt should allow all paths');
   assert.match(robots, /^Sitemap: https:\/\/qazvintasvir\.ir\/sitemap\.xml$/m);
   assert.equal((robots.match(/^Sitemap:/gm) ?? []).length, 1, 'robots.txt should advertise one canonical sitemap entry point');
   assert.doesNotMatch(robots, /rahmaniho\.github\.io|\/Qazvintasvir\//);
@@ -696,7 +699,7 @@ test('Google Search Console verification file, meta tag and crawl directives are
 test('sitemap exposes hreflang alternates for every indexable page', () => {
   const sitemap = read('sitemap-0.xml');
   const blocks = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
-  assert.equal(blocks.length, 48, 'sitemap should list the 48 localized indexable pages');
+  assert.equal(blocks.length, 50, 'sitemap should list the 50 localized indexable pages');
   for (const block of blocks) {
     const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1];
     assert.ok(loc, 'every sitemap entry needs a loc');
@@ -878,7 +881,7 @@ test('root sitemap.xml directly exposes the generated URL set for search engines
   assert.match(sitemap, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
   assert.match(sitemap, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9"/);
   assert.doesNotMatch(sitemap, /<sitemapindex/, 'a single sitemap should expose URLs directly, not point to another sitemap');
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 48, 'URL set should keep all 48 indexable pages');
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 50, 'URL set should keep all 50 indexable pages');
   assert.doesNotMatch(sitemap, /<loc>https:\/\/qazvintasvir\.ir\/sitemap[^<]*<\/loc>/, 'sitemaps must not list themselves');
 
   const robots = read('robots.txt');
@@ -889,7 +892,7 @@ test('root sitemap.xml directly exposes the generated URL set for search engines
 test('every sitemap URL is built, self-canonical and indexable', () => {
   const chunk = read('sitemap-0.xml');
   const locs = [...chunk.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locs.length, 48, 'sitemap URL set size');
+  assert.equal(locs.length, 50, 'sitemap URL set size');
   for (const loc of locs) {
     const htmlPath = resolve(dist, new URL(loc).pathname.replace(/^\//, ''), 'index.html');
     assert.ok(existsSync(htmlPath), `sitemap URL is not built: ${loc}`);

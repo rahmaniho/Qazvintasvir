@@ -10,9 +10,20 @@ export async function getStaticPaths() {
     .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
   return faServices.map((entry) => {
     const slug = entry.id.slice('fa/'.length);
-    const relatedServices = faServices
-      .filter((candidate) => candidate.id !== entry.id)
-      .slice(0, 3)
+    const families: Record<string, string[]> = {
+      transport: ['staff-shuttle', 'factory-transport', 'urban-vip', 'school-office'],
+      trade: ['import-export', 'customs-port', 'sourcing', 'trade-consulting'],
+      workplace: ['personnel-food'],
+    };
+    const currentSlug = slug as string;
+    const family = Object.keys(families).find((name) => families[name].includes(currentSlug));
+    const siblings = (family ? families[family] : []).filter((candidate) => candidate !== currentSlug);
+    const preferred = siblings.flatMap((candidate) => {
+      const match = faServices.find((service) => service.id === `fa/${candidate}`);
+      return match ? [match] : [];
+    });
+    const remaining = faServices.filter((candidate) => candidate.id !== entry.id && !preferred.includes(candidate));
+    const relatedServices = [...preferred, ...remaining].slice(0, 3)
       .map((candidate) => ({
         slug: candidate.id.slice('fa/'.length),
         title: candidate.data.title,

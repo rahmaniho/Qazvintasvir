@@ -1,4 +1,5 @@
 ---
+import { preferWebp } from '../../lib/images';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { ARTICLE_PUBLISHED, ARTICLE_UPDATED } from '../../lib/schema';
@@ -13,10 +14,14 @@ const site = (Astro.site?.toString() || 'https://qazvintasvir.ir').replace(/\/$/
 const path = `${baseUrl}/${lang}/articles/services-guide/`;
 const canonical = `${site}${path}`;
 const coverPath = `${baseUrl}/assets/img/articles/services-guide-hero.jpg`;
+const coverPathImg = preferWebp(coverPath)!;
 const coverUrl = `${site}${coverPath}`;
 const tradeImage = `${baseUrl}/assets/img/articles/services-guide-trade.jpg`;
+const tradeImageImg = preferWebp(tradeImage)!;
 const mobilityImage = `${baseUrl}/assets/img/articles/services-guide-mobility.jpg`;
+const mobilityImageImg = preferWebp(mobilityImage)!;
 const cateringImage = `${baseUrl}/assets/img/articles/services-guide-catering.jpg`;
+const cateringImageImg = preferWebp(cateringImage)!;
 const articleTitle = isFa
   ? 'خدمات قزوین تصویر چیست؟ راهنمای بازرگانی و ترابری'
   : 'What Does Qazvin Tasvir Do? Trade and Transport Guide';
@@ -33,12 +38,12 @@ const copy = isFa ? {
   breadcrumbHome: 'خانه', breadcrumbArticles: 'مقاله‌ها', breadcrumbCurrent: 'راهنمای خدمات',
   eyebrow: 'راهنمای خدمات قزوین تصویر',
   title: articleTitle,
-  lead: 'برای شناخت خدمات یک مجموعه، فهرست نام‌ها کافی نیست؛ باید دانست هر خدمت چه مسئله‌ای را پاسخ می‌دهد، چه اطلاعاتی برای شروع لازم دارد و دامنه‌ی همکاری چگونه روشن می‌شود. این راهنما، هشت مسیر خدمت قزوین تصویر را بر پایه‌ی اطلاعات منتشرشده در وب‌سایت شرکت، یک‌جا و بی‌اغراق مرور می‌کند.',
+  lead: 'برای شناخت خدمات یک مجموعه، فهرست نام‌ها کافی نیست؛ باید دانست هر خدمت چه مسئله‌ای را پاسخ می‌دهد، چه اطلاعاتی برای شروع لازم دارد و دامنه‌ی همکاری چگونه روشن می‌شود. این راهنما، نه مسیر خدمت قزوین تصویر را بر پایه‌ی اطلاعات منتشرشده در وب‌سایت شرکت، یک‌جا و بی‌اغراق مرور می‌کند.',
   coverAlt: 'کارشناس عملیات در حال مرور نقشه‌ی مسیرها و اسناد حمل در فضای کاری صنعتی',
   coverCaption: 'تصویرسازی مفهومی برای این راهنما؛ نه تصویری از اجرای یک قرارداد مشخص.',
   quickTitle: 'در یک نگاه: قزوین تصویر چه خدماتی ارائه می‌کند؟',
-  quickAnswer: 'قزوین تصویر هشت خدمت در سه حوزه‌ی به‌هم‌پیوسته ارائه می‌کند: بازرگانی و تأمین، ترابری و جابه‌جایی سازمانی، و پشتیبانی محل کار. دامنه‌ی هر پرونده پس از شناخت کالا یا نیاز، مسیر، زمان‌بندی و مدارک مربوط بررسی و تعریف می‌شود.',
-  overviewTitle: 'سه حوزه، هشت مسیر همکاری',
+  quickAnswer: 'قزوین تصویر نه خدمت در سه حوزه‌ی به‌هم‌پیوسته ارائه می‌کند: بازرگانی و تأمین، ترابری و جابه‌جایی سازمانی، و پشتیبانی محل کار. دامنه‌ی هر پرونده پس از شناخت کالا یا نیاز، مسیر، زمان‌بندی و مدارک مربوط بررسی و تعریف می‌شود.',
+  overviewTitle: 'سه حوزه، نه مسیر همکاری',
   overview: [
     ['بازرگانی و تأمین', 'واردات و صادرات کالاهای مجاز، امور گمرکی و بندری، تأمین مواد اولیه و تجهیزات، و مشاوره‌ی بازرگانی.'],
     ['ترابری و جابه‌جایی', 'سرویس پرسنل کارخانه، حمل‌ونقل درون‌شهری و VIP، و سرویس مدارس، ادارات و شرکت‌ها.'],
@@ -57,7 +62,7 @@ const copy = isFa ? {
       id: 'transport', title: '۲. ترابری سازمانی؛ برنامه‌ای هماهنگ با مسیر و زمان',
       intro: 'سرویس رفت‌وآمد، از شیفت کارخانه تا مسیر روزانه‌ی مدرسه یا جابه‌جایی مهمانان سازمانی، با شناخت تعداد مسافران، مبدأ و مقصد، زمان حرکت و ظرفیت وسیله معنا پیدا می‌کند. ناوگان معرفی‌شده در خدمات شامل اتوبوس، مینی‌بوس و ون است؛ پیشنهاد نهایی به الگوی مسیر و درخواست مجموعه بستگی دارد.',
       image: mobilityImage, imageAlt: 'اتوبوس سرویس در ورودی یک مجموعه‌ی صنعتی در آغاز روز کاری', imageCaption: 'تصویرسازی مفهومی از سرویس سازمانی؛ ناوگان هر درخواست جداگانه بررسی می‌شود.',
-      slugs: ['factory-transport', 'urban-vip', 'school-office'],
+      slugs: ['staff-shuttle', 'factory-transport', 'urban-vip', 'school-office'],
       label: 'چه اطلاعاتی به برنامه‌ریزی کمک می‌کند؟', note: 'تعداد و گروه مسافران، نشانی‌های سوارشدن و مقصد، ساعت‌های رفت‌وبرگشت، شیفت‌ها و هر الزام ویژه‌ی مجموعه.'
     },
     {
@@ -80,7 +85,7 @@ const copy = isFa ? {
   assurance: 'زمان، قیمت، امکان تأمین یا اجرای هر درخواست به جزئیات واقعی آن وابسته است. این مقاله جای ارزیابی پرونده یا مشاوره‌ی تخصصی حقوقی، مالیاتی و بانکی را نمی‌گیرد. درباره‌ی گشایش اعتبار یا موضوعات تنظیم‌گری نیز باید نقش و حدود مسئولیت هر طرف پیش از اقدام مشخص شود.',
   faqTitle: 'پرسش‌های پرتکرار درباره‌ی خدمات قزوین تصویر',
   faqs: [
-    ['قزوین تصویر چه خدماتی دارد؟', 'هشت حوزه‌ی منتشرشده در سایت شامل واردات و صادرات کالاهای مجاز، ترخیص گمرکی و امور بندری، تأمین مواد اولیه و تجهیزات، ترابری پرسنل کارخانه‌ها، حمل‌ونقل درون‌شهری و VIP، سرویس مدارس و سازمان‌ها، تأمین غذای پرسنل، و مشاوره‌ی بازرگانی و گشایش است.'],
+    ['قزوین تصویر چه خدماتی دارد؟', 'نه حوزه‌ی منتشرشده در سایت شامل واردات و صادرات کالاهای مجاز، ترخیص گمرکی و امور بندری، تأمین مواد اولیه و تجهیزات، سرویس ایاب و ذهاب پرسنل و کارخانه‌ها، ترابری پرسنل کارخانه‌ها، حمل‌ونقل درون‌شهری و VIP، سرویس مدارس و سازمان‌ها، تأمین غذای پرسنل، و مشاوره‌ی بازرگانی و گشایش است.'],
     ['آیا همه‌ی خدمات باید به‌صورت یک بسته درخواست شوند؟', 'خیر؛ صفحه‌های خدمات، مسیرهای مستقلی را معرفی می‌کنند. امکان و شکل هماهنگی چند خدمت در یک پرونده، به نیاز و اطلاعات همان درخواست بستگی دارد و پس از بررسی روشن می‌شود.'],
     ['آیا خدمات واردات و ترخیص برای هر نوع کالا ارائه می‌شود؟', 'خیر. شرح خدمات بر کالاهای مجاز و قانونی تأکید دارد و هر درخواست باید با توجه به نوع کالا، مدارک و الزامات جاری بررسی شود. نتیجه یا زمان قطعی بدون بررسی پرونده قابل تضمین نیست.'],
     ['برای استعلام قیمت یا شروع همکاری چه اطلاعاتی لازم است؟', 'اطلاعات لازم به خدمت بستگی دارد؛ معمولاً شرح نیاز، تعداد یا مقدار، مبدأ و مقصد یا محل اجرا، زمان‌بندی و مدارک مرتبط برای بررسی اولیه مفید است.'],
@@ -95,12 +100,12 @@ const copy = isFa ? {
   breadcrumbHome: 'Home', breadcrumbArticles: 'Articles', breadcrumbCurrent: 'Services guide',
   eyebrow: 'Qazvin Tasvir service guide',
   title: articleTitle,
-  lead: 'A list of service names is not enough to understand what an organisation can do. It also helps to know which need each service addresses, what information is useful at the outset, and how scope is clarified. This guide brings together Qazvin Tasvir’s eight published service areas, using the company’s website as its source and avoiding claims beyond it.',
+  lead: 'A list of service names is not enough to understand what an organisation can do. It also helps to know which need each service addresses, what information is useful at the outset, and how scope is clarified. This guide brings together Qazvin Tasvir’s nine published service areas, using the company’s website as its source and avoiding claims beyond it.',
   coverAlt: 'Operations planner reviewing route maps and shipping documents in an industrial office',
   coverCaption: 'Illustrative image for this guide; it does not depict a specific contracted project.',
   quickTitle: 'At a glance: what does Qazvin Tasvir do?',
-  quickAnswer: 'Qazvin Tasvir describes eight services across three connected areas: trade and sourcing, transport and organisational mobility, and workplace support. The scope of each request is defined after reviewing the goods or need, route, schedule and relevant documents.',
-  overviewTitle: 'Three areas, eight service paths',
+  quickAnswer: 'Qazvin Tasvir describes nine services across three connected areas: trade and sourcing, transport and organisational mobility, and workplace support. The scope of each request is defined after reviewing the goods or need, route, schedule and relevant documents.',
+  overviewTitle: 'Three areas, nine service paths',
   overview: [
     ['Trade and sourcing', 'Permitted-goods import and export, customs and port coordination, raw-material and equipment sourcing, and trade consulting.'],
     ['Transport and mobility', 'Factory staff shuttles, urban and VIP transport, and school, office and company shuttles.'],
@@ -119,7 +124,7 @@ const copy = isFa ? {
       id: 'transport', title: '2. Organisational transport: a plan shaped around routes and time',
       intro: 'A transport service—whether a factory shift shuttle, a school or office commute, or mobility for organisational guests—starts with passenger numbers, origins and destinations, schedules and vehicle capacity. The published service pages refer to buses, minibuses and vans; a suitable option depends on the organisation’s routes and request.',
       image: mobilityImage, imageAlt: 'Shuttle bus at an industrial workplace at the start of the working day', imageCaption: 'Illustrative image of organisational transport; the fleet is assessed for each request.',
-      slugs: ['factory-transport', 'urban-vip', 'school-office'],
+      slugs: ['staff-shuttle', 'factory-transport', 'urban-vip', 'school-office'],
       label: 'What information helps with planning?', note: 'Passenger numbers and groups, pick-up and destination points, return times, shift patterns and any organisation-specific requirements.'
     },
     {
@@ -142,7 +147,7 @@ const copy = isFa ? {
   assurance: 'Timing, price and the feasibility of sourcing or delivery depend on the details of each request. This guide is not a file assessment or a substitute for specialist legal, tax or banking advice. For letters of credit or regulated matters, the role and limits of each party should be clarified before proceeding.',
   faqTitle: 'Frequently asked questions about Qazvin Tasvir services',
   faqs: [
-    ['What services does Qazvin Tasvir offer?', 'The eight service areas published on the site are permitted-goods import and export; customs clearance and port affairs; raw-material and equipment sourcing; factory staff transport; urban and VIP transport; school and organisational shuttles; staff catering; and trade consulting and opening support.'],
+    ['What services does Qazvin Tasvir offer?', 'The nine service areas published on the site are permitted-goods import and export; customs clearance and port affairs; raw-material and equipment sourcing; staff shuttle services for employees and factories; factory staff transport; urban and VIP transport; school and organisational shuttles; staff catering; and trade consulting and opening support.'],
     ['Do all services have to be requested as one package?', 'No. The service pages describe distinct paths. Whether several services can be coordinated for one file depends on the request and its details, and is clarified after review.'],
     ['Does the company handle imports and customs for every type of goods?', 'No. The published service descriptions refer to permitted and legal goods. Each request must be checked against its product details, documents and applicable requirements. A result or timeline cannot be guaranteed without reviewing the file.'],
     ['What information is useful for a price enquiry or initial discussion?', 'It depends on the service. A brief description of the need, quantity, origin and destination or service location, schedule and relevant documents is generally useful for an initial review.'],
@@ -222,7 +227,7 @@ const schema = {
 };
 ---
 
-<BaseLayout lang={lang} title={articleTitle} description={articleDescription} image={coverUrl} imageAlt={copy.coverAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" articlePublishedTime={ARTICLE_PUBLISHED} articleModifiedTime={ARTICLE_UPDATED} bodyClass="article-page" preloadImage={coverPath} preloadImageType="image/jpeg">
+<BaseLayout lang={lang} title={articleTitle} description={articleDescription} image={coverUrl} imageAlt={copy.coverAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" articlePublishedTime={ARTICLE_PUBLISHED} articleModifiedTime={ARTICLE_UPDATED} bodyClass="article-page" preloadImage={coverPathImg} preloadImageType="image/webp">
   <article class="service-guide">
     <section class="guide-hero">
       <div class="container">
@@ -240,7 +245,7 @@ const schema = {
             <ArticleDates lang={lang} published={ARTICLE_PUBLISHED} updated={ARTICLE_UPDATED} />
           </div>
           <figure class="guide-cover">
-            <img src={coverPath} alt={copy.coverAlt} width="1200" height="800" fetchpriority="high" decoding="async" />
+            <img src={coverPathImg} alt={copy.coverAlt} width="1200" height="800" fetchpriority="high" decoding="async" />
             <figcaption>{copy.coverCaption}</figcaption>
           </figure>
         </div>

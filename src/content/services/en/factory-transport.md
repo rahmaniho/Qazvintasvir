@@ -10,7 +10,7 @@ image: "/assets/images/minibus-fleet.jpg"
 image_alt: "Passenger minibus used for organized staff transportation"
 story_image: "/assets/images/bus-fleet.jpg"
 story_alt: "Bus prepared for a scheduled staff shuttle route"
-order: 4
+order: 5
 points:
   - "Coverage planned around work shifts"
   - "Bus, minibus and van options"

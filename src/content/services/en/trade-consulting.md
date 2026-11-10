@@ -10,7 +10,7 @@ image: "/assets/img/sections/hero-port.jpg"
 image_alt: "Cargo vessel and container port for international trade operations"
 story_image: "/assets/img/sections/trade-customs.jpg"
 story_alt: "Commercial shipment and transport documents under review"
-order: 8
+order: 9
 points:
   - "Review the transaction route"
   - "Consider documents and case risks"

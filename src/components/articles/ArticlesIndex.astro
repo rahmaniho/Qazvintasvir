@@ -1,4 +1,5 @@
 ---
+import { preferWebp } from '../../lib/images';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import '../../styles/articles.css';
 
@@ -54,7 +55,7 @@ const articles = isFa ? [
     alt: 'تصویر مفهومی هماهنگی عملیات بازرگانی و خدمات سازمانی',
     category: 'راهنمای جامع خدمات',
     title: 'خدمات قزوین تصویر چیست؟ راهنمای بازرگانی و ترابری',
-    summary: 'هشت مسیر خدمت قزوین تصویر را در سه حوزه‌ی بازرگانی و تأمین، ترابری سازمانی و پشتیبانی محل کار بشناسید؛ همراه با نکات کاربردی برای شروع گفت‌وگو.',
+    summary: 'نه مسیر خدمت قزوین تصویر را در سه حوزه‌ی بازرگانی و تأمین، ترابری سازمانی و پشتیبانی محل کار بشناسید؛ همراه با نکات کاربردی برای شروع گفت‌وگو.',
   },
   {
     slug: 'permitted-goods-trade',
@@ -91,7 +92,7 @@ const articles = isFa ? [
     alt: 'Illustrative image of trade operations and corporate services coordination',
     category: 'Complete service guide',
     title: 'What Does Qazvin Tasvir Do? Trade and Transport Guide',
-    summary: 'Explore Qazvin Tasvir’s eight service paths across trade and sourcing, organisational transport and workplace support—with practical notes for starting a discussion.',
+    summary: 'Explore Qazvin Tasvir’s nine service paths across trade and sourcing, organisational transport and workplace support—with practical notes for starting a discussion.',
   },
   {
     slug: 'permitted-goods-trade',
@@ -199,7 +200,7 @@ const schema = {
         </a>
       </div>
       <a class="editorial-feature__media" href={featured.href} aria-label={`${copy.featuredRead}: ${featured.title}`}>
-        <img src={featured.image} alt={featured.alt} width="1200" height="800" loading="eager" fetchpriority="high" decoding="async" />
+        <img src={preferWebp(featured.image)} alt={featured.alt} width="1200" height="800" loading="eager" fetchpriority="high" decoding="async" />
       </a>
     </article>
 
@@ -214,7 +215,7 @@ const schema = {
       <div class="editorial-card-grid">
         {otherArticles.map((article) => <article class="editorial-card">
           <a class="editorial-card__media" href={article.href} aria-label={`${copy.read}: ${article.title}`}>
-            <img src={article.image} alt={article.alt} width="1200" height="800" loading="lazy" decoding="async" />
+            <img src={preferWebp(article.image)} alt={article.alt} width="1200" height="800" loading="lazy" decoding="async" />
           </a>
           <div class="editorial-card__body">
             <span class="editorial-category">{article.category}</span>

@@ -10,7 +10,7 @@ image: "/assets/images/bus-fleet.jpg"
 image_alt: "اتوبوس سرویس پرسنل در محوطه یک مجتمع صنعتی"
 story_image: "/assets/images/minibus-fleet.jpg"
 story_alt: "مینی‌بوس سرویس پرسنل برای مسیرهای صنعتی"
-order: 4
+order: 5
 points:
   - "پوشش شیفت‌های کاری"
   - "ناوگان اتوبوس و مینی‌بوس"

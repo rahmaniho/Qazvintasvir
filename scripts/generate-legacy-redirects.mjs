@@ -11,6 +11,7 @@ const serviceSlugs = [
   'personnel-food',
   'school-office',
   'sourcing',
+  'staff-shuttle',
   'trade-consulting',
   'urban-vip',
 ];

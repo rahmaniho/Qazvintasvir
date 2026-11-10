@@ -1,4 +1,5 @@
 ---
+import { preferWebp } from '../../lib/images';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { ARTICLE_PUBLISHED, ARTICLE_UPDATED } from '../../lib/schema';
 import ArticleDates from './ArticleDates.astro';
@@ -12,9 +13,12 @@ const site = (Astro.site?.toString() || 'https://qazvintasvir.ir').replace(/\/$/
 const slug = 'corporate-catering-qazvin';
 const canonical = `${site}${baseUrl}/${lang}/articles/${slug}/`;
 const heroPath = `${baseUrl}/assets/img/articles/corporate-catering-hero.jpg`;
+const heroPathImg = preferWebp(heroPath)!;
 const heroUrl = `${site}${heroPath}`;
 const deliveryPath = `${baseUrl}/assets/img/articles/corporate-catering-meal-delivery.jpg`;
+const deliveryPathImg = preferWebp(deliveryPath)!;
 const hospitalityPath = `${baseUrl}/assets/img/articles/corporate-catering-hospitality.jpg`;
+const hospitalityPathImg = preferWebp(hospitalityPath)!;
 const articleTitle = isFa
   ? 'غذای پرسنلی و کترینگ شرکتی در قزوین؛ راهنمای خدمات'
   : 'Corporate Catering in Qazvin: Staff Meals and Hospitality';
@@ -174,13 +178,13 @@ const schema = {
 };
 ---
 
-<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} imageAlt={copy.heroAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" articlePublishedTime={ARTICLE_PUBLISHED} articleModifiedTime={ARTICLE_UPDATED} bodyClass="article-page" preloadImage={heroPath} preloadImageType="image/jpeg">
+<BaseLayout lang={lang} title={articleTitle} description={description} image={heroUrl} imageAlt={copy.heroAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" articlePublishedTime={ARTICLE_PUBLISHED} articleModifiedTime={ARTICLE_UPDATED} bodyClass="article-page" preloadImage={heroPathImg} preloadImageType="image/webp">
   <article class="service-guide">
     <section class="guide-hero"><div class="container">
       <nav class="breadcrumbs" aria-label={isFa ? 'مسیر صفحه' : 'Breadcrumb'}><a href={`${baseUrl}/${lang}/`}>{copy.home}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><a href={`${baseUrl}/${lang}/articles/`}>{copy.articles}</a><span class="breadcrumbs__sep" aria-hidden="true">/</span><span aria-current="page">{copy.current}</span></nav>
       <div class="guide-hero__grid"><div class="guide-hero__copy"><span class="editorial-eyebrow editorial-eyebrow--article" lang="en" dir="ltr">INSIGHTS &amp; GUIDES</span>
             <span class="guide-eyebrow">{copy.eyebrow}</span><h1>{articleTitle}</h1><p class="guide-hero__lead">{copy.lead}</p><ArticleDates lang={lang} published={ARTICLE_PUBLISHED} updated={ARTICLE_UPDATED} /></div>
-        <figure class="guide-cover"><img src={heroPath} alt={copy.heroAlt} width="1360" height="768" fetchpriority="high" decoding="async"/><figcaption>{copy.heroCaption}</figcaption></figure>
+        <figure class="guide-cover"><img src={heroPathImg} alt={copy.heroAlt} width="1360" height="768" fetchpriority="high" decoding="async"/><figcaption>{copy.heroCaption}</figcaption></figure>
       </div>
     </div></section>
     <div class="container guide-content">

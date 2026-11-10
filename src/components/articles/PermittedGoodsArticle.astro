@@ -1,4 +1,5 @@
 ---
+import { preferWebp } from '../../lib/images';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { ARTICLE_PUBLISHED, ARTICLE_UPDATED } from '../../lib/schema';
 import ArticleDates from './ArticleDates.astro';
@@ -11,9 +12,12 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const site = (Astro.site?.toString() || 'https://qazvintasvir.ir').replace(/\/$/, '');
 const canonical = `${site}${baseUrl}/${lang}/articles/permitted-goods-trade/`;
 const coverPath = `${baseUrl}/assets/img/articles/permitted-goods-hero.jpg`;
+const coverPathImg = preferWebp(coverPath)!;
 const coverUrl = `${site}${coverPath}`;
 const industrialImage = `${baseUrl}/assets/img/articles/permitted-goods-industrial.jpg`;
+const industrialImageImg = preferWebp(industrialImage)!;
 const foodImage = `${baseUrl}/assets/img/articles/permitted-goods-agri.jpg`;
+const foodImageImg = preferWebp(foodImage)!;
 const articleTitle = isFa
   ? 'چه کالاهایی برای بازرگانی مجازند؟ راهنمای واردات و صادرات'
   : 'Which Goods Are Permitted for Trade? A Practical Guide';
@@ -219,7 +223,7 @@ const schema = {
 };
 ---
 
-<BaseLayout lang={lang} title={articleTitle} description={articleDescription} image={coverUrl} imageAlt={copy.coverAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" articlePublishedTime={ARTICLE_PUBLISHED} articleModifiedTime={ARTICLE_UPDATED} bodyClass="article-page" preloadImage={coverPath} preloadImageType="image/jpeg">
+<BaseLayout lang={lang} title={articleTitle} description={articleDescription} image={coverUrl} imageAlt={copy.coverAlt} canonical={canonical} hreflang={hreflang} schema={schema} ogType="article" articlePublishedTime={ARTICLE_PUBLISHED} articleModifiedTime={ARTICLE_UPDATED} bodyClass="article-page" preloadImage={coverPathImg} preloadImageType="image/webp">
   <article class="service-guide">
     <section class="guide-hero">
       <div class="container">
@@ -237,7 +241,7 @@ const schema = {
             <ArticleDates lang={lang} published={ARTICLE_PUBLISHED} updated={ARTICLE_UPDATED} />
           </div>
           <figure class="guide-cover">
-            <img src={coverPath} alt={copy.coverAlt} width="1200" height="800" fetchpriority="high" decoding="async" />
+            <img src={coverPathImg} alt={copy.coverAlt} width="1200" height="800" fetchpriority="high" decoding="async" />
             <figcaption>{copy.coverCaption}</figcaption>
           </figure>
         </div>
@@ -279,11 +283,11 @@ const schema = {
         <p class="guide-article-intro">{copy.examplesLead}</p>
         <div class="guide-example-grid">
           <article class="guide-example-card">
-            <figure><img src={industrialImage} alt={copy.industrialAlt} width="1200" height="800" loading="lazy" decoding="async" /><figcaption>{isFa ? 'تصویر مفهومی؛ طبقه‌بندی فقط با بررسی ردیف دقیق ممکن است.' : 'Illustrative image; the exact tariff line still needs to be checked.'}</figcaption></figure>
+            <figure><img src={industrialImageImg} alt={copy.industrialAlt} width="1200" height="800" loading="lazy" decoding="async" /><figcaption>{isFa ? 'تصویر مفهومی؛ طبقه‌بندی فقط با بررسی ردیف دقیق ممکن است.' : 'Illustrative image; the exact tariff line still needs to be checked.'}</figcaption></figure>
             <div><h3>{copy.industrialTitle}</h3><p>{copy.industrialText}</p></div>
           </article>
           <article class="guide-example-card">
-            <figure><img src={foodImage} alt={copy.foodAlt} width="1200" height="800" loading="lazy" decoding="async" /><figcaption>{isFa ? 'تصویر مفهومی؛ تصویر، تأیید مجازبودن نیست.' : 'Illustrative image; the image is not an approval.'}</figcaption></figure>
+            <figure><img src={foodImageImg} alt={copy.foodAlt} width="1200" height="800" loading="lazy" decoding="async" /><figcaption>{isFa ? 'تصویر مفهومی؛ تصویر، تأیید مجازبودن نیست.' : 'Illustrative image; the image is not an approval.'}</figcaption></figure>
             <div><h3>{copy.foodTitle}</h3><p>{copy.foodText}</p></div>
           </article>
         </div>

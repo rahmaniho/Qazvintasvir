@@ -26,10 +26,17 @@ npm run build
 npm test
 ```
 
+Optional asset maintenance (regenerates WebP siblings and re-encodes oversized photos):
+
+```sh
+npm run images:optimize
+```
+
 - `check` runs Astro's TypeScript and template diagnostics.
 - `legacy:redirects` regenerates the static old-service URL aliases in `public/services/`.
 - `build` emits the static bilingual pages under `dist/` and creates the sitemap.
 - `test` checks routes, preserved homepage and catering content, local food assets, redirects, root routing, and sitemap exclusions.
+- `images:optimize` writes a WebP sibling for every photo under `public/assets/img` and `public/assets/images` and re-encodes photos above the weight budget; templates pick the WebP file through `src/lib/images.ts`.
 
 The production build targets the confirmed custom domain <https://qazvintasvir.ir/> at the site root (`base: '/'`); `public/CNAME` preserves the custom domain in GitHub Pages deployments.
 
@@ -82,7 +89,7 @@ After deployment, add the property in Search Console (Domain via the TXT record 
 - `/fa/about/`, `/en/about/`
 - `/fa/contact/`, `/en/contact/`
 - `/fa/services/`, `/en/services/`
-- Eight localized service detail routes under each language's `/services/`
+- Nine localized service detail routes under each language's `/services/`, including the `staff-shuttle` landing page that targets «سرویس ایاب و ذهاب» in Qazvin
 - `/fa/fleet/`, `/fa/brands/`, `/fa/why-us/`, `/fa/clients/`, `/fa/trust/`, `/fa/resume/`, `/fa/legal/` and matching `/en/` routes — dedicated pages for homepage sections
 - `/services/` and `/services/*.html` — static compatibility redirects for the legacy Persian service URLs
 
@@ -94,6 +101,7 @@ The homepages keep the hero and a concise page directory; full sections are on t
 - `src/content/services/` — bilingual service collection content
 - `src/content/food/personnel-food-fa.html` — source-preserving Persian staff-catering section
 - `src/components/` — Astro layouts and reusable UI
+- `src/lib/images.ts` — resolves the published WebP sibling of a photo at build time
 - `src/styles/` — layered local stylesheets and local font assets
 - `public/` — local images, documents, icons, and compatibility redirects
 - `_legacy/source-snapshot/` — read-only source archive; not published as site content

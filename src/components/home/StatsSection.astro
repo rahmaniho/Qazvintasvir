@@ -1,4 +1,5 @@
 ---
+import { preferWebp } from '../../lib/images';
 interface Props { lang: 'fa' | 'en'; }
 const { lang } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -36,7 +37,7 @@ const renderLocalizedText = (text: string, isolateFa = false) => {
   <div class="why-us__banner" aria-hidden="true">
     <picture>
       <source srcset={`${base}/assets/img/sections/why-banner.webp`} type="image/webp" />
-      <img src={`${base}/assets/img/sections/why-banner.jpg`} alt="" width="1600" height="718" loading="lazy" decoding="async" />
+      <img src={preferWebp(`${base}/assets/img/sections/why-banner.jpg`)} alt="" width="1600" height="718" loading="lazy" decoding="async" />
     </picture>
   </div>
   <div class="container">

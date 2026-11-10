@@ -76,7 +76,9 @@ const seo = createSeoMetadata({
 });
 const { canonical, image: ogImage, imageAlt: ogImageAlt, robots: robotsContent } = seo;
 const hreflangLinks = seo.hreflang;
-const preloadImage = propPreloadImage ?? `${baseClean}/assets/img/sections/hero-port.webp`;
+// Only preload an image when the page declares its own LCP candidate; a global
+// default would make every page download an image it may not render.
+const preloadImage = propPreloadImage;
 const preloadImageMime = preloadImageType ?? 'image/webp';
 const otherLocale = seo.alternateLocale;
 
@@ -129,7 +131,7 @@ const pageSchema = noindex
 
   {lang === 'fa' && <link rel="preload" href={`${baseClean}/fonts/fonts/BNazanin.woff`} as="font" type="font/woff" crossorigin />}
   {lang === 'fa' && <link rel="preload" href={`${baseClean}/fonts/fonts/BTitrBold.woff`} as="font" type="font/woff" crossorigin />}
-  <link rel="preload" href={preloadImage} as="image" type={preloadImageMime} fetchpriority="high" />
+  {preloadImage && <link rel="preload" href={preloadImage} as="image" type={preloadImageMime} fetchpriority="high" />}
 
   <script is:inline>
     (function(){

@@ -10,7 +10,7 @@ image: "/assets/img/fleet-specs/urban-vip-city-van.jpg"
 image_alt: "ون مسافربری سفید برای حمل‌ونقل درون‌شهری و سازمانی در قزوین"
 story_image: "/assets/img/fleet-specs/urban-vip-interior.jpg"
 story_alt: "فضای داخلی راحت و مرتب ون VIP برای سفرهای سازمانی"
-order: 5
+order: 6
 points:
   - "سرویس‌های درون‌شهری"
   - "جابجایی مدیران و مهمانان"

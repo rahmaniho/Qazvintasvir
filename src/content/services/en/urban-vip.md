@@ -10,7 +10,7 @@ image: "/assets/img/fleet-specs/urban-vip-city-van.jpg"
 image_alt: "Passenger van for urban and corporate transportation in Qazvin"
 story_image: "/assets/img/fleet-specs/urban-vip-interior.jpg"
 story_alt: "Comfortable, well-appointed interior of a VIP passenger van"
-order: 5
+order: 6
 points:
   - "Urban transport services"
   - "Transportation for managers and guests"
