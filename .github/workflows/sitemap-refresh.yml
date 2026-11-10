@@ -1,0 +1,110 @@
+name: Refresh sitemap lastmod
+
+# Keeps the <lastmod> dates that crawlers see honest.
+#
+# 1. The build itself derives lastmod from git history (scripts/sitemap-lastmod.mjs),
+#    so every deploy ships current dates.
+# 2. This workflow runs right after a deployment, compares the live sitemap with a
+#    fresh build, and redeploys once when the live copy is behind — a stale sitemap
+#    is the usual reason Google keeps re-crawling on its old schedule.
+
+on:
+  workflow_run:
+    workflows: ["Deploy GitHub Pages"]
+    types: [completed]
+  workflow_dispatch:
+  schedule:
+    # daily safety net at 03:17 UTC
+    - cron: "17 3 * * *"
+
+permissions:
+  contents: read
+  actions: write
+  pages: read
+
+concurrency:
+  group: sitemap-lastmod
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: https://qazvintasvir.ir
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          # full history so per-file lastmod dates are real commit dates
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build with git-derived lastmod dates
+        run: npm run build
+
+      - name: Verify the live sitemap
+        id: verify
+        continue-on-error: true
+        run: |
+          node scripts/verify-live-sitemap.mjs \
+            --dist dist \
+            --json live-sitemap.json \
+            --fail-on-drift
+
+      - name: Publish the comparison
+        if: always()
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            const report = JSON.parse(fs.readFileSync("live-sitemap.json", "utf8"));
+            const lines = [
+              "## Sitemap lastmod check",
+              "",
+              `- sitemap: ${report.sitemapUrl}`,
+              `- local URLs: ${report.localUrls} · live URLs: ${report.liveUrls}`,
+              `- missing live: ${report.missing.length}`,
+              `- extra live: ${report.extra.length}`,
+              `- stale lastmod: ${report.stale.length}`,
+              report.error ? `- error: ${report.error}` : "",
+              "",
+              report.drift ? "Live sitemap is behind the build." : "Live sitemap matches the build.",
+            ].filter(Boolean);
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join("\n") + "\n");
+          '
+
+      - name: Redeploy when the live sitemap is stale
+        if: steps.verify.outcome == 'failure'
+        run: |
+          # Never stack redeploys: skip if the deploy workflow already ran in
+          # the last 30 minutes (a second drift check follows that run).
+          recent=$(gh run list \
+            --workflow "Deploy GitHub Pages" \
+            --branch main \
+            --limit 5 \
+            --json createdAt,status \
+            --jq '[.[] | select((now - (.createdAt | fromdateiso8601)) < 1800)] | length')
+          if [ "${recent:-0}" -gt 1 ]; then
+            echo "A deployment ran in the last 30 minutes; leaving the sitemap to that run."
+            exit 0
+          fi
+          echo "Requesting a fresh deployment so crawlers see the current lastmod dates."
+          gh workflow run "Deploy GitHub Pages" --ref main
+
+      - name: Upload the comparison report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: sitemap-lastmod-report
+          path: live-sitemap.json
+          retention-days: 7

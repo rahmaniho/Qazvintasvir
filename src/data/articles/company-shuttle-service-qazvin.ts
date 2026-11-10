@@ -164,6 +164,7 @@ export const fa: PromoCopy = {
   relatedTitle: 'راهنماهای مرتبط',
   related: [
     ['سرویس ایاب و ذهاب قزوین؛ پرسنل و کارخانه', `${site}/fa/services/staff-shuttle/`],
+    ['سرویس قزوین؛ شهرک‌های صنعتی، کارخانه‌ها و ادارات', `${site}/fa/articles/qazvin-shuttle-service-coverage/`],
     ['سرویس ایاب و ذهاب شهرک صنعتی البرز و لیا؛ مسیر و شیفت', `${site}/fa/articles/industrial-park-shuttle-qazvin/`],
     ['سرویس ایاب و ذهاب ادارات و شرکت‌ها در قزوین؛ رفاه کارکنان', `${site}/fa/articles/office-staff-shuttle-qazvin/`],
     ['قیمت سرویس ایاب و ذهاب در قزوین؛ چه چیزی نرخ را می‌سازد؟', `${site}/fa/articles/staff-shuttle-pricing-qazvin/`],
@@ -173,7 +174,10 @@ export const fa: PromoCopy = {
   disclaimer:
     'این مقاله بر پایه‌ی اطلاعات منتشرشده و تجربه‌ی عملیاتی شرکت قزوین تصویر نوشته شده است. شرایط هر همکاری پس از بررسی درخواست تعیین می‌شود.',
   keywords: [
-    'سرویس ایاب و ذهاب شرکت‌ها در قزوین',
+    'سرویس ایاب و ذهاب شرکت‌ها در قزوین',    'سرویس شرکت',
+    'سرویس شرکت در قزوین',
+    'سرویس شرکت‌های استان قزوین',
+
     'سرویس شرکت‌ها قزوین',
     'سرویس ایاب و ذهاب سازمانی',
     'ناوگان سرویس پرسنلی',
@@ -331,6 +335,7 @@ export const en: PromoCopy = {
   relatedTitle: 'Related guides',
   related: [
     ['Staff shuttle service in Qazvin: factories and offices', `${site}/en/services/staff-shuttle/`],
+    ['Shuttle service in Qazvin: parks, factories and offices', `${site}/en/articles/qazvin-shuttle-service-coverage/`],
     ['Industrial park shuttle service in Qazvin: routes and shifts', `${site}/en/articles/industrial-park-shuttle-qazvin/`],
     ['Office shuttle service in Qazvin: welfare that retains staff', `${site}/en/articles/office-staff-shuttle-qazvin/`],
     ['Staff shuttle pricing in Qazvin: what sets the rate', `${site}/en/articles/staff-shuttle-pricing-qazvin/`],

@@ -6,6 +6,7 @@ import { meta as shuttlePricingMeta } from '../../data/articles/staff-shuttle-pr
 import { meta as officeShuttleMeta } from '../../data/articles/office-staff-shuttle-qazvin';
 import { meta as companyShuttleMeta } from '../../data/articles/company-shuttle-service-qazvin';
 import { meta as industrialParkShuttleMeta } from '../../data/articles/industrial-park-shuttle-qazvin';
+import { meta as coverageMeta } from '../../data/articles/qazvin-shuttle-service-coverage';
 import '../../styles/articles.css';
 
 interface Props { lang: 'fa' | 'en' }
@@ -130,7 +131,7 @@ const baseArticles = isFa ? [
 
 // Promotional shuttle articles lead the index: they answer the buying questions
 // behind the «سرویس ایاب و ذهاب» keyword and link back to the service page.
-const promoArticles = [companyShuttleMeta, industrialParkShuttleMeta, factoryShuttleMeta, shuttlePricingMeta, officeShuttleMeta].map((entry) => {
+const promoArticles = [coverageMeta, companyShuttleMeta, industrialParkShuttleMeta, factoryShuttleMeta, shuttlePricingMeta, officeShuttleMeta].map((entry) => {
   const localized = isFa ? entry.fa : entry.en;
   return {
     slug: entry.slug,

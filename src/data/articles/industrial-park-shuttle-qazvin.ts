@@ -161,6 +161,7 @@ export const fa: PromoCopy = {
   relatedTitle: 'راهنماهای مرتبط',
   related: [
     ['سرویس ایاب و ذهاب قزوین؛ پرسنل و کارخانه', `${site}/fa/services/staff-shuttle/`],
+    ['سرویس قزوین؛ شهرک‌های صنعتی، کارخانه‌ها و ادارات', `${site}/fa/articles/qazvin-shuttle-service-coverage/`],
     ['سرویس ایاب و ذهاب شرکت‌ها در قزوین؛ انتخاب ناوگان و مسیر', `${site}/fa/articles/company-shuttle-service-qazvin/`],
     ['سرویس ایاب و ذهاب کارخانه در قزوین؛ ۷ دلیل برون‌سپاری', `${site}/fa/articles/factory-shuttle-outsourcing-qazvin/`],
     ['قیمت سرویس ایاب و ذهاب در قزوین؛ چه چیزی نرخ را می‌سازد؟', `${site}/fa/articles/staff-shuttle-pricing-qazvin/`],
@@ -169,7 +170,9 @@ export const fa: PromoCopy = {
   disclaimer:
     'این مقاله بر پایه‌ی اطلاعات منتشرشده و تجربه‌ی عملیاتی شرکت قزوین تصویر نوشته شده است. مسیرها و تصاویر مفهومی‌اند و شرایط هر همکاری پس از بررسی درخواست تعیین می‌شود.',
   keywords: [
-    'سرویس ایاب و ذهاب شهرک صنعتی',
+    'سرویس ایاب و ذهاب شهرک صنعتی',    'سرویس شهر صنعتی لیا',
+    'سرویس شهرک های صنعتی',
+
     'سرویس شهرک صنعتی البرز قزوین',
     'سرویس ایاب و ذهاب لیا',
     'سرویس پرسنل شیفت شب',
@@ -324,6 +327,7 @@ export const en: PromoCopy = {
   relatedTitle: 'Related guides',
   related: [
     ['Staff shuttle service in Qazvin: factories and offices', `${site}/en/services/staff-shuttle/`],
+    ['Shuttle service in Qazvin: parks, factories and offices', `${site}/en/articles/qazvin-shuttle-service-coverage/`],
     ['Company shuttle service in Qazvin: choosing a fleet', `${site}/en/articles/company-shuttle-service-qazvin/`],
     ['Factory shuttle service in Qazvin: 7 reasons to outsource', `${site}/en/articles/factory-shuttle-outsourcing-qazvin/`],
     ['Staff shuttle pricing in Qazvin: what sets the rate', `${site}/en/articles/staff-shuttle-pricing-qazvin/`],

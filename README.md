@@ -81,6 +81,8 @@ A domain property covers `qazvintasvir.ir`, `www.qazvintasvir.ir`, `http`/`https
 - Titles stay within 60 characters and meta descriptions within 70–160 characters; both are asserted by the static-output tests.
 - `favicon.ico` plus 32/48/96/144 px PNG icons and a 180 px Apple touch icon are published and linked from every page.
 
+`.github/workflows/sitemap-refresh.yml` runs after every Pages deployment (and daily) and checks the live sitemap against a fresh build; when the live copy is behind, it redeploys once so crawlers read current `lastmod` dates.
+
 After deployment, add the property in Search Console (Domain via the TXT record above, or the URL-prefix variant), then submit `sitemap.xml`. The root `/` is a static redirect to `/fa/`, so the indexable homepage is `https://qazvintasvir.ir/fa/`.
 
 ## Routes
@@ -90,7 +92,7 @@ After deployment, add the property in Search Console (Domain via the TXT record 
 - `/fa/contact/`, `/en/contact/`
 - `/fa/services/`, `/en/services/`
 - Nine localized service detail routes under each language's `/services/`, including the `staff-shuttle` landing page that targets «سرویس ایاب و ذهاب» in Qazvin
-- `/fa/articles/`, `/en/articles/` — editorial index plus four evergreen guides; the five promotional shuttle articles (`company-shuttle-service-qazvin`, `industrial-park-shuttle-qazvin`, `factory-shuttle-outsourcing-qazvin`, `staff-shuttle-pricing-qazvin`, `office-staff-shuttle-qazvin`) are rendered by `src/components/articles/PromoArticle.astro` from copy in `src/data/articles/`
+- `/fa/articles/`, `/en/articles/` — editorial index plus four evergreen guides; the six promotional shuttle articles (`qazvin-shuttle-service-coverage` and five topic guides: `company-shuttle-service-qazvin`, `industrial-park-shuttle-qazvin`, `factory-shuttle-outsourcing-qazvin`, `staff-shuttle-pricing-qazvin`, `office-staff-shuttle-qazvin`) are rendered by `src/components/articles/PromoArticle.astro` from copy in `src/data/articles/`
 - `/fa/fleet/`, `/fa/brands/`, `/fa/why-us/`, `/fa/clients/`, `/fa/trust/`, `/fa/resume/`, `/fa/legal/` and matching `/en/` routes — dedicated pages for homepage sections
 - `/services/` and `/services/*.html` — static compatibility redirects for the legacy Persian service URLs
 
@@ -103,6 +105,9 @@ The homepages keep the hero and a concise page directory; full sections are on t
 - `src/content/food/personnel-food-fa.html` — source-preserving Persian staff-catering section
 - `src/components/` — Astro layouts and reusable UI
 - `src/data/articles/` — bilingual copy for the promotional article template
+- `scripts/seo-audit.mjs` — static SEO gate (`npm run seo:audit`): snippet lengths, single H1, canonical/hreflang targets, JSON-LD validity, alt text, broken internal links, sitemap parity and orphan pages
+- `scripts/sitemap-lastmod.mjs` — writes a `<lastmod>` for every sitemap URL from the newest git commit touching that page's source files (runs as part of `npm run build`); `npm run sitemap:lastmod -- --check` verifies it
+- `scripts/verify-live-sitemap.mjs` — compares the deployed sitemap with a fresh build (`npm run sitemap:verify`), used by the post-deploy workflow
 - `src/lib/images.ts` — resolves the published WebP sibling of a photo at build time
 - `src/styles/` — layered local stylesheets and local font assets
 - `public/` — local images, documents, icons, and compatibility redirects
