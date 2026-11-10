@@ -3,7 +3,10 @@ type Locale = 'fa' | 'en';
 // The current bilingual article set was first published with the site rewrite.
 // Update these dates when the article copy (not just its metadata) changes.
 export const ARTICLE_PUBLISHED = '2026-10-19';
-export const ARTICLE_UPDATED = '2026-10-20';
+export const ARTICLE_UPDATED = '2026-11-10';
+// The three promotional shuttle articles were published together with the
+// staff-shuttle landing page; keep their date separate from the older guides.
+export const PROMO_PARTNER_PUBLISHED = '2026-11-10';
 
 const serviceEntries: Record<Locale, Array<{ slug: string; name: string; description: string }>> = {
   fa: [

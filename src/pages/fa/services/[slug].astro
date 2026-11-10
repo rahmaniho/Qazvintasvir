@@ -35,6 +35,7 @@ export async function getStaticPaths() {
 }
 
 const { entry, relatedServices } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 const data = entry.data;
 const slug = Astro.params.slug!;
 ---
@@ -85,5 +86,36 @@ const slug = Astro.params.slug!;
     storyImage={data.story_image}
     storyAlt={data.story_alt}
     faqs={data.faqs}
-  />
+  >
+    {slug === 'staff-shuttle' && (
+<>
+      <section class="content-section" aria-labelledby="shuttle-guides-title" style="background:var(--surface-white);">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="section-label">راهنماهای سرویس ایاب و ذهاب</span>
+            <h2 id="shuttle-guides-title">پیش از تصمیم، این سه راهنما را بخوانید</h2>
+            <p>برون‌سپاری سرویس کارخانه، برآورد قیمت و سرویس ادارات؛ هر صفحه به یک پرسش رایج پاسخ می‌دهد.</p>
+          </div>
+          <div class="related-services__grid">
+            <a class="related-service-card" href={`${baseUrl}/fa/articles/factory-shuttle-outsourcing-qazvin/`}>
+              <small>برون‌سپاری</small>
+              <strong>سرویس ایاب و ذهاب کارخانه در قزوین؛ ۷ دلیل برون‌سپاری</strong>
+              <span>هزینه‌ی پنهان سرویس داخلی و بندهای قرارداد.</span>
+            </a>
+            <a class="related-service-card" href={`${baseUrl}/fa/articles/staff-shuttle-pricing-qazvin/`}>
+              <small>قیمت</small>
+              <strong>قیمت سرویس ایاب و ذهاب در قزوین؛ چه چیزی نرخ را می‌سازد؟</strong>
+              <span>پنج عامل قیمت و روش مقایسه‌ی دو پیشنهاد.</span>
+            </a>
+            <a class="related-service-card" href={`${baseUrl}/fa/articles/office-staff-shuttle-qazvin/`}>
+              <small>ادارات و شرکت‌ها</small>
+              <strong>سرویس ایاب و ذهاب ادارات و شرکت‌ها در قزوین</strong>
+              <span>سه مدل سرویس و راه‌اندازی در چهار گام.</span>
+            </a>
+          </div>
+        </div>
+      </section>
+</>
+    )}
+  </ServiceLayout>
 )}

@@ -90,6 +90,7 @@ After deployment, add the property in Search Console (Domain via the TXT record 
 - `/fa/contact/`, `/en/contact/`
 - `/fa/services/`, `/en/services/`
 - Nine localized service detail routes under each language's `/services/`, including the `staff-shuttle` landing page that targets «سرویس ایاب و ذهاب» in Qazvin
+- `/fa/articles/`, `/en/articles/` — editorial index plus four evergreen guides; the three promotional shuttle articles (`factory-shuttle-outsourcing-qazvin`, `staff-shuttle-pricing-qazvin`, `office-staff-shuttle-qazvin`) are rendered by `src/components/articles/PromoArticle.astro` from copy in `src/data/articles/`
 - `/fa/fleet/`, `/fa/brands/`, `/fa/why-us/`, `/fa/clients/`, `/fa/trust/`, `/fa/resume/`, `/fa/legal/` and matching `/en/` routes — dedicated pages for homepage sections
 - `/services/` and `/services/*.html` — static compatibility redirects for the legacy Persian service URLs
 
@@ -101,6 +102,7 @@ The homepages keep the hero and a concise page directory; full sections are on t
 - `src/content/services/` — bilingual service collection content
 - `src/content/food/personnel-food-fa.html` — source-preserving Persian staff-catering section
 - `src/components/` — Astro layouts and reusable UI
+- `src/data/articles/` — bilingual copy for the promotional article template
 - `src/lib/images.ts` — resolves the published WebP sibling of a photo at build time
 - `src/styles/` — layered local stylesheets and local font assets
 - `public/` — local images, documents, icons, and compatibility redirects

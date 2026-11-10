@@ -1,6 +1,9 @@
 ---
 import { preferWebp } from '../../lib/images';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { meta as factoryShuttleMeta } from '../../data/articles/factory-shuttle-outsourcing-qazvin';
+import { meta as shuttlePricingMeta } from '../../data/articles/staff-shuttle-pricing-qazvin';
+import { meta as officeShuttleMeta } from '../../data/articles/office-staff-shuttle-qazvin';
 import '../../styles/articles.css';
 
 interface Props { lang: 'fa' | 'en' }
@@ -47,7 +50,7 @@ const en = {
 const copy = isFa ? fa : en;
 
 // The service guide is the broadest evergreen introduction to the company's actual service areas.
-const articles = isFa ? [
+const baseArticles = isFa ? [
   {
     slug: 'services-guide',
     href: `${baseUrl}/${lang}/articles/services-guide/`,
@@ -122,6 +125,22 @@ const articles = isFa ? [
     summary: 'Explore rotating menus, shift meals, organisational hospitality and practical ways to compare catering prices in Qazvin.',
   },
 ];
+
+// Promotional shuttle articles lead the index: they answer the buying questions
+// behind the «سرویس ایاب و ذهاب» keyword and link back to the service page.
+const promoArticles = [factoryShuttleMeta, shuttlePricingMeta, officeShuttleMeta].map((entry) => {
+  const localized = isFa ? entry.fa : entry.en;
+  return {
+    slug: entry.slug,
+    href: `${baseUrl}/${lang}/articles/${entry.slug}/`,
+    image: `${baseUrl}${entry.image}`,
+    alt: localized.alt,
+    category: localized.category,
+    title: localized.title,
+    summary: localized.summary,
+  };
+});
+const articles = [...promoArticles, ...baseArticles];
 
 const featured = articles[0];
 const otherArticles = articles.slice(1);
