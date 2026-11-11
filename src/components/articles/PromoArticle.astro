@@ -262,7 +262,7 @@ const schema = {
           <h2>{copy.gallery.title}</h2>
         </div>
         <div class="guide-example-grid guide-example-grid--three">
-          {copy.gallery.items.map(([image, alt, caption]) => {
+          {copy.gallery.items.map(([image, alt, caption, credit]) => {
             const picture = articleImage(image);
             const srcSet = picture.srcSet
               ?.split(', ')
@@ -283,7 +283,10 @@ const schema = {
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption>{caption}</figcaption>
+                <figcaption>
+                  {caption}
+                  {credit && <span class="guide-credit" dir="auto">{credit}</span>}
+                </figcaption>
               </figure>
             );
           })}
@@ -362,6 +365,13 @@ const schema = {
       aspect-ratio: 16 / 10;
       max-height: 40vh;
     }
+  }
+  .guide-credit {
+    display: block;
+    margin-block-start: 4px;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    line-height: 1.6;
   }
   .guide-coverage__map {
     display: grid;
