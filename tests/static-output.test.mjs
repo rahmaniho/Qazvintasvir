@@ -961,15 +961,15 @@ test('sitemap marks every URL with a git-derived lastmod date', () => {
     assert.ok(lastmod <= new Date().toISOString().slice(0, 10), `lastmod in the future for ${loc}`);
   }
 
+  const mismatches = [];
   for (const lang of ['fa', 'en']) {
     for (const slug of promoArticleSlugs) {
       const expected = commitDate(`src/data/articles/${slug}.ts`);
       if (!expected) continue;
-      assert.match(
-        sitemap,
-        new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/${slug}/</loc><lastmod>${expected}<\\/lastmod>`),
-        `lastmod for ${lang}/${slug} should come from its data file commit`,
-      );
+      const published = sitemap.match(
+        new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/${slug}/</loc><lastmod>([^<]+)</lastmod>`),
+      )?.[1];
+      if (published !== expected) mismatches.push({ page: `${lang}/${slug}`, expected, published: published ?? 'missing' });
     }
     assert.match(
       sitemap,
@@ -977,6 +977,8 @@ test('sitemap marks every URL with a git-derived lastmod date', () => {
       `missing lastmod for the ${lang} article index`,
     );
   }
+  // Compact diagnostics: a full sitemap dump in the assertion message is unreadable.
+  assert.deepEqual(mismatches, [], 'article lastmod must equal the commit date of its data file');
 });
 
 test('root sitemap.xml directly exposes the generated URL set for search engines', () => {
