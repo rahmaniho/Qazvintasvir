@@ -44,7 +44,11 @@ export interface PromoCopy {
     legend: string;
     note?: { title: string; text: string };
   };
-  gallery: { title: string; items: Array<[string, string, string]> };
+  gallery: {
+    title: string;
+    /** [image, alt, caption, credit?] — credit is shown when the photo is licensed externally. */
+    items: Array<[string, string, string] | [string, string, string, string]>;
+  };
   faqTitle: string;
   faqs: Array<[string, string]>;
   cta: {

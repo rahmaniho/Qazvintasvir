@@ -4,7 +4,7 @@ const site = 'https://qazvintasvir.ir';
 
 export const meta = {
   slug: 'industrial-park-shuttle-qazvin',
-  image: '/assets/img/articles/industrial-park-shuttle-hero.jpg',
+  image: '/assets/images/hyundai-minibus-exterior.jpg',
   fa: {
     href: '/fa/articles/industrial-park-shuttle-qazvin/',
     alt: 'مینی‌بوس سرویس ایاب و ذهاب در ورودی شهرک صنعتی قزوین هنگام سوار شدن کارکنان',
@@ -30,9 +30,9 @@ export const fa: PromoCopy = {
   lead:
     'سرویس شهرک صنعتی، سرویس شهری نیست که مسیرش طولانی‌تر شده باشد. یک دروازه‌ی ورودی، جاده‌ای که در ساعت اوج قفل می‌شود، نبود حمل‌ونقل عمومی در ساعت شیفت و کارکنانی که از چند شهر می‌آیند، قواعد خودش را دارد. این راهنما همان قواعد را برای دو شهرک پرتردد قزوین جمع کرده است.',
   hero: [
-    '/assets/img/articles/industrial-park-shuttle-hero.jpg',
-    'مینی‌بوس سرویس ایاب و ذهاب در ورودی شهرک صنعتی و صف کارکنان هنگام سوار شدن در سپیده‌دم',
-    'تصویر مفهومی؛ نوع خودرو و تعداد مسیرها بر اساس تعداد نفرات هر شیفت تعیین می‌شود.',
+    '/assets/images/hyundai-minibus-exterior.jpg',
+    'مینی‌بوس سفید سرویس پرسنل در محوطه‌ی صنعتی قزوین',
+    'از ناوگان شرکت قزوین تصویر؛ نوع خودرو و تعداد مسیرها بر اساس نفرات هر شیفت تعیین می‌شود.',
   ],
   answer: [
     'پاسخ کوتاه',
@@ -137,9 +137,9 @@ export const fa: PromoCopy = {
   gallery: {
     title: 'مسیر شهرک صنعتی در عمل',
     items: [
-      ['/assets/img/articles/industrial-park-shuttle-boarding.jpg', 'سوار شدن کارکنان به مینی‌بوس سرویس در حاشیه‌ی شهرک صنعتی', 'سوارشدن متمرکز، زمان مشخصی از برنامه‌ی حرکت را به خود اختصاص می‌دهد.'],
-      ['/assets/img/articles/industrial-park-shuttle-evening.jpg', 'بازگشت کارکنان به مینی‌بوس سرویس در پایان شیفت عصر', 'سرویس بازگشت شب، بخش تعیین‌کننده‌ی رضایت شیفت‌های عصر است.'],
-      ['/assets/img/fleet-specs/fleet-photo-06.jpg', 'مینی‌بوس سرویس پرسنلی در محوطه‌ی صنعتی', 'ظرفیت خودرو بر اساس تعداد نفرات هر شیفت انتخاب می‌شود.'],
+      ['/assets/img/fleet-specs/fleet-photo-02.jpg', 'مینی‌بوس سرویس پرسنل با درِ باز برای سوار شدن در محوطه‌ی صنعتی', 'سوارشدن متمرکز، زمان مشخصی از برنامه‌ی حرکت را به خود اختصاص می‌دهد.', 'عکس: آرشیو شرکت قزوین تصویر'],
+      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'کابین مینی‌بوس سرویس با صندلی‌های راحت', 'کابین راحت و روشن، رضایت شیفت‌های عصر و شب را تعیین می‌کند.', 'عکس: آرشیو شرکت قزوین تصویر'],
+      ['/assets/img/fleet-specs/fleet-photo-06.jpg', 'مینی‌بوس سرویس پرسنلی در محوطه‌ی صنعتی', 'ظرفیت خودرو بر اساس تعداد نفرات هر شیفت انتخاب می‌شود.', 'عکس: آرشیو شرکت قزوین تصویر'],
     ],
   },
   faqTitle: 'پرسش‌های متداول مسیر شهرک صنعتی',
@@ -168,7 +168,7 @@ export const fa: PromoCopy = {
     ['تماس با قزوین تصویر', `${site}/fa/contact/`],
   ],
   disclaimer:
-    'این مقاله بر پایه‌ی اطلاعات منتشرشده و تجربه‌ی عملیاتی شرکت قزوین تصویر نوشته شده است. مسیرها و تصاویر مفهومی‌اند و شرایط هر همکاری پس از بررسی درخواست تعیین می‌شود.',
+    'این مقاله بر پایه‌ی اطلاعات منتشرشده و تجربه‌ی عملیاتی شرکت قزوین تصویر نوشته شده است. تصاویر از ناوگان شرکت است و شرایط هر همکاری پس از بررسی درخواست تعیین می‌شود.',
   keywords: [
     'سرویس ایاب و ذهاب شهرک صنعتی',    'سرویس شهر صنعتی لیا',
     'سرویس شهرک های صنعتی',
@@ -196,9 +196,9 @@ export const en: PromoCopy = {
   lead:
     'An industrial park shuttle is not simply a city route with a longer drive. A single gate, a road that jams at peak hour, no public transport when the shift ends and employees arriving from several towns all change the rules. This guide sets out those rules for two busy Qazvin industrial parks.',
   hero: [
-    '/assets/img/articles/industrial-park-shuttle-hero.jpg',
-    'Shuttle minibus at the entry gate of a Qazvin industrial park as workers board at sunrise',
-    'Illustrative image; the vehicle mix and number of routes follow shift headcount.',
+    '/assets/images/hyundai-minibus-exterior.jpg',
+    'White staff shuttle minibus in a Qazvin industrial yard',
+    'From the Qazvin Tasvir fleet; the vehicle mix and number of routes follow shift headcount.',
   ],
   answer: [
     'Short answer',
@@ -303,9 +303,9 @@ export const en: PromoCopy = {
   gallery: {
     title: 'An industrial park route in practice',
     items: [
-      ['/assets/img/articles/industrial-park-shuttle-boarding.jpg', 'Workers boarding a shuttle minibus beside an industrial park in Qazvin', 'Concentrated boarding takes a defined slice of the departure plan.'],
-      ['/assets/img/articles/industrial-park-shuttle-evening.jpg', 'Workers returning to the shuttle minibus at the end of the evening shift', 'The evening return decides how satisfied late-shift staff are.'],
-      ['/assets/img/fleet-specs/fleet-photo-06.jpg', 'Staff shuttle minibus inside an industrial site', 'Vehicle capacity follows headcount per shift.'],
+      ['/assets/img/fleet-specs/fleet-photo-02.jpg', 'Staff shuttle minibus with its door open for boarding at an industrial site', 'Concentrated boarding takes a defined slice of the departure plan.', 'Photo: Qazvin Tasvir company archive'],
+      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'Interior of a staff shuttle minibus with comfortable seats', 'A comfortable, well-lit cabin decides how satisfied late-shift staff are.', 'Photo: Qazvin Tasvir company archive'],
+      ['/assets/img/fleet-specs/fleet-photo-06.jpg', 'Staff shuttle minibus inside an industrial site', 'Vehicle capacity follows headcount per shift.', 'Photo: Qazvin Tasvir company archive'],
     ],
   },
   faqTitle: 'Frequently asked questions about park routes',
@@ -334,7 +334,7 @@ export const en: PromoCopy = {
     ['Contact Qazvin Tasvir', `${site}/en/contact/`],
   ],
   disclaimer:
-    'This article is based on published information and Qazvin Tasvir\'s operational experience. Routes and images are illustrative; terms for any engagement are set after the request is reviewed.',
+    'This article is based on published information and Qazvin Tasvir\'s operational experience. Photos come from the company fleet; terms for any engagement are set after the request is reviewed.',
   keywords: [
     'industrial park shuttle Qazvin',
     'Alborz industrial park shuttle',

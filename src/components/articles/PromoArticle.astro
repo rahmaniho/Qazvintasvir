@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleDates from './ArticleDates.astro';
-import { preferWebp } from '../../lib/images';
+import { articleImage } from '../../lib/images';
 import { ARTICLE_UPDATED, PROMO_PARTNER_PUBLISHED } from '../../lib/schema';
 import type { PromoCopy } from '../../data/articles/types';
 import '../../styles/articles.css';
@@ -30,7 +30,15 @@ const coverageAreas = copy.coverage
 
 const [heroImage, heroAlt, heroCaption] = copy.hero;
 const heroPath = `${baseUrl}${heroImage}`;
-const heroSrc = preferWebp(heroPath)!;
+const hero = articleImage(heroImage);
+const heroSrc = `${baseUrl}${hero.src}`;
+const heroSrcSet = hero.srcSet
+  ?.split(', ')
+  .map((entry) => {
+    const [path, width] = entry.split(' ');
+    return `${baseUrl}${path} ${width}`;
+  })
+  .join(', ');
 const heroUrl = `${site}${heroPath}`;
 
 const schema = {
@@ -130,7 +138,16 @@ const schema = {
             <ArticleDates lang={lang} published={published} updated={ARTICLE_UPDATED} />
           </div>
           <figure class="guide-cover">
-            <img src={heroSrc} alt={heroAlt} width="1360" height="768" fetchpriority="high" decoding="async" />
+            <img
+              src={heroSrc}
+              srcset={heroSrcSet}
+              sizes="(max-width: 900px) 100vw, 620px"
+              alt={heroAlt}
+              width={hero.width}
+              height={hero.height}
+              fetchpriority="high"
+              decoding="async"
+            />
             <figcaption>{heroCaption}</figcaption>
           </figure>
         </div>
@@ -245,12 +262,34 @@ const schema = {
           <h2>{copy.gallery.title}</h2>
         </div>
         <div class="guide-example-grid guide-example-grid--three">
-          {copy.gallery.items.map(([image, alt, caption]) => (
-            <figure class="guide-example-card guide-gallery-card">
-              <img src={preferWebp(`${baseUrl}${image}`)} alt={alt} width="1200" height="800" loading="lazy" decoding="async" />
-              <figcaption>{caption}</figcaption>
-            </figure>
-          ))}
+          {copy.gallery.items.map(([image, alt, caption, credit]) => {
+            const picture = articleImage(image);
+            const srcSet = picture.srcSet
+              ?.split(', ')
+              .map((entry) => {
+                const [path, width] = entry.split(' ');
+                return `${baseUrl}${path} ${width}`;
+              })
+              .join(', ');
+            return (
+              <figure class="guide-example-card guide-gallery-card">
+                <img
+                  src={`${baseUrl}${picture.src}`}
+                  srcset={srcSet}
+                  sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 360px"
+                  alt={alt}
+                  width={picture.width}
+                  height={picture.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  {caption}
+                  {credit && <span class="guide-credit" dir="auto">{credit}</span>}
+                </figcaption>
+              </figure>
+            );
+          })}
         </div>
       </section>
 
@@ -300,6 +339,40 @@ const schema = {
 </BaseLayout>
 
 <style>
+  .guide-cover img,
+  .guide-gallery-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    background: var(--surface-muted, #f4f7fb);
+  }
+  .guide-cover img {
+    aspect-ratio: 3 / 2;
+    border-radius: var(--r-md);
+  }
+  .guide-gallery-card img {
+    aspect-ratio: 4 / 3;
+  }
+  @media (max-width: 900px) {
+    .guide-cover img {
+      aspect-ratio: 16 / 10;
+      max-height: 46vh;
+    }
+  }
+  @media (max-width: 640px) {
+    .guide-gallery-card img {
+      aspect-ratio: 16 / 10;
+      max-height: 40vh;
+    }
+  }
+  .guide-credit {
+    display: block;
+    margin-block-start: 4px;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
   .guide-coverage__map {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

@@ -1,0 +1,398 @@
+{
+  "/assets/img/articles/corporate-catering-hero.jpg": {
+    "width": 1376,
+    "height": 768,
+    "webp": "/assets/img/articles/corporate-catering-hero.webp",
+    "srcSet": "/assets/img/articles/corporate-catering-hero-480.webp 480w, /assets/img/articles/corporate-catering-hero-800.webp 800w, /assets/img/articles/corporate-catering-hero.webp 1376w"
+  },
+  "/assets/img/articles/corporate-catering-hospitality.jpg": {
+    "width": 1200,
+    "height": 896,
+    "webp": "/assets/img/articles/corporate-catering-hospitality.webp",
+    "srcSet": "/assets/img/articles/corporate-catering-hospitality-480.webp 480w, /assets/img/articles/corporate-catering-hospitality-800.webp 800w, /assets/img/articles/corporate-catering-hospitality.webp 1200w"
+  },
+  "/assets/img/articles/corporate-catering-meal-delivery.jpg": {
+    "width": 1200,
+    "height": 896,
+    "webp": "/assets/img/articles/corporate-catering-meal-delivery.webp",
+    "srcSet": "/assets/img/articles/corporate-catering-meal-delivery-480.webp 480w, /assets/img/articles/corporate-catering-meal-delivery-800.webp 800w, /assets/img/articles/corporate-catering-meal-delivery.webp 1200w"
+  },
+  "/assets/img/articles/industrial-shuttle-hero.jpg": {
+    "width": 1376,
+    "height": 768,
+    "webp": "/assets/img/articles/industrial-shuttle-hero.webp",
+    "srcSet": "/assets/img/articles/industrial-shuttle-hero-480.webp 480w, /assets/img/articles/industrial-shuttle-hero-800.webp 800w, /assets/img/articles/industrial-shuttle-hero.webp 1376w"
+  },
+  "/assets/img/articles/industrial-shuttle-minibus.jpg": {
+    "width": 1200,
+    "height": 896,
+    "webp": "/assets/img/articles/industrial-shuttle-minibus.webp",
+    "srcSet": "/assets/img/articles/industrial-shuttle-minibus-480.webp 480w, /assets/img/articles/industrial-shuttle-minibus-800.webp 800w, /assets/img/articles/industrial-shuttle-minibus.webp 1200w"
+  },
+  "/assets/img/articles/industrial-shuttle-planning.jpg": {
+    "width": 1200,
+    "height": 896,
+    "webp": "/assets/img/articles/industrial-shuttle-planning.webp",
+    "srcSet": "/assets/img/articles/industrial-shuttle-planning-480.webp 480w, /assets/img/articles/industrial-shuttle-planning-800.webp 800w, /assets/img/articles/industrial-shuttle-planning.webp 1200w"
+  },
+  "/assets/img/articles/permitted-goods-agri.jpg": {
+    "width": 1200,
+    "height": 896,
+    "webp": "/assets/img/articles/permitted-goods-agri.webp",
+    "srcSet": "/assets/img/articles/permitted-goods-agri-480.webp 480w, /assets/img/articles/permitted-goods-agri-800.webp 800w, /assets/img/articles/permitted-goods-agri.webp 1200w"
+  },
+  "/assets/img/articles/permitted-goods-hero.jpg": {
+    "width": 1376,
+    "height": 768,
+    "webp": "/assets/img/articles/permitted-goods-hero.webp",
+    "srcSet": "/assets/img/articles/permitted-goods-hero-480.webp 480w, /assets/img/articles/permitted-goods-hero-800.webp 800w, /assets/img/articles/permitted-goods-hero.webp 1376w"
+  },
+  "/assets/img/articles/permitted-goods-industrial.jpg": {
+    "width": 1200,
+    "height": 896,
+    "webp": "/assets/img/articles/permitted-goods-industrial.webp",
+    "srcSet": "/assets/img/articles/permitted-goods-industrial-480.webp 480w, /assets/img/articles/permitted-goods-industrial-800.webp 800w, /assets/img/articles/permitted-goods-industrial.webp 1200w"
+  },
+  "/assets/img/articles/services-guide-catering.jpg": {
+    "width": 1200,
+    "height": 896,
+    "webp": "/assets/img/articles/services-guide-catering.webp",
+    "srcSet": "/assets/img/articles/services-guide-catering-480.webp 480w, /assets/img/articles/services-guide-catering-800.webp 800w, /assets/img/articles/services-guide-catering.webp 1200w"
+  },
+  "/assets/img/articles/services-guide-hero.jpg": {
+    "width": 1376,
+    "height": 768,
+    "webp": "/assets/img/articles/services-guide-hero.webp",
+    "srcSet": "/assets/img/articles/services-guide-hero-480.webp 480w, /assets/img/articles/services-guide-hero-800.webp 800w, /assets/img/articles/services-guide-hero.webp 1376w"
+  },
+  "/assets/img/articles/services-guide-mobility.jpg": {
+    "width": 1200,
+    "height": 896,
+    "webp": "/assets/img/articles/services-guide-mobility.webp",
+    "srcSet": "/assets/img/articles/services-guide-mobility-480.webp 480w, /assets/img/articles/services-guide-mobility-800.webp 800w, /assets/img/articles/services-guide-mobility.webp 1200w"
+  },
+  "/assets/img/articles/services-guide-trade.jpg": {
+    "width": 1200,
+    "height": 896,
+    "webp": "/assets/img/articles/services-guide-trade.webp",
+    "srcSet": "/assets/img/articles/services-guide-trade-480.webp 480w, /assets/img/articles/services-guide-trade-800.webp 800w, /assets/img/articles/services-guide-trade.webp 1200w"
+  },
+  "/assets/img/fleet-specs/fleet-photo-01.jpg": {
+    "width": 814,
+    "height": 525,
+    "webp": "/assets/img/fleet-specs/fleet-photo-01.webp",
+    "srcSet": "/assets/img/fleet-specs/fleet-photo-01-480.webp 480w, /assets/img/fleet-specs/fleet-photo-01-800.webp 800w, /assets/img/fleet-specs/fleet-photo-01.webp 814w"
+  },
+  "/assets/img/fleet-specs/fleet-photo-02.jpg": {
+    "width": 1280,
+    "height": 810,
+    "webp": "/assets/img/fleet-specs/fleet-photo-02.webp",
+    "srcSet": "/assets/img/fleet-specs/fleet-photo-02-480.webp 480w, /assets/img/fleet-specs/fleet-photo-02-800.webp 800w, /assets/img/fleet-specs/fleet-photo-02.webp 1280w"
+  },
+  "/assets/img/fleet-specs/fleet-photo-03.jpg": {
+    "width": 1280,
+    "height": 960,
+    "webp": "/assets/img/fleet-specs/fleet-photo-03.webp",
+    "srcSet": "/assets/img/fleet-specs/fleet-photo-03-480.webp 480w, /assets/img/fleet-specs/fleet-photo-03-800.webp 800w, /assets/img/fleet-specs/fleet-photo-03.webp 1280w"
+  },
+  "/assets/img/fleet-specs/fleet-photo-04.jpg": {
+    "width": 960,
+    "height": 870,
+    "webp": "/assets/img/fleet-specs/fleet-photo-04.webp",
+    "srcSet": "/assets/img/fleet-specs/fleet-photo-04-480.webp 480w, /assets/img/fleet-specs/fleet-photo-04-800.webp 800w, /assets/img/fleet-specs/fleet-photo-04.webp 960w"
+  },
+  "/assets/img/fleet-specs/fleet-photo-05.jpg": {
+    "width": 1280,
+    "height": 721,
+    "webp": "/assets/img/fleet-specs/fleet-photo-05.webp",
+    "srcSet": "/assets/img/fleet-specs/fleet-photo-05-480.webp 480w, /assets/img/fleet-specs/fleet-photo-05-800.webp 800w, /assets/img/fleet-specs/fleet-photo-05.webp 1280w"
+  },
+  "/assets/img/fleet-specs/fleet-photo-06.jpg": {
+    "width": 899,
+    "height": 960,
+    "webp": "/assets/img/fleet-specs/fleet-photo-06.webp",
+    "srcSet": "/assets/img/fleet-specs/fleet-photo-06-480.webp 480w, /assets/img/fleet-specs/fleet-photo-06-800.webp 800w, /assets/img/fleet-specs/fleet-photo-06.webp 899w"
+  },
+  "/assets/img/fleet-specs/fleet-photo-07.jpg": {
+    "width": 1280,
+    "height": 720,
+    "webp": "/assets/img/fleet-specs/fleet-photo-07.webp",
+    "srcSet": "/assets/img/fleet-specs/fleet-photo-07-480.webp 480w, /assets/img/fleet-specs/fleet-photo-07-800.webp 800w, /assets/img/fleet-specs/fleet-photo-07.webp 1280w"
+  },
+  "/assets/img/fleet-specs/fleet-photo-08.jpg": {
+    "width": 817,
+    "height": 720,
+    "webp": "/assets/img/fleet-specs/fleet-photo-08.webp",
+    "srcSet": "/assets/img/fleet-specs/fleet-photo-08-480.webp 480w, /assets/img/fleet-specs/fleet-photo-08-800.webp 800w, /assets/img/fleet-specs/fleet-photo-08.webp 817w"
+  },
+  "/assets/img/fleet-specs/urban-vip-city-van.jpg": {
+    "width": 1312,
+    "height": 816,
+    "webp": "/assets/img/fleet-specs/urban-vip-city-van.webp",
+    "srcSet": "/assets/img/fleet-specs/urban-vip-city-van-480.webp 480w, /assets/img/fleet-specs/urban-vip-city-van-800.webp 800w, /assets/img/fleet-specs/urban-vip-city-van.webp 1312w"
+  },
+  "/assets/img/fleet-specs/urban-vip-interior.jpg": {
+    "width": 1312,
+    "height": 816,
+    "webp": "/assets/img/fleet-specs/urban-vip-interior.webp",
+    "srcSet": "/assets/img/fleet-specs/urban-vip-interior-480.webp 480w, /assets/img/fleet-specs/urban-vip-interior-800.webp 800w, /assets/img/fleet-specs/urban-vip-interior.webp 1312w"
+  },
+  "/assets/img/fleet-specs/vip-catering.jpg": {
+    "width": 960,
+    "height": 1280,
+    "webp": "/assets/img/fleet-specs/vip-catering.webp",
+    "srcSet": "/assets/img/fleet-specs/vip-catering-480.webp 480w, /assets/img/fleet-specs/vip-catering-800.webp 800w, /assets/img/fleet-specs/vip-catering.webp 960w"
+  },
+  "/assets/img/fleet-specs/vip-seats.jpg": {
+    "width": 960,
+    "height": 1280,
+    "webp": "/assets/img/fleet-specs/vip-seats.webp",
+    "srcSet": "/assets/img/fleet-specs/vip-seats-480.webp 480w, /assets/img/fleet-specs/vip-seats-800.webp 800w, /assets/img/fleet-specs/vip-seats.webp 960w"
+  },
+  "/assets/img/personnel-food/buffet-setup.jpg": {
+    "width": 1408,
+    "height": 768,
+    "webp": "/assets/img/personnel-food/buffet-setup.webp",
+    "srcSet": "/assets/img/personnel-food/buffet-setup-480.webp 480w, /assets/img/personnel-food/buffet-setup-800.webp 800w, /assets/img/personnel-food/buffet-setup.webp 1408w"
+  },
+  "/assets/img/personnel-food/catering-menu.jpg": {
+    "width": 1408,
+    "height": 768,
+    "webp": "/assets/img/personnel-food/catering-menu.webp",
+    "srcSet": "/assets/img/personnel-food/catering-menu-480.webp 480w, /assets/img/personnel-food/catering-menu-800.webp 800w, /assets/img/personnel-food/catering-menu.webp 1408w"
+  },
+  "/assets/img/personnel-food/dishes/chelojoojeh-zaferani.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/chelojoojeh-zaferani.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/chelojoojeh-zaferani.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/chelokebab-koobideh.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/chelokebab-koobideh.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/chelokebab-koobideh.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/dessert-fresh.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/dessert-fresh.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/dessert-fresh.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/dry-pack.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/dry-pack.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/dry-pack.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/fish-ghazel-ala.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/fish-ghazel-ala.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/fish-ghazel-ala.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/fruit-pack.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/fruit-pack.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/fruit-pack.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/gheymeh-bademjan.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/gheymeh-bademjan.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/gheymeh-bademjan.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/ghormeh-sabzi.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/ghormeh-sabzi.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/ghormeh-sabzi.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/halim.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/halim.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/halim.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/kuku-sabzi.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/kuku-sabzi.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/kuku-sabzi.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/light-breakfast.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/light-breakfast.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/light-breakfast.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/omelette-tomato.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/omelette-tomato.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/omelette-tomato.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/sandwich-chicken-grill.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/sandwich-chicken-grill.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/sandwich-chicken-grill.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/sangak-cheese.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/sangak-cheese.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/sangak-cheese.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/soup-joo.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/soup-joo.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/soup-joo.webp 512w"
+  },
+  "/assets/img/personnel-food/dishes/zereshk-polo-morgh.jpg": {
+    "width": 512,
+    "height": 512,
+    "webp": "/assets/img/personnel-food/dishes/zereshk-polo-morgh.webp",
+    "srcSet": "/assets/img/personnel-food/dishes/zereshk-polo-morgh.webp 512w"
+  },
+  "/assets/img/personnel-food/food-delivery.jpg": {
+    "width": 1408,
+    "height": 768,
+    "webp": "/assets/img/personnel-food/food-delivery.webp",
+    "srcSet": "/assets/img/personnel-food/food-delivery-480.webp 480w, /assets/img/personnel-food/food-delivery-800.webp 800w, /assets/img/personnel-food/food-delivery.webp 1408w"
+  },
+  "/assets/img/personnel-food/hero-kitchen.jpg": {
+    "width": 1376,
+    "height": 768,
+    "webp": "/assets/img/personnel-food/hero-kitchen.webp",
+    "srcSet": "/assets/img/personnel-food/hero-kitchen-480.webp 480w, /assets/img/personnel-food/hero-kitchen-800.webp 800w, /assets/img/personnel-food/hero-kitchen.webp 1376w"
+  },
+  "/assets/img/personnel-food/hygienic-kitchen.jpg": {
+    "width": 1376,
+    "height": 768,
+    "webp": "/assets/img/personnel-food/hygienic-kitchen.webp",
+    "srcSet": "/assets/img/personnel-food/hygienic-kitchen-480.webp 480w, /assets/img/personnel-food/hygienic-kitchen-800.webp 800w, /assets/img/personnel-food/hygienic-kitchen.webp 1376w"
+  },
+  "/assets/img/personnel-food/menu-breakfast.jpg": {
+    "width": 1408,
+    "height": 768,
+    "webp": "/assets/img/personnel-food/menu-breakfast.webp",
+    "srcSet": "/assets/img/personnel-food/menu-breakfast-480.webp 480w, /assets/img/personnel-food/menu-breakfast-800.webp 800w, /assets/img/personnel-food/menu-breakfast.webp 1408w"
+  },
+  "/assets/img/personnel-food/menu-dinner.jpg": {
+    "width": 1408,
+    "height": 768,
+    "webp": "/assets/img/personnel-food/menu-dinner.webp",
+    "srcSet": "/assets/img/personnel-food/menu-dinner-480.webp 480w, /assets/img/personnel-food/menu-dinner-800.webp 800w, /assets/img/personnel-food/menu-dinner.webp 1408w"
+  },
+  "/assets/img/personnel-food/menu-lunch.jpg": {
+    "width": 1408,
+    "height": 768,
+    "webp": "/assets/img/personnel-food/menu-lunch.webp",
+    "srcSet": "/assets/img/personnel-food/menu-lunch-480.webp 480w, /assets/img/personnel-food/menu-lunch-800.webp 800w, /assets/img/personnel-food/menu-lunch.webp 1408w"
+  },
+  "/assets/img/personnel-food/menu-snack.jpg": {
+    "width": 1408,
+    "height": 768,
+    "webp": "/assets/img/personnel-food/menu-snack.webp",
+    "srcSet": "/assets/img/personnel-food/menu-snack-480.webp 480w, /assets/img/personnel-food/menu-snack-800.webp 800w, /assets/img/personnel-food/menu-snack.webp 1408w"
+  },
+  "/assets/img/personnel-food/personnel-meal.jpg": {
+    "width": 1408,
+    "height": 768,
+    "webp": "/assets/img/personnel-food/personnel-meal.webp",
+    "srcSet": "/assets/img/personnel-food/personnel-meal-480.webp 480w, /assets/img/personnel-food/personnel-meal-800.webp 800w, /assets/img/personnel-food/personnel-meal.webp 1408w"
+  },
+  "/assets/img/sections/about-office.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "webp": "/assets/img/sections/about-office.webp",
+    "srcSet": "/assets/img/sections/about-office-480.webp 480w, /assets/img/sections/about-office-800.webp 800w, /assets/img/sections/about-office.webp 1536w"
+  },
+  "/assets/img/sections/contact-city.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "webp": "/assets/img/sections/contact-city.webp",
+    "srcSet": "/assets/img/sections/contact-city-480.webp 480w, /assets/img/sections/contact-city-800.webp 800w, /assets/img/sections/contact-city.webp 1536w"
+  },
+  "/assets/img/sections/hero-graphic.jpg": {
+    "width": 1376,
+    "height": 768,
+    "webp": "/assets/img/sections/hero-graphic.webp",
+    "srcSet": "/assets/img/sections/hero-graphic-480.webp 480w, /assets/img/sections/hero-graphic-800.webp 800w, /assets/img/sections/hero-graphic.webp 1376w"
+  },
+  "/assets/img/sections/hero-port.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "webp": "/assets/img/sections/hero-port.webp",
+    "srcSet": "/assets/img/sections/hero-port-480.webp 480w, /assets/img/sections/hero-port-800.webp 800w, /assets/img/sections/hero-port.webp 1536w"
+  },
+  "/assets/img/sections/trade-customs.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "webp": "/assets/img/sections/trade-customs.webp",
+    "srcSet": "/assets/img/sections/trade-customs-480.webp 480w, /assets/img/sections/trade-customs-800.webp 800w, /assets/img/sections/trade-customs.webp 1536w"
+  },
+  "/assets/img/sections/why-banner.jpg": {
+    "width": 1600,
+    "height": 718,
+    "webp": "/assets/img/sections/why-banner.webp",
+    "srcSet": "/assets/img/sections/why-banner-480.webp 480w, /assets/img/sections/why-banner-800.webp 800w, /assets/img/sections/why-banner.webp 1600w"
+  },
+  "/assets/images/bus-fleet.jpg": {
+    "width": 1000,
+    "height": 747,
+    "webp": "/assets/images/bus-fleet.webp",
+    "srcSet": "/assets/images/bus-fleet-480.webp 480w, /assets/images/bus-fleet-800.webp 800w, /assets/images/bus-fleet.webp 1000w"
+  },
+  "/assets/images/hyundai-minibus-exterior.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "webp": "/assets/images/hyundai-minibus-exterior.webp",
+    "srcSet": "/assets/images/hyundai-minibus-exterior-480.webp 480w, /assets/images/hyundai-minibus-exterior-800.webp 800w, /assets/images/hyundai-minibus-exterior.webp 1536w"
+  },
+  "/assets/images/hyundai-minibus-interior.jpg": {
+    "width": 1536,
+    "height": 1024,
+    "webp": "/assets/images/hyundai-minibus-interior.webp",
+    "srcSet": "/assets/images/hyundai-minibus-interior-480.webp 480w, /assets/images/hyundai-minibus-interior-800.webp 800w, /assets/images/hyundai-minibus-interior.webp 1536w"
+  },
+  "/assets/images/logo_qazvin_tasvir.jpg": {
+    "width": 1512,
+    "height": 1512,
+    "webp": "/assets/images/logo_qazvin_tasvir.webp",
+    "srcSet": "/assets/images/logo_qazvin_tasvir-480.webp 480w, /assets/images/logo_qazvin_tasvir-800.webp 800w, /assets/images/logo_qazvin_tasvir.webp 1512w"
+  },
+  "/assets/images/minibus-fleet.jpg": {
+    "width": 1000,
+    "height": 747,
+    "webp": "/assets/images/minibus-fleet.webp",
+    "srcSet": "/assets/images/minibus-fleet-480.webp 480w, /assets/images/minibus-fleet-800.webp 800w, /assets/images/minibus-fleet.webp 1000w"
+  },
+  "/assets/images/og-image.jpg": {
+    "width": 1200,
+    "height": 630,
+    "webp": "/assets/images/og-image.webp",
+    "srcSet": "/assets/images/og-image-480.webp 480w, /assets/images/og-image-800.webp 800w, /assets/images/og-image.webp 1200w"
+  },
+  "/assets/images/qazvin_tasvir.png": {
+    "width": 1254,
+    "height": 1254,
+    "webp": "/assets/images/qazvin_tasvir.webp",
+    "srcSet": "/assets/images/qazvin_tasvir-480.webp 480w, /assets/images/qazvin_tasvir-800.webp 800w, /assets/images/qazvin_tasvir.webp 1254w"
+  },
+  "/assets/images/saeed-aminzadeh-avatar.jpg": {
+    "width": 240,
+    "height": 288,
+    "webp": "/assets/images/saeed-aminzadeh-avatar.webp",
+    "srcSet": "/assets/images/saeed-aminzadeh-avatar.webp 240w"
+  },
+  "/assets/images/van-fleet.jpg": {
+    "width": 1000,
+    "height": 747,
+    "webp": "/assets/images/van-fleet.webp",
+    "srcSet": "/assets/images/van-fleet-480.webp 480w, /assets/images/van-fleet-800.webp 800w, /assets/images/van-fleet.webp 1000w"
+  }
+}

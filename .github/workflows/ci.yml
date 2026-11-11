@@ -34,6 +34,17 @@ jobs:
       - name: Build static site
         run: npm run build
       - name: Run static output smoke tests
-        run: npm test
+        run: |
+          set +e
+          npm test 2>&1 | tee test-output.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            # Surface failing assertions in the checks UI: the raw job log is not
+            # always readable from automation, annotations are.
+            grep -nE "^(not ok|# fail)|AssertionError|expected:|actual:|operator:" test-output.log \
+              | head -8 | sed 's/%/%25/g; s/\r//g' \
+              | while IFS= read -r line; do echo "::error::$line"; done
+          fi
+          exit "$status"
       - name: Run SEO audit
         run: npm run seo:audit
