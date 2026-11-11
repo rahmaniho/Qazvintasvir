@@ -953,6 +953,18 @@ test('sitemap marks every URL with a git-derived lastmod date', () => {
       return '';
     }
   };
+  // Keep in sync with sourcesFor() in scripts/sitemap-lastmod.mjs: a page's lastmod is the
+  // newest commit among every file that renders it, not just its data file.
+  const articleSources = (lang, slug) =>
+    [
+      `src/pages/${lang}/articles/${slug}.astro`,
+      `src/data/articles/${slug}.ts`,
+      'src/components/articles/PromoArticle.astro',
+      `src/components/articles/${slug}Article.astro`,
+      ...['BaseLayout', 'Header', 'Footer'].map((name) => `src/layouts/${name}.astro`),
+    ].filter((file) => existsSync(resolve(root, file)));
+  const newestCommit = (paths) =>
+    paths.map(commitDate).filter(Boolean).sort().pop() ?? '';
 
   for (const block of blocks) {
     const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] ?? '';
@@ -964,7 +976,7 @@ test('sitemap marks every URL with a git-derived lastmod date', () => {
   const mismatches = [];
   for (const lang of ['fa', 'en']) {
     for (const slug of promoArticleSlugs) {
-      const expected = commitDate(`src/data/articles/${slug}.ts`);
+      const expected = newestCommit(articleSources(lang, slug));
       if (!expected) continue;
       const published = sitemap.match(
         new RegExp(`<loc>https://qazvintasvir\\.ir/${lang}/articles/${slug}/</loc><lastmod>([^<]+)</lastmod>`),
@@ -978,7 +990,7 @@ test('sitemap marks every URL with a git-derived lastmod date', () => {
     );
   }
   // Compact diagnostics: a full sitemap dump in the assertion message is unreadable.
-  assert.deepEqual(mismatches, [], 'article lastmod must equal the commit date of its data file');
+  assert.deepEqual(mismatches, [], 'article lastmod must equal the newest commit among the files that render it');
 });
 
 test('root sitemap.xml directly exposes the generated URL set for search engines', () => {
