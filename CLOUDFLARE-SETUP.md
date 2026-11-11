@@ -9,27 +9,33 @@
 > مسیر مطمئن، میزبان/ CDN ایرانی است (آروان‌کلاد). سایت استاتیک است و جابه‌جایی‌اش سئو را
 > به‌هم نمی‌زند.
 
-## ۱. افزودن دامنه
+## ۰. وضعیت فعلی دامنه (بررسی‌شده)
 
-1. در کلادفلر: **Add a site** → `qazvintasvir.ir` → پلن **Free**.
-2. کلادفلر دو نیم‌سرور می‌دهد، مثل `ada.ns.cloudflare.com` و `bob.ns.cloudflare.com`.
-3. در پنل ثبت دامنه (nic.ir) → دامنه → **Nameservers** → همان دو مقدار را جایگزین نیم‌سرورهای قبلی کنید.
-4. انتشار نیم‌سرورها در `.ir` معمولاً ۱۵ دقیقه تا چند ساعت طول می‌کشد. وضعیت در کلادفلر باید **Active** شود.
+```
+NS   qazvintasvir.ir → ines.ns.cloudflare.com , dexter.ns.cloudflare.com   ← از قبل روی کلادفلر
+A    qazvintasvir.ir → 185.199.108-111.153                                   ← ابر خاکستری، همین مشکل است
+MX   → route1/2/3.mx.cloudflare.net                                          ← ایمیل روی Cloudflare Email Routing
+TXT  → google-site-verification=MBflR… , v=spf1 include:_spf.mx.cloudflare.net ~all
+www  → بدون رکورد
+```
 
-## ۲. رکوردهای DNS (دقیقاً همین‌ها)
+پس **نیم‌سرورها را دست نزنید** (کار انجام شده) و رکوردهای MX/TXT را هم پاک نکنید؛ فقط پراکسی
+رکوردهای A را روشن کنید. پروکسی کردن A هیچ اثری روی ایمیل ندارد.
 
-| Type | Name | Content | Proxy |
-| --- | --- | --- | --- |
-| A | `@` | `185.199.108.153` | **Proxied** (ابر نارنجی) |
-| A | `@` | `185.199.109.153` | **Proxied** |
-| A | `@` | `185.199.110.153` | **Proxied** |
-| A | `@` | `185.199.111.153` | **Proxied** |
-| CNAME | `www` | `qazvintasvir.ir` | **Proxied** |
+## ۱. رکوردهای DNS
 
-هر رکوردی که از پنل قبلی مانده (پارکینگ، TXTهای قدیمی غیرلازم) را حذف کنید، جز رکورد
-تأیید Google Search Console اگر دارید (`TXT @` با مقدار `google-site-verification=…`) — آن را نگه دارید.
+در داشبورد: دامنه → **DNS → Records**.
 
-## ۳. SSL/TLS — مهم‌ترین بخش
+۱. چهار رکورد `A` با نام `@` و مقادیر `185.199.108.153`، `.109.153`، `.110.153`، `.111.153` را باز کنید
+   و برای هر چهار تا **Proxy status → Proxied (ابر نارنجی)** بگذارید و Save کنید.
+   اگر رکوردی نبود، با همین مقادیر و ابر نارنجی بسازید.
+۲. رکورد `www` وجود ندارد؛ اضافه کنید: **Type: CNAME**، **Name: www**، **Target: qazvintasvir.ir**، **Proxied**.
+۳. رکوردهای `MX`، `TXT` (تأیید Search Console و SPF) و هر رکورد ایمیل دیگر را **دست نزنید**.
+
+بررسی: تا یک دقیقه بعد، `getent hosts qazvintasvir.ir` باید IPهای کلادفلر (`104.x` یا `172.6x`) را
+نشان دهد، نه `185.199.*`.
+
+## ۲. SSL/TLS — مهم‌ترین بخش
 
 | تنظیم | مقدار درست | چرا |
 | --- | --- | --- |
@@ -40,7 +46,7 @@
 | Opportunistic Encryption | On | بی‌ضرر. |
 | HSTS | **فعلاً Off** | اگر DNS یا گواهی جایی بلنگد، HSTS دسترسی را برای همه قطع می‌کند و برگشتش سخت است. بعد از دو هفته پایداری، با `max-age=15552000` روشن کنید. |
 
-## ۴. کش — تا گیت‌هاب کم‌تر درگیر شود
+## ۳. کش — تا گیت‌هاب کم‌تر درگیر شود
 
 **Caching → Cache Rules** دو قانون بسازید:
 
@@ -61,12 +67,12 @@
 
 **Bot Fight Mode: Off** — می‌تواند Googlebot و ابزارهای Search Console را هم بلاک کند و رتبه را به خطر بیندازد.
 
-## ۵. دو چیز که نباید روشن شود
+## ۴. دو چیز که نباید روشن شود
 
 - **Cloudflare Pages / `*.pages.dev`** — در ایران فیلتر است؛ میزبانی را به آن منتقل نکنید.
 - **Under Attack Mode** — برای سایت تجاری که ربات گوگل باید بخواندش سم است.
 
-## ۶. پاک کردن کش بعد از هر انتشار (خودکار)
+## ۵. پاک کردن کش بعد از هر انتشار (خودکار)
 
 در مخزن این‌ها اضافه شده است:
 
@@ -87,7 +93,7 @@
 CLOUDFLARE_API_TOKEN=… CLOUDFLARE_ZONE_ID=… node scripts/purge-cloudflare-cache.mjs --dry-run
 ```
 
-## ۷. تست بعد از راه‌اندازی
+## ۶. تست بعد از راه‌اندازی
 
 ```bash
 # باید IPهای کلادفلر (104.x / 172.6x) را ببینید، نه 185.199.*
@@ -96,6 +102,9 @@ getent hosts qazvintasvir.ir
 # هدرها باید cf-cache-status و server: cloudflare داشته باشند
 curl -sI https://qazvintasvir.ir/fa/ | grep -iE "server|cf-cache-status|strict-transport"
 
+# ساده‌ترین تست از مرورگر خودتان: باید colo و ip کلادفلر را ببینید
+# https://qazvintasvir.ir/cdn-cgi/trace
+
 # بررسی از گره‌های ایران (بدون VPN)
 # https://check-host.net/check-http?host=https://qazvintasvir.ir/fa/
 ```
@@ -103,7 +112,7 @@ curl -sI https://qazvintasvir.ir/fa/ | grep -iE "server|cf-cache-status|strict-t
 روی برگه‌ی check-host، گره‌های تهران/مشهد/تبریز را انتخاب کنید؛ اگر همه سبز شدند کار تمام است.
 اگر فقط بعضی ISPها قرمز بودند، همان‌جا تصمیم بگیرید که به میزبان ایرانی مهاجرت کنیم.
 
-## ۸. سئو — چه چیزی تغییر می‌کند و چه چیزی نه
+## ۷. سئو — چه چیزی تغییر می‌کند و چه چیزی نه
 
 - آدرس‌ها، canonical، hreflang، sitemap و `lastmod` **هیچ تغییری نمی‌کنند**؛ پس رتبه جابه‌جا نمی‌شود.
 - در Search Console → **Settings → Crawl stats** بعد از جابه‌جایی ممکن است چند روز خطای DNS/۵xx ببینید؛ طبیعی است.
