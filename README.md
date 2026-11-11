@@ -106,6 +106,7 @@ The homepages keep the hero and a concise page directory; full sections are on t
 - `src/components/` — Astro layouts and reusable UI
 - `src/data/articles/` — bilingual copy for the promotional article template
 - `scripts/seo-audit.mjs` — static SEO gate (`npm run seo:audit`): snippet lengths, single H1, canonical/hreflang targets, JSON-LD validity, alt text, broken internal links, sitemap parity and orphan pages
+- `scripts/build-image-variants.mjs` — responsive image pipeline (`npm run images:variants`, runs before build/check): writes 480/800px WebP variants and `src/data/image-manifest.json` so article heroes and galleries can emit `srcset`, `sizes` and intrinsic dimensions
 - `scripts/sitemap-lastmod.mjs` — writes a `<lastmod>` for every sitemap URL from the newest git commit touching that page's source files (runs as part of `npm run build`); `npm run sitemap:lastmod -- --check` verifies it
 - `scripts/verify-live-sitemap.mjs` — compares the deployed sitemap with a fresh build (`npm run sitemap:verify`), used by the post-deploy workflow
 - `src/lib/images.ts` — resolves the published WebP sibling of a photo at build time

@@ -886,6 +886,34 @@ test('promotional shuttle articles target the Qazvin keyword and link the servic
     'every areaServed entry needs a Place type and a name',
   );
 
+  const responsive = read(route('fa', 'articles/industrial-park-shuttle-qazvin'));
+  const heroTag = responsive.match(/<img[^>]*fetchpriority="high"[^>]*>/)?.[0] ?? '';
+  assert.match(heroTag, /srcset="[^"]+w[^"]*"/, 'article hero needs a responsive srcset');
+  assert.match(heroTag, /sizes="[^"]+"/, 'article hero needs a sizes attribute');
+  assert.match(heroTag, /width="\d+"/, 'article hero needs an intrinsic width');
+  assert.match(heroTag, /height="\d+"/, 'article hero needs an intrinsic height');
+  const galleryFigures = [...responsive.matchAll(/<figure class="guide-example-card guide-gallery-card"[\s\S]*?<\/figure>/g)].map((match) => match[0]);
+  assert.equal(galleryFigures.length, 3, 'article gallery should render three figures');
+  for (const figure of galleryFigures) {
+    const tag = figure.match(/<img[^>]*>/)?.[0] ?? '';
+    assert.match(tag, /loading="lazy"/, 'gallery images should load lazily');
+    assert.match(tag, /srcset="[^"]+"/, 'gallery images should use a responsive srcset');
+    assert.match(tag, /width="\d+" height="\d+"/, 'gallery images should declare intrinsic size');
+  }
+
+  const manifest = JSON.parse(readFileSync(resolve(root, 'src/data/image-manifest.json'), 'utf8'));
+  for (const module of ['industrial-park-shuttle-qazvin', 'qazvin-shuttle-service-coverage']) {
+    const source = readFileSync(resolve(root, `src/data/articles/${module}.ts`), 'utf8');
+    for (const match of source.matchAll(/'(\/assets\/[^']+\.(?:jpg|jpeg|png))'/g)) {
+      const clean = match[1];
+      assert.ok(manifest[clean], `${clean} should have a generated responsive entry`);
+      assert.ok(manifest[clean].srcSet.includes('480w'), `${clean} should expose a 480w variant`);
+    }
+  }
+  for (const stale of ['industrial-park-shuttle-hero', 'industrial-park-shuttle-boarding', 'industrial-park-shuttle-evening']) {
+    assert.ok(!JSON.stringify(manifest).includes(stale), `${stale} should no longer be published`);
+  }
+
   const faArticle = read(route('fa', 'articles/factory-shuttle-outsourcing-qazvin'));
   assert.match(faArticle, /<title>[^<]*سرویس ایاب و ذهاب کارخانه در قزوین[^<]*<\/title>/);
   const index = read(route('fa', 'articles'));

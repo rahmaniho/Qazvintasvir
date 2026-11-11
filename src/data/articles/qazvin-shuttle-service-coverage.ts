@@ -195,8 +195,8 @@ export const fa: PromoCopy = {
     title: 'سرویس قزوین در عمل',
     items: [
       ['/assets/images/minibus-fleet.jpg', 'مینی‌بوس سرویس قزوین در مسیر شهرک صنعتی', 'مینی‌بوس، پرکاربردترین خودروی سرویس سازمانی در قزوین است.'],
-      ['/assets/img/articles/industrial-park-shuttle-evening.jpg', 'بازگشت کارکنان در پایان شیفت عصر در محوطه‌ی صنعتی', 'بازگشت شیفت عصر، بخش تعیین‌کننده‌ی رضایت کارکنان است.'],
-      ['/assets/img/sections/contact-city.jpg', 'خیابان‌های مرکزی قزوین در ساعت اوج ترافیک', 'مسیرهای شهری ادارات با ترافیک واقعی مرکز شهر تنظیم می‌شود.'],
+      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'کابین مینی‌بوس سرویس پرسنلی با صندلی‌های راحت', 'کابین راحت، بخشی از کیفیت سرویس در مسیرهای طولانی است.'],
+      ['/assets/img/fleet-specs/fleet-photo-04.jpg', 'مینی‌بوس سرویس پرسنل در محوطه‌ی صنعتی', 'برای مسیرهای بین‌شهری، خودروی مناسب و برنامه‌ی ثابت تعیین‌کننده است.'],
     ],
   },
   faqTitle: 'پرسش‌های متداول سرویس قزوین',
@@ -426,8 +426,8 @@ export const en: PromoCopy = {
     title: 'The Qazvin shuttle in practice',
     items: [
       ['/assets/images/minibus-fleet.jpg', 'Qazvin shuttle minibus on an industrial park route', 'The minibus is the most common corporate shuttle vehicle in Qazvin.'],
-      ['/assets/img/articles/industrial-park-shuttle-evening.jpg', 'Staff returning at the end of the evening shift inside an industrial site', 'The evening return decides how satisfied late-shift staff are.'],
-      ['/assets/img/sections/contact-city.jpg', 'Central Qazvin streets during the morning peak', 'Office routes are planned against real city-centre traffic.'],
+      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'Interior of a staff shuttle minibus with comfortable seats', 'A comfortable cabin is part of the quality promise on long routes.'],
+      ['/assets/img/fleet-specs/fleet-photo-04.jpg', 'Staff shuttle minibus inside an industrial site', 'On intercity routes, the right vehicle and a fixed timetable decide the outcome.'],
     ],
   },
   faqTitle: 'Frequently asked questions about the Qazvin shuttle',

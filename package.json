@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "node scripts/build-image-variants.mjs",
+    "precheck": "node scripts/build-image-variants.mjs",
     "build": "astro build && node scripts/prepare-sitemap.mjs && node scripts/sitemap-lastmod.mjs",
     "preview": "astro preview",
     "check": "astro check",
@@ -15,6 +17,7 @@
     "sitemap:verify": "node scripts/verify-live-sitemap.mjs --dist dist --fail-on-drift",
     "legacy:redirects": "node scripts/generate-legacy-redirects.mjs",
     "images:optimize": "node scripts/optimize-images.mjs",
+    "images:variants": "node scripts/build-image-variants.mjs",
     "astro": "astro"
   },
   "dependencies": {
