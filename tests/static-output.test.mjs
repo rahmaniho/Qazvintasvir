@@ -899,6 +899,7 @@ test('promotional shuttle articles target the Qazvin keyword and link the servic
     assert.match(tag, /loading="lazy"/, 'gallery images should load lazily');
     assert.match(tag, /srcset="[^"]+"/, 'gallery images should use a responsive srcset');
     assert.match(tag, /width="\d+" height="\d+"/, 'gallery images should declare intrinsic size');
+    assert.match(figure, /class="guide-credit"/, 'gallery photos should carry a visible credit line');
   }
 
   const manifest = JSON.parse(readFileSync(resolve(root, 'src/data/image-manifest.json'), 'utf8'));

@@ -137,9 +137,9 @@ export const fa: PromoCopy = {
   gallery: {
     title: 'مسیر شهرک صنعتی در عمل',
     items: [
-      ['/assets/img/fleet-specs/fleet-photo-02.jpg', 'مینی‌بوس سرویس پرسنل با درِ باز برای سوار شدن در محوطه‌ی صنعتی', 'سوارشدن متمرکز، زمان مشخصی از برنامه‌ی حرکت را به خود اختصاص می‌دهد.'],
-      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'کابین مینی‌بوس سرویس با صندلی‌های راحت', 'کابین راحت و روشن، رضایت شیفت‌های عصر و شب را تعیین می‌کند.'],
-      ['/assets/img/fleet-specs/fleet-photo-06.jpg', 'مینی‌بوس سرویس پرسنلی در محوطه‌ی صنعتی', 'ظرفیت خودرو بر اساس تعداد نفرات هر شیفت انتخاب می‌شود.'],
+      ['/assets/img/fleet-specs/fleet-photo-02.jpg', 'مینی‌بوس سرویس پرسنل با درِ باز برای سوار شدن در محوطه‌ی صنعتی', 'سوارشدن متمرکز، زمان مشخصی از برنامه‌ی حرکت را به خود اختصاص می‌دهد.', 'عکس: آرشیو شرکت قزوین تصویر'],
+      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'کابین مینی‌بوس سرویس با صندلی‌های راحت', 'کابین راحت و روشن، رضایت شیفت‌های عصر و شب را تعیین می‌کند.', 'عکس: آرشیو شرکت قزوین تصویر'],
+      ['/assets/img/fleet-specs/fleet-photo-06.jpg', 'مینی‌بوس سرویس پرسنلی در محوطه‌ی صنعتی', 'ظرفیت خودرو بر اساس تعداد نفرات هر شیفت انتخاب می‌شود.', 'عکس: آرشیو شرکت قزوین تصویر'],
     ],
   },
   faqTitle: 'پرسش‌های متداول مسیر شهرک صنعتی',
@@ -303,9 +303,9 @@ export const en: PromoCopy = {
   gallery: {
     title: 'An industrial park route in practice',
     items: [
-      ['/assets/img/fleet-specs/fleet-photo-02.jpg', 'Staff shuttle minibus with its door open for boarding at an industrial site', 'Concentrated boarding takes a defined slice of the departure plan.'],
-      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'Interior of a staff shuttle minibus with comfortable seats', 'A comfortable, well-lit cabin decides how satisfied late-shift staff are.'],
-      ['/assets/img/fleet-specs/fleet-photo-06.jpg', 'Staff shuttle minibus inside an industrial site', 'Vehicle capacity follows headcount per shift.'],
+      ['/assets/img/fleet-specs/fleet-photo-02.jpg', 'Staff shuttle minibus with its door open for boarding at an industrial site', 'Concentrated boarding takes a defined slice of the departure plan.', 'Photo: Qazvin Tasvir company archive'],
+      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'Interior of a staff shuttle minibus with comfortable seats', 'A comfortable, well-lit cabin decides how satisfied late-shift staff are.', 'Photo: Qazvin Tasvir company archive'],
+      ['/assets/img/fleet-specs/fleet-photo-06.jpg', 'Staff shuttle minibus inside an industrial site', 'Vehicle capacity follows headcount per shift.', 'Photo: Qazvin Tasvir company archive'],
     ],
   },
   faqTitle: 'Frequently asked questions about park routes',

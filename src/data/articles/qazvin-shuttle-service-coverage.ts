@@ -194,9 +194,9 @@ export const fa: PromoCopy = {
   gallery: {
     title: 'سرویس قزوین در عمل',
     items: [
-      ['/assets/images/minibus-fleet.jpg', 'مینی‌بوس سرویس قزوین در مسیر شهرک صنعتی', 'مینی‌بوس، پرکاربردترین خودروی سرویس سازمانی در قزوین است.'],
-      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'کابین مینی‌بوس سرویس پرسنلی با صندلی‌های راحت', 'کابین راحت، بخشی از کیفیت سرویس در مسیرهای طولانی است.'],
-      ['/assets/img/fleet-specs/fleet-photo-04.jpg', 'مینی‌بوس سرویس پرسنل در محوطه‌ی صنعتی', 'برای مسیرهای بین‌شهری، خودروی مناسب و برنامه‌ی ثابت تعیین‌کننده است.'],
+      ['/assets/images/minibus-fleet.jpg', 'مینی‌بوس سرویس قزوین در مسیر شهرک صنعتی', 'مینی‌بوس، پرکاربردترین خودروی سرویس سازمانی در قزوین است.', 'عکس: آرشیو شرکت قزوین تصویر'],
+      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'کابین مینی‌بوس سرویس پرسنلی با صندلی‌های راحت', 'کابین راحت، بخشی از کیفیت سرویس در مسیرهای طولانی است.', 'عکس: آرشیو شرکت قزوین تصویر'],
+      ['/assets/img/fleet-specs/fleet-photo-04.jpg', 'مینی‌بوس سرویس پرسنل در محوطه‌ی صنعتی', 'برای مسیرهای بین‌شهری، خودروی مناسب و برنامه‌ی ثابت تعیین‌کننده است.', 'عکس: آرشیو شرکت قزوین تصویر'],
     ],
   },
   faqTitle: 'پرسش‌های متداول سرویس قزوین',
@@ -425,9 +425,9 @@ export const en: PromoCopy = {
   gallery: {
     title: 'The Qazvin shuttle in practice',
     items: [
-      ['/assets/images/minibus-fleet.jpg', 'Qazvin shuttle minibus on an industrial park route', 'The minibus is the most common corporate shuttle vehicle in Qazvin.'],
-      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'Interior of a staff shuttle minibus with comfortable seats', 'A comfortable cabin is part of the quality promise on long routes.'],
-      ['/assets/img/fleet-specs/fleet-photo-04.jpg', 'Staff shuttle minibus inside an industrial site', 'On intercity routes, the right vehicle and a fixed timetable decide the outcome.'],
+      ['/assets/images/minibus-fleet.jpg', 'Qazvin shuttle minibus on an industrial park route', 'The minibus is the most common corporate shuttle vehicle in Qazvin.', 'Photo: Qazvin Tasvir company archive'],
+      ['/assets/img/fleet-specs/fleet-photo-03.jpg', 'Interior of a staff shuttle minibus with comfortable seats', 'A comfortable cabin is part of the quality promise on long routes.', 'Photo: Qazvin Tasvir company archive'],
+      ['/assets/img/fleet-specs/fleet-photo-04.jpg', 'Staff shuttle minibus inside an industrial site', 'On intercity routes, the right vehicle and a fixed timetable decide the outcome.', 'Photo: Qazvin Tasvir company archive'],
     ],
   },
   faqTitle: 'Frequently asked questions about the Qazvin shuttle',
