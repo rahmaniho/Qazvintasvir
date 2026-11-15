@@ -164,6 +164,15 @@ for (const page of pages) {
 
 const indexable = pages.filter((page) => page.isIndexable);
 
+// Search Console reports every noindex URL as "Excluded by 'noindex' tag". Only the
+// redirect stubs, the 404 shell and verification files may carry it; a real page that
+// picks it up by accident would silently drop out of the index, so fail the build.
+for (const page of pages) {
+  if (!/noindex/i.test(page.robots)) continue;
+  if (page.isRedirect || NON_PAGE.test(page.route)) continue;
+  fail(page.route, 'noindex on a content page (only redirect stubs, 404 and verification files may use it)');
+}
+
 // duplicate titles / descriptions / canonicals
 const group = (key) => {
   const map = new Map();

@@ -923,6 +923,20 @@ test('promotional shuttle articles target the Qazvin keyword and link the servic
   }
 });
 
+test('noindex is limited to redirect stubs so Search Console stays clean', () => {
+  const offenders = [];
+  for (const file of walkFiles(dist)) {
+    if (!file.endsWith('.html')) continue;
+    const html = readFileSync(file, 'utf8');
+    if (!/<meta name="robots" content="[^"]*noindex/i.test(html)) continue;
+    const rel = file.slice(dist.length + 1).split(/[\\/]/).join('/');
+    const isRedirect = /http-equiv="refresh"/i.test(html) || /location\.replace/.test(html);
+    const allowed = isRedirect || rel === '404.html' || /googled[0-9a-f]+\.html$/.test(rel);
+    if (!allowed) offenders.push(rel);
+  }
+  assert.deepEqual(offenders, [], 'only redirect stubs, the 404 shell and verification files may carry noindex');
+});
+
 test('multi-resolution favicons are published for search and browser surfaces', () => {
   const icons = [
     ['favicon.ico', 512],
