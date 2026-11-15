@@ -72,7 +72,21 @@ www  → بدون رکورد
 - **Cloudflare Pages / `*.pages.dev`** — در ایران فیلتر است؛ میزبانی را به آن منتقل نکنید.
 - **Under Attack Mode** — برای سایت تجاری که ربات گوگل باید بخواندش سم است.
 
-## ۵. پاک کردن کش بعد از هر انتشار (خودکار)
+## ۵. ریدایرکت ۳۰۱ آدرس‌های قدیمی (رفع هشدار noindex گوگل)
+
+آدرس‌های قدیمی `/services/*.html` روی گیت‌هاب فقط با meta refresh جابه‌جا می‌شوند و Search Console
+آن‌ها را «Excluded by noindex tag» گزارش می‌کند. با Bulk Redirects کلادفلر، همان آدرس‌ها با
+**کد ۳۰۱ واقعی** به صفحه‌ی فارسی می‌روند و دیگر هیچ صفحه‌ی noindex دیده نمی‌شود.
+
+۱. فایل `cloudflare-redirects.csv` را با `npm run redirects:cloudflare` بسازید (یا از مخزن بردارید).
+۲. داشبورد → **Rules → Redirect Rules → Bulk Redirects** → **Create Bulk Redirect List**.
+۳. نام: `legacy-services` → **Import CSV** → همان فایل را انتخاب کنید.
+۴. بعد از ساخت لیست، یک **Bulk Redirect Rule** با نام `legacy services 301` بسازید و همین لیست را به آن وصل کنید و Enable کنید.
+
+آدرس ریشه (`/`) را عمداً در CSV نگذاشته‌ایم: فایل `index.html` تگ تأیید Search Console را دارد و
+ریدایرکت کردن آن در لبه، تأیید گوگل را از کار می‌اندازد.
+
+## ۶. پاک کردن کش بعد از هر انتشار (خودکار)
 
 در مخزن این‌ها اضافه شده است:
 
@@ -93,7 +107,7 @@ www  → بدون رکورد
 CLOUDFLARE_API_TOKEN=… CLOUDFLARE_ZONE_ID=… node scripts/purge-cloudflare-cache.mjs --dry-run
 ```
 
-## ۶. تست بعد از راه‌اندازی
+## ۷. تست بعد از راه‌اندازی
 
 ```bash
 # باید IPهای کلادفلر (104.x / 172.6x) را ببینید، نه 185.199.*
@@ -112,7 +126,7 @@ curl -sI https://qazvintasvir.ir/fa/ | grep -iE "server|cf-cache-status|strict-t
 روی برگه‌ی check-host، گره‌های تهران/مشهد/تبریز را انتخاب کنید؛ اگر همه سبز شدند کار تمام است.
 اگر فقط بعضی ISPها قرمز بودند، همان‌جا تصمیم بگیرید که به میزبان ایرانی مهاجرت کنیم.
 
-## ۷. سئو — چه چیزی تغییر می‌کند و چه چیزی نه
+## ۸. سئو — چه چیزی تغییر می‌کند و چه چیزی نه
 
 - آدرس‌ها، canonical، hreflang، sitemap و `lastmod` **هیچ تغییری نمی‌کنند**؛ پس رتبه جابه‌جا نمی‌شود.
 - در Search Console → **Settings → Crawl stats** بعد از جابه‌جایی ممکن است چند روز خطای DNS/۵xx ببینید؛ طبیعی است.

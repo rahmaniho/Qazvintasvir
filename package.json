@@ -18,7 +18,8 @@
     "legacy:redirects": "node scripts/generate-legacy-redirects.mjs",
     "images:optimize": "node scripts/optimize-images.mjs",
     "images:variants": "node scripts/build-image-variants.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "redirects:cloudflare": "node scripts/build-cloudflare-redirects.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
